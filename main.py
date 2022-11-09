@@ -45,12 +45,12 @@ async def read_root():
 # NOTE Working from hir
 
 
-@bms.get("/book/{book_id}", response_model=schemas.Books)
-def read_book(book_id: int, db: Session = Depends(get_db)):
-    db_book = crud.get_books(db, book_id=book_id)
-    if db_book is None:
-        raise HTTPException(status_code=404, detail="Book not found")
-    return db_book
+#@bms.get("/book/{book_id}", response_model=schemas.Books)
+#def read_book(book_id: int, db: Session = Depends(get_db)):
+#    db_book = crud.get_books(db, book_id=book_id)
+#    if db_book is None:
+#        raise HTTPException(status_code=404, detail="Book not found")
+#    return db_book
 
 
 # NOTE Reference :
