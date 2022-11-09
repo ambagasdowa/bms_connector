@@ -17,17 +17,16 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
-from . import crud, models, schemas
-from .database import SessionLocal, engine
+#from . import crud, models, schemas
+#from .database import SessionLocal, engine
 
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)
 
 #app = FastAPI()
 
 bms = FastAPI(
     title='BMS API Documentation', docs_url="/api", openapi_url="/api/v1"
 )
-
 
 
 # Dependency
@@ -44,6 +43,8 @@ async def read_root():
     return {"Hello": "Python"}
 
 # NOTE Working from hir
+
+
 @bms.get("/book/{book_id}", response_model=schemas.Books)
 def read_book(book_id: int, db: Session = Depends(get_db)):
     db_book = crud.get_books(db, book_id=book_id)
@@ -52,8 +53,7 @@ def read_book(book_id: int, db: Session = Depends(get_db)):
     return db_book
 
 
-
-# NOTE Reference : 
+# NOTE Reference :
 
 # @app.post("/users/", response_model=schemas.User)
 # def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
