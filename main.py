@@ -8,53 +8,83 @@
 #import os
 #import subprocess
 # import logging  # for paramiko debug
-from typing import Optional
-from typing import Union
-from fastapi import FastAPI
-from fabric import Connection
+#from typing import Optional
+#from typing import Union
+#from fastapi import FastAPI
+#from fabric import Connection
 
+
+from fastapi import Depends, FastAPI, HTTPException
+from sqlalchemy.orm import Session
+
+from . import crud, models, schemas
+from .database import SessionLocal, engine
+
+models.Base.metadata.create_all(bind=engine)
+
+#app = FastAPI()
 
 bms = FastAPI(
-    title='Development UES API Documentation', docs_url="/api", openapi_url="/api/v1"
+    title='BMS API Documentation', docs_url="/api", openapi_url="/api/v1"
 )
+
+
+
+# Dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 @bms.get('/')
 async def read_root():
     return {"Hello": "Python"}
 
+# NOTE Working from hir
+@bms.get("/book/{book_id}", response_model=schemas.Books)
+def read_book(book_id: int, db: Session = Depends(get_db)):
+    db_book = crud.get_books(db, book_id=book_id)
+    if db_book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return db_book
 
-@bms.get('/guests/{guest}/commands/{command}')
-async def read_guest_command(guest: str, command: str, q: Optional[str] = None):
-    # NOTE can query a database in hir
-    # For Example
-    # request = await some_sql_query()
 
-    newQuery = "Response String is -> " + q
 
-# NOTE connect_kwargs (dict) –
-#
-# Keyword arguments handed verbatim to SSHClient.connect (when open is called).
-#
-# from => class paramiko.client.SSHClient
-# connect_kwargs.password
-#connect(hostname, port=22, username=None, password=None, pkey=None, key_filename=None, timeout=None, allow_agent=True, look_for_keys=True, compress=False, sock=None, gss_auth=False, gss_kex=False, gss_deleg_creds=True, gss_host=None, banner_timeout=None, auth_timeout=None, gss_trust_dns=True, passphrase=None, disabled_algorithms=None)
+# NOTE Reference : 
 
-    link = Connection(
-        host=guest,
-        user='node_two',
-        connect_kwargs={
-            "password": "pekas",
-        },
-    )
+# @app.post("/users/", response_model=schemas.User)
+# def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+#     db_user = crud.get_user_by_email(db, email=user.email)
+#     if db_user:
+#         raise HTTPException(status_code=400, detail="Email already registered")
+#     return crud.create_user(db=db, user=user)
 
-    #    sudopass = Responder(
-    #        pattern=r'\[sudo\] password:',
-    #        response='mypassword\n',
-    #    )
 
-    #    link.run('sudo whoami', pty=True, watchers=[sudopass])
-    result = link.run(command)
+# @app.get("/users/", response_model=list[schemas.User])
+# def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+#     users = crud.get_users(db, skip=skip, limit=limit)
+#     return users
 
-    # return{"item_id": item_id, "q": newQuery + " Remote command execute is => " + result.command + " => " + result.stdout}
-    return{"client": guest, "q": newQuery + " Remote command execute is => " + result.command + " => " + result.stdout}
+
+# @app.get("/users/{user_id}", response_model=schemas.User)
+# def read_user(user_id: int, db: Session = Depends(get_db)):
+#     db_user = crud.get_user(db, user_id=user_id)
+#     if db_user is None:
+#         raise HTTPException(status_code=404, detail="User not found")
+#     return db_user
+
+
+# @app.post("/users/{user_id}/items/", response_model=schemas.Item)
+# def create_item_for_user(
+#     user_id: int, item: schemas.ItemCreate, db: Session = Depends(get_db)
+# ):
+#     return crud.create_user_item(db=db, item=item, user_id=user_id)
+
+
+# @app.get("/items/", response_model=list[schemas.Item])
+# def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+#     items = crud.get_items(db, skip=skip, limit=limit)
+#     return items
