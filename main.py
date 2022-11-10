@@ -15,12 +15,12 @@
 
 
 from fastapi import Depends, FastAPI, HTTPException
-#from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session
 
-#from . import crud, models, schemas
-#from .database import SessionLocal, engine
+from . import crud, models, schemas
+from .database import SessionLocal, engine
 
-# models.Base.metadata.create_all(bind=engine)
+models.Base.metadata.create_all(bind=engine)
 
 #app = FastAPI()
 
@@ -30,12 +30,12 @@ bms = FastAPI(
 
 
 # Dependency
-#def get_db():
-#    db = SessionLocal()
-#    try:
-#        yield db
-#    finally:
-#        db.close()
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 @bms.get('/')
@@ -45,12 +45,12 @@ async def read_root():
 # NOTE Working from hir
 
 
-#@bms.get("/book/{book_id}", response_model=schemas.Books)
-#def read_book(book_id: int, db: Session = Depends(get_db)):
-#    db_book = crud.get_books(db, book_id=book_id)
-#    if db_book is None:
-#        raise HTTPException(status_code=404, detail="Book not found")
-#    return db_book
+@bms.get("/books/{book_id}", response_model=schemas.Books)
+def read_book(book_id: int, db: Session = Depends(get_db)):
+    db_book = crud.get_books(db, book_id=book_id)
+    if db_book is None:
+        raise HTTPException(status_code=404, detail="Book not -- found")
+    return db_book
 
 
 # NOTE Reference :
