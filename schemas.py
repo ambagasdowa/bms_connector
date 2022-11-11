@@ -52,7 +52,7 @@ class Item(ItemBase):
 # /// Schemes for book pages
 
 class PageBase(BaseModel):
-    book_id: str
+    #    book_id: str
     book_name: str
     is_url: bool
     book_pages: int
@@ -68,7 +68,7 @@ class PageUpdate(BaseModel):
 
 
 class Page(PageBase):
-    id: int
+    book_id: str
 
     class Config:
         orm_mode = True
