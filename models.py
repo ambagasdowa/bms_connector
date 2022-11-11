@@ -24,8 +24,8 @@ class Item(Base):
     is_url = Column(Boolean, default=False)
 #    created = Column(DateTime(timezone=True), server_default=func.now())
 #    modified = Column(DateTime(timezone=True), onupdate=func.now())
-    created = Column(DateTime, default=datetime.datetime.utcnow)
-    modified = Column(DateTime, default=datetime.datetime.utcnow)
+    created = Column(DateTime)
+    modified = Column(DateTime)
     status = Column(Boolean, default=True)
 
 
