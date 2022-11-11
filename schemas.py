@@ -52,9 +52,9 @@ class Item(ItemBase):
 # /// Schemes for book pages
 
 class PageBase(BaseModel):
-    book_name: str
-    is_url: bool
-    book_pages: int
+#    book_name: str
+#    is_url: bool
+#    book_pages: int
     path: str
 
 
