@@ -57,9 +57,6 @@ class PageBase(BaseModel):
     is_url: bool
     book_pages: int
     path: str
-    created: datetime
-    modified: datetime
-    status: bool
 
 
 class PageCreate(BaseModel):
