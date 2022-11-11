@@ -42,13 +42,13 @@ def update_item(db: Session, item: Union[int, Item], data: ItemUpdate):
 
 
 def list_pages(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(Page).offset(skip).limit(limit).first()
-
+    return db.query(Page).offset(skip).limit(limit).all()
 
 def get_page(db: Session, id: int):
     return db.query(Page).get(id)
 
-def get_pages(db: Session, book_id : str ):
-    return db.query(Page).filter(models.Page.book_id == book_id)
+def get_pages(db: Session, book_id:str):
+    return db.query(Page).filter(Page.book_id == book_id).all()
+
 
 
