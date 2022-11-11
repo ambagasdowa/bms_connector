@@ -16,7 +16,7 @@ from .database import Base
 #  `status`                  bool not null default true
 
 
-class Book(Base):
+class Item(Base):
     __tablename__ = "bms_books"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -29,19 +29,20 @@ class Book(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
 
-    pages = relationship("Page", back_populates="book")
+ #   pages = relationship("Page", back_populates="book")
 
 class Page(Base):
     __tablename__ = "bms_view_inputs"
 
     id = Column(String, primary_key=True, index=True)
-    book_id = Column(String,  ForeignKey("bms_books.id"))
+    #book_id = Column(String,  ForeignKey("bms_books.id"))
+    book_id = Column(String)
     book_name = Column(String, index=True)
     is_url = Column(Boolean, default=False)
     book_pages = Column(Integer)
     path = Column(String, index=True)
 
-    book = relationship("Book", back_populates="pages")
+#    book = relationship("Book", back_populates="pages")
 
 # class User(Base):
 #    __tablename__ = "users"
