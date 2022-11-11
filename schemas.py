@@ -1,7 +1,18 @@
 # schemas.py
 from typing import Optional, Union
+from datetime import date, datetime, timedelta
 
 from pydantic import BaseModel
+
+
+class ItemBase(BaseModel):
+    book_id: str
+    pages: int
+    book_name: str
+    is_url: bool
+    created: datetime
+    modified: datetime
+    status: bool
 
 
 class ItemCreate(BaseModel):
@@ -25,13 +36,6 @@ class ItemUpdate(BaseModel):
 
 class Item(ItemBase):
     id: int
-    book_id: str
-    pages: int
-    book_name: str
-    is_url: bool
-    created: datetime
-    modified: datetime
-    status: bool
 
 
 class Config:
