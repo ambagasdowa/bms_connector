@@ -40,7 +40,7 @@ class Item(Base):
 class Page(Base):
     __tablename__ = "bms_view_inputs"
 
-    book_id = Column(String, index=True)
+    book_id = Column(String, primary_key=True, index=True)
     book_name = Column(String, index=True)
     is_url = Column(Boolean, default=False)
     book_pages = Column(Integer)
