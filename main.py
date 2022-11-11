@@ -109,5 +109,5 @@ def pages_action_retrieve(page_id: int, db: Session = Depends(get_db)):
 def pages_get_pages(book_id: str, db: Session = Depends(get_db)):
     book = crud.get_pages(db, book_id)
     if book is None:
-        raise HTTPException(status_code=404, detail="No book found")
+        raise HTTPException(status_code=404, message="No book found")
     return book
