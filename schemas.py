@@ -56,7 +56,7 @@ class PageBase(BaseModel):
 #    is_url: bool
 #    book_pages: int
     path: str
-    css : Optional[]
+    css : Optional[Dict]
 
 class PageCreate(BaseModel):
     pass
