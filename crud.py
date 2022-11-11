@@ -6,15 +6,15 @@ from .schemas import ItemCreate, ItemUpdate
 from typing import Union
 
 
-def list_books(db: Session, skip: int = 0, limit: int = 100):
+def list_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Item).offset(skip).limit(limit).all()
 
 
-def get_book(db: Session, id: int):
+def get_item(db: Session, id: int):
     return db.query(Item).get(id)
 
 
-def create_book(db: Session, data: ItemCreate):
+def create_item(db: Session, data: ItemCreate):
     db_item = Item(**data.dict())
     db.add(db_item)
     db.commit()
@@ -22,21 +22,21 @@ def create_book(db: Session, data: ItemCreate):
     return db_item
 
 
-def drop_book(db: Session, item_id: int):
-    db.query(Book).filter(Book.id == item_id).delete()
+def drop_item(db: Session, item_id: int):
+    db.query(Item).filter(Item.id == item_id).delete()
     db.commit()
     return None
 
 
-def update_book(db: Session, book: Union[int, Book], data: BookUpdate):
-    if isinstance(book, int):
-        book = get_book(db, book)
-    if book is None:
+def update_item(db: Session, item: Union[int, Item], data: ItemUpdate):
+    if isinstance(item, int):
+        item = get_item(db, item)
+    if item is None:
         return None
     for key, value in data:
-        setattr(book, key, value)
+        setattr(item, key, value)
     db.commit()
-    return book
+    return item
 
 # /// Pages
 
