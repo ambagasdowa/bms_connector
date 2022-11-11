@@ -104,3 +104,10 @@ def pages_action_retrieve(page_id: int, db: Session = Depends(get_db)):
     if page is None:
         raise HTTPException(status_code=404, detail="No pages found")
     return page
+
+@app.get("/book/{book_id}", response_model=schemas.Page)
+def books_action_retrieve(book_id: str, db: Session = Depends(get_db)):
+    book = crud.pages_book(db, book_id)
+    if book is None:
+        raise HTTPException(status_code=404, detail="No book found")
+    return book
