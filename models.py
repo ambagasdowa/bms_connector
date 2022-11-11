@@ -41,7 +41,8 @@ class Item(Base):
 class Page(Base):
     __tablename__ = "bms_view_inputs"
 
-    book_id = Column(String, primary_key=True, index=True)
+    id = Column(String, primary_key=True, index=True)
+    book_id = Column(String,  ForeignKey("bms_books.id"))
     book_name = Column(String, index=True)
     is_url = Column(Boolean, default=False)
     book_pages = Column(Integer)
