@@ -9,7 +9,7 @@ class ItemCreate(BaseModel):
     pages: int
     book_name: str
     is_url: bool
-    created: datetime.datetime
+    created: datetime
     status: bool
 #    description: Optional[str] = None
 
@@ -19,7 +19,7 @@ class ItemUpdate(BaseModel):
     pages: int
     book_name: str
     is_url: bool
-    modified: datetime.datetime
+    modified: datetime
     status: bool
 
 
@@ -29,8 +29,8 @@ class Item(ItemBase):
     pages: int
     book_name: str
     is_url: bool
-    created: datetime.datetime
-    modified: datetime.datetime
+    created: datetime
+    modified: datetime
     status: bool
 
 
