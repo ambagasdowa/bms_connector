@@ -92,7 +92,7 @@ def items_action_retrieve(item_id: int,  db: Session = Depends(get_db)):
 
 # //////////////////////////// BMS Pages /////////////////////////////
 
-@app.get("/pages", response_model=List[schemas.Item])
+@app.get("/pages", response_model=List[schemas.Page])
 def pages_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(get_db)):
     pages = crud.list_pages(db, offset, limit)
     return pages
