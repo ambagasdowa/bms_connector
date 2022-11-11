@@ -42,7 +42,7 @@ def update_item(db: Session, item: Union[int, Item], data: ItemUpdate):
 
 
 def list_pages(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(Page).offset(skip).limit(limit).all()
+    return db.query(Page).offset(skip).limit(limit).first()
 
 
 def get_page(db: Session, id: int):
