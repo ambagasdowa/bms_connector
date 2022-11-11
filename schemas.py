@@ -15,6 +15,7 @@ from pydantic import BaseModel
 
 
 class ItemBase(BaseModel):
+    book_id: str
     pages: int
     book_name: str
     is_url: bool
@@ -24,17 +25,25 @@ class ItemBase(BaseModel):
 
 
 class ItemCreate(BaseModel):
+    book_id: str
+    pages: int
+    book_name: str
+    is_url: bool
     created: datetime
+    status: bool
 
 
 class ItemUpdate(BaseModel):
+    book_id: str
+    pages: int
+    book_name: str
+    is_url: bool
     modified: datetime
     status: bool
 
 
 class Item(ItemBase):
     id: int
-    book_id: str
 
     class Config:
         orm_mode = True
