@@ -16,7 +16,7 @@ from .database import Base
 #  `status`                  bool not null default true
 
 
-class Item(Base):
+class Book(Base):
     __tablename__ = "bms_books"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -31,13 +31,6 @@ class Item(Base):
 
     pages = relationship("Page", back_populates="book")
 
-#      book_id
-#    ,book_name
-#    ,is_url
-#    ,book_pages
-#    ,concat(`pages`.basename , `pages`.pathname ) as 'path'
-#    ,css
-
 class Page(Base):
     __tablename__ = "bms_view_inputs"
 
@@ -48,7 +41,7 @@ class Page(Base):
     book_pages = Column(Integer)
     path = Column(String, index=True)
 
-    book = relationship("Item", back_populates="pages")
+    book = relationship("Book", back_populates="pages")
 
 # class User(Base):
 #    __tablename__ = "users"
