@@ -36,6 +36,5 @@ class Item(ItemBase):
     id: int
     book_id: str
 
-
-class Config:
-    orm_mode = True
+    class Config:
+        orm_mode = True
