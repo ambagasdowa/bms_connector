@@ -30,6 +30,23 @@ class Item(Base):
     status = Column(Boolean, default=True)
 
 
+#      book_id
+#    ,book_name
+#    ,is_url
+#    ,book_pages
+#    ,concat(`pages`.basename , `pages`.pathname ) as 'path'
+#    ,css
+
+class Page(Base):
+    __tablename__ = "bms_view_inputs"
+
+    book_id = Column(String, index=True)
+    book_name = Column(String, index=True)
+    is_url = Column(Boolean, default=False)
+    book_pages = Column(Integer)
+    path = Column(String, index=True)
+
+
 # class User(Base):
 #    __tablename__ = "users"
 #

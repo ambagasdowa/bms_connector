@@ -47,3 +47,31 @@ class Item(ItemBase):
 
     class Config:
         orm_mode = True
+
+
+# /// Schemes for book pages
+
+class PageBase(BaseModel):
+    book_id: str
+    book_name: str
+    is_url: bool
+    book_pages: int
+    path: str
+    created: datetime
+    modified: datetime
+    status: bool
+
+
+class PageCreate(BaseModel):
+    pass
+
+
+class PageUpdate(BaseModel):
+    pass
+
+
+class Page(PageBase):
+    id: int
+
+    class Config:
+        orm_mode = True

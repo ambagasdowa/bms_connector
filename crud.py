@@ -1,7 +1,7 @@
 # crud.py
 from sqlalchemy.orm import Session
 
-from .models import Item
+from .models import Item, Page
 from .schemas import ItemCreate, ItemUpdate
 from typing import Union
 
@@ -37,3 +37,13 @@ def update_item(db: Session, item: Union[int, Item], data: ItemUpdate):
         setattr(item, key, value)
     db.commit()
     return item
+
+# /// Pages
+
+
+def list_pages(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(Page).offset(skip).limit(limit).all()
+
+
+def get_page(db: Session, id: int):
+    return db.query(Page).get(id)
