@@ -41,6 +41,7 @@ class Page(Base):
     is_url = Column(Boolean, default=False)
     book_pages = Column(Integer)
     path = Column(String, index=True)
+    css = Column(String, index=True)
 
 #    book = relationship("Book", back_populates="pages")
 
