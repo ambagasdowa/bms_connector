@@ -11,7 +11,7 @@ SQLALCHEMY_DATABASE_URL = "mysql+pymysql://ambagasdowa:pekas@127.0.0.1/db_ediq20
 
 engine = create_engine(
     # SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-    SQLALCHEMY_DATABASE_URLi, echo=True
+    SQLALCHEMY_DATABASE_URL, echo=True
 )
 
 print(engine.table_names())
