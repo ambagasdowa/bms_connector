@@ -69,6 +69,6 @@ class PageUpdate(BaseModel):
 
 class Page(PageBase):
     book_id: str
-	pages: list[Item] = []
+	pages: list[Book] = []
     class Config:
         orm_mode = True
