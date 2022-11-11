@@ -98,15 +98,15 @@ def pages_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
     return pages
 
 
-@app.get("/pages/{page_id}", response_model=schemas.Page)
+@app.get("/page/{page_id}", response_model=schemas.Page)
 def pages_action_retrieve(page_id: int, db: Session = Depends(get_db)):
     page = crud.get_page(db, page_id)
     if page is None:
         raise HTTPException(status_code=404, detail="No pages found")
     return page
 
-@app.get("/book/{book_id}", response_model=schemas.Page)
-def books_action_retrieve(book_id: str, db: Session = Depends(get_db)):
+@app.get("/pages/{book_id}", response_model=List[schemas.Page])
+def pages_get_pages(book_id: str, db: Session = Depends(get_db)):
     book = crud.pages_book(db, book_id)
     if book is None:
         raise HTTPException(status_code=404, detail="No book found")
