@@ -1,7 +1,7 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
-#import datetime
+#from sqlalchemy.sql import func
+import datetime
 from .database import Base
 
 #  `id`                      int unsigned not null auto_increment primary key, -- --> Cual es el pedo?
@@ -22,9 +22,10 @@ class Item(Base):
     pages = Column(Integer)
     book_name = Column(String)
     is_url = Column(Boolean, default=False)
-    created = Column(DateTime(timezone=True), server_default=func.now())
-    modified = Column(DateTime(timezone=True), onupdate=func.now())
-#    created = Column(DateTime, default=datetime.datetime.utcnow)
+#    created = Column(DateTime(timezone=True), server_default=func.now())
+#    modified = Column(DateTime(timezone=True), onupdate=func.now())
+    created = Column(DateTime, default=datetime.datetime.utcnow)
+    modified = Column(DateTime, default=datetime.datetime.utcnow)
     status = Column(Boolean, default=True)
 
 
