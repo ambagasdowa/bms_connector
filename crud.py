@@ -1,22 +1,21 @@
 # crud.py
 from sqlalchemy.orm import Session
 
-from .models import Book, Page
-from .schemas import BookCreate, BookUpdate
+from .models import Item, Page
+from .schemas import ItemCreate, ItemUpdate
 from typing import Union
 
 
 def list_books(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(Book).offset(skip).limit(limit).all()
+    return db.query(Item).offset(skip).limit(limit).all()
 
 
 def get_book(db: Session, id: int):
-    #return db.query(Book).get(id)
-    return db.query(Book).get(book_id)
+    return db.query(Item).get(id)
 
 
-def create_book(db: Session, data: BookCreate):
-    db_item = Book(**data.dict())
+def create_book(db: Session, data: ItemCreate):
+    db_item = Item(**data.dict())
     db.add(db_item)
     db.commit()
     db.refresh(db_item)

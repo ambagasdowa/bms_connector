@@ -14,7 +14,7 @@ from pydantic import BaseModel
 #  `status`                  bool not null default true
 
 
-class BookBase(BaseModel):
+class ItemBase(BaseModel):
     book_id: str
     pages: int
     book_name: str
@@ -24,7 +24,7 @@ class BookBase(BaseModel):
     status: bool
 
 
-class BookCreate(BaseModel):
+class ItemCreate(BaseModel):
     book_id: str
     pages: int
     book_name: str
@@ -33,7 +33,7 @@ class BookCreate(BaseModel):
     status: bool
 
 
-class BookUpdate(BaseModel):
+class ItemUpdate(BaseModel):
     book_id: str
     pages: int
     book_name: str
@@ -42,7 +42,7 @@ class BookUpdate(BaseModel):
     status: bool
 
 
-class Book(BookBase):
+class Item(ItemBase):
     id: int
 
     class Config:
@@ -52,7 +52,7 @@ class Book(BookBase):
 # /// Schemes for book pages
 
 class PageBase(BaseModel):
-    #    book_id: str
+    book_id: str
     book_name: str
     is_url: bool
     book_pages: int
@@ -68,7 +68,7 @@ class PageUpdate(BaseModel):
 
 
 class Page(PageBase):
-    book_id: str
-	pages: list[Book] = []
+    id: int
+
     class Config:
         orm_mode = True
