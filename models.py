@@ -1,7 +1,8 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+#import datetime
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, TIMESTAMP, text
 from sqlalchemy.orm import relationship
-#from sqlalchemy.sql import func
-import datetime
+from sqlalchemy.sql import func
+from sqlalchemy.ext.declarative import declarative_base
 from .database import Base
 
 #  `id`                      int unsigned not null auto_increment primary key, -- --> Cual es el pedo?
@@ -24,10 +25,11 @@ class Item(Base):
     is_url = Column(Boolean, default=False)
 #    created = Column(DateTime(timezone=True), server_default=func.now())
 #    modified = Column(DateTime(timezone=True), onupdate=func.now())
-#    created = Column(DateTime)
-#    modified = Column(DateTime)
-    created = DateTime(default=datetime.datetime.utcnow)
-    modified = DateTime(default=datetime.datetime.utcnow)
+#    created = Column(DateTime, default=datetime.datetime.utcnow)
+#    modified = Column(DateTime, default=datetime.datetime.utcnow)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
 
 
