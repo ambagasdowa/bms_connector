@@ -45,5 +45,5 @@ def list_pages(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Page).offset(skip).limit(limit).all()
 
 
-def get_page(db: Session, id: int):
-    return db.query(Page).get(id)
+def get_book(db: Session, book_id: int):
+    return db.query(Page).get(book_id)
