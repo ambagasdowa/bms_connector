@@ -29,6 +29,7 @@ class Item(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
 
+    pages = relationship("Page", back_populates="book")
 
 #      book_id
 #    ,book_name
@@ -46,6 +47,7 @@ class Page(Base):
     book_pages = Column(Integer)
     path = Column(String, index=True)
 
+    book = relationship("Item", back_populates="pages")
 
 # class User(Base):
 #    __tablename__ = "users"
