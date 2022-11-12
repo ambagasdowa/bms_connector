@@ -14,6 +14,33 @@ from pydantic import BaseModel
 #  `status`                  bool not null default true
 
 
+# /// Schemes for book pages
+
+class PageBase(BaseModel):
+    book_name: str
+    is_url: bool
+    book_pages: int
+    path: str
+    css: Optional[str] = None
+
+
+class PageCreate(BaseModel):
+    pass
+
+
+class PageUpdate(BaseModel):
+    pass
+
+
+class Page(PageBase):
+    id: int
+    book_id: str
+
+    class Config:
+        orm_mode = True
+
+
+
 class ItemBase(BaseModel):
     book_id: str
     pages: int
@@ -50,27 +77,4 @@ class Item(ItemBase):
         orm_mode = True
 
 
-# /// Schemes for book pages
 
-class PageBase(BaseModel):
-    book_name: str
-    is_url: bool
-    book_pages: int
-    path: str
-    css: Optional[str] = None
-
-
-class PageCreate(BaseModel):
-    pass
-
-
-class PageUpdate(BaseModel):
-    pass
-
-
-class Page(PageBase):
-    id: int
-    book_id: str
-
-    class Config:
-        orm_mode = True
