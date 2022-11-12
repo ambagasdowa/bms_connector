@@ -35,14 +35,14 @@ class Item(Base):
 #    bms_inputs = relationship("Input",
 #                              primaryjoin="and_(Item.user_id==Input.user_id, "
 #                              "Input.bms_books_id==Item.id)")
-    billing_address_id = Column(
+    books_id = Column(
         Integer, ForeignKey("bms_view_users_inputs.book_id"))
-    shipping_address_id = Column(
-        Integer, ForeignKey("bms_view_users_inputs.users_id"))
+    users_id = Column(
+        Integer, ForeignKey("bms_view_users_inputs.user_id"))
 
-    billing_address = relationship("Input", foreign_keys=[billing_address_id])
-    shipping_address = relationship(
-        "Input", foreign_keys=[shipping_address_id])
+    inputs = relationship("Input", foreign_keys=[books_id])
+    users = relationship(
+        "Input", foreign_keys=[users_id])
 
   #  bms_reference = relationship("Input", back_populates="inputs")
 
