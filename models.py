@@ -32,7 +32,7 @@ class Item(Base):
 
     pagination = relationship("Page", back_populates="book")
     bms_inputs = relationship("Input", back_populates="inputs")
-    #bms_reference = relationship("Input", foreign_keys='Input.book_id' back_populates="inputs")
+    bms_reference = relationship("Input", back_populates="inputs")
 
 class Page(Base):
     __tablename__ = "bms_view_inputs"
