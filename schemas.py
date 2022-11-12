@@ -1,5 +1,5 @@
 # schemas.py
-from typing import List,Optional, Union
+from typing import List, Optional, Union
 from datetime import date, datetime, timedelta
 
 from pydantic import BaseModel
@@ -23,6 +23,7 @@ class ItemBase(BaseModel):
     modified: datetime
     status: bool
 
+
 class ItemCreate(BaseModel):
     book_id: str
     pages: int
@@ -30,6 +31,7 @@ class ItemCreate(BaseModel):
     is_url: bool
     created: datetime
     status: bool
+
 
 class ItemUpdate(BaseModel):
     book_id: str
@@ -39,12 +41,13 @@ class ItemUpdate(BaseModel):
     modified: datetime
     status: bool
 
+
 class Item(ItemBase):
-    id : int
-	pags : list[Page] = []
+    id: int
+    pags: list[Page] = []
 
     class Config:
-		orm_mode = True
+        orm_mode = True
 
 
 # /// Schemes for book pages
@@ -54,7 +57,8 @@ class PageBase(BaseModel):
     is_url: bool
     book_pages: int
     path: str
-    css : Optional[str] = None
+    css: Optional[str] = None
+
 
 class PageCreate(BaseModel):
     pass
