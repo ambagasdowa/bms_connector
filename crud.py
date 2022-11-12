@@ -9,6 +9,8 @@ from typing import Union
 def list_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Item).offset(skip).limit(limit).all()
 
+def get_items(db: Session, book_id:str):
+    return db.query(Item).filter(Item.book_id == book_id).all()
 
 def get_item(db: Session, id: int):
     return db.query(Item).get(id)
