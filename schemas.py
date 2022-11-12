@@ -17,8 +17,6 @@ from pydantic import BaseModel
 # /// Schemes for book pages
 
 class PageBase(BaseModel):
-#    book_name: str
-#    is_url: bool
     book_pages: int
     path: str
     css: Optional[str] = []
@@ -33,7 +31,6 @@ class PageUpdate(BaseModel):
 
 
 class Page(PageBase):
-#    id: int
     book_id: str
 
     class Config:
