@@ -60,9 +60,9 @@ class Page(Base):
 
 
 class Input(Base):
-    __tablename__ = "bms_view_users_inputs"
+    __tablename__ = "bms_cache_view_users_inputs"
 
-#    id = Column(String, primary_key=True, index=True)
+    id = Column(String, primary_key=True, index=True)
     input_id = Column(Integer)
     book_id = Column(String, ForeignKey("bms_cache_books.book_id"))
     bms_bookpages_id = Column(String)
