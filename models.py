@@ -50,7 +50,7 @@ class Input(Base):
     __tablename__ = "bms_view_users_inputs"
 
     id = Column(String, primary_key=True, index=True)
-	bms_input_id = Column(Integer)
+	input_id = Column(Integer)
     bms_books_id = Column(String, ForeignKey("bms_cache_books.book_id"))
     bms_bookpages_id = Column(String)
     label = Column(String, index=True)
