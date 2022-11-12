@@ -17,13 +17,14 @@ from .database import Base
 
 
 class Item(Base):
-    __tablename__ = "bms_books"
+    __tablename__ = "bms_cache_books"
 
     id = Column(Integer, primary_key=True, index=True)
     book_id = Column(String, index=True)
     pages = Column(Integer)
     book_name = Column(String, index=True)
     is_url = Column(Boolean, default=False)
+	user_id = Column(Integer, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
