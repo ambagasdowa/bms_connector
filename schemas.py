@@ -41,7 +41,7 @@ class ItemUpdate(BaseModel):
 
 class Item(ItemBase):
     id: int
-	pages: list[Page] = []
+	pags: list[Page] = []
 
     class Config:
         orm_mode = True
