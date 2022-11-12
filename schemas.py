@@ -17,8 +17,8 @@ from pydantic import BaseModel
 # /// Schemes for book pages
 
 class PageBase(BaseModel):
-    book_name: str
-    is_url: bool
+#    book_name: str
+#    is_url: bool
     book_pages: int
     path: str
     css: Optional[str] = []
