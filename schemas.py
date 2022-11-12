@@ -33,7 +33,7 @@ class PageUpdate(BaseModel):
 
 
 class Page(PageBase):
-    id: int
+#    id: int
     book_id: str
 
     class Config:
