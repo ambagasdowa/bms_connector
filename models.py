@@ -29,7 +29,7 @@ class Item(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
 
-    pags = relationship("Page", back_populates="book")
+    pagination = relationship("Page", back_populates="book")
 
 class Page(Base):
     __tablename__ = "bms_view_inputs"
@@ -43,7 +43,7 @@ class Page(Base):
     path = Column(String, index=True)
     css = Column(String, nullable=True)
 
-    book = relationship("Item", back_populates="pags")
+    book = relationship("Item", back_populates="pagination")
 
 # class User(Base):
 #    __tablename__ = "users"
