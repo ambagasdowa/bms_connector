@@ -23,7 +23,6 @@ class ItemBase(BaseModel):
     modified: datetime
     status: bool
 
-
 class ItemCreate(BaseModel):
     book_id: str
     pages: int
@@ -31,7 +30,6 @@ class ItemCreate(BaseModel):
     is_url: bool
     created: datetime
     status: bool
-
 
 class ItemUpdate(BaseModel):
     book_id: str
@@ -41,10 +39,10 @@ class ItemUpdate(BaseModel):
     modified: datetime
     status: bool
 
-
 class Item(ItemBase):
     id: int
 	pages: list[Page] = []
+
     class Config:
         orm_mode = True
 
