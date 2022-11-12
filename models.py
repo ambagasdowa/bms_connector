@@ -31,20 +31,18 @@ class Item(Base):
 #   status = Column(Boolean, default=True)
 
     pagination = relationship("Page", back_populates="book")
-#    bms_inputs = relationship("Input", back_populates="inputs")
-#    bms_inputs = relationship("Input",
-#                              primaryjoin="and_(Item.user_id==Input.user_id, "
-#                              "Input.bms_books_id==Item.id)")
-    books_id = Column(
-        Integer, ForeignKey("bms_view_users_inputs.book_id"))
-    users_id = Column(
-        Integer, ForeignKey("bms_view_users_inputs.user_id"))
+    bms_inputs = relationship("Input",
+                              primaryjoin="and_(Item.user_id==Input.user_id, "
+                              "Input.bms_books_id==Item.id)")
+#    books_id = Column(
+#        Integer, ForeignKey("bms_view_users_inputs.book_id"))
+#    users_id = Column(
+#        Integer, ForeignKey("bms_view_users_inputs.user_id"))
+#
+#    inputs = relationship("Input", foreign_keys=[books_id])
+#    users = relationship(
+#        "Input", foreign_keys=[users_id])
 
-    inputs = relationship("Input", foreign_keys=[books_id])
-    users = relationship(
-        "Input", foreign_keys=[users_id])
-
-  #  bms_reference = relationship("Input", back_populates="inputs")
 
 
 class Page(Base):

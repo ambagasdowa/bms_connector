@@ -94,6 +94,7 @@ class ItemUpdate(BaseModel):
 class Item(ItemBase):
     id: int
     pagination: Union[List[Page]] = []
+    bms_inputs: Union[List[Input]] = []
 
     class Config:
         orm_mode = True
