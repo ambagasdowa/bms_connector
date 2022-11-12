@@ -59,8 +59,8 @@ class Input(Base):
     attribute = Column(String, index=True)
     value = Column(String, nullable=True)
 
-    inputs = relationship("Item",backref="inputs", foreign_keys=[user_id])
-    reference = relationship("Item", backref="reference",foreign_keys=[bms_books_id])
+    inputs = relationship("Item", foreign_keys=[user_id])
+    reference = relationship("Item", foreign_keys=[bms_books_id])
 
 
 # class User(Base):
