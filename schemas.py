@@ -32,7 +32,6 @@ class PageUpdate(BaseModel):
 
 class Page(PageBase):
     book_id: str
-#    user_id: int
 
     class Config:
         orm_mode = True
@@ -45,6 +44,7 @@ class ItemBase(BaseModel):
     book_name: str
     is_url: bool
     created: datetime
+    user_id: int
 #    modified: datetime
 #    status: bool
 
