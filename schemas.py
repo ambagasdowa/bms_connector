@@ -1,5 +1,5 @@
 # schemas.py
-from typing import Optional, Union
+from typing import List,Optional, Union
 from datetime import date, datetime, timedelta
 
 from pydantic import BaseModel
@@ -40,8 +40,8 @@ class ItemUpdate(BaseModel):
     status: bool
 
 class Item(ItemBase):
-    id: int
-	pags: list[Page] = []
+    id : int
+	pags : list[Page] = []
 
     class Config:
         orm_mode = True
