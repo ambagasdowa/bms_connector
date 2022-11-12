@@ -32,9 +32,17 @@ class Item(Base):
 
     pagination = relationship("Page", back_populates="book")
 #    bms_inputs = relationship("Input", back_populates="inputs")
-    bms_inputs = relationship("Input",
-                              primaryjoin="and_(Item.user_id==Input.user_id, "
-                              "Input.bms_books_id==Item.id)")
+#    bms_inputs = relationship("Input",
+#                              primaryjoin="and_(Item.user_id==Input.user_id, "
+#                              "Input.bms_books_id==Item.id)")
+    billing_address_id = Column(
+        Integer, ForeignKey("bms_view_users_inputs.book_id"))
+    shipping_address_id = Column(
+        Integer, ForeignKey("bms_view_users_inputs.users_id"))
+
+    billing_address = relationship("Input", foreign_keys=[billing_address_id])
+    shipping_address = relationship(
+        "Input", foreign_keys=[shipping_address_id])
 
   #  bms_reference = relationship("Input", back_populates="inputs")
 
@@ -58,7 +66,7 @@ class Input(Base):
 
     id = Column(String, primary_key=True, index=True)
     input_id = Column(Integer)
-    bms_books_id = Column(String, ForeignKey("bms_cache_books.book_id"))
+    book_id = Column(String, ForeignKey("bms_cache_books.book_id"))
     bms_bookpages_id = Column(String)
     label = Column(String, index=True)
     user_id = Column(Integer, ForeignKey("bms_cache_books.user_id"))
