@@ -50,8 +50,8 @@ def items_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
 
 
 @app.get("/items/{item_id}", response_model=schemas.Item)
-def items_action_retrieve(item_id: int, db: Session = Depends(get_db)):
-    item = crud.get_item(db, item_id)
+def items_action_retrieve(item_id: str, db: Session = Depends(get_db)):
+    item = crud.get_items(db, item_id)
     if item is None:
         raise HTTPException(status_code=404, detail="Book not found")
     return item
