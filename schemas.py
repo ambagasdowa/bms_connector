@@ -44,7 +44,7 @@ class Item(ItemBase):
 	pags : list[Page] = []
 
     class Config:
-    	orm_mode = True
+		orm_mode = True
 
 
 # /// Schemes for book pages
