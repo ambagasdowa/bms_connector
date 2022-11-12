@@ -44,7 +44,7 @@ class ItemUpdate(BaseModel):
 
 class Item(ItemBase):
     id: int
-    pagination: list[Page] = []
+    pagination: List[Page] = []
 
     class Config:
         orm_mode = True
