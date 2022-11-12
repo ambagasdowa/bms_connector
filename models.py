@@ -24,13 +24,14 @@ class Item(Base):
     pages = Column(Integer)
     book_name = Column(String, index=True)
     is_url = Column(Boolean, default=False)
-    user_id = Column(Integer)
+    user_id = Column(Integer, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
 #    modified = Column(DateTime, server_default=text(
 #        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
- #   status = Column(Boolean, default=True)
+#   status = Column(Boolean, default=True)
 
     pagination = relationship("Page", back_populates="book")
+    inputs = relationship("Input", back_populates="user")
 
 class Page(Base):
     __tablename__ = "bms_view_inputs"
@@ -44,6 +45,21 @@ class Page(Base):
     css = Column(String, nullable=True)
 
     book = relationship("Item", back_populates="pagination")
+
+class Input(Base):
+    __tablename__ = "bms_view_users_inputs"
+
+    id = Column(String, primary_key=True, index=True)
+	bms_input_id = Column(Integer)
+    bms_books_id = Column(String, ForeignKey("bms_cache_books.book_id"))
+    bms_bookpages_id = Column(String)
+    label = Column(String, index=True)
+    user_id = Column(Integer, ForeignKey("bms_cache_books.user_id"))
+    attribute = Column(String, index=True)
+    value = Column(String, nullable=True)
+
+    values = relationship("Item", back_populates="inputs")
+
 
 # class User(Base):
 #    __tablename__ = "users"

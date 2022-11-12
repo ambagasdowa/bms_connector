@@ -13,8 +13,32 @@ from pydantic import BaseModel
 #  `modified`                datetime,
 #  `status`                  bool not null default true
 
+# /// Schemes fot book values and usr values
 
-# /// Schemes for book pages
+class InputBase(BaseModel):
+    bms_bookpages_id: str
+    label: str
+    attribute: Optional[str] = []
+    value: Optional[str] = []
+
+
+class InputCreate(BaseModel):
+    pass
+
+
+class InputUpdate(BaseModel):
+    pass
+
+
+class Input(InputBase):
+    book_id: str
+    user_id: int
+
+    class Config:
+        orm_mode = True
+
+
+# /// Schemes for book pages and positions
 
 class PageBase(BaseModel):
     book_pages: int
