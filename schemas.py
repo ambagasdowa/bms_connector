@@ -32,7 +32,7 @@ class PageUpdate(BaseModel):
 
 class Page(PageBase):
     book_id: str
-    user_id: int
+#    user_id: int
 
     class Config:
         orm_mode = True
