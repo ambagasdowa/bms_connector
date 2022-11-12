@@ -45,8 +45,8 @@ class ItemBase(BaseModel):
     book_name: str
     is_url: bool
     created: datetime
-    modified: datetime
-    status: bool
+#    modified: datetime
+#    status: bool
 
 
 class ItemCreate(BaseModel):
@@ -55,7 +55,7 @@ class ItemCreate(BaseModel):
     book_name: str
     is_url: bool
     created: datetime
-    status: bool
+#    status: bool
 
 
 class ItemUpdate(BaseModel):
@@ -63,8 +63,8 @@ class ItemUpdate(BaseModel):
     pages: int
     book_name: str
     is_url: bool
-    modified: datetime
-    status: bool
+#    modified: datetime
+#    status: bool
 
 
 class Item(ItemBase):

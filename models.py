@@ -26,9 +26,9 @@ class Item(Base):
     is_url = Column(Boolean, default=False)
     user_id = Column(Integer)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
-    modified = Column(DateTime, server_default=text(
+#    modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    status = Column(Boolean, default=True)
+ #   status = Column(Boolean, default=True)
 
     pagination = relationship("Page", back_populates="book")
 
