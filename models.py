@@ -51,7 +51,7 @@ class Page(Base):
     __tablename__ = "bms_bookpages"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer,  ForeignKey("bms_books.book_id"))
+    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
