@@ -30,7 +30,7 @@ class Item(Base):
 #        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
 #   status = Column(Boolean, default=True)
 
-    pagination = relationship("Page", back_populates="book")
+#    pagination = relationship("Page", back_populates="book")
     pagination = relationship("Page",
                               primaryjoin="and_(Item.id==Page.bms_books_id")
 #    bms_inputs = relationship("Input",
