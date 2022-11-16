@@ -42,7 +42,7 @@ class Input(InputBase):
 
 class PositionBase(BaseModel):
     css:str
-    is_css:List[page] = css
+    is_css: str = Field(page[int],css[str])
 class PositionCreate(BaseModel):
     pass
 
