@@ -38,7 +38,23 @@ class Input(InputBase):
         orm_mode = True
 
 
-# /// Schemes for book pages and positions
+#/// Schemes for book positions
+
+class PositionBase(BaseModel):
+    css:str
+class PositionCreate(BaseModel):
+    pass
+
+class PositionUpdate(BaseModel):
+    pass
+
+class Position(PositionBase):
+    id:int
+
+    class Config:
+        orm_mode = True
+
+# /// Schemes for book pages 
 
 class PageBase(BaseModel):
     book_pages: Optional[int] = []
@@ -97,7 +113,7 @@ class ItemUpdate(BaseModel):
 class Item(ItemBase):
     id: int
     pagination: Union[List[Page]] = []
-#    bms_inputs: Union[List[Input]] = []
+    bms_positions: Union[List[Input]] = []
 
     class Config:
         orm_mode = True
