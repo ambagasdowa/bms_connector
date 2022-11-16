@@ -45,7 +45,7 @@ class PageBase(BaseModel):
 #    path: str
     basename: Optional[str] = []
     pathname: Optional[str] = []
-    css: Optional[str] = []
+#    css: Optional[str] = []
 
 
 class PageCreate(BaseModel):
