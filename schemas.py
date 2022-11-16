@@ -41,7 +41,7 @@ class Input(InputBase):
 # /// Schemes for book pages and positions
 
 class PageBase(BaseModel):
-    book_pages: Optiona[int] = []
+    book_pages: Optional[int] = []
 #    path: str
     basename: Optional[str] = []
     pathname: Optional[str] = []
