@@ -69,9 +69,9 @@ class ItemBase(BaseModel):
     book_id: str
     pages: int
     book_name: str
+    user_id: int
     is_url: bool
     created: datetime
-    user_id: int
 #    modified: datetime
 #    status: bool
 
