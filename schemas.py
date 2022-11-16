@@ -42,6 +42,7 @@ class Input(InputBase):
 
 class PositionBase(BaseModel):
     css:str
+    is_css:List[page] = css
 class PositionCreate(BaseModel):
     pass
 
@@ -75,6 +76,7 @@ class PageUpdate(BaseModel):
 class Page(PageBase):
     id: int
     bms_books_id: int
+
 
     class Config:
         orm_mode = True
