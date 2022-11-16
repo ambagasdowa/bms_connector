@@ -64,7 +64,7 @@ class Page(Base):
 #    book = relationship("Item", back_populates="pagination")
     @hybrid_property
     def path(self):
-        return self.basename + " " + self.pathname
+        return self.basename + self.pathname
 
 # class Page(Base):
 #    __tablename__ = "bms_view_inputs"
