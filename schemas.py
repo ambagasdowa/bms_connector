@@ -42,9 +42,9 @@ class Input(InputBase):
 
 class PageBase(BaseModel):
     book_pages: Optional[int] = []
-#    path: str
-    basename: Optional[str] = []
-    pathname: Optional[str] = []
+    path: str
+#    basename: Optional[str] = []
+#    pathname: Optional[str] = []
 #    css: Optional[str] = []
 
 
