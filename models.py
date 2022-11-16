@@ -31,9 +31,13 @@ class Item(Base):
 #   status = Column(Boolean, default=True)
 
     pagination = relationship("Page", back_populates="book")
-    bms_inputs = relationship("Input",
-                              primaryjoin="and_(Item.user_id==Input.user_id, "
-                              "Input.book_id==Item.book_id)")
+    pagination = relationship("Page",
+                              primaryjoin="and_(Item.id=Page.book_id")
+#    bms_inputs = relationship("Input",
+#                              primaryjoin="and_(Item.user_id==Input.user_id, "
+#                              "Input.book_id==Item.book_id)")
+
+
 #    books_id = Column(
 #        Integer, ForeignKey("bms_view_users_inputs.book_id"))
 #    users_id = Column(
@@ -43,19 +47,34 @@ class Item(Base):
 #    users = relationship(
 #        "Input", foreign_keys=[users_id])
 
-
 class Page(Base):
-    __tablename__ = "bms_view_inputs"
+    __tablename__ = "bms_bookpages"
 
-    id = Column(String, primary_key=True, index=True)
-    book_id = Column(String,  ForeignKey("bms_cache_books.book_id"))
-    book_name = Column(String, index=True)
-    is_url = Column(Boolean, default=False)
+    id = Column(Integer, primary_key=True, index=True)
+    bms_books_id = Column(Integer,  ForeignKey("bms_books.book_id"))
     book_pages = Column(Integer)
-    path = Column(String, index=True)
-    css = Column(String, nullable=True)
+    basename = Column(String, index=True)
+    pathname = Column(String, index=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    status = Column(Boolean, default=True)
 
-    book = relationship("Item", back_populates="pagination")
+#    book = relationship("Item", back_populates="pagination")
+
+
+# class Page(Base):
+#    __tablename__ = "bms_view_inputs"
+#
+#    id = Column(String, primary_key=True, index=True)
+#    book_id = Column(String,  ForeignKey("bms_cache_books.book_id"))
+#    book_name = Column(String, index=True)
+#    is_url = Column(Boolean, default=False)
+#    book_pages = Column(Integer)
+#    path = Column(String, index=True)
+#    css = Column(String, nullable=True)
+#
+#    book = relationship("Item", back_populates="pagination")
 
 
 class Input(Base):

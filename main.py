@@ -49,7 +49,7 @@ def items_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
 # error condition in case the identifier does not correspond to any object
 
 
-#@app.get("/items/{item_id}", response_model=List[schemas.Item])
+#@app.get("/item/{item_id}", response_model=List[schemas.Item])
 #def items_action_retrieve(item_id: str, db: Session = Depends(get_db)):
 #    item = crud.get_items(db, item_id)
 #    if item is None:

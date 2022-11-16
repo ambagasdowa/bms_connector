@@ -42,7 +42,9 @@ class Input(InputBase):
 
 class PageBase(BaseModel):
     book_pages: int
-    path: str
+#    path: str
+    basename: Optional[str] = []
+    pathname: Optional[str] = []
     css: Optional[str] = []
 
 
@@ -94,7 +96,7 @@ class ItemUpdate(BaseModel):
 class Item(ItemBase):
     id: int
     pagination: Union[List[Page]] = []
-    bms_inputs: Union[List[Input]] = []
+#    bms_inputs: Union[List[Input]] = []
 
     class Config:
         orm_mode = True
