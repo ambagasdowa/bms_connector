@@ -61,7 +61,7 @@ class Page(Base):
     status = Column(Boolean, default=True)
 
 #    book = relationship("Item", back_populates="pagination")
-@hybrid_property
+    @hybrid_property
     def path(self):
         return self.basename + " " + self.pathname
 
