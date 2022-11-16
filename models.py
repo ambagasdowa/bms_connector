@@ -82,7 +82,7 @@ class Position(Base):
     top = Column(String, index=True)
     left = Column(String, index=True)
     width = Column(String, index=True)
-    css = Column(Text, nullable=True)
+    css = Column(String, nullable=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
