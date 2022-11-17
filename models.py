@@ -91,20 +91,17 @@ class Position(Base):
 
 
 class Input(Base):
-    __tablename__ = "bms_view_users_inputs"
+    __tablename__ = "bms_inputs_ctrls"
 
-#   id = Column(Integer, primary_key=True, index=True, default=func.ROWNUM())
     id = Column(Integer, primary_key=True, index=True)
-    input_id = Column(Integer, index=True)
-    book_id = Column(String, ForeignKey("bms_cache_books.book_id"))
-    bms_bookpages_id = Column(String)
+    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
     label = Column(String, index=True)
-    user_id = Column(Integer, ForeignKey("bms_cache_books.user_id"))
-    attribute = Column(String, index=True)
-    value = Column(String, nullable=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    status = Column(Boolean, default=True)
 
-#    inputs = relationship("Item", foreign_keys=[user_id,bms_books_id])
-  #  reference = relationship("Item", foreign_keys=[bms_books_id])
 
 
 # class User(Base):

@@ -16,10 +16,9 @@ from pydantic import BaseModel
 # /// Schemes fot book values and usr values
 
 class InputBase(BaseModel):
-    bms_bookpages_id: str
     label: str
-    attribute: Optional[str] = []
-    value: Optional[str] = []
+#    attribute: Optional[str] = []
+#    value: Optional[str] = []
 
 
 class InputCreate(BaseModel):
@@ -31,8 +30,9 @@ class InputUpdate(BaseModel):
 
 
 class Input(InputBase):
-    book_id: str
-    user_id: int
+    id:int 
+    bms_books_id: str
+    bms_bookpages_id: str
 
     class Config:
         orm_mode = True
@@ -116,7 +116,8 @@ class Item(ItemBase):
     id: int
     pagination: Union[List[Page]] = []
     positions: Union[List[Position]] = []
-#    inputs: Union[List[Input]] = []
+    inputs: Union[List[Input]] = []
+#    values: Union[List[Value]] = []
 #    values: Union[List[Value]] = []
 
     class Config:
