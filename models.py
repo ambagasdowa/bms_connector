@@ -86,7 +86,7 @@ class Position(Base):
 class Input(Base):
     __tablename__ = "bms_inputs_ctrls"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True,ForeignKey("bms_inputs_pages.bms_inputs_ctrls_id"))
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
     bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
     label = Column(String, index=True)
