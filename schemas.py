@@ -116,6 +116,8 @@ class Item(ItemBase):
     id: int
     pagination: Union[List[Page]] = []
     positions: Union[List[Position]] = []
+    inputs: Union[List[Input]] = []
+    values: Union[List[Value]] = []
 
     class Config:
         orm_mode = True
