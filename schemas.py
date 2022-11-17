@@ -41,8 +41,8 @@ class Input(InputBase):
 #/// Schemes for book positions
 
 class PositionBase(BaseModel):
+    page:int
     css:str
-    config:str = Field (page[int]=None,css[str]=None)
 class PositionCreate(BaseModel):
     pass
 
