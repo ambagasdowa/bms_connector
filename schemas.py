@@ -42,15 +42,6 @@ class Input(InputBase):
 
 class PositionBase(BaseModel):
     css:str
-    class Config:
-    schema_extra = {
-        'css_config': [
-            {
-                page: int,
-                css: str,
-            }
-        ]
-    }
 class PositionCreate(BaseModel):
     pass
 
@@ -59,6 +50,15 @@ class PositionUpdate(BaseModel):
 
 class Position(PositionBase):
     id:int
+    class Config:
+    schema_extra = {
+        'config': [
+            {
+                page: int,
+                css: str,
+            }
+        ]
+    }
 
     class Config:
         orm_mode = True
