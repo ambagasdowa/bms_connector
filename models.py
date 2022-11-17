@@ -38,19 +38,10 @@ class Item(Base):
     positions = relationship("Position",
                                  primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
                                  )
-#    bms_inputs = relationship("Input",
-#                              primaryjoin="and_(Item.user_id==Input.user_id, "
-#                              "Input.book_id==Item.book_id)")
-
-
-#    books_id = Column(
-#        Integer, ForeignKey("bms_view_users_inputs.book_id"))
-#    users_id = Column(
-#        Integer, ForeignKey("bms_view_users_inputs.user_id"))
+    inputs = relationship("Input",
+                                 primaryjoin="and_(Item.book_id==Input.bms_books_id,Item.id==Position.bms_bookpages_id)"
+                                 )
 #
-#    inputs = relationship("Input", foreign_keys=[books_id])
-#    users = relationship(
-#        "Input", foreign_keys=[users_id])
 
 class Page(Base):
     __tablename__ = "bms_bookpages"
