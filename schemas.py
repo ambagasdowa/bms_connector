@@ -50,6 +50,7 @@ class PositionUpdate(BaseModel):
 
 class Position(PositionBase):
     id:int
+    
     class Config:
     schema_extra = {
         'config': [
@@ -59,9 +60,7 @@ class Position(PositionBase):
             }
         ]
     }
-
-    class Config:
-        orm_mode = True
+    orm_mode = True
 
 # /// Schemes for book pages 
 
