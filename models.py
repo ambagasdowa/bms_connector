@@ -36,12 +36,13 @@ class Item(Base):
     pagination = relationship("Page",
                               primaryjoin="and_(Item.book_id==Page.bms_books_id)")
     positions = relationship("Position",
-                                 primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
-                                 )
+                             primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
+                             )
     inputs = relationship("Input",
-                                 primaryjoin="and_(Item.book_id==Input.bms_books_id,Item.id==Position.bms_bookpages_id)"
-                                 )
+                          primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
+                          )
 #
+
 
 class Page(Base):
     __tablename__ = "bms_bookpages"
@@ -60,6 +61,7 @@ class Page(Base):
     @hybrid_property
     def path(self):
         return self.basename + self.pathname
+
 
 class Position(Base):
     __tablename__ = "bms_positions"
@@ -80,7 +82,6 @@ class Position(Base):
     status = Column(Boolean, default=True)
 
 
-
 class Input(Base):
     __tablename__ = "bms_inputs_ctrls"
 
@@ -92,7 +93,6 @@ class Input(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-
 
 
 # class User(Base):
