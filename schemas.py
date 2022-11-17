@@ -42,7 +42,15 @@ class Input(InputBase):
 
 class PositionBase(BaseModel):
     css:str
-    is_css: str = Field(page[int],css[str])
+    class Config:
+    schema_extra = {
+        'css_config': [
+            {
+                page: int,
+                css: str,
+            }
+        ]
+    }
 class PositionCreate(BaseModel):
     pass
 
