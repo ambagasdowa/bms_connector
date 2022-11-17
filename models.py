@@ -39,6 +39,7 @@ class Item(Base):
                              primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
                              )
     inputs = relationship("Input",
+                          secondary="outerjoin(Input.id==Inpages.bms_inputs_ctrls_id)",
                           primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
                           )
 #
@@ -93,6 +94,22 @@ class Input(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
+
+
+class Inpages(Base):
+    __tablename__ = "bms_inputs_pages"
+
+    id = Column(Integer, primary_key=True, index=True)
+    bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
+    attribute = Column(String, index=True)
+    value = Column(String, index=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    status = Column(Boolean, default=True)
+
+
+
 
 
 # class User(Base):
