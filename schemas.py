@@ -42,6 +42,7 @@ class Input(InputBase):
 
 class PositionBase(BaseModel):
     css:str
+    config:str = Field (page[int]=None,css[str]=None)
 class PositionCreate(BaseModel):
     pass
 
@@ -52,15 +53,7 @@ class Position(PositionBase):
     id:int
     
     class Config:
-    schema_extra = {
-        'config': [
-            {
-                page: int,
-                css: str,
-            }
-        ]
-    }
-    orm_mode = True
+        orm_mode = True
 
 # /// Schemes for book pages 
 
