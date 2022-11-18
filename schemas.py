@@ -66,7 +66,7 @@ class Inpage(InpageBase):
 
 class InputBase(BaseModel):
     label: str
-    bar: (Optional[List[Inpage]], None)
+    bar: (Optional[Tuple[Inpage]], None)
 
 #    inpages: Union[List[Inpage]] = []
 #    attribute: Optional[str] = []
