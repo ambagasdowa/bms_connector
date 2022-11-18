@@ -62,7 +62,6 @@ class Inpage(InpageBase):
     class Config:
         orm_mode = True
 
-
 # /// Schemes fot book values and usr values
 
 class InputBase(BaseModel):
@@ -85,7 +84,7 @@ class Input(InputBase):
     id: int
     bms_books_id: str
     bms_bookpages_id: str
-    inpages: Optional[Union[List[Inpage]]] = []
+#    inpages: Optional[Union[List[Inpage]]] = []
 
     class Config:
         orm_mode = True
