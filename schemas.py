@@ -13,6 +13,31 @@ from pydantic import BaseModel
 #  `modified`                datetime,
 #  `status`                  bool not null default true
 
+# /// Schemes for book inputs-pages values per user
+
+
+class InvalueBase(BaseModel):
+    attribute: str
+    value: str
+
+
+class InvalueCreate(BaseModel):
+    pass
+
+
+class InvalueUpdate(BaseModel):
+    pass
+
+
+class Invalue(InvalueBase):
+    id: int
+    bms_inputs_ctrls_id: int
+    user_id:int
+
+    class Config:
+        orm_mode = True
+
+
 # /// Schemes for book inputs-pages
 
 

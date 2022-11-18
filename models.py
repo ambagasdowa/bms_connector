@@ -45,6 +45,10 @@ class Item(Base):
     inpages = relationship("Inpage",
                             secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
                           )
+    invalues = relationship("Invalue",
+                            secondary="outerjoin(Input,Invalue,Input.id==Inpage.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
+                          )
+
 #
 #
 
@@ -104,10 +108,22 @@ class Inpage(Base):
     __tablename__ = "bms_inputs_pages"
 
     id = Column(Integer, primary_key=True, index=True)
-#    input_id = Column(ForeignKey('Input.id'))
     bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
     attribute = Column(String, index=True)
     value = Column(String, index=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    status = Column(Boolean, default=True)
+
+class Invalue(Base):
+    __tablename__ = "bms_inputs_pages"
+
+    id = Column(Integer, primary_key=True, index=True)
+    bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
+    user_id = Column(Integer, index=True)
+    user_attr = Column(String, index=True)
+    usr_value = Column(String, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
