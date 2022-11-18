@@ -1,11 +1,11 @@
-#import datetime
-#from datetime import datetime
+# import datetime
+# from datetime import datetime
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, TIMESTAMP, text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
-#from sqlalchemy.dialects.mysql import LONGTEXT
+# from sqlalchemy.dialects.mysql import LONGTEXT
 from .database import Base
 
 #  `id`                      int unsigned not null auto_increment primary key, -- --> Cual es el pedo?
@@ -104,30 +104,30 @@ class Input(Base):
 
 
 class Inpage(Base):
-    __tablename__ = "bms_inputs_pages"
+    __tablename__="bms_inputs_pages"
 
-    id = Column(Integer, primary_key=True, index=True)
-    bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
-    attribute = Column(String, index=True)
-    value = Column(String, index=True)
-    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
-    modified = Column(DateTime, server_default=text(
+    id=Column(Integer, primary_key = True, index = True)
+    bms_inputs_ctrls_id=Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
+    attribute=Column(String, index = True)
+    value=Column(String, index = True)
+    created=Column(TIMESTAMP, nullable = False, server_default = func.now())
+    modified=Column(DateTime, server_default = text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    status = Column(Boolean, default=True)
+    status=Column(Boolean, default = True)
 
 
 class Invalue(Base):
-    __tablename__ = "bms_inputs_values"
+    __tablename__="bms_inputs_values"
 
-    id = Column(Integer, primary_key=True, index=True)
-    bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
-    user_id = Column(Integer, index=True)
-    usr_attr = Column(String, index=True)
-    usr_value = Column(String, index=True)
-    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
-    modified = Column(DateTime, server_default=text(
+    id=Column(Integer, primary_key = True, index = True)
+    bms_inputs_ctrls_id=Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
+    user_id=Column(Integer, index = True)
+    usr_attr=Column(String, index = True)
+    usr_value=Column(String, index = True)
+    created=Column(TIMESTAMP, nullable = False, server_default = func.now())
+    modified=Column(DateTime, server_default = text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    status = Column(Boolean, default=True)
+    status=Column(Boolean, default = True)
 
 
 # class User(Base):
