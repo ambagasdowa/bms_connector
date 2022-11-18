@@ -99,7 +99,7 @@ class Input(Base):
     status = Column(Boolean, default=True)
 #    inpages = relationship(primary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)")
     inpages = relationship("Inpage",
-                            primary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
+                            primaryjoin="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
                           )
 
 
