@@ -34,7 +34,7 @@ class Item(Base):
 
 #    pagination = relationship("Page", back_populates="book")
     pagination = relationship("Page",
-                              primaryjoin="and_(Item.book_id==Page.bms_books_id)"),foreign_keys="Page.bms_books_id"
+                              primaryjoin="and_(Item.book_id==Page.bms_books_id)",foreign_keys="Page.bms_books_id")
     positions = relationship("Position",
                              primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
                              )
