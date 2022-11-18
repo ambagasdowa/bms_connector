@@ -117,7 +117,7 @@ class Inpage(Base):
     status = Column(Boolean, default=True)
 
 class Invalue(Base):
-    __tablename__ = "bms_inputs_pages"
+    __tablename__ = "bms_inputs_values"
 
     id = Column(Integer, primary_key=True, index=True)
     bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
