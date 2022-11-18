@@ -80,7 +80,7 @@ class Input(InputBase):
     id: int
     bms_books_id: str
     bms_bookpages_id: str
-    userinput: Optional[Union[List[Invalue]]] = []
+#    userinput: Optional[Union[List[Invalue]]] = []
 #    inpages: Optional[Union[List[Inpage]]] = []
 
     class Config:
