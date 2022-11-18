@@ -145,6 +145,7 @@ class Item(ItemBase):
     pagination: Union[List[Page]] = []
     positions: Union[List[Position]] = []
     inputs: Union[List[Input]] = []
+    inpages: Union[List[Inpage]] = []
 #    inpages: Optional[str] = []
 #    values: Union[List[Value]] = []
 #    values: Union[List[Value]] = []
