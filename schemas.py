@@ -84,7 +84,7 @@ class Input(InputBase):
     id: int
     bms_books_id: str
     bms_bookpages_id: str
-    bar: Optional[Union[List[Inpage]]] = []
+    inpages: Optional[Union[List[Inpage]]] = []
 
     class Config:
         orm_mode = True
