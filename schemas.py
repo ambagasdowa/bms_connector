@@ -57,6 +57,7 @@ class InpageUpdate(BaseModel):
 class Inpage(InpageBase):
     id: int
     bms_inputs_ctrls_id: int
+    invalues: Optional[Union[List[Invalue]]] = []
 
     class Config:
         orm_mode = True

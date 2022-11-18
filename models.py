@@ -112,6 +112,7 @@ class Inpage(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
+	user_value = relationship("Invalue")
 
 class Invalue(Base):
     __tablename__ = "bms_inputs_values"
