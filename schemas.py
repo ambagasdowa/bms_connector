@@ -142,7 +142,6 @@ class ItemBase(BaseModel):
     book_name: str
     user_id: int
     is_url: bool
-    created: datetime
 #    modified: datetime
 #    status: bool
 
@@ -172,9 +171,7 @@ class Item(ItemBase):
     inputs: Union[List[Input]] = []
     inpages: Union[List[Inpage]] = []
     invalues: Union[List[Invalue]] = []
-#    inpages: Optional[str] = []
-#    values: Union[List[Value]] = []
-#    values: Union[List[Value]] = []
+    created: datetime
 
     class Config:
         orm_mode = True
