@@ -13,10 +13,35 @@ from pydantic import BaseModel
 #  `modified`                datetime,
 #  `status`                  bool not null default true
 
+# /// Schemes for book inputs-pages
+
+
+class InpageBase(BaseModel):
+    attribute: str
+    value: str
+
+
+class InpageCreate(BaseModel):
+    pass
+
+
+class InpageUpdate(BaseModel):
+    pass
+
+
+class Inpage(InpageBase):
+    id: int
+    bms_inputs_ctrls_id: int
+
+    class Config:
+        orm_mode = True
+
+
 # /// Schemes fot book values and usr values
 
 class InputBase(BaseModel):
     label: str
+    inpages: Union[List[Inpage]] = []
 #    attribute: Optional[str] = []
 #    value: Optional[str] = []
 
@@ -30,7 +55,7 @@ class InputUpdate(BaseModel):
 
 
 class Input(InputBase):
-    id:int 
+    id: int
     bms_books_id: str
     bms_bookpages_id: str
 
@@ -38,24 +63,29 @@ class Input(InputBase):
         orm_mode = True
 
 
-#/// Schemes for book positions
+# /// Schemes for book positions
 
 class PositionBase(BaseModel):
-    page:int
-    css:str
+    page: int
+    css: str
+
+
 class PositionCreate(BaseModel):
     pass
+
 
 class PositionUpdate(BaseModel):
     pass
 
+
 class Position(PositionBase):
-    id:int
-    
+    id: int
+
     class Config:
         orm_mode = True
 
-# /// Schemes for book pages 
+# /// Schemes for book pages
+
 
 class PageBase(BaseModel):
     book_pages: Optional[int] = []
@@ -77,10 +107,8 @@ class Page(PageBase):
     id: int
     bms_books_id: int
 
-
     class Config:
         orm_mode = True
-
 
 
 class ItemBase(BaseModel):
@@ -117,11 +145,9 @@ class Item(ItemBase):
     pagination: Union[List[Page]] = []
     positions: Union[List[Position]] = []
     inputs: Union[List[Input]] = []
+    inpages: Optional[str] = []
 #    values: Union[List[Value]] = []
 #    values: Union[List[Value]] = []
 
     class Config:
         orm_mode = True
-
-
-

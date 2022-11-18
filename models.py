@@ -94,7 +94,10 @@ class Input(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-
+    inpages = relationship("Inpage",
+                            primaryjoin="and_(Input.book_id==Inpage.bms_inputs_ctrls_id)"
+                          )
+#
 
 class Inpage(Base):
     __tablename__ = "bms_inputs_pages"
