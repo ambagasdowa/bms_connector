@@ -34,16 +34,17 @@ class Item(Base):
 
 #    pagination = relationship("Page", back_populates="book")
     pagination = relationship("Page",
-                              primaryjoin="and_(Item.book_id==Page.bms_books_id)",foreign_keys="Page.bms_books_id")
+                              primaryjoin="and_(Item.book_id==Page.bms_books_id)")
     positions = relationship("Position",
                              primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
                              )
     inputs = relationship("Input",
+    #                      secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)",
                           primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
                           )
-#    inpages = relationship("Inpage",
-#                            primary="outerjoin(Input.id==Inpage.bms_inputs_ctrls_id)"
-#                          )
+    inpages = relationship("Inpage",
+                            primaryjoin="outerjoin(Input,Inpages,Input.id==Inpage.bms_inputs_ctrls_id)"
+                          )
 #
 #
 
@@ -90,18 +91,14 @@ class Input(Base):
     __tablename__ = "bms_inputs_ctrls"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer)
-    bms_bookpages_id = Column(Integer)
+    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
     label = Column(String, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-#    inpages = relationship(primary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)")
-    inpages = relationship("Inpage",
-                            primaryjoin="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
-                          )
-
+#
 
 class Inpage(Base):
     __tablename__ = "bms_inputs_pages"

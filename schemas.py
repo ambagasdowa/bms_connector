@@ -41,7 +41,7 @@ class Inpage(InpageBase):
 
 class InputBase(BaseModel):
     label: str
-    inpages: Union[List[Inpage]] = []
+#    inpages: Union[List[Inpage]] = []
 #    attribute: Optional[str] = []
 #    value: Optional[str] = []
 
@@ -145,7 +145,7 @@ class Item(ItemBase):
     pagination: Union[List[Page]] = []
     positions: Union[List[Position]] = []
     inputs: Union[List[Input]] = []
-#    inpages: Union[List[Inpage]] = []
+    inpages: Union[List[Inpage]] = []
 #    inpages: Optional[str] = []
 #    values: Union[List[Value]] = []
 #    values: Union[List[Value]] = []
