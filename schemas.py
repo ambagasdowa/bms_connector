@@ -171,6 +171,7 @@ class Item(ItemBase):
     positions: Union[List[Position]] = []
     inputs: Union[List[Input]] = []
     inpages: Union[List[Inpage]] = []
+    invalues: Union[List[Invalue]] = []
 #    inpages: Optional[str] = []
 #    values: Union[List[Value]] = []
 #    values: Union[List[Value]] = []
