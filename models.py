@@ -39,7 +39,7 @@ class Item(Base):
                              primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
                              )
     inputs = relationship("Input",
-                          secondary="join(Inpage,Input.id==Inpage.bms_inputs_ctrls_id,isouter=True)",
+                          secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)",
                           primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
                           )
 #    inpages = relationship("Inpage",
