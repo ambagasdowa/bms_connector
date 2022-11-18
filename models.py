@@ -98,7 +98,7 @@ class Input(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-    userinput = relationship("Inpage", secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
+    userinput = relationship("Inpage", secondary="join(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_idi,isouter=True)"
                              )
 #
 
