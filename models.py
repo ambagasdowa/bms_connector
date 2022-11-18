@@ -39,7 +39,6 @@ class Item(Base):
                              primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
                              )
     inputs = relationship("Input",
-                          secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)",
                           primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
                           )
 #    inpages = relationship("Inpage",
@@ -98,7 +97,11 @@ class Input(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-#
+#    inpages = relationship(primary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)")
+    inpages = relationship("Inpage",
+                            primary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
+                          )
+
 
 class Inpage(Base):
     __tablename__ = "bms_inputs_pages"
