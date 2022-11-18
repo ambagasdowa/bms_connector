@@ -17,8 +17,8 @@ from pydantic import BaseModel
 
 
 class InvalueBase(BaseModel):
-    attribute: str
-    value: str
+    usr_attr: str
+    usr_value: str
 
 
 class InvalueCreate(BaseModel):
