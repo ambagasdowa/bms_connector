@@ -42,6 +42,10 @@ class Item(Base):
 #                          secondary="outerjoin(Page,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)",
                           primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
                           )
+    inpages = relationship("Inpage",
+                            primaryjoin="and_(Input.id==Inpage.bms_inputs_ctrls_id)"
+                          )
+
 #
 
 
@@ -94,9 +98,6 @@ class Input(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-    inpages = relationship("Inpage",
-                            primaryjoin="and_(Input.id==Inpage.bms_inputs_ctrls_id)"
-                          )
 #
 
 class Inpage(Base):
