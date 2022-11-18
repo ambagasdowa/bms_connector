@@ -39,11 +39,11 @@ class Item(Base):
                              primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
                              )
     inputs = relationship("Input",
-                          secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)",foreign_keys=id,
+                          secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)",
                           primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
                           )
 #    inpages = relationship("Inpage",
-#                            primaryjoin="and_(Input.id==Inpage.bms_inputs_ctrls_id)"
+#                            primary="outerjoin(Input.id==Inpage.bms_inputs_ctrls_id)"
 #                          )
 #
 #
@@ -104,6 +104,7 @@ class Inpage(Base):
     __tablename__ = "bms_inputs_pages"
 
     id = Column(Integer, primary_key=True, index=True)
+#    input_id = Column(ForeignKey('Input.id'))
     bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
     attribute = Column(String, index=True)
     value = Column(String, index=True)
