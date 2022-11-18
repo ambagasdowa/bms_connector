@@ -90,9 +90,9 @@ class Position(Base):
 class Input(Base):
     __tablename__ = "bms_inputs_ctrls"
 
-    id = Column(Integer, ForeignKey("bms_inputs_pages.bms_inputs_ctrls_id"), primary_key=True, index=True)
-    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
-    bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
+    id = Column(Integer, primary_key=True, index=True)
+    bms_books_id = Column(Integer)
+    bms_bookpages_id = Column(Integer)
     label = Column(String, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
