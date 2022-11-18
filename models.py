@@ -33,8 +33,9 @@ class Item(Base):
 #   status = Column(Boolean, default=True)
 
 #    pagination = relationship("Page", back_populates="book")
-    pagination = relationship("Page",
-                              primaryjoin="and_(Item.book_id==Page.bms_books_id)")
+    pagination = relationship("Page"
+#                              ,primaryjoin="and_(Item.book_id==Page.bms_books_id)"
+	)
     positions = relationship("Position",
                              primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
                              )
@@ -65,7 +66,6 @@ class Page(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
 
-#    book = relationship("Item", back_populates="pagination")
     @hybrid_property
     def path(self):
         return self.basename + self.pathname
