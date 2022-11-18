@@ -95,7 +95,7 @@ class Input(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
     inpages = relationship("Inpage",
-                            primaryjoin="and_(Input.book_id==Inpage.bms_inputs_ctrls_id)"
+                            primaryjoin="and_(Input.id==Inpage.bms_inputs_ctrls_id)"
                           )
 #
 
