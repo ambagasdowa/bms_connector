@@ -34,21 +34,20 @@ class Item(Base):
 
 #    pagination = relationship("Page", back_populates="book")
     pagination = relationship("Page"
-#                              ,primaryjoin="and_(Item.book_id==Page.bms_books_id)"
-	)
+                              #                              ,primaryjoin="and_(Item.book_id==Page.bms_books_id)"
+                              )
     positions = relationship("Position"
-#                             ,primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
+                             #                             ,primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
                              )
     inputs = relationship("Input"
-#                          ,primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
+                          #                          ,primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
                           )
     inpages = relationship("Inpage",
-                            secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
-                          )
+                           secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
+                           )
     invalues = relationship("Invalue",
                             secondary="outerjoin(Input,Invalue,Input.id==Invalue.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
-                          )
-
+                            )
 
 
 class Page(Base):
@@ -101,6 +100,7 @@ class Input(Base):
     status = Column(Boolean, default=True)
 #
 
+
 class Inpage(Base):
     __tablename__ = "bms_inputs_pages"
 
@@ -112,7 +112,8 @@ class Inpage(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-	user_value = relationship("Invalue")
+    user_value = relationship("Invalue")
+
 
 class Invalue(Base):
     __tablename__ = "bms_inputs_values"
@@ -126,9 +127,6 @@ class Invalue(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-
-
-
 
 
 # class User(Base):

@@ -32,7 +32,7 @@ class InvalueUpdate(BaseModel):
 class Invalue(InvalueBase):
     id: int
     bms_inputs_ctrls_id: int
-    user_id:int
+    user_id: int
 
     class Config:
         orm_mode = True
@@ -63,6 +63,7 @@ class Inpage(InpageBase):
         orm_mode = True
 
 # /// Schemes fot book values and usr values
+
 
 class InputBase(BaseModel):
     label: str
