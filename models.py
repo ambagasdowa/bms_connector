@@ -98,6 +98,7 @@ class Input(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
+    userinput = relationship("Inpage")
 #
 
 
@@ -112,7 +113,6 @@ class Inpage(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-    user_value = relationship("Invalue")
 
 
 class Invalue(Base):
