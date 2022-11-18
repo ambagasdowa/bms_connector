@@ -41,7 +41,7 @@ class Inpage(InpageBase):
 
 class InputBase(BaseModel):
     label: str
-    inpages: Optional[Union[List[Inpage]]] = []
+#    inpages: Union[List[Inpage]] = []
 #    attribute: Optional[str] = []
 #    value: Optional[str] = []
 
