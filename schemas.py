@@ -4,15 +4,6 @@ from datetime import date, datetime, timedelta
 
 from pydantic import BaseModel
 
-#  `id`                      int unsigned not null auto_increment primary key, -- --> Cual es el pedo?
-#  `book_id`                 varchar(255) not null , -- --> ex: 228
-#  `pages`                   int null, -- --> 8 total pages
-#  `book_name`               varchar(255) null, -- --> Guia_UV
-#  `is_url`          bool not null default false, -- --> means false is path url/{book_id} else url?book_id={id}&var=foo
-#  `created`                 datetime,
-#  `modified`                datetime,
-#  `status`                  bool not null default true
-
 # /// Schemes for book inputs-pages values per user
 
 
@@ -80,7 +71,6 @@ class Input(InputBase):
     id: int
     bms_books_id: str
     bms_bookpages_id: str
-#    userinput: Optional[Union[List[Invalue]]] = []
 #    inpages: Optional[Union[List[Inpage]]] = []
 
     class Config:
