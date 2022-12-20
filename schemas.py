@@ -133,6 +133,19 @@ class ItemBase(BaseModel):
     is_url: bool
 #    modified: datetime
 #    status: bool
+    pagination: Union[List[Page]] = []
+    positions: Union[List[Position]] = []
+    # This goes togheter
+    inputs: Union[List[Input]] = []
+    inpages: Union[List[Inpage]] = []
+    invalues: Union[List[Invalue]] = []
+
+    created: datetime
+
+    def dict(self, **kwargs):
+        data = super(ItemBase, self).dict(**kwargs)
+        data['paper'] = [data['inpages'], data['invalues']]
+        return data
 
 
 class ItemCreate(BaseModel):
@@ -155,20 +168,6 @@ class ItemUpdate(BaseModel):
 
 class Item(ItemBase):
     id: int
-    pagination: Union[List[Page]] = []
-    positions: Union[List[Position]] = []
-    # This goes togheter
-    inputs: Union[List[Input]] = []
-    inpages: Union[List[Inpage]] = []
-    invalues: Union[List[Invalue]] = []
-
-    created: datetime
-
-    def dict(self, **kwargs):
-        data = super(Item, self).dict(**kwargs)
-        indata = [data['inpages'], data['invalues']]
-        data['paper'] = indata
-        return data
 
     class Config:
         orm_mode = True
