@@ -148,7 +148,7 @@ class ItemBase(BaseModel):
         for paper in data['invalues']:
             data['inpages'].append(paper)
 
-        data['xpaper'] = [data['inpages'], data['invalues']]
+        del data['invalues']
         return data
 
 
