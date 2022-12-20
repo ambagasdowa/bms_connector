@@ -149,6 +149,15 @@ class ItemBase(BaseModel):
             data['inpages'].append(paper)
 
         del data['invalues']
+
+        #data['inputs']['id'] == data['invalues']['bms_inputs_ctrls_id']
+        # NOTE rewrite again
+        for inpaper in data['inputs']:
+
+            for inval in data['invalues']:
+                if data['inputs']['id'] == data['invalues']['bms_inputs_ctrls_id']:
+                    data['inputs']['data'].append(inval)
+
         return data
 
 
