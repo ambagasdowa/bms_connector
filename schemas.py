@@ -150,6 +150,8 @@ class ItemBase(BaseModel):
             xpaper.append(paper)
 
         data['paper'] = xpaper
+
+        data['xpaper'] = [data['inpages'], data['invalues']]
         return data
 
 
