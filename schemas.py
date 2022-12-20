@@ -154,8 +154,8 @@ class ItemBase(BaseModel):
         # NOTE rewrite again
         for inpaper in data['inputs']:
 
-            for inval in data['invalues']:
-                if data['inputs']['id'] == data['invalues']['bms_inputs_ctrls_id']:
+            for inval in data['inpages']:
+                if data['inputs']['id'] == data['inpages']['bms_inputs_ctrls_id']:
                     data['inputs']['data'].append(inval)
 
         return data
