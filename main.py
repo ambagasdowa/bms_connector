@@ -24,6 +24,8 @@ app = FastAPI(
 # Dependency injection is very smart, as it allows to declaratively require some service.
 # This function models the database connection as a service, so that it can be required
 # just when needed.
+# NOTE https://www.gormanalysis.com/blog/many-to-many-relationships-in-fastapi/
+# NOTE https://realpython.com/python-sqlite-sqlalchemy/
 
 
 def get_db():
@@ -49,15 +51,15 @@ def items_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
 # error condition in case the identifier does not correspond to any object
 
 
-#@app.get("/item/{item_id}", response_model=List[schemas.Item])
-#def items_action_retrieve(item_id: str, db: Session = Depends(get_db)):
+# @app.get("/item/{item_id}", response_model=List[schemas.Item])
+# def items_action_retrieve(item_id: str, db: Session = Depends(get_db)):
 #    item = crud.get_items(db, item_id)
 #    if item is None:
 #        raise HTTPException(status_code=404, detail="Book not found")
 #    return item
 
 @app.get("/items/{item_id}/{user_id}", response_model=List[schemas.Item])
-def items_action_retrieve(item_id: str, user_id : int , db: Session = Depends(get_db)):
+def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_db)):
     item = crud.get_items(db, item_id, user_id)
     if item is None:
         raise HTTPException(status_code=404, detail="Book not found")
@@ -112,9 +114,8 @@ def pages_action_retrieve(page_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="No pages found")
     return page
 
+
 @app.get("/pages/{book_id}", response_model=List[schemas.Page])
-def pages_book_list( book_id : str , db: Session = Depends(get_db)):
+def pages_book_list(book_id: str, db: Session = Depends(get_db)):
     pages = crud.get_pages(db, book_id)
     return pages
-
-

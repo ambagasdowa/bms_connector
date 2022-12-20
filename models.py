@@ -86,7 +86,9 @@ class Position(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
 
-
+# NOTE https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html
+# https://stackoverflow.com/questions/68626930/fastapi-many-to-many-response-schema-and-relationship
+# https://stackoverflow.com/questions/68394091/fastapi-sqlalchemy-pydantic-%E2%86%92-how-to-process-many-to-many-relations
 class Input(Base):
     __tablename__ = "bms_inputs_ctrls"
 

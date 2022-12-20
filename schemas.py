@@ -157,10 +157,18 @@ class Item(ItemBase):
     id: int
     pagination: Union[List[Page]] = []
     positions: Union[List[Position]] = []
+    # This goes togheter
     inputs: Union[List[Input]] = []
     inpages: Union[List[Inpage]] = []
     invalues: Union[List[Invalue]] = []
+
     created: datetime
+
+    def dict(self, **kwargs):
+        data = super(Item, self).dict(**kwargs)
+        indata = [data['inpages'], data['invalues']]
+        data['paper'] = indata
+        return data
 
     class Config:
         orm_mode = True
