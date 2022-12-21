@@ -184,7 +184,7 @@ class ItemBase(BaseModel):
                #book_inputs[data['inputs']['bms_bookpages_id']] = ''
                book_inputs[page] = ''
             ins[page] = {}
-            ins[page][idp] = {}
+#            ins[page][idp] = {}
 
             num=0
             for attr in input_pages['data']:
