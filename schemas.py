@@ -165,13 +165,14 @@ class ItemBase(BaseModel):
             book_pages[bookpages['book_pages']] = bookpages['path']
 
         data['book_pages'] = book_pages
-
+        del data['pagination']
         # Reorder book_pages and book_pages_maps
         book_pages_maps = {}
         for bookpagesmaps in data['positions']:
             book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
 
         data['book_pages_maps'] = book_pages_maps
+        del data['positions']
 
         return data
 
