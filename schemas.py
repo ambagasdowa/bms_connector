@@ -187,8 +187,7 @@ class ItemBase(BaseModel):
             print(input_pages)
             for attr in input_pages['data']:
                 print(attr['attribute'])
-                print(attr.key())
-                print(attr.value())
+                print(attr['value'])
 
 #                ins[str(num)][attr['attribute']] = attr['value']
                 # ins[attr['attribute']].append(attr['value'])
