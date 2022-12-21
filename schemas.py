@@ -190,7 +190,7 @@ class ItemBase(BaseModel):
                 print(attr)
                 ins[page]
                 dt[attr['attribute']] = attr['value']
-                ins[page],update(dt)
+                ins[page].update(dt)
 
                 # try :
                 #     ins[attr['attribute']] = attr['value']
