@@ -153,10 +153,11 @@ class ItemBase(BaseModel):
         #data['inputs']['id'] == data['invalues']['bms_inputs_ctrls_id']
         # NOTE rewrite again
         for inpaper in data['inputs']:
+            inpaper['data'] = []
             for inval in data['inpages']:
                 if (int(inpaper['id']) == int(inval['bms_inputs_ctrls_id'])):
                     inpaper['data'].append(inval)
-
+        data['xinput'] = inpaper
         return data
 
 
