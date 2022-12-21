@@ -185,7 +185,7 @@ class ItemBase(BaseModel):
             ins[page] = {}
             for attr in input_pages['data']:
 #                print(attr)
-                ins[page][attr['attribute']] = attr['value']
+                ins[attr['bms_inputs_ctrls_id']][attr['attribute']] = attr['value']
                 # ins[attr['attribute']].append(attr['value'])
 
                 # try :
