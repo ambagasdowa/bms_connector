@@ -190,7 +190,7 @@ class ItemBase(BaseModel):
                 # print(attr['attribute'])
                 print(attr['bms_inputs_ctrls_id'])
                 print('{"'+attr['attribute']+'":"'+attr['value']+'"}')
-                ins[page][inputs_pages['id']][attr['attribute']] = attr['value']
+                ins[page][input_pages['id']][attr['attribute']] = attr['value']
 #                ins[attr['attribute']] = attr['value']
                 # ins[attr['attribute']].append(attr['value'])
 
