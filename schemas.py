@@ -176,6 +176,7 @@ class ItemBase(BaseModel):
         # Change the column name in sql table usr_attr and usr_value
         book_inputs = {}
         ins = {}
+#        bkp = []
         for input_pages in data['inputs']:
             page = input_pages['bms_bookpages_id']
             idp = input_pages['id']
@@ -196,11 +197,11 @@ class ItemBase(BaseModel):
         #             ins[attr['usr_attr']] = attr['usr_value']
         #         else:
         #             ins[attr['attribute']] = attr['value']
-#            print('INS :')
-#            print(ins)
-            book_inputs[page] = ins[page]
+                print('INS :'+str(page))
+                print(ins)
+#            book_inputs[page] = bkp
 
-        data['book_inputs'] = book_inputs
+ #       data['book_inputs'] = book_inputs
         return data
 
 
