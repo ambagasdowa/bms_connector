@@ -190,6 +190,7 @@ class ItemBase(BaseModel):
         #         else:
         #             ins[attr['attribute']] = attr['value']
             print(ins)
+            print(inputs_pages)
             book_inputs[input_pages['bms_bookpages_id']].append(ins)
 
         data['book_inputs'] = book_inputs
