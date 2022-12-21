@@ -177,7 +177,7 @@ class ItemBase(BaseModel):
         # Rearrange inputs
         # Change the column name in sql table usr_attr and usr_value
         book_inputs = {}
-        ins = {}
+        ins = []
         for input_pages in data['inputs']:
             if book_inputs.get(input_pages['bms_bookpages_id']) is None :
                 book_inputs[input_pages['bms_bookpages_id']] = ''
