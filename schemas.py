@@ -180,8 +180,8 @@ class ItemBase(BaseModel):
         ins = {}
         for input_pages in data['inputs']:
             if book_inputs.get(input_pages['bms_bookpages_id']) is None :
-                book_inputs.append('{'+input_pages['bms_bookpages_id']+' :""}')
-            print(input_pages['bms_bookpages_id'])
+                book_inputs[input_pages['bms_bookpages_id']] = ''
+            print(input_pages)
             for attr in input_pages['data']:
                 ins[attr['attribute']] = attr['value']
 
