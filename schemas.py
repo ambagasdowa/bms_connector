@@ -159,13 +159,13 @@ class ItemBase(BaseModel):
                     inpaper['data'].append(inval)
         # Reorder book_pages and book_pages_maps
         book_pages = {}
-        book_pages_maps = {}
+#        book_pages_maps = {}
         for bookpages in data['pagination']:
             book_pages[bookpages['book_pages']] = bookpages['path']
-            book_pages_maps[bookpages['book_pages']] = bookpages['css']
+#            book_pages_maps[bookpages['book_pages']] = bookpages['css']
 
         data['book_pages'] = book_pages
-        data['book_pages_maps'] = book_pages_maps
+#        data['book_pages_maps'] = book_pages_maps
 
         return data
 
