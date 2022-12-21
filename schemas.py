@@ -157,7 +157,13 @@ class ItemBase(BaseModel):
             for inval in data['inpages']:
                 if (int(inpaper['id']) == int(inval['bms_inputs_ctrls_id'])):
                     inpaper['data'].append(inval)
-        data['xinput'] = inpaper
+        # Reorder book_pages
+        book_pages = {}
+        for bookpages in data['pagination']:
+            book_pages[bookpages['book_pages']] = bookpages['path']
+
+        data['book_pages'] = book_pages
+
         return data
 
 
