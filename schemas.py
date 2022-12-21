@@ -175,14 +175,15 @@ class ItemBase(BaseModel):
         # Rearrange inputs
         # Change the column name in sql table usr_attr and usr_value
         book_inputs = {}
-        ins = []
+        ins = {}
         for input_pages in data['inputs']:
             if book_inputs.get(input_pages['bms_bookpages_id']) is None :
                book_inputs[input_pages['bms_bookpages_id']] = ''
-            print(input_pages)
+#            print(input_pages)
             #ins[input_pages['bms_bookpages_id']] = []
             for attr in input_pages['data']:
                 print(attr)
+                ins[attr['attribute']] = attr['value']
                 # ins[attr['attribute']].append(attr['value'])
 
                 # try :
@@ -195,9 +196,9 @@ class ItemBase(BaseModel):
         #         else:
         #             ins[attr['attribute']] = attr['value']
             # print(ins)
-            # book_inputs[input_pages['bms_bookpages_id']] = ins
+            book_inputs[input_pages['bms_bookpages_id']] = ins
 
-        # data['book_inputs'] = book_inputs
+        data['book_inputs'] = book_inputs
         return data
 
 
