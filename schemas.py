@@ -208,9 +208,9 @@ class ItemBase(BaseModel):
         #             ins[attr['attribute']] = attr['value']
             print('INS :')
             print(ins)
-  #          book_inputs[page] = ins[page]
+            book_inputs[page] = ins[page]
 
-  #      data['book_inputs'] = book_inputs
+        data['book_inputs'] = book_inputs
         return data
 
 
