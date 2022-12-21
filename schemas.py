@@ -180,7 +180,7 @@ class ItemBase(BaseModel):
         ins = {}
         for input_pages in data['inputs']:
             for attr in input_pages['data']:
-                try attr.get('attribute'):
+                try :
                     ins[attr['attribute']] = attr['value']
                 except :
                     ins[attr['usr_attr']] = attr['usr_value']
