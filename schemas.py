@@ -182,14 +182,16 @@ class ItemBase(BaseModel):
             if book_inputs.get(input_pages['bms_bookpages_id']) is None :
                #book_inputs[data['inputs']['bms_bookpages_id']] = ''
                book_inputs[page] = ''
- #           ins[page] = {}
+            ins[page] = {}
+            ins[page][inputs_pages['id']] = {}
  #           num=0
             print(input_pages)
             for attr in input_pages['data']:
                 # print(attr['attribute'])
                 print(attr['bms_inputs_ctrls_id'])
                 print('{"'+attr['attribute']+'":"'+attr['value']+'"}')
-#                ins[str(num)][attr['attribute']] = attr['value']
+                ins[page][inputs_pages['id']][attr['attribute']] = attr['value']
+#                ins[attr['attribute']] = attr['value']
                 # ins[attr['attribute']].append(attr['value'])
 
                 # try :
@@ -201,7 +203,7 @@ class ItemBase(BaseModel):
         #             ins[attr['usr_attr']] = attr['usr_value']
         #         else:
         #             ins[attr['attribute']] = attr['value']
- #           print(ins)
+            print(ins)
   #          book_inputs[page] = ins[page]
 
   #      data['book_inputs'] = book_inputs
