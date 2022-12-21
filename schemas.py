@@ -175,6 +175,7 @@ class ItemBase(BaseModel):
 #        del data['positions']
 
         # Rearrange inputs
+        # Change the column name in sql table usr_attr and usr_value
         book_inputs = {}
         ins = {}
         for input_pages in data['inputs']:
