@@ -156,7 +156,7 @@ class ItemBase(BaseModel):
             inpaper['data'] = []
             for inval in data['inpages']:
                 if (int(inpaper['id']) == int(inval['bms_inputs_ctrls_id'])):
-                    inpaper[inpaper['bms_bookpages_id']].append(inval)
+                    inpaper[int(inpaper['bms_bookpages_id'])].append(inval)
         data['xinput'] = inpaper
         return data
 
