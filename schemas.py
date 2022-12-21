@@ -8,8 +8,8 @@ from pydantic import BaseModel
 
 
 class InvalueBase(BaseModel):
-    usr_attr: str
-    usr_value: str
+    attribute: str
+    value: str
 
 
 class InvalueCreate(BaseModel):

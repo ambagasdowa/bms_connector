@@ -121,8 +121,8 @@ class Invalue(Base):
     id=Column(Integer, primary_key = True, index = True)
     bms_inputs_ctrls_id=Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
     user_id=Column(Integer, index = True)
-    usr_attr=Column(String, index = True)
-    usr_value=Column(String, index = True)
+    attribute=Column(String, index = True)
+    value=Column(String, index = True)
     created=Column(TIMESTAMP, nullable = False, server_default = func.now())
     modified=Column(DateTime, server_default = text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
