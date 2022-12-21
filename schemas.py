@@ -179,13 +179,13 @@ class ItemBase(BaseModel):
         for input_pages in data['inputs']:
             print(input_pages['bms_bookpages_id'])
             page = input_pages['bms_bookpages_id']
-            idp = input_pages['id']
+            idp = str(input_pages['id'])
             if book_inputs.get(input_pages['bms_bookpages_id']) is None :
                #book_inputs[data['inputs']['bms_bookpages_id']] = ''
                book_inputs[page] = ''
                book_inputs[page][idp] = ''
             ins[page] = {}
-            ins[page][idp] = {}
+ #           ins[page][idp] = {}
  #           num=0
             print(input_pages)
             num=0
