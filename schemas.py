@@ -147,10 +147,8 @@ class ItemBase(BaseModel):
 
         for paper in data['invalues']:
             data['inpages'].append(paper)
-
 #        del data['invalues']
 
-        # data['inputs']['id'] == data['invalues']['bms_inputs_ctrls_id']
         # NOTE rewrite again
         for inpaper in data['inputs']:
             inpaper['data'] = []
@@ -180,8 +178,9 @@ class ItemBase(BaseModel):
         ins = []
         for input_pages in data['inputs']:
             if book_inputs.get(input_pages['bms_bookpages_id']) is None :
-                book_inputs[input_pages['bms_bookpages_id']] = ''
+               book_inputs[input_pages['bms_bookpages_id']] = ''
             print(input_pages)
+            #ins[input_pages['bms_bookpages_id']] = []
             for attr in input_pages['data']:
                 ins[attr['attribute']].append(attr['value'])
 
@@ -195,7 +194,7 @@ class ItemBase(BaseModel):
         #         else:
         #             ins[attr['attribute']] = attr['value']
             print(ins)
-            book_inputs[input_pages['bms_bookpages_id']] =ins
+            book_inputs[input_pages['bms_bookpages_id']] = ins
 
         data['book_inputs'] = book_inputs
         return data
