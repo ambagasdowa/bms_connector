@@ -148,7 +148,7 @@ class ItemBase(BaseModel):
         for paper in data['invalues']:
             data['inpages'].append(paper)
 
-        del data['invalues']
+#        del data['invalues']
 
         # data['inputs']['id'] == data['invalues']['bms_inputs_ctrls_id']
         # NOTE rewrite again
@@ -165,22 +165,22 @@ class ItemBase(BaseModel):
             book_pages[bookpages['book_pages']] = bookpages['path']
 
         data['book_pages'] = book_pages
-        del data['pagination']
+#        del data['pagination']
         # Reorder book_pages and book_pages_maps
         book_pages_maps = {}
         for bookpagesmaps in data['positions']:
             book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
 
         data['book_pages_maps'] = book_pages_maps
-        del data['positions']
+#        del data['positions']
 
         # Rearrange inputs
-        # book_inputs = {}
-        # ins = {}
-        # for input_pages in data['inputs']:
-        #     for attr in input_pages['data']:
-        #         ins[attr['attribute']].append(attr['value'])
-        #     book_inputs[input_pages['bms_bookpages_id']].append(ins)
+        book_inputs = {}
+        ins = {}
+        for input_pages in data['inputs']:
+            for attr in input_pages['data']:
+                ins[attr['attribute']].append(attr['value'])
+            book_inputs[input_pages['bms_bookpages_id']].append(ins)
 
         # data['book_inputs'] = book_inputs
         return data
