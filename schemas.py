@@ -205,9 +205,9 @@ class ItemBase(BaseModel):
 #                print(dt)
             print(ins[page])
 
-        #    book_inputs[page].update(ins[page])
+            book_inputs[page].update(ins[page])
 
-        #data['book_inputs'] = book_inputs
+        data['book_inputs'] = book_inputs
         return data
 
 
