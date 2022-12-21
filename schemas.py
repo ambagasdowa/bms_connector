@@ -189,8 +189,8 @@ class ItemBase(BaseModel):
                 print('ATTR :')
                 print(attr)
                 print(type(ins[page]))
-                dt[attr['attribute']] = attr['value']
-                ins[page].update(dt)
+                ins[page][attr['attribute']] = attr['value']
+                # ins[page].update(dt)
 
                 # try :
                 #     ins[attr['attribute']] = attr['value']
@@ -202,7 +202,7 @@ class ItemBase(BaseModel):
         #         else:
         #             ins[attr['attribute']] = attr['value']
                 print('INS :'+str(page))
-                print(dt)
+#                print(dt)
             print(ins[page])
 
         #    book_inputs[page].update(ins[page])
