@@ -202,10 +202,11 @@ class ItemBase(BaseModel):
         #         else:
         #             ins[attr['attribute']] = attr['value']
                 print('INS :'+str(page))
-                print(ins)
-#            book_inputs[page] = bkp
+                print(ins[page])
 
- #       data['book_inputs'] = book_inputs
+            book_inputs[page].update(ins[page])
+
+        data['book_inputs'] = book_inputs
         return data
 
 
