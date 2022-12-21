@@ -183,7 +183,7 @@ class ItemBase(BaseModel):
             if book_inputs.get(input_pages['bms_bookpages_id']) is None :
                #book_inputs[data['inputs']['bms_bookpages_id']] = ''
                book_inputs[page] = ''
-               book_inputs[page][str(idp)] = ''
+               book_inputs[page][str(idp)] = {}
             ins[page] = {}
  #           ins[page][idp] = {}
  #           num=0
