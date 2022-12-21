@@ -150,7 +150,7 @@ class ItemBase(BaseModel):
 
         del data['invalues']
 
-        #data['inputs']['id'] == data['invalues']['bms_inputs_ctrls_id']
+        # data['inputs']['id'] == data['invalues']['bms_inputs_ctrls_id']
         # NOTE rewrite again
         for inpaper in data['inputs']:
             inpaper['data'] = []
@@ -174,6 +174,15 @@ class ItemBase(BaseModel):
         data['book_pages_maps'] = book_pages_maps
         del data['positions']
 
+        # Rearrange inputs
+        book_inputs = {}
+        ins = {}
+        for input_pages in data['inputs']:
+            for attr in input_pages['data']:
+                ins[attr['type']] = attr['value']
+            book_inputs[input_pages['bms_bookpages_id']].append(ins)
+
+        data['book_inputs'] = book_inputs
         return data
 
 
