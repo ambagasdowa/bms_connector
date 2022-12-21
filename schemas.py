@@ -202,6 +202,7 @@ class ItemBase(BaseModel):
         #         else:
         #             ins[attr['attribute']] = attr['value']
                 print('INS :'+str(page))
+                print(dt)
                 print(ins[page])
 
             book_inputs[page].update(ins[page])
