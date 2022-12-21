@@ -157,15 +157,21 @@ class ItemBase(BaseModel):
             for inval in data['inpages']:
                 if (int(inpaper['id']) == int(inval['bms_inputs_ctrls_id'])):
                     inpaper['data'].append(inval)
-        # Reorder book_pages and book_pages_maps
+
+
+# Reorder book_pages and book_pages_maps
         book_pages = {}
-#        book_pages_maps = {}
         for bookpages in data['pagination']:
             book_pages[bookpages['book_pages']] = bookpages['path']
-#            book_pages_maps[bookpages['book_pages']] = bookpages['css']
 
         data['book_pages'] = book_pages
-#        data['book_pages_maps'] = book_pages_maps
+
+        # Reorder book_pages and book_pages_maps
+        book_pages_maps = {}
+        for bookpagesmaps in data['positions']:
+            book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
+
+        data['book_pages_maps'] = book_pages_maps
 
         return data
 
