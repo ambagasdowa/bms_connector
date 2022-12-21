@@ -175,14 +175,14 @@ class ItemBase(BaseModel):
         del data['positions']
 
         # Rearrange inputs
-        book_inputs = {}
-        ins = {}
-        for input_pages in data['inputs']:
-            for attr in input_pages['data']:
-                ins[attr['attribute']].append(attr['value'])
-            book_inputs[input_pages['bms_bookpages_id']].append(ins)
+        # book_inputs = {}
+        # ins = {}
+        # for input_pages in data['inputs']:
+        #     for attr in input_pages['data']:
+        #         ins[attr['attribute']].append(attr['value'])
+        #     book_inputs[input_pages['bms_bookpages_id']].append(ins)
 
-        data['book_inputs'] = book_inputs
+        # data['book_inputs'] = book_inputs
         return data
 
 
