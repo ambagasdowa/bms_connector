@@ -147,7 +147,7 @@ class ItemBase(BaseModel):
 
         for paper in data['invalues']:
             data['inpages'].append(paper)
-#        del data['invalues']
+        del data['invalues']
 
         # NOTE rewrite again
         for inpaper in data['inputs']:
@@ -163,23 +163,21 @@ class ItemBase(BaseModel):
             book_pages[bookpages['book_pages']] = bookpages['path']
 
         data['book_pages'] = book_pages
-#        del data['pagination']
+        del data['pagination']
         # Reorder book_pages and book_pages_maps
         book_pages_maps = {}
         for bookpagesmaps in data['positions']:
             book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
 
         data['book_pages_maps'] = book_pages_maps
-#        del data['positions']
+        del data['positions']
 
         # Rearrange inputs
         # Change the column name in sql table usr_attr and usr_value
         book_inputs = {}
         ins = {}
-#        dt = {}
         for input_pages in data['inputs']:
             page = input_pages['bms_bookpages_id']
-#            idp = input_pages['id']
             if book_inputs.get(input_pages['bms_bookpages_id']) is None:
                 book_inputs[page] = []
             ins[page] = {}
