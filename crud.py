@@ -11,8 +11,8 @@ def list_items(db: Session, skip: int = 0, limit: int = 100):
 
 
 def get_items(db: Session, book_id: str, user_id: int):
-#    return db.query(Item).filter(Item.book_id == book_id, Item.user_id == user_id).all()
-    return Response(content=db.query(Item).filter(Item.book_id == book_id, Item.user_id == user_id).all(), media_type="application/json")
+    return db.query(Item).filter(Item.book_id == book_id, Item.user_id == user_id).all()
+#    return Response(content=db.query(Item).filter(Item.book_id == book_id, Item.user_id == user_id).all(), media_type="application/json")
 
 
 def get_item(db: Session, id: int):

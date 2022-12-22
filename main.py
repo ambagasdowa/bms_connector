@@ -1,6 +1,10 @@
 # main.py
 from typing import List, Optional
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
+
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
+
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
@@ -63,7 +67,9 @@ def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_
     item = crud.get_items(db, item_id, user_id)
     if item is None:
         raise HTTPException(status_code=404, detail="Book not found")
-    return item
+    json_compatible_item_data = jsonable_encoder(item)
+    return JSONResponse(content=json_compatible_item_data)
+    #return item
 
 # CREATE
 # This endpoint creates a new `Item`. The necessary data is read from the request
