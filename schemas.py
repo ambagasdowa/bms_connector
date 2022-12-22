@@ -182,7 +182,7 @@ class ItemBase(BaseModel):
             page = input_pages['bms_bookpages_id']
             idp = input_pages['id']
             if book_inputs.get(input_pages['bms_bookpages_id']) is None:
-                book_inputs[page] = {}
+                book_inputs[page] = []
             ins[page] = {}
 
             for attr in input_pages['data']:
@@ -205,7 +205,7 @@ class ItemBase(BaseModel):
 #                print(dt)
             print(ins[page])
 
-            book_inputs[page].update(ins[page])
+            book_inputs[page].append(ins[page])
 
         data['book_inputs'] = book_inputs
         return data
