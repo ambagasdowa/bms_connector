@@ -9,8 +9,11 @@ from typing import Union
 def list_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Item).offset(skip).limit(limit).all()
 
-def get_items(db: Session, book_id:str,user_id:int):
-    return db.query(Item).filter(Item.book_id == book_id,Item.user_id==user_id).all()
+
+def get_items(db: Session, book_id: str, user_id: int):
+#    return db.query(Item).filter(Item.book_id == book_id, Item.user_id == user_id).all()
+    return Response(content=db.query(Item).filter(Item.book_id == book_id, Item.user_id == user_id).all(), media_type="application/json")
+
 
 def get_item(db: Session, id: int):
     return db.query(Item).get(id)
@@ -46,11 +49,10 @@ def update_item(db: Session, item: Union[int, Item], data: ItemUpdate):
 def list_pages(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Page).offset(skip).limit(limit).all()
 
+
 def get_page(db: Session, id: int):
     return db.query(Page).get(id)
 
-def get_pages(db: Session, book_id:str):
+
+def get_pages(db: Session, book_id: str):
     return db.query(Page).filter(Page.book_id == book_id).all()
-
-
-
