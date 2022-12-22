@@ -176,35 +176,16 @@ class ItemBase(BaseModel):
         # Change the column name in sql table usr_attr and usr_value
         book_inputs = {}
         ins = {}
-        dt = {}
-#        bkp = []
+#        dt = {}
         for input_pages in data['inputs']:
             page = input_pages['bms_bookpages_id']
-            idp = input_pages['id']
+#            idp = input_pages['id']
             if book_inputs.get(input_pages['bms_bookpages_id']) is None:
                 book_inputs[page] = []
             ins[page] = {}
 
             for attr in input_pages['data']:
-                print('ATTR :')
-                print(attr)
-                print(type(ins[page]))
                 ins[page][attr['attribute']] = attr['value']
-                # ins[page].update(dt)
-
-                # try :
-                #     ins[attr['attribute']] = attr['value']
-                # except :
-                #     ins[attr['usr_attr']] = attr['usr_value']
-
-        #         if attr.get('attribute') is None:
-        #             ins[attr['usr_attr']] = attr['usr_value']
-        #         else:
-        #             ins[attr['attribute']] = attr['value']
-                print('INS :'+str(page))
-#                print(dt)
-            print(ins[page])
-
             book_inputs[page].append(ins[page])
 
         data['book_inputs'] = book_inputs
