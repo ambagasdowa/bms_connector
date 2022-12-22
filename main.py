@@ -70,7 +70,7 @@ def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_
 #    json_compatible_item_data = jsonable_encoder(item)
 #    return JSONResponse(content=json_compatible_item_data)
     
-    json_str = json.dumps(item, indent=4, default=str)
+    json_str = json.dumps(item, indent=14, default=str)
     return Response(content=json_str, media_type='application/json')
    # return item
 
