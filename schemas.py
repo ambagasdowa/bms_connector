@@ -187,6 +187,7 @@ class ItemBase(BaseModel):
             book_inputs[page].append(ins[page])
 
         data['book_inputs'] = book_inputs
+        del data['inputs']
         return data
 
 
