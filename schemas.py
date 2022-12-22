@@ -135,7 +135,7 @@ class ItemBase(BaseModel):
 #    status: bool
     pagination: Union[List[Page]] = []
     positions: Union[List[Position]] = []
-    # This goes togheter
+    # This goes together
     inputs: Union[List[Input]] = []
     inpages: Union[List[Inpage]] = []
     invalues: Union[List[Invalue]] = []
