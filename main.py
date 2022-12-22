@@ -72,7 +72,7 @@ def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_
 
 #    json_str = json.dumps(item, indent=14, default=str)
 #    return Response(content=json_str, media_type='application/json')
-     return item[0]
+     return fetchone(item)
 
 # CREATE
 # This endpoint creates a new `Item`. The necessary data is read from the request
