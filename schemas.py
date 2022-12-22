@@ -147,7 +147,6 @@ class ItemBase(BaseModel):
 
         for paper in data['invalues']:
             data['inpages'].append(paper)
-        del data['invalues']
 
         # NOTE rewrite again
         for inpaper in data['inputs']:
@@ -163,14 +162,12 @@ class ItemBase(BaseModel):
             book_pages[bookpages['book_pages']] = bookpages['path']
 
         data['book_pages'] = book_pages
-        del data['pagination']
         # Reorder book_pages and book_pages_maps
         book_pages_maps = {}
         for bookpagesmaps in data['positions']:
             book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
 
         data['book_pages_maps'] = book_pages_maps
-        del data['positions']
 
         # Rearrange inputs
         # Change the column name in sql table usr_attr and usr_value
@@ -188,6 +185,10 @@ class ItemBase(BaseModel):
 
         data['book_inputs'] = book_inputs
         del data['inputs']
+        del data['inpages']
+        del data['positions']
+        del data['invalues']
+        del data['pagination']
         return data
 
 
