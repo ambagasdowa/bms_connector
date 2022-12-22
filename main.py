@@ -62,7 +62,7 @@ def items_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
 #        raise HTTPException(status_code=404, detail="Book not found")
 #    return item
 
-@app.get("/items/{item_id}/{user_id}", response_model=List[schemas.Item])
+@app.get("/items/{item_id}/{user_id}", response_model=schemas.Item)
 def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_db)):
     item = crud.get_items(db, item_id, user_id)
     if item is None:
@@ -72,7 +72,7 @@ def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_
 
 #    json_str = json.dumps(item, indent=14, default=str)
 #    return Response(content=json_str, media_type='application/json')
-     return fetchone(item)
+     return item
 
 # CREATE
 # This endpoint creates a new `Item`. The necessary data is read from the request
