@@ -1,7 +1,7 @@
 # main.py
 import uvicorn
-from typing import List, Optional
-from fastapi import FastAPI, HTTPException, Response
+from typing import List, Optional, Union
+from fastapi import FastAPI, HTTPException, Response, File, UploadFile
 import json
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
@@ -142,6 +142,24 @@ def pages_action_retrieve(page_id: int, db: Session = Depends(get_db)):
 def pages_book_list(book_id: str, db: Session = Depends(get_db)):
     pages = crud.get_pages(db, book_id)
     return pages
+
+# //////////////////////////// Upload zipFiles /////////////////////////////
+
+
+@app.post("/files/")
+async def create_file(file: Union[bytes, None] = File(default=None)):
+    if not file:
+        return {"message": "No file sent"}
+    else:
+        return {"file_size": len(file)}
+
+
+@app.post("/uploadfile/")
+async def create_upload_file(file: Union[UploadFile, None] = None):
+    if not file:
+        return {"message": "No upload file sent"}
+    else:
+        return {"filename": file.filename}
 
 
 # if __name__ == "__main__":
