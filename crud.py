@@ -56,3 +56,13 @@ def get_page(db: Session, id: int):
 
 def get_pages(db: Session, book_id: str):
     return db.query(Page).filter(Page.book_id == book_id).all()
+
+
+def store_file(files):
+    """TODO: Docstring for store_file.
+
+    :arg1: TODO
+    :returns: TODO
+
+    """
+    return {"success": f"Now going to process your files {[file.filename for file in files]}"}

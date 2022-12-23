@@ -180,7 +180,7 @@ async def create_upload_files(files: List[UploadFile]):
 
 
 @app.post("/upload")
-def upload(files: List[UploadFile] = File(...)):
+async def upload(files: List[UploadFile] = File(...)):
     for file in files:
         try:
             with open(file.filename, 'wb') as f:
@@ -188,7 +188,9 @@ def upload(files: List[UploadFile] = File(...)):
         except Exception:
             return {"message": "There was an error uploading the file(s)"}
         else:
-            return {"success": f"Now going  process your files {[file.filename for file in files]}"}
+            message = crud.store_file(files)
+            # return {"success": f"Now going to process your files {[file.filename for file in files]}"}
+            return message
 
         finally:
             file.file.close()
