@@ -5,6 +5,9 @@ import json
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
+from fastapi.middleware.cors import CORSMiddleware
+
+
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
@@ -22,6 +25,16 @@ models.Base.metadata.create_all(bind=engine)
 #app = FastAPI()
 app = FastAPI(
     title='Panamericano API Documentation', docs_url="/api", openapi_url="/api/v1"
+)
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # This function represents a dependency that can be injected in the endpoints of the API.
