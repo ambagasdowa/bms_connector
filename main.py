@@ -144,5 +144,5 @@ def pages_book_list(book_id: str, db: Session = Depends(get_db)):
     return pages
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host='0.0.0.0',  ssl-keyfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.key", ssl-certfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.crt", ssl-keyfile-password=None)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host='0.0.0.0',  ssl-keyfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.key", ssl-certfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.crt", ssl-keyfile-password=None)
