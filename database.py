@@ -1,10 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from bms_connector.config.config as conf
+
+
+config = conf.configuration
 
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://ambagasdowa:pekas@127.0.0.1/db_ediq2021"
+SQLALCHEMY_DATABASE_URL = "{config['db_connection']['driver']}://{config['db_connection']['user']}:{config['db_connection']['password']}@{config['db_connection']['server']}/{config['db_connection']['database']}"
 
 #engine = sqlalchemy.create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 engine = create_engine(
