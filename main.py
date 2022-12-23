@@ -187,6 +187,8 @@ def upload(files: List[UploadFile] = File(...)):
                 shutil.copyfileobj(file.file, f)
         except Exception:
             return {"message": "There was an error uploading the file(s)"}
+        else:
+            return {"success": "Trying to cp and process your file "}
         finally:
             file.file.close()
 
