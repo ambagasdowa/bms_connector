@@ -1,4 +1,5 @@
 # main.py
+import uvicorn
 from typing import List, Optional
 from fastapi import FastAPI, HTTPException, Response
 import json
@@ -22,7 +23,6 @@ from .database import engine, SessionLocal
 
 # NOTE ru with command:
 # uvicorn --reload --host 0.0.0.0 bms_connector.main:app --ssl-keyfile=/var/www/mapache/public_html/src/bms/src/crt_test/server.key --ssl-certfile=/var/www/mapache/public_html/src/bms/src/crt_test/server.crt --ssl-keyfile-password=None
-
 
 
 models.Base.metadata.create_all(bind=engine)
@@ -142,3 +142,7 @@ def pages_action_retrieve(page_id: int, db: Session = Depends(get_db)):
 def pages_book_list(book_id: str, db: Session = Depends(get_db)):
     pages = crud.get_pages(db, book_id)
     return pages
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, reload, host='0.0.0.0',  ssl-keyfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.key", ssl-certfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.crt", ssl-keyfile-password=None)
