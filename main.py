@@ -1,7 +1,7 @@
 # main.py
 import uvicorn
 from typing import List, Optional, Union
-from fastapi import FastAPI, HTTPException, Response, File, UploadFile
+from fastapi import FastAPI, HTTPException, Response, File, Form, UploadFile
 import json
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
@@ -160,6 +160,11 @@ async def create_upload_file(file: Union[UploadFile, None] = None):
         return {"message": "No upload file sent"}
     else:
         return {"filename": file.filename}
+
+
+@app.post("/uploadfiles/")
+async def create_upload_files(files: List[UploadFile]):
+    return {"filenames": [file.filename for file in files]}
 
 
 # if __name__ == "__main__":
