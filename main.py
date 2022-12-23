@@ -12,6 +12,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
+# for files
+import shutil
+
 from . import models, crud, schemas
 from .database import engine, SessionLocal
 
@@ -169,7 +172,25 @@ async def create_upload_file(file: Union[UploadFile, None] = None):
 
 @app.post("/uploadfiles/")
 async def create_upload_files(files: List[UploadFile]):
-    return {"filenames": [file.filename for file in files]}
+    if not files:
+        return {"message": "No upload file sent"}
+    else:
+        # call to a function
+        return {"filenames": [file.filename for file in files]}
+
+
+@app.post("/upload")
+def upload(files: List[UploadFile] = File(...)):
+    for file in files:
+        try:
+            with open(file.filename, 'wb') as f:
+                shutil.copyfileobj(file.file, f)
+        except Exception:
+            return {"message": "There was an error uploading the file(s)"}
+        finally:
+            file.file.close()
+
+    return {"message": f"Successfuly uploaded {[file.filename for file in files]}"}
 
 
 # if __name__ == "__main__":
