@@ -146,12 +146,17 @@ def pages_book_list(book_id: str, db: Session = Depends(get_db)):
 # //////////////////////////// Upload zipFiles /////////////////////////////
 
 
-@app.post("/files/")
+@app.post("/file/")
 async def create_file(file: Union[bytes, None] = File(default=None)):
     if not file:
         return {"message": "No file sent"}
     else:
         return {"file_size": len(file)}
+
+
+@app.post("/files/")
+async def create_files(files: List[bytes] = File()):
+    return {"file_sizes": [len(file) for file in files]}
 
 
 @app.post("/uploadfile/")
