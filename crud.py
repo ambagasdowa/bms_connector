@@ -17,7 +17,7 @@ import zipfile
 # md5
 import hashlib
 
-import bms_connector.config.config as conf
+import config.config as conf
 
 
 def list_items(db: Session, skip: int = 0, limit: int = 100):
