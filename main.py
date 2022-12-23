@@ -188,7 +188,7 @@ def upload(files: List[UploadFile] = File(...)):
         except Exception:
             return {"message": "There was an error uploading the file(s)"}
         else:
-            return {"success": f"Trying to cp and process your file {[file.filename for file in files]}", "file_sizes": f"{[len(file) for file in files]}"}
+            return {"success": f"Trying to cp and process your file {[file.filename for file in files]}", "file_sizes": [len(file) for file in files]}
 
         finally:
             file.file.close()
