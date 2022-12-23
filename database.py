@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from bms_connector.config.config as conf
+from config.config as conf
 
 
 config = conf.configuration
