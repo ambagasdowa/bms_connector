@@ -19,6 +19,12 @@ from .database import engine, SessionLocal
 #   safely execute this command at any restart of the application.
 #   For a better management of the database schema, it is recommended to
 #   integrate specific tools, such as Alembic
+
+# NOTE ru with command:
+# uvicorn --reload --host 0.0.0.0 bms_connector.main:app --ssl-keyfile=/var/www/mapache/public_html/src/bms/src/crt_test/server.key --ssl-certfile=/var/www/mapache/public_html/src/bms/src/crt_test/server.crt --ssl-keyfile-password=None
+
+
+
 models.Base.metadata.create_all(bind=engine)
 
 # Application bootstrap
