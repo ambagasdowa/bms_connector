@@ -92,13 +92,11 @@ def store_file(files):
         filename = file.filename
         print(f"THE FILENAME :  {filename}")
 
-
         download_path = config['download_path']
         dir_path = config['dir_path']
 
-
         pack = download_path+dir_path+"pack/"
-        unpack = download_path+dir_path+"unpack/"+filename
+        unpack = download_path+dir_path+"unpack/"
 
         # pageSize = config['service_params']['pageSize']
         # representacion = config['service_params']['representacion']
