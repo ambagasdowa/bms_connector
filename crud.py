@@ -84,8 +84,19 @@ def store_file(file):
     """
     tmp_path = config['download_path'] + config['dir_path']
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
-    make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack",config['basename']+config['pathname']], stdout=subprocess.DEVNULL)
+#book_matematicas_002_bachillerato_20221223.zip
+    spl = str(filename).split('_')
 
+    type_book = spl[0]
+    type_course = spl[1]
+    type_serial = spl[2]
+    type_degree = spl[3]
+    type_date = spl[4]
+
+    dir_path ='/'+type_book+'/'+type_course+'/'+type_serial+'/'+type_degree
+    #dir_path = (split_data[0]+'/'+split_data[1], split_data[0],md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
+
+    make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack",config['basename']+config['pathname']+dir_path], stdout=subprocess.DEVNULL)
 
 #    for file in files :
     print(file)
@@ -108,7 +119,7 @@ def store_file(file):
         with zipfile.ZipFile(filename, 'r') as zip_ref:
             zip_ref.extractall(store_path)
     except zipfile.BadZipfile:
-        print("[red] zip file : "+filename +
+        print("[red] zip file : "+ filename +
               " from provider with errors , try again ...[red]")
 
     # # One with have the files
