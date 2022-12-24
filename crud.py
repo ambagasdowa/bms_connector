@@ -95,7 +95,7 @@ def store_file(file):
     tmp_path = config['download_path'] + config['dir_path']
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
 #book_matematicas_002_bachillerato_20221223.zip
-    spl = str(filename).split('_')
+    spl = str(filename.replace('.zip','')).split('_')
 
     type_book = spl[0]
     type_course = spl[1]
