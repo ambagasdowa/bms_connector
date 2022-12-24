@@ -186,7 +186,7 @@ async def upload(files: List[UploadFile] = File(...)):
             with open(file.filename, 'wb') as f:
                 shutil.copyfileobj(file.file, f)
         except Exception:
-            return {"message": "There was an error uploading the file(s)"}
+            return {"message": f"There was an error uploading the file(s) {file.filename}"}
         else:
             proccess = crud.store_file(file)
             return {"status":f"proccesing file {file.filename}"}
