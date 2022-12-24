@@ -181,13 +181,12 @@ async def create_upload_files(files: List[UploadFile]):
 
 @app.post("/upload")
 async def upload(token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
-    print(token)
     for file in files:
         try:
             with open(file.filename, 'wb') as f:
                 shutil.copyfileobj(file.file, f)
         except Exception:
-            return {"message": f"There was an error uploading the file(s) {file.filename}"}
+            return {"message": f"There was an error uploading the file(s) {file.filename} and token : {token}"}
         else:
             proccess = crud.store_file(file, token)
             # return {"status":f"proccesing file {file.filename}"}
