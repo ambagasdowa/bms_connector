@@ -83,8 +83,8 @@ def store_file(files):
 
     """
     tmp_path = config['download_path'] + config['dir_path']
-    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
-    make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack"], stdout=subprocess.DEVNULL)
+#    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
+    make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack",basename+pathname], stdout=subprocess.DEVNULL)
 
 
     for file in files :
@@ -98,13 +98,11 @@ def store_file(files):
         pack = download_path+dir_path+"pack/"
         unpack = download_path+dir_path+"unpack/"
 
-        # pageSize = config['service_params']['pageSize']
-        # representacion = config['service_params']['representacion']
+        try:
+            subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
+        except:
+            print("fileError")
 
-        # download_files = subprocess.run(["https", "--print=hb", "--download", http_path, 'representacion==' +
-        #                                  representacion, 'pageSize=='+pageSize, "fecha=="+fecha, "--output", pack+filename])
-
-        subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
         try:
             with zipfile.ZipFile(filename, 'r') as zip_ref:
                 zip_ref.extractall(unpack)
