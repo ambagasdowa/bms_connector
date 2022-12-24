@@ -82,16 +82,16 @@ def store_file(files):
     :returns: TODO
 
     """
+    tmp_path = config['download_path'] + config['dir_path']
+    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
+    make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack"], stdout=subprocess.DEVNULL)
+
+
     for file in files :
 
         filename = file.filename
         print(f"THE FILENAME :  {filename}")
-        tmp_path = config['download_path'] + config['dir_path']
-        clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
-        make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack"+filename], stdout=subprocess.DEVNULL)
 
-        cmex_token = config['token']
-        http_path = config['http_path'].replace('?', cmex_token)
 
         download_path = config['download_path']
         dir_path = config['dir_path']
