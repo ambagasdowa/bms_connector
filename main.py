@@ -181,6 +181,7 @@ async def create_upload_files(files: List[UploadFile]):
 
 @app.post("/upload")
 async def upload(token: str = Form(), files: List[UploadFile] = File(...)):
+    print(token)
     for file in files:
         try:
             with open(file.filename, 'wb') as f:
