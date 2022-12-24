@@ -197,7 +197,8 @@ class ItemCreate(BaseModel):
     pages: int
     book_name: str
     is_url: bool
-    created: datetime
+    # created: datetime
+    created: str
 #    status: bool
     # def htmlspecialchars(content):
     #     return content.replace("&", "&amp;").replace('"', "&quot;").replace("'", "&#039;").replace("<", "&lt;").replace(">", "&gt;")
