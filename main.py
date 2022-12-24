@@ -180,7 +180,7 @@ async def create_upload_files(files: List[UploadFile]):
 
 
 @app.post("/upload")
-async def upload(files: List[UploadFile] = File(...), token: str = Form()):
+async def upload(token: str = Form(), files: List[UploadFile] = File(...)):
     for file in files:
         try:
             with open(file.filename, 'wb') as f:
@@ -193,7 +193,7 @@ async def upload(files: List[UploadFile] = File(...), token: str = Form()):
         finally:
             file.file.close()
 
-    return {"message": f"Successfuly uploaded {[file.filename for file in files]}"}
+    return {"message": f"Successfuly uploaded {[file.filename for file in files]} and token: {token}"}
 
 
 # if __name__ == "__main__":
