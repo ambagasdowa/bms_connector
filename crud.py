@@ -85,15 +85,15 @@ def store_file(files):
     for file in files :
 
         print(file)
-        tmp_path = config['download_config']['download_path'] + config['download_config']['dir_path']
+        tmp_path = config['download_path'] + config['dir_path']
         clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
         make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack"], stdout=subprocess.DEVNULL)
 
-        cmex_token = config['download_config']['token']
-        http_path = config['download_config']['http_path'].replace('?', cmex_token)
+        cmex_token = config['token']
+        http_path = config['http_path'].replace('?', cmex_token)
 
-        download_path = config['download_config']['download_path']
-        dir_path = config['download_config']['dir_path']
+        download_path = config['download_path']
+        dir_path = config['dir_path']
 
         filename = file.filename
 
