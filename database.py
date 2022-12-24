@@ -10,7 +10,7 @@ print(config)
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 SQLALCHEMY_DATABASE_URL = f"{config['driver']}://{config['user']}:{config['password']}@{config['server']}/{config['database']}"
-
+print("THE URL :")
 print(SQLALCHEMY_DATABASE_URL)
 #engine = sqlalchemy.create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 engine = create_engine(
