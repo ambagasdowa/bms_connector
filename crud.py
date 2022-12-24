@@ -88,7 +88,7 @@ def store_file(file):
 
 
 #    for file in files :
-
+    print(file)
     filename = file.filename
     print(f"THE FILENAME :  {filename}")
 
