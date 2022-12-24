@@ -88,7 +88,7 @@ def store_file(file):
 
     :arg1: TODO
     :returns: TODO
-
+    https --verify=no -f POST 10.14.17.105:8000/upload files@~/Development/book_matematicas_002_bachillerato_20221223.zip files@~/Development/guia_unam_215_universidad_20221223.zip files@~/Development/guia_uv_002_demo_20221223.zip
     """
 
     filename = file.filename
@@ -101,7 +101,7 @@ def store_file(file):
     type_course = spl[1]
     type_serial = spl[2]
     type_degree = spl[3]
-    type_date = spl[4]
+   # type_date = spl[4]
 
     dir_path ='/'+type_book+'/'+type_course+'/'+type_serial+'/'+type_degree
     #dir_path = (split_data[0]+'/'+split_data[1], split_data[0],md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
