@@ -109,7 +109,7 @@ def store_file(file):
 
     pack = download_path+dir_path+"pack/"
     unpack = download_path+dir_path+"unpack/"
-    store_path = config['basename']+config['pathname']
+    store_path = config['basename']+config['pathname']+dir_path
 
     try:
         subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
