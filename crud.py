@@ -40,7 +40,10 @@ def create_item(db: Session, data: ItemCreate):
 
     print("START ITEM :")
 #    print(Item)
-    print(ItemCreate)
+    for key, value in data:
+        print(key,value)
+        #setattr(item, key, value)
+
     print("END ITEM :")
     return {"message":"get info"}
 
