@@ -6,6 +6,7 @@ from .config import configuration
 
 config = configuration
 
+print(config)
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 SQLALCHEMY_DATABASE_URL = "{config['db_connection']['driver']}://{config['db_connection']['user']}:{config['db_connection']['password']}@{config['db_connection']['server']}/{config['db_connection']['database']}"
