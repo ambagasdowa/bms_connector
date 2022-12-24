@@ -60,7 +60,7 @@ def drop_item(db: Session, item_id: int):
 
 def update_item(db: Session, item: Union[int, Item], data: ItemUpdate):
 
-     if isinstance(item, int):
+    if isinstance(item, int):
         item = get_item(db, item)
     if item is None:
         return None
