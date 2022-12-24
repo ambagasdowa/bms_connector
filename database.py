@@ -1,18 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from .config import configuration
-import sqlalchemy.dialects.mysql
+from .config as conf
 
-
-config = configuration['db_connection']
-
-print(config)
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
-SQLALCHEMY_DATABASE_URL = f"{config['driver']}://{config['user']}:{config['password']}@{config['server']}/{config['database']}"
-print("THE URL :")
-print(SQLALCHEMY_DATABASE_URL)
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://ambagasdowa:pekas@127.0.0.1/db_ediq2021"
+
 #engine = sqlalchemy.create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 engine = create_engine(
     # SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
