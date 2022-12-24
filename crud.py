@@ -87,76 +87,76 @@ def store_file(files):
     make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack",config['basename']+config['pathname']], stdout=subprocess.DEVNULL)
 
 
-    for file in files :
+#    for file in files :
 
-        filename = file.filename
-        print(f"THE FILENAME :  {filename}")
+    filename = file.filename
+    print(f"THE FILENAME :  {filename}")
 
-        download_path = config['download_path']
-        dir_path = config['dir_path']
+    download_path = config['download_path']
+    dir_path = config['dir_path']
 
-        pack = download_path+dir_path+"pack/"
-        unpack = download_path+dir_path+"unpack/"
+    pack = download_path+dir_path+"pack/"
+    unpack = download_path+dir_path+"unpack/"
 
-        try:
-            subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
-        except:
-            print("fileError")
+    try:
+        subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
+    except:
+        print("fileError")
 
-        try:
-            with zipfile.ZipFile(filename, 'r') as zip_ref:
-                zip_ref.extractall(unpack)
-        except zipfile.BadZipfile:
-            print("[red] zip file : "+filename +
-                  " from provider with errors , try again ...[red]")
+    try:
+        with zipfile.ZipFile(filename, 'r') as zip_ref:
+            zip_ref.extractall(unpack)
+    except zipfile.BadZipfile:
+        print("[red] zip file : "+filename +
+              " from provider with errors , try again ...[red]")
 
-        # # One with have the files
-        # def get_files(path):
-        #     for file in os.listdir(path):
-        #         if os.path.isfile(os.path.join(path, file)):
-        #             yield file
+    # # One with have the files
+    # def get_files(path):
+    #     for file in os.listdir(path):
+    #         if os.path.isfile(os.path.join(path, file)):
+    #             yield file
 
-        # files = []
-        # for file in get_files(unpack):
-        #     files.append(file)
+    # files = []
+    # for file in get_files(unpack):
+    #     files.append(file)
 
-        # # Open,close, read file and calculate MD5 on its contents
-        #     with open(source, 'rb') as file_to_check:
-        #         # read contents of the file
-        #         data = file_to_check.read()
-        #         # pipe contents of the file through
-        #         md5_returned = hashlib.md5(data).hexdigest()
+    # # Open,close, read file and calculate MD5 on its contents
+    #     with open(source, 'rb') as file_to_check:
+    #         # read contents of the file
+    #         data = file_to_check.read()
+    #         # pipe contents of the file through
+    #         md5_returned = hashlib.md5(data).hexdigest()
 
-        #     name, ext = os.path.splitext(filename)
-        #     # uuid,doctype:FAC,idfac,Date,SomeCtrlnum
-        #     split_data = str(name).split('_')
+    #     name, ext = os.path.splitext(filename)
+    #     # uuid,doctype:FAC,idfac,Date,SomeCtrlnum
+    #     split_data = str(name).split('_')
 
-        #     save_file = (split_data[1]+'_'+split_data[2], split_data[0],
-        #                  md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
+    #     save_file = (split_data[1]+'_'+split_data[2], split_data[0],
+    #                  md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
 
-        #     qry_md5 = "select [_md5sum] from sistemas.dbo.cmex_api_controls_files where [_md5sum] = ?"
-        #     md5 = False
-        #     cursor.execute(qry_md5, (md5_returned,))
-        #     for row in cursor.fetchall():
-        #         if(row[0] == md5_returned):
-        #             md5 = True
+    #     qry_md5 = "select [_md5sum] from sistemas.dbo.cmex_api_controls_files where [_md5sum] = ?"
+    #     md5 = False
+    #     cursor.execute(qry_md5, (md5_returned,))
+    #     for row in cursor.fetchall():
+    #         if(row[0] == md5_returned):
+    #             md5 = True
 
-        #     if(md5 != True):
-        #         print("[blue] save file : "+str(source)+"[blue]")
-        #         insert_file = 'insert into sistemas.dbo.cmex_api_controls_files \
-        #         (labelname,_filename,_md5sum,created,modified,_status) values( \
-        #         ?,?,?,?,?,? \
-        #         )'
+    #     if(md5 != True):
+    #         print("[blue] save file : "+str(source)+"[blue]")
+    #         insert_file = 'insert into sistemas.dbo.cmex_api_controls_files \
+    #         (labelname,_filename,_md5sum,created,modified,_status) values( \
+    #         ?,?,?,?,?,? \
+    #         )'
 
-        #         count = cursor.execute(insert_file, save_file)
-        #         cursor.commit()
+    #         count = cursor.execute(insert_file, save_file)
+    #         cursor.commit()
 
-        #         # get last id from comprobante
-        #         cursor.execute(
-        #             "select IDENT_CURRENT('sistemas.dbo.cmex_api_controls_files') as id")
+    #         # get last id from comprobante
+    #         cursor.execute(
+    #             "select IDENT_CURRENT('sistemas.dbo.cmex_api_controls_files') as id")
 
-        #         cmex_api_controls_files_id = cursor.fetchone()[0]
-        #         cursor.commit()
-        #         files_ids.append(str(cmex_api_controls_files_id))
+    #         cmex_api_controls_files_id = cursor.fetchone()[0]
+    #         cursor.commit()
+    #         files_ids.append(str(cmex_api_controls_files_id))
 
     return {"success": f"Now going to process your files {[file.filename for file in files]}"}
