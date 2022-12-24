@@ -181,19 +181,22 @@ async def create_upload_files(files: List[UploadFile]):
 
 @app.post("/upload")
 async def upload(token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
-    for file in files:
-        try:
-            with open(file.filename, 'wb') as f:
-                shutil.copyfileobj(file.file, f)
-        except Exception:
-            return {"message": f"There was an error uploading the file(s) {file.filename} and token : {token}"}
-        else:
-            proccess = crud.store_file(file, token)
-            # return {"status":f"proccesing file {file.filename}"}
-        finally:
-            file.file.close()
-
-    return {"message": f"Successfuly uploaded {[file.filename for file in files]} and token: {token}"}
+    # ask for token and get the user_id
+    if token == 'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu==':
+        for file in files:
+            try:
+                with open(file.filename, 'wb') as f:
+                    shutil.copyfileobj(file.file, f)
+            except Exception:
+                return {"message": f"There was an error uploading the file(s) {file.filename} and token : {token}"}
+            else:
+                proccess = crud.store_file(file, token)
+                # return {"status":f"proccesing file {file.filename}"}
+            finally:
+                file.file.close()
+        return {"message": f"Successfuly uploaded {[file.filename for file in files]} and token: {token}"}
+    else:
+        return {"message": "your token is invalid"}
 
 
 # if __name__ == "__main__":
