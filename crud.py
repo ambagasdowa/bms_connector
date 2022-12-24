@@ -19,6 +19,9 @@ import hashlib
 
 from .config import configuration
 
+config = configuration['download_config']
+
+
 
 def list_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Item).offset(skip).limit(limit).all()
@@ -79,84 +82,84 @@ def store_file(files):
     :returns: TODO
 
     """
+    for file in files :
 
+        print(file)
+        tmp_path = config['download_config']['download_path'] + config['download_config']['dir_path']
+        clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
+        make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack"], stdout=subprocess.DEVNULL)
 
-    # tmp_path = config['download_config']['download_path'] + \
-    #     config['download_config']['dir_path']
-    # clean_dir_files = subprocess.run(
-    #     ["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
-    # make_dir_files = subprocess.run(
-    #     ["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack"], stdout=subprocess.DEVNULL)
-    # cmex_token = config['download_config']['token']
-    # http_path = config['download_config']['http_path'].replace('?', cmex_token)
-    # download_path = config['download_config']['download_path']
-    # dir_path = config['download_config']['dir_path']
-    # filename = config['download_config']['filename'].replace(
-    #     '?', str(int(time.time())))
+        cmex_token = config['download_config']['token']
+        http_path = config['download_config']['http_path'].replace('?', cmex_token)
 
-    # pack = download_path+dir_path+"pack/"
-    # unpack = download_path+dir_path+"unpack/"
+        download_path = config['download_config']['download_path']
+        dir_path = config['download_config']['dir_path']
 
-    # pageSize = config['service_params']['pageSize']
-    # representacion = config['service_params']['representacion']
+        filename = file.filename
 
-    # download_files = subprocess.run(["https", "--print=hb", "--download", http_path, 'representacion==' +
-    #                                  representacion, 'pageSize=='+pageSize, "fecha=="+fecha, "--output", pack+filename])
+        pack = download_path+dir_path+"pack/"
+        unpack = download_path+dir_path+"unpack/"
 
-    # try:
-    #     with zipfile.ZipFile(pack+filename, 'r') as zip_ref:
-    #         zip_ref.extractall(unpack)
-    # except zipfile.BadZipfile:
-    #     print("[red] zip file : "+pack+filename +
-    #           " from provider with errors , try again ...[red]")
+        # pageSize = config['service_params']['pageSize']
+        # representacion = config['service_params']['representacion']
 
-    # # One with have the files
-    # def get_files(path):
-    #     for file in os.listdir(path):
-    #         if os.path.isfile(os.path.join(path, file)):
-    #             yield file
+        # download_files = subprocess.run(["https", "--print=hb", "--download", http_path, 'representacion==' +
+        #                                  representacion, 'pageSize=='+pageSize, "fecha=="+fecha, "--output", pack+filename])
 
-    # files = []
-    # for file in get_files(unpack):
-    #     files.append(file)
+        try:
+            with zipfile.ZipFile(pack+filename, 'r') as zip_ref:
+                zip_ref.extractall(unpack)
+        except zipfile.BadZipfile:
+            print("[red] zip file : "+pack+filename +
+                  " from provider with errors , try again ...[red]")
 
-    # # Open,close, read file and calculate MD5 on its contents
-    #     with open(source, 'rb') as file_to_check:
-    #         # read contents of the file
-    #         data = file_to_check.read()
-    #         # pipe contents of the file through
-    #         md5_returned = hashlib.md5(data).hexdigest()
+        # # One with have the files
+        # def get_files(path):
+        #     for file in os.listdir(path):
+        #         if os.path.isfile(os.path.join(path, file)):
+        #             yield file
 
-    #     name, ext = os.path.splitext(filename)
-    #     # uuid,doctype:FAC,idfac,Date,SomeCtrlnum
-    #     split_data = str(name).split('_')
+        # files = []
+        # for file in get_files(unpack):
+        #     files.append(file)
 
-    #     save_file = (split_data[1]+'_'+split_data[2], split_data[0],
-    #                  md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
+        # # Open,close, read file and calculate MD5 on its contents
+        #     with open(source, 'rb') as file_to_check:
+        #         # read contents of the file
+        #         data = file_to_check.read()
+        #         # pipe contents of the file through
+        #         md5_returned = hashlib.md5(data).hexdigest()
 
-    #     qry_md5 = "select [_md5sum] from sistemas.dbo.cmex_api_controls_files where [_md5sum] = ?"
-    #     md5 = False
-    #     cursor.execute(qry_md5, (md5_returned,))
-    #     for row in cursor.fetchall():
-    #         if(row[0] == md5_returned):
-    #             md5 = True
+        #     name, ext = os.path.splitext(filename)
+        #     # uuid,doctype:FAC,idfac,Date,SomeCtrlnum
+        #     split_data = str(name).split('_')
 
-    #     if(md5 != True):
-    #         print("[blue] save file : "+str(source)+"[blue]")
-    #         insert_file = 'insert into sistemas.dbo.cmex_api_controls_files \
-    #         (labelname,_filename,_md5sum,created,modified,_status) values( \
-    #         ?,?,?,?,?,? \
-    #         )'
+        #     save_file = (split_data[1]+'_'+split_data[2], split_data[0],
+        #                  md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
 
-    #         count = cursor.execute(insert_file, save_file)
-    #         cursor.commit()
+        #     qry_md5 = "select [_md5sum] from sistemas.dbo.cmex_api_controls_files where [_md5sum] = ?"
+        #     md5 = False
+        #     cursor.execute(qry_md5, (md5_returned,))
+        #     for row in cursor.fetchall():
+        #         if(row[0] == md5_returned):
+        #             md5 = True
 
-    #         # get last id from comprobante
-    #         cursor.execute(
-    #             "select IDENT_CURRENT('sistemas.dbo.cmex_api_controls_files') as id")
+        #     if(md5 != True):
+        #         print("[blue] save file : "+str(source)+"[blue]")
+        #         insert_file = 'insert into sistemas.dbo.cmex_api_controls_files \
+        #         (labelname,_filename,_md5sum,created,modified,_status) values( \
+        #         ?,?,?,?,?,? \
+        #         )'
 
-    #         cmex_api_controls_files_id = cursor.fetchone()[0]
-    #         cursor.commit()
-    #         files_ids.append(str(cmex_api_controls_files_id))
+        #         count = cursor.execute(insert_file, save_file)
+        #         cursor.commit()
+
+        #         # get last id from comprobante
+        #         cursor.execute(
+        #             "select IDENT_CURRENT('sistemas.dbo.cmex_api_controls_files') as id")
+
+        #         cmex_api_controls_files_id = cursor.fetchone()[0]
+        #         cursor.commit()
+        #         files_ids.append(str(cmex_api_controls_files_id))
 
     return {"success": f"Now going to process your files {[file.filename for file in files]}"}
