@@ -1,26 +1,15 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import urllib
 from .config import configuration
 
 
 config = configuration['db_connection']
 
 print(config)
-
-params = urllib.parse.quote_plus("".format(config['driver'])
-                                 "://".format(config['user'])
-                                 ":".format(config['password'])
-                                 "@".format(config['server'])
-                                 "/".format(config['database']))
-
-#engine = sa.create_engine("mssql+pyodbc:///?odbc_connect={}".format(params))
-
-
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
-SQLALCHEMY_DATABASE_URL = format.(params)
+SQLALCHEMY_DATABASE_URL = f"{config['driver']}://{config['user']}:{config['password']}@{config['server']}/{config['database']}"
 print("THE URL :")
 print(SQLALCHEMY_DATABASE_URL)
 #engine = sqlalchemy.create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
