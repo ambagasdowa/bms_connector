@@ -75,7 +75,7 @@ def get_pages(db: Session, book_id: str):
     return db.query(Page).filter(Page.book_id == book_id).all()
 
 
-def store_file(files):
+def store_file(file):
     """TODO: Docstring for store_file.
 
     :arg1: TODO
@@ -89,7 +89,7 @@ def store_file(files):
 
 #    for file in files :
 
-    filename = files
+    filename = file.filename
     print(f"THE FILENAME :  {filename}")
 
     download_path = config['download_path']
