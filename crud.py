@@ -24,6 +24,7 @@ config = configuration['download_config']
 
 
 def list_items(db: Session, skip: int = 0, limit: int = 100):
+    print(Item)
     return db.query(Item).offset(skip).limit(limit).all()
 
 
@@ -136,12 +137,9 @@ def store_file(file, token):
     # Insert data
     # with Session(bind=engine) as session:
 
-    #     book1 = Book(title="Dead People Who'd Be Influencers Today")
-    #     book2 = Book(title="How To Make Friends In Your 30s")
-
-    #     author1 = Author(name="Blu Renolds")
-    #     author2 = Author(name="Chip Egan")
-    #     author3 = Author(name="Alyssa Wyatt")
+    #     book1 = File(
+    #         title="Dead People Who'd Be Influencers Today", str_path=xfile)
+    #     book2 = File(title="How To Make Friends In Your 30s")
 
     #     session.add_all([book1, book2, author1, author2, author3])
     #     session.commit()

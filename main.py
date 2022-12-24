@@ -191,10 +191,9 @@ async def upload(token: Union[str, None] = Header(default=None, convert_undersco
                 return {"message": f"There was an error uploading the file(s) {file.filename} and token : {token}"}
             else:
                 proccess = crud.store_file(file, token)
-                # return {"status":f"proccesing file {file.filename}"}
             finally:
                 file.file.close()
-        return {"message": f"Successfuly uploaded {[file.filename for file in files]} and token: {token}"}
+        return {"message": f"Successfuly uploaded {[file.filename for file in files]}"}
     else:
         return {"message": "your token is invalid"}
 
