@@ -24,7 +24,6 @@ config = configuration['download_config']
 
 
 def list_items(db: Session, skip: int = 0, limit: int = 100):
-    print(Item)
     return db.query(Item).offset(skip).limit(limit).all()
 
 
@@ -69,6 +68,10 @@ def list_pages(db: Session, skip: int = 0, limit: int = 100):
 
 
 def get_page(db: Session, id: int):
+    print("START PAGE :")
+    print(Page)
+    print("END PAGE :")
+
     return db.query(Page).get(id)
 
 
