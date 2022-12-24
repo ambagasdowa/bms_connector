@@ -96,7 +96,7 @@ def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_
 # body, which is parsed and validated according to the ItemCreate schema defined beforehand
 
 
-@app.post("/items", response_model=schemas.ItemCreate)
+@app.post("/item/new", response_model=schemas.ItemCreate)
 def item_action_create(data: schemas.ItemCreate, db: Session = Depends(get_db)):
     item = crud.create_item(db, data)
     return item
