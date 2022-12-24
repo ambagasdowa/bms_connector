@@ -188,7 +188,7 @@ async def upload(files: List[UploadFile] = File(...)):
         except Exception:
             return {"message": "There was an error uploading the file(s)"}
         else:
-            message = crud.store_file(file)
+            message = crud.store_file(file.filename)
             return message
         finally:
             file.file.close()

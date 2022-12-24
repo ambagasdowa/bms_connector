@@ -89,7 +89,7 @@ def store_file(files):
 
 #    for file in files :
 
-    filename = file.filename
+    filename = files
     print(f"THE FILENAME :  {filename}")
 
     download_path = config['download_path']
