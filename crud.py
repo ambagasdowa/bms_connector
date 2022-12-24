@@ -98,7 +98,8 @@ def store_file(file):
     dir_path ='/'+type_book+'/'+type_course+'/'+type_serial+'/'+type_degree
     #dir_path = (split_data[0]+'/'+split_data[1], split_data[0],md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
 
-    make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack",config['basename']+config['pathname']+dir_path], stdout=subprocess.DEVNULL)
+    store_path = config['basename']+config['pathname']+dir_path
+    make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack",store_path], stdout=subprocess.DEVNULL)
 
 #    for file in files :
     print(file)
@@ -109,12 +110,11 @@ def store_file(file):
 
     pack = download_path+dir_path+"pack/"
     unpack = download_path+dir_path+"unpack/"
-    store_path = config['basename']+config['pathname']+dir_path
 
-    try:
-        subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
-    except:
-        print("fileError")
+    # try:
+    #     subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
+    # except:
+    #     print("fileError")
 
     try:
         with zipfile.ZipFile(filename, 'r') as zip_ref:
@@ -173,4 +173,4 @@ def store_file(file):
     #         files_ids.append(str(cmex_api_controls_files_id))
 
     #return {"success": f"Now going to process your files {[file.filename for file in files]}"}
-    return {"success": f"Now going to process your files {file.filename}"}
+    return {"success": f"Now going to process your files {filename}"}
