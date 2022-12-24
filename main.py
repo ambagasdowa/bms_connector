@@ -1,7 +1,7 @@
 # main.py
 import uvicorn
 from typing import List, Optional, Union
-from fastapi import FastAPI, HTTPException, Response, File, Form, UploadFile
+from fastapi import FastAPI, HTTPException, Response, File, Form, UploadFile, Header
 import json
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
@@ -180,7 +180,7 @@ async def create_upload_files(files: List[UploadFile]):
 
 
 @app.post("/upload")
-async def upload(token: str = Form(), files: List[UploadFile] = File(...)):
+async def upload(token: str | None = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
     print(token)
     for file in files:
         try:
