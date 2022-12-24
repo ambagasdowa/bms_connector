@@ -180,7 +180,7 @@ async def create_upload_files(files: List[UploadFile]):
 
 
 @app.post("/upload")
-async def upload(token: str | None = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
+async def upload(token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
     print(token)
     for file in files:
         try:
