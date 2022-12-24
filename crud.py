@@ -17,7 +17,7 @@ import zipfile
 # md5
 import hashlib
 
-from .config import configuration
+#from .config import configuration
 
 
 def list_items(db: Session, skip: int = 0, limit: int = 100):
