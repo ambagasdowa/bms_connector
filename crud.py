@@ -106,6 +106,7 @@ def store_file(files):
         # download_files = subprocess.run(["https", "--print=hb", "--download", http_path, 'representacion==' +
         #                                  representacion, 'pageSize=='+pageSize, "fecha=="+fecha, "--output", pack+filename])
 
+        subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
         try:
             with zipfile.ZipFile(filename, 'r') as zip_ref:
                 zip_ref.extractall(unpack)
