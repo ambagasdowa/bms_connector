@@ -107,10 +107,10 @@ def store_file(files):
         #                                  representacion, 'pageSize=='+pageSize, "fecha=="+fecha, "--output", pack+filename])
 
         try:
-            with zipfile.ZipFile(pack+filename, 'r') as zip_ref:
+            with zipfile.ZipFile(filename, 'r') as zip_ref:
                 zip_ref.extractall(unpack)
         except zipfile.BadZipfile:
-            print("[red] zip file : "+pack+filename +
+            print("[red] zip file : "+filename +
                   " from provider with errors , try again ...[red]")
 
         # # One with have the files
