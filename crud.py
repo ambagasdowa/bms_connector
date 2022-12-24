@@ -84,7 +84,7 @@ def store_file(files):
     """
     tmp_path = config['download_path'] + config['dir_path']
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
-    make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack",basename+pathname], stdout=subprocess.DEVNULL)
+    make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack",config['basename']+config['pathname']], stdout=subprocess.DEVNULL)
 
 
     for file in files :
