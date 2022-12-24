@@ -74,6 +74,14 @@ def get_page(db: Session, id: int):
 def get_pages(db: Session, book_id: str):
     return db.query(Page).filter(Page.book_id == book_id).all()
 
+# One with have the files
+def get_files(path):
+    for file in os.listdir(path):
+        if os.path.isfile(os.path.join(path, file)):
+            yield file
+
+
+
 
 def store_file(file):
     """TODO: Docstring for store_file.
@@ -111,11 +119,6 @@ def store_file(file):
     pack = download_path+dir_path+"pack/"
     unpack = download_path+dir_path+"unpack/"
 
-    # try:
-    #     subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
-    # except:
-    #     print("fileError")
-
     try:
         with zipfile.ZipFile(filename, 'r') as zip_ref:
             zip_ref.extractall(store_path)
@@ -123,15 +126,11 @@ def store_file(file):
         print("[red] zip file : "+ filename +
               " from provider with errors , try again ...[red]")
 
-    # # One with have the files
-    # def get_files(path):
-    #     for file in os.listdir(path):
-    #         if os.path.isfile(os.path.join(path, file)):
-    #             yield file
+    xfiles = []
+    for xfile in get_files(store_path+dir_path+type_date+'/pages'):
+        xfiles.append(xfile)
 
-    # files = []
-    # for file in get_files(unpack):
-    #     files.append(file)
+    print(xfiles)
 
     # # Open,close, read file and calculate MD5 on its contents
     #     with open(source, 'rb') as file_to_check:
