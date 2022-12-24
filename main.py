@@ -189,7 +189,7 @@ async def upload(files: List[UploadFile] = File(...)):
             return {"message": f"There was an error uploading the file(s) {file.filename}"}
         else:
             proccess = crud.store_file(file)
-            return {"status":f"proccesing file {file.filename}"}
+            #return {"status":f"proccesing file {file.filename}"}
         finally:
             file.file.close()
 
