@@ -84,10 +84,11 @@ def store_file(files):
     """
     for file in files :
 
-        print(file.filename)
+        filename = file.filename
+        print(filename)
         tmp_path = config['download_path'] + config['dir_path']
         clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
-        make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack"], stdout=subprocess.DEVNULL)
+        make_dir_files = subprocess.run(["mkdir", "-p", tmp_path+"pack", tmp_path+"unpack"+filename], stdout=subprocess.DEVNULL)
 
         cmex_token = config['token']
         http_path = config['http_path'].replace('?', cmex_token)
@@ -95,10 +96,9 @@ def store_file(files):
         download_path = config['download_path']
         dir_path = config['dir_path']
 
-        filename = file.filename
 
         pack = download_path+dir_path+"pack/"
-        unpack = download_path+dir_path+"unpack/"
+        unpack = download_path+dir_path+"unpack/"+filename
 
         # pageSize = config['service_params']['pageSize']
         # representacion = config['service_params']['representacion']
