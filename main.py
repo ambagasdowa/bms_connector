@@ -98,6 +98,8 @@ def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_
 
 @app.post("/item/new", response_model=schemas.ItemCreate)
 def items_action_create(data: schemas.ItemCreate, db: Session = Depends(get_db)):
+    for key,value in data 
+        print(key,value)
     item = crud.create_item(db, data)
     return item
 

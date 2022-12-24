@@ -37,22 +37,11 @@ def get_item(db: Session, id: int):
 
 
 def create_item(db: Session, data: ItemCreate):
-
-    print("START ITEM :")
-#    print(Item)
-    for key, value in data:
-        print(key,value)
-        #setattr(item, key, value)
-
-    print("END ITEM :")
-    return {"message":"get info"}
-
-
-    # db_item = Item(**data.dict())
-    # db.add(db_item)
-    # db.commit()
-    # db.refresh(db_item)
-    # return db_item
+    db_item = Item(**data.dict())
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
 
 
 def drop_item(db: Session, item_id: int):
