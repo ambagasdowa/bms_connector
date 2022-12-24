@@ -97,6 +97,7 @@ def store_file(file):
 
     pack = download_path+dir_path+"pack/"
     unpack = download_path+dir_path+"unpack/"
+    store_path = config['basename']+config['pathname']
 
     try:
         subprocess.run(["cp",filename, pack], stdout=subprocess.DEVNULL)
@@ -105,7 +106,7 @@ def store_file(file):
 
     try:
         with zipfile.ZipFile(filename, 'r') as zip_ref:
-            zip_ref.extractall(unpack)
+            zip_ref.extractall(store_path)
     except zipfile.BadZipfile:
         print("[red] zip file : "+filename +
               " from provider with errors , try again ...[red]")
