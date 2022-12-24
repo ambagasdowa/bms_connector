@@ -159,4 +159,5 @@ def store_file(file):
     #         cursor.commit()
     #         files_ids.append(str(cmex_api_controls_files_id))
 
-    return {"success": f"Now going to process your files {[file.filename for file in files]}"}
+    #return {"success": f"Now going to process your files {[file.filename for file in files]}"}
+    return {"success": f"Now going to process your files {file.filename}"}
