@@ -127,7 +127,7 @@ def store_file(file):
               " from provider with errors , try again ...[red]")
 
     xfiles = []
-    for xfile in get_files(store_path+dir_path.replace('/','_')+'_'+type_date+'/pages'):
+    for xfile in get_files(store_path+'/'+dir_path.replace('/','_')+type_date+'/pages'):
         xfiles.append(xfile)
 
     print(xfiles)
