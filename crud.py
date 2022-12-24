@@ -37,11 +37,19 @@ def get_item(db: Session, id: int):
 
 
 def create_item(db: Session, data: ItemCreate):
-    db_item = Item(**data.dict())
-    db.add(db_item)
-    db.commit()
-    db.refresh(db_item)
-    return db_item
+
+    print("START ITEM :")
+#    print(Item)
+    print(ItemCreate)
+    print("END ITEM :")
+    return {"message":"get info"}
+
+
+    # db_item = Item(**data.dict())
+    # db.add(db_item)
+    # db.commit()
+    # db.refresh(db_item)
+    # return db_item
 
 
 def drop_item(db: Session, item_id: int):
@@ -51,7 +59,8 @@ def drop_item(db: Session, item_id: int):
 
 
 def update_item(db: Session, item: Union[int, Item], data: ItemUpdate):
-    if isinstance(item, int):
+
+     if isinstance(item, int):
         item = get_item(db, item)
     if item is None:
         return None
@@ -68,10 +77,6 @@ def list_pages(db: Session, skip: int = 0, limit: int = 100):
 
 
 def get_page(db: Session, id: int):
-    print("START PAGE :")
-    print(Page)
-    print("END PAGE :")
-
     return db.query(Page).get(id)
 
 
