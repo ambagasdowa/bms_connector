@@ -82,6 +82,8 @@ def store_file(file):
     :returns: TODO
 
     """
+
+    filename = file.filename
     tmp_path = config['download_path'] + config['dir_path']
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
 #book_matematicas_002_bachillerato_20221223.zip
@@ -100,7 +102,6 @@ def store_file(file):
 
 #    for file in files :
     print(file)
-    filename = file.filename
     print(f"THE FILENAME :  {filename}")
 
     download_path = config['download_path']
