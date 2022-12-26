@@ -2,8 +2,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
 
-from .models import Item, Page
-from .schemas import ItemCreate, ItemUpdate
+from .models import Item, Page,File
+from .schemas import ItemCreate, ItemUpdate,FileCreate,FileUpdate
 from typing import Union
 
 import urllib
