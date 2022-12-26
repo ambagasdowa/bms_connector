@@ -237,8 +237,8 @@ class FileCreate(BaseModel):
     pages: int
     book_name: str
     is_url: bool
-#    created: datetime
-#    status: bool
+    created: datetime
+    status: bool
 
 class FileUpdate(BaseModel):
     book_id: int

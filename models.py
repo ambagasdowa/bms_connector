@@ -45,11 +45,11 @@ class Upload(Base):
 class File(Base):
     __tablename__ = "bms_books"
     id =Column(Integer,primary_key=True,index=True)
-    book_id = Column(Integer , index=True)
+    book_id = Column(Integer)
     pages = Column(Integer)
-    book_name = Column(String, index=True)
+    book_name = Column(String )
     is_url = Column(Boolean, default=False)
-    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    created = Column(TIMESTAMP, nullable=True, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
