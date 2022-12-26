@@ -239,18 +239,18 @@ class FileCreate(BaseModel):
     is_url: bool
     created: datetime
     status: bool
-    class Config:
-         schema_extra = {
-             "example" : {
-                  "book_id": 10,
-                  "pages": 219,
-                  "book_name": "Guia de Estudio de Matematicas",
-                  "is_url": true,
-                  "created": "2022-12-26T23:23:02.071Z",
-                  "modified": "2022-12-26T23:23:02.071Z",
-                  "status": true,
-            }
-         }
+#    class Config:
+         # schema_extra = {
+         #     "example" : {
+         #          "book_id": 10,
+         #          "pages": 219,
+         #          "book_name": "Guia de Estudio de Matematicas",
+         #          "is_url": true,
+         #          "created": "2022-12-26T23:23:02.071Z",
+         #          "modified": "2022-12-26T23:23:02.071Z",
+         #          "status": true,
+         #    }
+         # }
 
 class FileUpdate(BaseModel):
     book_id: int
