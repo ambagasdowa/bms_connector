@@ -241,15 +241,15 @@ class FileCreate(BaseModel):
     status: bool
     class Config:
          schema_extra = {
-            "example"={
-              "book_id": 10,
-              "pages": 219,
-              "book_name": "Guia Estudio Matematicas",
-              "is_url": true,
-              "created": "2022-12-26T23:23:02.071Z",
-              "modified": "2022-12-26T23:23:02.071Z",
-              "status": true,
-              "id": 2
+             "example" : {
+                  "book_id": 10,
+                  "pages": 219,
+                  "book_name": "Guia Estudio Matematicas",
+                  "is_url": true,
+                  "created": "2022-12-26T23:23:02.071Z",
+                  "modified": "2022-12-26T23:23:02.071Z",
+                  "status": true,
+                  "id": 2
             }
          }
 
