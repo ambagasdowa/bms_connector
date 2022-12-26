@@ -45,7 +45,7 @@ class Upload(Base):
 class File(Base):
     __tablename__ = "bms_books"
     id =Column(Integer,primary_key=True,index=True)
-    book_id = Column(Integer , Index=True)
+    book_id = Column(Integer , index=True)
     pages = Column(Integer)
     book_name = Column(String, index=True)
     is_url = Column(Boolean, default=False)
