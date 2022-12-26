@@ -191,3 +191,24 @@ def store_file(file, token):
 
     # return {"success": f"Now going to process your files {[file.filename for file in files]}"}
     return {"success": f"Now going to process your files {filename} whit token : {token}"}
+
+
+
+def create_file(db: Session, data: FileCreate):
+    db_file = File(**data.dict())
+    db.add(db_file)
+    db.commit()
+    db.refresh(db_file)
+    return db_file
+
+def update_file(db: Session, file: Union[int, File], data: FileUpdate):
+
+    if isinstance(file, int):
+        file = get_file(db, file)
+    if file is None:
+        return None
+    for key, value in data:
+        setattr(file, key, value)
+    db.commit()
+    return file
+
