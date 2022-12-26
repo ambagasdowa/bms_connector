@@ -204,7 +204,6 @@ async def upload(token: Union[str, None] = Header(default=None, convert_undersco
 
 @app.post("/file/add", response_model=schemas.FileCreate)
 def files_action_create(data: schemas.FileCreate, db: Session = Depends(get_db)):
-    print(type(data))
     file = crud.create_file(db, data)
     return file
 

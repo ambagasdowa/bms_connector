@@ -108,7 +108,7 @@ def store_file(file, token):
     for sp_name in spl:
         book_name += str(sp_name)+'/'
     dir_path = str(book_name.replace('/','',-1))
-    print("NEW PATH : {dir_path}")
+    print("NEW PATH : " + dir_path)
 
 #    dir_path = '/'+type_book+'/'+type_course+'/'+type_serial+'/'+type_degree
     #dir_path = (split_data[0]+'/'+split_data[1], split_data[0],md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
@@ -139,6 +139,14 @@ def store_file(file, token):
         xfiles.append(xfile)
 
     print(xfiles)
+
+    # db_item = Item(**data.dict())
+    # db.add(db_item)
+    # db.commit()
+    # db.refresh(db_item)
+
+
+
 
     # Insert data
     # with Session(bind=engine) as session:
