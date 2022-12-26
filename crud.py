@@ -202,8 +202,7 @@ def create_file(db: Session, data: FileCreate):
     db_file = File(**data.dict())
 
     print(type(db_file))
-    for i,d in db_file:
-        print("index : {i} and data : {d}")
+    print(db_file)
 
     db.add(db_file)
     db.commit()
