@@ -53,7 +53,7 @@ class File(Base):
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-   status = Column(Boolean, default=True)
+    status = Column(Boolean, default=True)
 
 
 
