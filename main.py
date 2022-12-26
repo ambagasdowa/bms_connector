@@ -202,7 +202,6 @@ async def upload(token: Union[str, None] = Header(default=None, convert_undersco
 # This endpoint creates a new `Item`. The necessary data is read from the request
 # body, which is parsed and validated according to the ItemCreate schema defined beforehand
 
-
 @app.post("/file/add", response_model=schemas.FileCreate)
 def files_action_create(data: schemas.FileCreate, db: Session = Depends(get_db)):
     file = crud.create_file(db, data)
@@ -212,7 +211,6 @@ def files_action_create(data: schemas.FileCreate, db: Session = Depends(get_db))
 # This endpoint allows to update an existing `Item`, identified by its primary key passed as a
 # path parameter in the url. The necessary data is read from the request
 # body, which is parsed and validated according to the ItemUpdate schema defined beforehand
-
 
 @app.put("/file/{file_id}", response_model=schemas.File)
 def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session = Depends(get_db)):

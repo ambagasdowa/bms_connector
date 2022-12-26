@@ -218,3 +218,40 @@ class Item(ItemBase):
 
     class Config:
         orm_mode = True
+
+
+## FILE SECTION
+
+ class FileBase(BaseModel):
+    book_id: str
+    pages: int
+    book_name: str
+    is_url: bool
+    created: datetime
+    modified: datetime
+    status: bool
+
+
+class FileCreate(BaseModel):
+    book_id: str
+    pages: int
+    book_name: str
+    is_url: bool
+    created: datetime
+    status: bool
+
+class FileUpdate(BaseModel):
+    book_id: str
+    pages: int
+    book_name: str
+    is_url: bool
+    modified: datetime
+    status: bool
+
+
+class File(FileBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
