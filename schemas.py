@@ -222,7 +222,7 @@ class Item(ItemBase):
 
 ## FILE SECTION
 
- class FileBase(BaseModel):
+class FileBase(BaseModel):
     book_id: str
     pages: int
     book_name: str
