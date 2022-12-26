@@ -223,7 +223,7 @@ class Item(ItemBase):
 ## FILE SECTION
 
 class FileBase(BaseModel):
-    book_id: str
+    book_id: int
     pages: int
     book_name: str
     is_url: bool
@@ -233,7 +233,7 @@ class FileBase(BaseModel):
 
 
 class FileCreate(BaseModel):
-    book_id: str
+    book_id: int
     pages: int
     book_name: str
     is_url: bool
@@ -241,7 +241,7 @@ class FileCreate(BaseModel):
 #    status: bool
 
 class FileUpdate(BaseModel):
-    book_id: str
+    book_id: int
     pages: int
     book_name: str
     is_url: bool
