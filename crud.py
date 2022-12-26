@@ -196,14 +196,7 @@ def store_file(file, token):
 
 def create_file(db: Session, data: FileCreate):
 
-    for k,v in data:
-        print(k,v)
-
     db_file = File(**data.dict())
-
-    print(type(db_file))
-    print(db_file)
-
     db.add(db_file)
     db.commit()
     db.refresh(db_file)
