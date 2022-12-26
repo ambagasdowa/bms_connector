@@ -1,7 +1,7 @@
 # schemas.py
 from typing import List, Optional, Union
 from datetime import date, datetime, timedelta
-#from fastapi import FastAPI
+
 from pydantic import BaseModel
 
 # /// Schemes for book inputs-pages values per user
@@ -239,6 +239,15 @@ class FileCreate(BaseModel):
     is_url: bool
     created: datetime
     status: bool
+    # class Config:
+    #     schema_extra = {
+    #         "example": {
+    #             "name": "Foo",
+    #             "description": "A very nice Item",
+    #             "price": 35.4,
+    #             "tax": 3.2,
+    #         }
+    #     }
 
 class FileUpdate(BaseModel):
     book_id: int
@@ -247,15 +256,7 @@ class FileUpdate(BaseModel):
     is_url: bool
     modified: datetime
     status: bool
-    class Config:
-        schema_extra = {
-            "example": {
-                "name": "Foo",
-                "description": "A very nice Item",
-                "price": 35.4,
-                "tax": 3.2,
-            }
-        }
+
 
 class File(FileBase):
     id: int
