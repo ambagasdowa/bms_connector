@@ -238,7 +238,7 @@ class FileCreate(BaseModel):
     book_name: str
     is_url: bool
     created: datetime
-    status: bool
+#    status: bool
 #    class Config:
          # schema_extra = {
          #     "example" : {
