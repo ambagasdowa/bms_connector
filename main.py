@@ -203,7 +203,7 @@ async def upload(token: Union[str, None] = Header(default=None, convert_undersco
 # body, which is parsed and validated according to the ItemCreate schema defined beforehand
 
 @app.post("/file/add", response_model=schemas.FileCreate)
-def files_action_create(data: schemas.FileCreate, db: Session = Depends(get_db)):
+def file_action_create(data: schemas.FileCreate, db: Session = Depends(get_db)):
     file = crud.create_file(db, data)
     return file
 
