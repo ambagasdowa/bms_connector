@@ -8,7 +8,9 @@ from sqlalchemy.ext.hybrid import hybrid_property
 #from sqlalchemy.dialects.mysql import LONGTEXT
 from .database import Base
 
-#  `id`                      int unsigned not null auto_increment primary key, -- --> Cual es el pedo?
+
+#BMS_BOOKS
+#  `id`                      int unsigned not null auto_increment primary key, -- 
 #  `book_id`                 varchar(255) not null , -- --> ex: 228
 #  `pages`                   int null, -- --> 8 total pages
 #  `book_name`               varchar(255) null, -- --> Guia_UV
@@ -16,6 +18,43 @@ from .database import Base
 #  `created`                 datetime,
 #  `modified`                datetime,
 #  `status`                  bool not null default true
+
+
+class Upload(Base):
+    __tablename__ = "bms_controls_files"
+    id =Column(Integer,primary_key=True,index=True)
+    user_id = Column(Integer, index=True)
+    labelname = Column(String, index=True)
+    _filename = Column(String, index=True)
+    _pathname = Column(String, index=True)
+    _extname = Column(String, index=True)
+    _md5sum  = Column(String, index=True)
+    _file_size = Column(String, index=True)
+    _atime = Column(String, index=True)
+    _mtime = Column(String, index=True)
+    _ctime = Column(String, index=True)
+    _username = Column(String, index=True)
+    _datetime_login = Column(String, index=True)
+    _ip_remote = Column(String, index=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    _status = Column(Boolean, default=True)
+
+
+class File(Base):
+    __tablename__ = "bms_books"
+    id =Column(Integer,primary_key=True,index=True)
+    book_id = Column(String , Index=True)
+    pages = Column(Integer)
+    book_name = Column(String, index=True)
+    is_url = Column(Boolean, default=False)
+    user_id = Column(Integer, index=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+   status = Column(Boolean, default=True)
+
 
 
 class Item(Base):

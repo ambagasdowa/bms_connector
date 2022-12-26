@@ -22,6 +22,7 @@ from .config import configuration
 
 config = configuration['download_config']
 
+# NOTE search for books with data 
 
 def list_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Item).offset(skip).limit(limit).all()
@@ -98,13 +99,18 @@ def store_file(file, token):
 # book_matematicas_002_bachillerato_20221223.zip
     spl = str(filename.replace('.zip', '')).split('_')
 
-    type_book = spl[0]
-    type_course = spl[1]
-    type_serial = spl[2]
-    type_degree = spl[3]
-   # type_date = spl[4]
+    # type_book = spl[0]
+    # type_course = spl[1]
+    # type_serial = spl[2]
+    # type_degree = spl[3]
 
-    dir_path = '/'+type_book+'/'+type_course+'/'+type_serial+'/'+type_degree
+    book_name ='/'
+    for sp_name in spl:
+        book_name += str(sp_name)+'/'
+    dir_path = str(book_name.replace('/','',-1))
+    print("NEW PATH : {dir_path}")
+
+#    dir_path = '/'+type_book+'/'+type_course+'/'+type_serial+'/'+type_degree
     #dir_path = (split_data[0]+'/'+split_data[1], split_data[0],md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
 
     store_path = config['basename']+config['pathname']+dir_path

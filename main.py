@@ -98,8 +98,6 @@ def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_
 
 @app.post("/item/new", response_model=schemas.ItemCreate)
 def items_action_create(data: schemas.ItemCreate, db: Session = Depends(get_db)):
-    for key,value in data:
-        print(key,value)
     item = crud.create_item(db, data)
     return item
 
@@ -151,17 +149,17 @@ def pages_book_list(book_id: str, db: Session = Depends(get_db)):
 # //////////////////////////// Upload zipFiles /////////////////////////////
 
 
-@app.post("/file/")
-async def create_file(file: Union[bytes, None] = File(default=None)):
-    if not file:
-        return {"message": "No file sent"}
-    else:
-        return {"file_size": len(file)}
+# @app.post("/file/")
+# async def create_file(file: Union[bytes, None] = File(default=None)):
+#     if not file:
+#         return {"message": "No file sent"}
+#     else:
+#         return {"file_size": len(file)}
 
 
-@app.post("/files/")
-async def create_files(files: List[bytes] = File()):
-    return {"file_sizes": [len(file) for file in files]}
+# @app.post("/files/")
+# async def create_files(files: List[bytes] = File()):
+#     return {"file_sizes": [len(file) for file in files]}
 
 
 @app.post("/uploadfile/")
@@ -198,6 +196,30 @@ async def upload(token: Union[str, None] = Header(default=None, convert_undersco
         return {"message": f"Successfuly uploaded {[file.filename for file in files]}"}
     else:
         return {"message": "your token is invalid"}
+
+
+# CREATE
+# This endpoint creates a new `Item`. The necessary data is read from the request
+# body, which is parsed and validated according to the ItemCreate schema defined beforehand
+
+
+@app.post("/file/add", response_model=schemas.FileCreate)
+def files_action_create(data: schemas.FileCreate, db: Session = Depends(get_db)):
+    file = crud.create_file(db, data)
+    return file
+
+# UPDATE
+# This endpoint allows to update an existing `Item`, identified by its primary key passed as a
+# path parameter in the url. The necessary data is read from the request
+# body, which is parsed and validated according to the ItemUpdate schema defined beforehand
+
+
+@app.put("/file/{file_id}", response_model=schemas.File)
+def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session = Depends(get_db)):
+    file = crud.update_file(db, file_id, data)
+    if file is None:
+        raise HTTPException(status_code=404)
+    return file
 
 
 # if __name__ == "__main__":
