@@ -172,7 +172,7 @@ def store_file(db:Session , token:str, file):
 
 #    extension = max(ext_dict, key = lambda k: ext_dict[k])
 
-    print(f"EXTENSION : [red] {extension} [red]")
+#    print(f"EXTENSION : [red] {extension} [red]")
 
     pages_count = len(glob.glob1(full_path,"*.jpg"))
     extension = '.jpg'
