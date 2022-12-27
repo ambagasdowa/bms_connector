@@ -154,7 +154,7 @@ def store_file(db:Session , token:str, file):
 #    Create the book
     book_file = File(
         book_id = book.id
-        pages = pages_count
+        pages = 8
         book_name = filename
         is_url = true
         created = datetime
