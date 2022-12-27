@@ -92,14 +92,14 @@ class Page(Base):
     __tablename__ = "bms_bookpages"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
-    book_pages = Column(Integer)
-    basename = Column(String, index=True)
-    pathname = Column(String, index=True)
-    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
-    modified = Column(DateTime, server_default=text(
+    bms_books_id    = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    book_pages      = Column(Integer)
+    basename        = Column(String, index=True)
+    pathname        = Column(String, index=True)
+    created         = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified        = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    status = Column(Boolean, default=True)
+    status          = Column(Boolean, default=True)
 
     @hybrid_property
     def path(self):

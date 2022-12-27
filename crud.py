@@ -150,8 +150,28 @@ def store_file(db:Session , token:str, file):
     db.refresh(book)
 
     print(f"[blue]The book ID : {book.id}[blue]")
-    full_path = store_path+'/'+'/pages'
+
+    # xfiles = []
+    # for xfile in get_files(store_path+'/'+'/pages'):
+    #     xfiles.append(xfile)
+
+    # print(xfiles)
+
+    full_path = store_path+'/'+'pages'
+
+    ext_dict = {}
+    c = Counter([splitext(i)[1][1:] for i in glob(join(full_path, '*'))])
+    for ext, count in c.most_common():
+        ext_dict = {ext:count}
+
+
+    extension = max(ext_dict, key = lambda k: ext_dict[k])
+
+    print(f"EXTENSION : [red] {extension} [red]")
+
     pages_count = len(glob.glob1(full_path,"*.jpg"))
+    extension = '.jpg'
+
 
     print(f"[gray]pages : [green]{pages_count}[green]")
 
@@ -172,11 +192,12 @@ def store_file(db:Session , token:str, file):
     for i in range(int(pages_count)):
     #    Add pages
     #    save each page with a counter
+        current_page = i + 1
         book_pages = Page(
-        ,bms_books_id    = book_file.id
-        ,book_pages      = i+1
+        bms_books_id     = book_file.id
+        ,book_pages      = current_page
         ,basename        = config['basename']+config['pathname']
-        ,pathname        = full_path + (i+1) + '.jpg'
+        ,pathname        = full_path + str(current_page) + '.jpg'
         ,created         = date_up
         )
         db.add(book_pages)
@@ -185,12 +206,6 @@ def store_file(db:Session , token:str, file):
 
         print(f"[cyan]The book_file ID[cyan] : [blue]{book_pages.id}[blue]")
 
-
-    xfiles = []
-    for xfile in get_files(store_path+'/'+'/pages'):
-        xfiles.append(xfile)
-
-    print(xfiles)
 
     # db_item = Item(**data.dict())
     # db.add(db_item)
