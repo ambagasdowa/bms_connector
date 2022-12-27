@@ -97,13 +97,15 @@ def store_file(file, token):
     tmp_path = config['download_path'] + config['dir_path']
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
 # book_matematicas_002_bachillerato_20221223.zip
-    spl = str(filename.replace('.zip', '')).replace('_','/')
+    spl = str(filename.replace('.zip', ''))
+    spl_path = str(spl.replace('_','/'))
+
     # if windows os then c:\ ,etc
     # type_book = spl[0]
     # type_course = spl[1]
     # type_serial = spl[2]
     # type_degree = spl[3]
-    dir_path = '/' + spl
+    dir_path = '/' + spl_path
     print("NEW PATH : " + dir_path)
 
     store_path = config['basename']+config['pathname']+dir_path
@@ -126,6 +128,16 @@ def store_file(file, token):
     except zipfile.BadZipfile:
         print("[red] zip file : " + filename +
               " from provider with errors , try again ...[red]")
+
+    # Create Book
+    book = {
+        "_filename":filename
+        ,"_pathname":store_path
+        ,"extname":
+    }
+
+
+
 
     xfiles = []
     for xfile in get_files(store_path+'/'+'/pages'):
