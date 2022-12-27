@@ -133,7 +133,6 @@ def store_file(file, token):
     book = {
         "_filename":filename
         ,"_pathname":store_path
-        ,"extname":
     }
 
 
