@@ -130,12 +130,15 @@ def store_file(file, token):
               " from provider with errors , try again ...[red]")
 
     # Create Book
-    book = {
-        "_filename":filename
-        ,"_pathname":store_path
-    }
-
-
+    with Session(bind=engine) as session:
+        book = {
+            "_filename":filename
+            ,"_pathname":store_path
+        }
+        db_file = File(book)
+        session.add(db_file)
+        session.commit()
+        session.refresh(db_file)
 
 
     xfiles = []
