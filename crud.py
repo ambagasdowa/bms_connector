@@ -106,6 +106,7 @@ def store_file(db:Session , token:str, file):
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
 # book_matematicas_002_bachillerato_20221223.zip
     spl = str(filename.replace('.zip', ''))
+    book_name = spl.replace('_',' ').capitalize()
     spl_path = str(spl.replace('_','/'))
 
     # if windows os then c:\ ,etc
@@ -157,7 +158,7 @@ def store_file(db:Session , token:str, file):
     book_file = File(
         book_id = book.id
         ,pages = pages_count
-        ,book_name = filename
+        ,book_name = book_name
         ,is_url = True
         ,created = date_up
     )
