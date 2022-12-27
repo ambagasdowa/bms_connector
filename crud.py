@@ -18,6 +18,12 @@ import zipfile
 # md5
 import hashlib
 
+# UIX
+from rich import print
+from rich.progress import track
+from rich.progress import Progress
+
+
 from .config import configuration
 
 config = configuration['download_config']
@@ -92,7 +98,7 @@ def store_file(db:Session , token:str, file):
     :returns: TODO
     https --verify=no -f POST 10.14.17.105:8000/upload files@~/Development/book_matematicas_002_bachillerato_20221223.zip files@~/Development/guia_unam_215_universidad_20221223.zip files@~/Development/guia_uv_002_demo_20221223.zip
     """
-    print(f"token : {token}")
+    print(f"[red]token : {token}[red]")
     filename = file.filename
     tmp_path = config['download_path'] + config['dir_path']
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
@@ -135,12 +141,12 @@ def store_file(db:Session , token:str, file):
         file_name = filename
         ,pathname = store_path
     )
-#    print(type(book))
-#    db_file = File(**book.dict())
     db.add(book)
     db.commit()
     db.refresh(book)
 
+
+    print("[blue]The book ID : {book.id}[blue]")
 
     xfiles = []
     for xfile in get_files(store_path+'/'+'/pages'):
