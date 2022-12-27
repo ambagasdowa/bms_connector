@@ -166,14 +166,10 @@ def store_file(db:Session , token:str, file):
         cnt_ext[z] += 1
 
     print(f"[red]XXXXX :{cnt_ext}[red]")
-    # c = Counter([splitext(i)[1][1:] for i in glob(join(full_path, '*'))])
-    # for ext, count in c.most_common():
-    #     ext_dict = {ext:count}
 
+    extension = max(cnt_ext, key = lambda k: ext_dict[k])
 
-#    extension = max(ext_dict, key = lambda k: ext_dict[k])
-
-#    print(f"EXTENSION : [red] {extension} [red]")
+    print(f"EXTENSION : [red] {extension} [red]")
 
     pages_count = len(glob.glob1(full_path,"*.jpg"))
     extension = '.jpg'
