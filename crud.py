@@ -85,7 +85,7 @@ def get_files(path):
             yield file
 
 
-def store_file(db:Session , file, token ):
+def store_file(db:Session , token:str, file):
     """TODO: Docstring for store_file.
 
     :arg1: TODO
