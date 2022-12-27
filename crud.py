@@ -169,7 +169,7 @@ def store_file(db:Session , token:str, file):
 
     print(f"[cyan]The book_file ID[cyan] : [blue]{book_file.id}[blue]")
 
-    for i in range(pages_count)
+    for i in range(int(pages_count))
     #    Add pages
     #    save each page with a counter
         book_pages = Page(
