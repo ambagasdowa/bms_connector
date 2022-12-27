@@ -145,8 +145,27 @@ def store_file(db:Session , token:str, file):
     db.commit()
     db.refresh(book)
 
-
     print(f"[blue]The book ID : {book.id}[blue]")
+    full_path = store_path+'/'+'/pages'
+    pages_count = len(glob.glob1(full_path,"*.jpg"))
+
+    print(f"[green]pages : {pages_count}[gree]")
+
+#    Create the book
+     book_file = File(
+        book_id = book.id
+        pages = pages_count
+        book_name = filename
+        is_url = true
+        created = datetime
+    )
+    db.add(book_file)
+    db.commit()
+    db.refresh(book_file)
+
+    print(f"[blue]The book_file ID : {book_file.id}[blue]")
+
+
 
     xfiles = []
     for xfile in get_files(store_path+'/'+'/pages'):
