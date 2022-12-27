@@ -195,7 +195,7 @@ def store_file(db:Session , token:str, file):
     #    save each page with a counter
         current_page = i + 1
         book_pages = Page(
-        bms_books_id     = book_file.id
+        bms_books_id     = book.id
         ,book_pages      = current_page
         ,basename        = config['basename']+config['pathname']
         ,pathname        = full_path +'/'+ str(current_page) + extension
