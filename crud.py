@@ -137,9 +137,9 @@ def store_file(db:Session , token:str, file):
     }
 #    print(type(book))
 #    db_file = File(**book.dict())
-    session.add(book)
-    session.commit()
-    session.refresh(book)
+    db.add(book)
+    db.commit()
+    db.refresh(book)
 
 
     xfiles = []
