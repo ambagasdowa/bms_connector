@@ -152,7 +152,7 @@ def store_file(db:Session , token:str, file):
     print(f"[green]pages : {pages_count}[gree]")
 
 #    Create the book
-     book_file = File(
+    book_file = File(
         book_id = book.id
         pages = pages_count
         book_name = filename
