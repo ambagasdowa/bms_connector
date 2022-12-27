@@ -146,7 +146,7 @@ def store_file(db:Session , token:str, file):
     db.refresh(book)
 
 
-    print("[blue]The book ID : {book.id}[blue]")
+    print(f"[blue]The book ID : {book.id}[blue]")
 
     xfiles = []
     for xfile in get_files(store_path+'/'+'/pages'):
