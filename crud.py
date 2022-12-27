@@ -135,11 +135,11 @@ def store_file(db:Session , token:str, file):
         "_filename":filename
         ,"_pathname":store_path
     }
-    print(type(book))
-    db_file = File(**book.dict())
-    session.add(db_file)
+#    print(type(book))
+#    db_file = File(**book.dict())
+    session.add(book)
     session.commit()
-    session.refresh(db_file)
+    session.refresh(book)
 
 
     xfiles = []
