@@ -154,10 +154,10 @@ def store_file(db:Session , token:str, file):
 #    Create the book
     book_file = File(
         book_id = book.id
-        pages = 8
-        book_name = filename
-        is_url = true
-        created = datetime
+        ,pages = pages_count
+        ,book_name = filename
+        ,is_url = true
+        ,created = datetime
     )
     db.add(book_file)
     db.commit()
