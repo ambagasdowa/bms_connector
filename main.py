@@ -190,7 +190,7 @@ async def upload( db: Session = Depends(get_db), token: Union[str, None] = Heade
             except Exception:
                 return {"message": f"There was an error uploading the file(s) {file.filename} and token : {token}"}
             else:
-                proccess = crud.store_file(file, token)
+                proccess = crud.store_file( db, file , token )
             finally:
                 file.file.close()
         return {"message": f"Successfuly uploaded {[file.filename for file in files]}"}
