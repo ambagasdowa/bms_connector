@@ -157,7 +157,7 @@ def store_file(db:Session , token:str, file):
         book_id = book.id
         ,pages = pages_count
         ,book_name = filename
-        ,is_url = true
+        ,is_url = True
         ,created = datetime
     )
     db.add(book_file)
