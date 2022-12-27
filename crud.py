@@ -135,6 +135,7 @@ def store_file(db:Session , token:str, file):
         "_filename":filename
         ,"_pathname":store_path
     }
+    print(type(book))
     db_file = File(**book.dict())
     session.add(db_file)
     session.commit()
