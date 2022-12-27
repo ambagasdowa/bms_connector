@@ -171,8 +171,7 @@ def store_file(db:Session , token:str, file):
 
     print(f"EXTENSION : [red] {extension} [red]")
 
-    pages_count = len(glob.glob1(full_path,"*.jpg"))
-    extension = '.jpg'
+    pages_count = len(glob.glob1(full_path,f"*{extension}"))
 
 
     print(f"[gray]pages : [green]{pages_count}[green]")
@@ -199,7 +198,7 @@ def store_file(db:Session , token:str, file):
         bms_books_id     = book_file.id
         ,book_pages      = current_page
         ,basename        = config['basename']+config['pathname']
-        ,pathname        = full_path + str(current_page) + '.jpg'
+        ,pathname        = full_path +'/'+ str(current_page) + extension
         ,created         = date_up
         )
         db.add(book_pages)
