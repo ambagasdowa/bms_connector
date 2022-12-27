@@ -131,9 +131,9 @@ def store_file(db:Session , token:str, file):
 
     # Create Book
 #    with Session(bind=engine) as session:
-    book = File(
-        _filename = filename
-        ,_pathname = store_path
+    book = Upload(
+        file_name = filename
+        ,pathname = store_path
     )
 #    print(type(book))
 #    db_file = File(**book.dict())

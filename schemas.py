@@ -267,3 +267,65 @@ class File(FileBase):
     class Config:
         orm_mode = True
 
+
+## UPLOAD SECTION
+
+class UploadBase(BaseModel):
+    user_id: int
+    labelname: str
+    file_name: str
+    pathname: str
+    extname: str
+    md5sum : str
+    file_size: str
+    atime: str
+    mtime: str
+    ctime: str
+    username: str
+    datetime_login: str
+    ip_remote: str
+    created : datetime
+    modified : datetime
+    status = bool
+
+
+class UploadCreate(BaseModel):
+    file_name: str
+    pathname: str
+#    class Config:
+         # schema_extra = {
+         #     "example" : {
+         #          "book_id": 10,
+         #          "pages": 219,
+         #          "book_name": "Guia de Estudio de Matematicas",
+         #          "is_url": true,
+         #          "created": "2022-12-26T23:23:02.071Z",
+         #          "modified": "2022-12-26T23:23:02.071Z",
+         #          "status": true,
+         #    }
+         # }
+
+class UploadUpdate(BaseModel):
+    user_id: int
+    labelname: str
+    file_name: str
+    pathname: str
+    extname: str
+    md5sum : str
+    file_size: str
+    atime: str
+    mtime: str
+    ctime: str
+    username: str
+    datetime_login: str
+    ip_remote: str
+    created : datetime
+    modified : datetime
+    status = bool
+
+class Upload(UploadBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
