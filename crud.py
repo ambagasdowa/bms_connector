@@ -97,21 +97,14 @@ def store_file(file, token):
     tmp_path = config['download_path'] + config['dir_path']
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
 # book_matematicas_002_bachillerato_20221223.zip
-    spl = str(filename.replace('.zip', '')).split('_')
-
+    spl = str(filename.replace('.zip', '')).replace('_','/')
+    # if windows os then c:\ ,etc
     # type_book = spl[0]
     # type_course = spl[1]
     # type_serial = spl[2]
     # type_degree = spl[3]
-
-    book_name ='/'
-    for sp_name in spl:
-        book_name += str(sp_name)+'/'
-    dir_path = str(book_name.replace('/','',-1))
+    dir_path = '/' + spl
     print("NEW PATH : " + dir_path)
-
-#    dir_path = '/'+type_book+'/'+type_course+'/'+type_serial+'/'+type_degree
-    #dir_path = (split_data[0]+'/'+split_data[1], split_data[0],md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
 
     store_path = config['basename']+config['pathname']+dir_path
     make_dir_files = subprocess.run(
