@@ -167,7 +167,7 @@ def store_file(db:Session , token:str, file):
 
     print(f"[red]XXXXX :{cnt_ext}[red]")
 
-    extension = max(cnt_ext, key = lambda k: ext_dict[k])
+    extension = max(cnt_ext)
 
     print(f"EXTENSION : [red] {extension} [red]")
 
