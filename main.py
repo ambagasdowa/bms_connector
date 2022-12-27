@@ -180,7 +180,7 @@ async def create_upload_files(files: List[UploadFile]):
 
 
 @app.post("/upload")
-async def upload(token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
+async def upload( db: Session = Depends(get_db), token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...) ):
     # ask for token and get the user_id
     if token == 'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu==':
         for file in files:
