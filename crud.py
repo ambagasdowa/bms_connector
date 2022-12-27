@@ -153,21 +153,24 @@ def store_file(db:Session , token:str, file):
 
     print(f"[blue]The book ID : {book.id}[blue]")
 
-    # xfiles = []
-    # for xfile in get_files(store_path+'/'+'/pages'):
-    #     xfiles.append(xfile)
 
-    # print(xfiles)
 
     full_path = store_path+'/'+'pages'
-
+    cnt_ext = Counter()
     ext_dict = {}
-    c = Counter([splitext(i)[1][1:] for i in glob(join(full_path, '*'))])
-    for ext, count in c.most_common():
-        ext_dict = {ext:count}
+    x = []
+    for xfile in get_files(full_path):
+        x.append(splitext(xfile)[1])
+
+    print(x)
 
 
-    extension = max(ext_dict, key = lambda k: ext_dict[k])
+    # c = Counter([splitext(i)[1][1:] for i in glob(join(full_path, '*'))])
+    # for ext, count in c.most_common():
+    #     ext_dict = {ext:count}
+
+
+#    extension = max(ext_dict, key = lambda k: ext_dict[k])
 
     print(f"EXTENSION : [red] {extension} [red]")
 
