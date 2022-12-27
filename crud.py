@@ -102,6 +102,7 @@ def store_file(db:Session , token:str, file):
     print(f"[red]token : {token}[red]")
     filename = file.filename
     tmp_path = config['download_path'] + config['dir_path']
+    date_up = datetime.now()
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
 # book_matematicas_002_bachillerato_20221223.zip
     spl = str(filename.replace('.zip', ''))
@@ -150,7 +151,7 @@ def store_file(db:Session , token:str, file):
     full_path = store_path+'/'+'/pages'
     pages_count = len(glob.glob1(full_path,"*.jpg"))
 
-    print(f"[green]pages : {pages_count}[gree]")
+    print(f"[gray]pages : [green]{pages_count}[green]")
 
 #    Create the book
     book_file = File(
@@ -158,7 +159,7 @@ def store_file(db:Session , token:str, file):
         ,pages = pages_count
         ,book_name = filename
         ,is_url = True
-        ,created = datetime
+        ,created = date_up
     )
     db.add(book_file)
     db.commit()
