@@ -106,6 +106,7 @@ def store_file(db:Session , token:str, file):
 #    clean_dir_files = subprocess.run(["rm", "-r", tmp_path], stdout=subprocess.DEVNULL)
 # book_matematicas_002_bachillerato_20221223.zip
     spl = str(filename.replace('.zip', ''))
+#    if not set the book_name take it from zip-filename
     book_name = spl.replace('_',' ').capitalize()
     spl_path = str(spl.replace('_','/'))
 
@@ -166,8 +167,23 @@ def store_file(db:Session , token:str, file):
     db.commit()
     db.refresh(book_file)
 
-    print(f"[blue]The book_file ID : {book_file.id}[blue]")
+    print(f"[cyan]The book_file ID[cyan] : [blue]{book_file.id}[blue]")
 
+    for i in range(pages_count)
+    #    Add pages
+    #    save each page with a counter
+        book_pages = Page(
+        ,bms_books_id    = book_file.id
+        ,book_pages      = i+1
+        ,basename        = config['basename']+config['pathname']
+        ,pathname        = full_path + (i+1) + '.jpg'
+        ,created         = date_up
+        )
+        db.add(book_pages)
+        db.commit()
+        db.refresh(book_pages)
+
+        print(f"[cyan]The book_file ID[cyan] : [blue]{book_pages.id}[blue]")
 
 
     xfiles = []
