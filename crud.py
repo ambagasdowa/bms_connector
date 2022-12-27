@@ -162,6 +162,7 @@ def store_file(db:Session , token:str, file):
     for xfile in get_files(full_path):
         x.append(splitext(xfile)[1])
 
+    print("[red]XXXXX :[red]")
     print(x)
 
 
