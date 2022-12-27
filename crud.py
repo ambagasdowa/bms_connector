@@ -162,10 +162,10 @@ def store_file(db:Session , token:str, file):
     for xfile in get_files(full_path):
         x.append(splitext(xfile)[1])
 
-    print("[red]XXXXX :[red]")
-    print(x)
+    for z in x:
+        cnt_ext[z] += 1
 
-
+    print(f"[red]XXXXX :{cnt_ext}[red]")
     # c = Counter([splitext(i)[1][1:] for i in glob(join(full_path, '*'))])
     # for ext, count in c.most_common():
     #     ext_dict = {ext:count}
