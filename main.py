@@ -188,9 +188,10 @@ async def create_upload_files(files: List[UploadFile]):
 @app.post("/upload")
 async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]] = None, token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
     # ask for token and get the user_id
+    book_name = book_name[0].split(',')
     if token == 'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu==':
         index = 0
-        print(f"[red]LIST in book_name : {book_name} at index {str(index)}")
+        print(f"[red]LIST in book_name : {book_name[0]} at index {str(index)}")
         for file in files:
             try:
                 with open(file.filename, 'wb') as f:
