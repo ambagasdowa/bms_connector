@@ -190,6 +190,7 @@ async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]
     # ask for token and get the user_id
     if token == 'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu==':
         index = 0
+        print(f"[red]LIST in book_name : {book_name} at index {str(index)}")
         for file in files:
             try:
                 with open(file.filename, 'wb') as f:
