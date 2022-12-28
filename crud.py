@@ -94,7 +94,7 @@ def get_files(path):
             yield file
 
 
-def store_file( book_name ,db:Session,  token:str, file):
+def store_file( book_name:str ,db:Session,  token:str, file):
     """TODO: Docstring for store_file.
 
     :arg1: TODO
@@ -112,9 +112,9 @@ def store_file( book_name ,db:Session,  token:str, file):
     spl = str(filename.replace('.zip', ''))
 #    if not set the book_name take it from zip-filename
 
-    if book_name : 
-        print(f"TYPE of Book : {type(book_name)}")
-        print(f"{book_name}")
+    # if book_name : 
+    #     print(f"TYPE of Book : {type(book_name)}")
+    #     print(f"{book_name}")
 
     if not book_name :
         book_name = spl.replace('_',' ').capitalize()
