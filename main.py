@@ -189,6 +189,7 @@ async def create_upload_files(files: List[UploadFile]):
 async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]] = None, token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
     # ask for token and get the user_id
     if token == 'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu==':
+        index = 0
         for file in files:
             try:
                 with open(file.filename, 'wb') as f:
@@ -196,8 +197,9 @@ async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]
             except Exception:
                 return {"message": f"There was an error uploading the file(s) {file.filename} and token : {token}"}
             else:
-                proccess = crud.store_file(db, book_name, token, file)
+                proccess = crud.store_file(db, book_name[index], token, file)
             finally:
+                index = index+1
                 file.file.close()
         # return {"message": f"Successfuly uploaded {[file.filename for file in files]} and {[booking for booking in book_name]}"}
         return {"message": f"Successfuly uploaded {[file.filename for file in files]}"}

@@ -94,7 +94,7 @@ def get_files(path):
             yield file
 
 
-def store_file(db:Session, book_name:str , token:str, file):
+def store_file(index:int, db:Session, book_name:str , token:str, file):
     """TODO: Docstring for store_file.
 
     :arg1: TODO
@@ -114,9 +114,7 @@ def store_file(db:Session, book_name:str , token:str, file):
 
     if book_name : 
         print(f"TYPE of Book : {type(book_name)}")
-        print(book_name)
-        for value in book_name:
-            print(value)
+        print(f"{book_name}")
 
     if not book_name :
         book_name = spl.replace('_',' ').capitalize()
