@@ -133,7 +133,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     print(f"THE FILENAME :  {filename}")
 
     download_path = config['download_path']
-    dir_path = config['dir_path']
+#    dir_path = config['dir_path']
 
     pack = download_path+dir_path+"pack/"
     unpack = download_path+dir_path+"unpack/"
