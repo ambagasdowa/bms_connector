@@ -191,10 +191,10 @@ class ItemBase(BaseModel):
             book_inputs[page].append(ins[page])
 
         data['book_inputs'] = book_inputs
-        # del data['inputs']
-        # del data['inpages']
+        del data['inputs']
+        del data['inpages']
         # del data['positions']
-        # del data['invalues']
+        del data['invalues']
         # del data['pagination']
         return data
 
