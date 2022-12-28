@@ -111,6 +111,13 @@ def store_file(db:Session, book_name:str , token:str, file):
 # book_matematicas_002_bachillerato_20221223.zip
     spl = str(filename.replace('.zip', ''))
 #    if not set the book_name take it from zip-filename
+
+    if book_name : 
+        print(f"TYPE of Book : {type(book_name)}")
+        print(book_name)
+        for v,k in book_name:
+            print(v,k)
+
     if not book_name :
         book_name = spl.replace('_',' ').capitalize()
 
