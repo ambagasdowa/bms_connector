@@ -198,7 +198,7 @@ async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]
             except Exception:
                 return {"message": f"There was an error uploading the file(s) {file.filename} and token : {token}"}
             else:
-                proccess = crud.store_file(db, book_name[index], token, file)
+                proccess = crud.store_file(book_name[index], db, token, file)
             finally:
                 index = index+1
                 file.file.close()
