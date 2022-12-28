@@ -109,7 +109,9 @@ def store_file(db:Session, book_name:str , token:str, file):
 # book_matematicas_002_bachillerato_20221223.zip
     spl = str(filename.replace('.zip', ''))
 #    if not set the book_name take it from zip-filename
-    book_name = spl.replace('_',' ').capitalize()
+    if not book_name :
+        book_name = spl.replace('_',' ').capitalize()
+
     spl_path = str(spl.replace('_','/'))
 
     # if windows os then c:\ ,etc
@@ -210,18 +212,18 @@ def store_file(db:Session, book_name:str , token:str, file):
 
 # Working from hir
 # Set entries in positions
-    book_positions = Position(
-        bms_books_id = book.id
-        ,bms_bookpages_id = pages_count
-        ,book_name = book_name
-        ,is_url = True
-        ,created = date_up
-    )
-    db.add(book_positions)
-    db.commit()
-    db.refresh(book_positions)
+    # book_positions = Position(
+    #     bms_books_id = book.id
+    #     ,bms_bookpages_id = pages_count
+    #     ,book_name = book_name
+    #     ,is_url = True
+    #     ,created = date_up
+    # )
+    # db.add(book_positions)
+    # db.commit()
+    # db.refresh(book_positions)
 
-    print(f"[cyan]The book_positions ID[cyan] : [blue]{book_positions.id}[blue]")
+    # print(f"[cyan]The book_positions ID[cyan] : [blue]{book_positions.id}[blue]")
 
 
     # db_item = Item(**data.dict())
