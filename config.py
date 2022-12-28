@@ -14,7 +14,8 @@ configuration = {
         "download_path": "/tmp/",
         "dir_path": "book/",
         "filename": "cfdi_?.zip",  # if needed <?> is replaced by a random number
-        "basename": "/src/tmp/files",
+        #        "basename": "/src/tmp/files",
+        "basename": "/home/ambagasdowa/files",
         "pathname": "/source",
     },
     # This params are specified by the web service can be changed in https execution process
