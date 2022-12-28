@@ -200,6 +200,7 @@ async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]
                 proccess = crud.store_file(db, book_name, token, file)
             finally:
                 file.file.close()
+        # return {"message": f"Successfuly uploaded {[file.filename for file in files]} and {[booking for booking in book_name]}"}
         return {"message": f"Successfuly uploaded {[file.filename for file in files]}"}
     else:
         return {"message": "your token is invalid"}
