@@ -9,8 +9,8 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from .database import Base
 
 
-#BMS_BOOKS
-#  `id`                      int unsigned not null auto_increment primary key, -- 
+# BMS_BOOKS
+#  `id`                      int unsigned not null auto_increment primary key, --
 #  `book_id`                 varchar(255) not null , -- --> ex: 228
 #  `pages`                   int null, -- --> 8 total pages
 #  `book_name`               varchar(255) null, -- --> Guia_UV
@@ -22,13 +22,13 @@ from .database import Base
 
 class Upload(Base):
     __tablename__ = "bms_controls_files"
-    id =Column(Integer,primary_key=True,index=True)
+    id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, index=True)
     labelname = Column(String, index=True)
     file_name = Column(String, index=True)
     pathname = Column(String, index=True)
     extname = Column(String, index=True)
-    md5sum  = Column(String, index=True)
+    md5sum = Column(String, index=True)
     file_size = Column(String, index=True)
     atime = Column(String, index=True)
     mtime = Column(String, index=True)
@@ -44,16 +44,15 @@ class Upload(Base):
 
 class File(Base):
     __tablename__ = "bms_books"
-    id =Column(Integer,primary_key=True,index=True)
+    id = Column(Integer, primary_key=True, index=True)
     book_id = Column(Integer)
     pages = Column(Integer)
-    book_name = Column(String )
+    book_name = Column(String)
     is_url = Column(Boolean, default=False)
     created = Column(TIMESTAMP, nullable=True, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-
 
 
 class Item(Base):
@@ -92,14 +91,14 @@ class Page(Base):
     __tablename__ = "bms_bookpages"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id    = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
-    book_pages      = Column(Integer)
-    basename        = Column(String, index=True)
-    pathname        = Column(String, index=True)
-    created         = Column(TIMESTAMP, nullable=False, server_default=func.now())
-    modified        = Column(DateTime, server_default=text(
+    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    book_pages = Column(Integer)
+    basename = Column(String, index=True)
+    pathname = Column(String, index=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    status          = Column(Boolean, default=True)
+    status = Column(Boolean, default=True)
 
     @hybrid_property
     def path(self):
@@ -127,6 +126,8 @@ class Position(Base):
 # NOTE https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html
 # https://stackoverflow.com/questions/68626930/fastapi-many-to-many-response-schema-and-relationship
 # https://stackoverflow.com/questions/68394091/fastapi-sqlalchemy-pydantic-%E2%86%92-how-to-process-many-to-many-relations
+
+
 class Input(Base):
     __tablename__ = "bms_inputs_ctrls"
 
@@ -141,30 +142,30 @@ class Input(Base):
 
 
 class Inpage(Base):
-    __tablename__="bms_inputs_pages"
+    __tablename__ = "bms_inputs_pages"
 
-    id=Column(Integer, primary_key = True, index = True)
-    bms_inputs_ctrls_id=Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
-    attribute=Column(String, index = True)
-    value=Column(String, index = True)
-    created=Column(TIMESTAMP, nullable = False, server_default = func.now())
-    modified=Column(DateTime, server_default = text(
+    id = Column(Integer, primary_key=True, index=True)
+    bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
+    attribute = Column(String, index=True)
+    value = Column(String, index=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    status=Column(Boolean, default = True)
+    status = Column(Boolean, default=True)
 
 
 class Invalue(Base):
-    __tablename__="bms_inputs_values"
+    __tablename__ = "bms_inputs_values"
 
-    id=Column(Integer, primary_key = True, index = True)
-    bms_inputs_ctrls_id=Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
-    user_id=Column(Integer, index = True)
-    attribute=Column(String, index = True)
-    value=Column(String, index = True)
-    created=Column(TIMESTAMP, nullable = False, server_default = func.now())
-    modified=Column(DateTime, server_default = text(
+    id = Column(Integer, primary_key=True, index=True)
+    bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
+    user_id = Column(Integer, index=True)
+    attribute = Column(String, index=True)
+    value = Column(String, index=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    status=Column(Boolean, default = True)
+    status = Column(Boolean, default=True)
 
 
 # class User(Base):

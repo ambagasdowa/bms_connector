@@ -60,7 +60,10 @@ class InputBase(BaseModel):
 
 
 class InputCreate(BaseModel):
-    pass
+    bms_books_id: int
+    bms_bookpages_id: int
+    label: str
+    created: datetime
 
 
 class InputUpdate(BaseModel):

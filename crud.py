@@ -2,8 +2,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
 
-from .models import Item, Page,File,Upload,Position
-from .schemas import ItemCreate, ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate
+from .models import Item, Page,File,Upload,Position,Input
+from .schemas import ItemCreate, ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate
 from typing import Union
 
 import urllib
@@ -217,6 +217,22 @@ def store_file( book_name:str ,db:Session,  token:str, file):
         db.refresh(book_positions)
 
         print(f"[cyan]The book_positions ID[cyan] : [blue]{book_positions.id}[blue]")
+
+# Set entries in inputs container
+        book_input = Input(
+            bms_books_id = book.id
+            ,bms_bookpages_id = book_pages.id
+            ,label = f"Input entry for book {book.id} in pages {current_page}"
+            ,created = date_up
+        )
+        db.add(book_input)
+        db.commit()
+        db.refresh(book_input)
+
+        print(f"[cyan]The book_input ID[cyan] : [blue]{book_input.id}[blue]")
+
+
+
 
 
     # db_item = Item(**data.dict())
