@@ -195,7 +195,7 @@ class ItemBase(BaseModel):
         # if len(data['book_inputs']) == 0:
         #     data['book_inputs'] = book_pages_maps
 
-#        del data['inputs']
+        del data['inputs']
         del data['inpages']
         del data['positions']
         del data['invalues']
