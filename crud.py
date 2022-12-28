@@ -102,6 +102,8 @@ def store_file(db:Session, book_name:str , token:str, file):
     https --verify=no -f POST 10.14.17.105:8000/upload files@~/Development/book_matematicas_002_bachillerato_20221223.zip files@~/Development/guia_unam_215_universidad_20221223.zip files@~/Development/guia_uv_002_demo_20221223.zip
     """
     print(f"[red]token : {token}[red]")
+    print(f"[cyan]FILE {type(file)}[cyan]")
+
     filename = file.filename
     tmp_path = config['download_path'] + config['dir_path']
     date_up = datetime.now()
@@ -114,11 +116,6 @@ def store_file(db:Session, book_name:str , token:str, file):
 
     spl_path = str(spl.replace('_','/'))
 
-    # if windows os then c:\ ,etc
-    # type_book = spl[0]
-    # type_course = spl[1]
-    # type_serial = spl[2]
-    # type_degree = spl[3]
     dir_path = '/' + spl_path
     print("NEW PATH : " + dir_path)
 
