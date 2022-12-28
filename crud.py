@@ -115,8 +115,8 @@ def store_file(db:Session, book_name:str , token:str, file):
     if book_name : 
         print(f"TYPE of Book : {type(book_name)}")
         print(book_name)
-        for key,value in book_name.items():
-            print(key,value)
+        for index,value in book_name:
+            print(index,value)
 
     if not book_name :
         book_name = spl.replace('_',' ').capitalize()
