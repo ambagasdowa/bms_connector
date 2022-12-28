@@ -170,14 +170,9 @@ def store_file( book_name:str ,db:Session,  token:str, file):
         cnt_ext[z] += 1
 
     print(f"[red]count :{cnt_ext}[red]")
-
     extension = max(cnt_ext)
-
     print(f"EXTENSION : [red] {extension} [red]")
-
     pages_count = len(glob.glob1(full_path,f"*{extension}"))
-
-
     print(f"[gray]pages : [green]{pages_count}[green]")
 
 #    Create the book
@@ -208,24 +203,20 @@ def store_file( book_name:str ,db:Session,  token:str, file):
         db.add(book_pages)
         db.commit()
         db.refresh(book_pages)
-
         print(f"[cyan]The book_file ID[cyan] : [blue]{book_pages.id}[blue]")
-
-
-# Working from hir
 # Set entries in positions
-    # book_positions = Position(
-    #     bms_books_id = book.id
-    #     ,bms_bookpages_id = pages_count
-    #     ,book_name = book_name
-    #     ,is_url = True
-    #     ,created = date_up
-    # )
-    # db.add(book_positions)
-    # db.commit()
-    # db.refresh(book_positions)
+        book_positions = Position(
+            bms_books_id = book.id
+            ,bms_bookpages_id = book_pages.id
+            ,page = current_page
+            ,css = ''
+            ,created = date_up
+        )
+        db.add(book_positions)
+        db.commit()
+        db.refresh(book_positions)
 
-    # print(f"[cyan]The book_positions ID[cyan] : [blue]{book_positions.id}[blue]")
+        print(f"[cyan]The book_positions ID[cyan] : [blue]{book_positions.id}[blue]")
 
 
     # db_item = Item(**data.dict())

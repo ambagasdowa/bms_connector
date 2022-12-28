@@ -85,7 +85,11 @@ class PositionBase(BaseModel):
 
 
 class PositionCreate(BaseModel):
-    pass
+    bms_books_id: int
+    bms_bookpages_id: int
+    page: int
+    css: str
+    created: datetime
 
 
 class PositionUpdate(BaseModel):
