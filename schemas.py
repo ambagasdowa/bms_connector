@@ -193,9 +193,11 @@ class ItemBase(BaseModel):
         data['book_inputs'] = book_inputs
         # del data['inputs']
         # del data['inpages']
-        del data['positions']
+        # del data['positions']
         # del data['invalues']
-        del data['pagination']
+        # del data['pagination']
+        if len(data['book_inputs']) == 0:
+            data['book_inputs'] = data['book_pages_maps']
         return data
 
 
