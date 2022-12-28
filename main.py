@@ -180,7 +180,7 @@ async def create_upload_files(files: List[UploadFile]):
 
 
 @app.post("/upload")
-async def upload( db: Session = Depends(get_db), token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...) ):
+async def upload(db: Session = Depends(get_db), book_name: Union[str, None] = None, token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
     # ask for token and get the user_id
     if token == 'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu==':
         for file in files:
@@ -190,7 +190,7 @@ async def upload( db: Session = Depends(get_db), token: Union[str, None] = Heade
             except Exception:
                 return {"message": f"There was an error uploading the file(s) {file.filename} and token : {token}"}
             else:
-                proccess = crud.store_file( db, token, file )
+                proccess = crud.store_file(db, book_name, token, file)
             finally:
                 file.file.close()
         return {"message": f"Successfuly uploaded {[file.filename for file in files]}"}
@@ -211,6 +211,7 @@ def files_action_create(data: schemas.FileCreate, db: Session = Depends(get_db))
 # This endpoint allows to update an existing `Item`, identified by its primary key passed as a
 # path parameter in the url. The necessary data is read from the request
 # body, which is parsed and validated according to the ItemUpdate schema defined beforehand
+
 
 @app.put("/file/{file_id}", response_model=schemas.File)
 def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session = Depends(get_db)):

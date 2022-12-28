@@ -220,7 +220,7 @@ class Item(ItemBase):
         orm_mode = True
 
 
-## FILE SECTION
+# FILE SECTION
 
 class FileBase(BaseModel):
     book_id: int
@@ -240,17 +240,18 @@ class FileCreate(BaseModel):
     created: datetime
 #    status: bool
 #    class Config:
-         # schema_extra = {
-         #     "example" : {
-         #          "book_id": 10,
-         #          "pages": 219,
-         #          "book_name": "Guia de Estudio de Matematicas",
-         #          "is_url": true,
-         #          "created": "2022-12-26T23:23:02.071Z",
-         #          "modified": "2022-12-26T23:23:02.071Z",
-         #          "status": true,
-         #    }
-         # }
+    # schema_extra = {
+    #     "example" : {
+    #          "book_id": 10,
+    #          "pages": 219,
+    #          "book_name": "Guia de Estudio de Matematicas",
+    #          "is_url": true,
+    #          "created": "2022-12-26T23:23:02.071Z",
+    #          "modified": "2022-12-26T23:23:02.071Z",
+    #          "status": true,
+    #    }
+    # }
+
 
 class FileUpdate(BaseModel):
     book_id: int
@@ -268,7 +269,7 @@ class File(FileBase):
         orm_mode = True
 
 
-## UPLOAD SECTION
+# UPLOAD SECTION
 
 class UploadBase(BaseModel):
     user_id: int
@@ -276,7 +277,7 @@ class UploadBase(BaseModel):
     file_name: str
     pathname: str
     extname: str
-    md5sum : str
+    md5sum: str
     file_size: str
     atime: str
     mtime: str
@@ -284,8 +285,8 @@ class UploadBase(BaseModel):
     username: str
     datetime_login: str
     ip_remote: str
-    created : datetime
-    modified : datetime
+    created: datetime
+    modified: datetime
     status = bool
 
 
@@ -293,17 +294,18 @@ class UploadCreate(BaseModel):
     file_name: str
     pathname: str
 #    class Config:
-         # schema_extra = {
-         #     "example" : {
-         #          "book_id": 10,
-         #          "pages": 219,
-         #          "book_name": "Guia de Estudio de Matematicas",
-         #          "is_url": true,
-         #          "created": "2022-12-26T23:23:02.071Z",
-         #          "modified": "2022-12-26T23:23:02.071Z",
-         #          "status": true,
-         #    }
-         # }
+    # schema_extra = {
+    #     "example" : {
+    #          "book_id": 10,
+    #          "pages": 219,
+    #          "book_name": "Guia de Estudio de Matematicas",
+    #          "is_url": true,
+    #          "created": "2022-12-26T23:23:02.071Z",
+    #          "modified": "2022-12-26T23:23:02.071Z",
+    #          "status": true,
+    #    }
+    # }
+
 
 class UploadUpdate(BaseModel):
     user_id: int
@@ -311,7 +313,7 @@ class UploadUpdate(BaseModel):
     file_name: str
     pathname: str
     extname: str
-    md5sum : str
+    md5sum: str
     file_size: str
     atime: str
     mtime: str
@@ -319,13 +321,13 @@ class UploadUpdate(BaseModel):
     username: str
     datetime_login: str
     ip_remote: str
-    created : datetime
-    modified : datetime
+    created: datetime
+    modified: datetime
     status = bool
+
 
 class Upload(UploadBase):
     id: int
 
     class Config:
         orm_mode = True
-

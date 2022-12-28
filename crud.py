@@ -94,7 +94,7 @@ def get_files(path):
             yield file
 
 
-def store_file(db:Session , token:str, file):
+def store_file(db:Session, book_name:str , token:str, file):
     """TODO: Docstring for store_file.
 
     :arg1: TODO
@@ -165,7 +165,7 @@ def store_file(db:Session , token:str, file):
     for z in x:
         cnt_ext[z] += 1
 
-    print(f"[red]XXXXX :{cnt_ext}[red]")
+    print(f"[red]count :{cnt_ext}[red]")
 
     extension = max(cnt_ext)
 
@@ -206,6 +206,22 @@ def store_file(db:Session , token:str, file):
         db.refresh(book_pages)
 
         print(f"[cyan]The book_file ID[cyan] : [blue]{book_pages.id}[blue]")
+
+
+# Working from hir
+# Set entries in positions
+    book_positions = Position(
+        bms_books_id = book.id
+        ,bms_bookpages_id = pages_count
+        ,book_name = book_name
+        ,is_url = True
+        ,created = date_up
+    )
+    db.add(book_positions)
+    db.commit()
+    db.refresh(book_positions)
+
+    print(f"[cyan]The book_positions ID[cyan] : [blue]{book_positions.id}[blue]")
 
 
     # db_item = Item(**data.dict())
