@@ -202,7 +202,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
         bms_books_id     = book.id
         ,book_pages      = current_page
         ,basename        = config['basename']+config['pathname']
-        ,pathname        = full_path +'/'+ str(current_page) + extension
+        ,pathname        = dir_path +'/'+ str(current_page) + extension
         ,created         = date_up
         )
         db.add(book_pages)
