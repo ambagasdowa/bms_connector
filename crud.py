@@ -221,7 +221,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
 # Set entries in inputs container
         book_input = Input(
             bms_books_id = book.id
-            ,bms_bookpages_id = book_pages.id
+            ,bms_bookpages_id = current_page
             ,label = f"Input entry for book {book.id} in pages {current_page}"
             ,created = date_up
         )
