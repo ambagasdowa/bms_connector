@@ -12,6 +12,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
+# UIX
+from rich import print
+from rich.progress import track
+from rich.progress import Progress
+
+
 # for files
 import shutil
 
@@ -182,6 +188,7 @@ async def create_upload_files(files: List[UploadFile]):
 @app.post("/upload")
 async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]] = None, token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
     # ask for token and get the user_id
+    print(f"TYPE of Book : {type(book_name)}")
     if token == 'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu==':
         for file in files:
             try:
