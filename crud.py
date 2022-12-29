@@ -1,6 +1,7 @@
 # crud.py
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import text
 
 from .models import Item, Page,File,Upload,Position,Input
 from .schemas import ItemCreate, ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate
