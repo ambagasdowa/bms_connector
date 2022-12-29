@@ -242,7 +242,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     #     connection.commit()
     # finally:
     #     connection.close()
-    query = "call bms_proc_build_cache_inp_usr;"
+    query = "call db_ediq2021.bms_proc_build_cache_inp_usr"
     ##stmt = text(query)
     #result = db.execute(text(query))
     db.execute(query)
