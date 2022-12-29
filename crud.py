@@ -246,7 +246,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     ##stmt = text(query)
     #result = db.execute(text(query))
     db.execute(query)
-
+    db.commit()
 
     # db_item = Item(**data.dict())
     # db.add(db_item)
