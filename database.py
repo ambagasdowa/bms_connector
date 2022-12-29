@@ -33,7 +33,7 @@ config = configuration['db_connection']
 #    connection.close() 
 
 #SQLALCHEMY_DATABASE_URL = "mysql+pymysql://ambagasdowa:pekas@127.0.0.1/db_ediq2021"
-SQLALCHEMY_DATABASE_URL = '{0}://{1}:{2}@{3}/{4}'.format(config['driver'],config['user'],config['password'],config['server'],config['database'])
+SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://{0}:{1}@{2}/{3}'.format(config['user'],config['password'],config['server'],config['database'])
 
 #engine = sqlalchemy.create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 engine = create_engine(
