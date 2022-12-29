@@ -244,9 +244,6 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     # db.commit()
     # db.refresh(db_item)
 
-
-
-
     # Insert data
     # with Session(bind=engine) as session:
 
@@ -297,7 +294,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     #         files_ids.append(str(cmex_api_controls_files_id))
 
     # return {"success": f"Now going to process your files {[file.filename for file in files]}"}
-    return {"success": f"Now going to process your files {filename} whit token : {token} and id : {book.id}"}
+    return book.id
 
 
 
