@@ -232,13 +232,18 @@ def store_file( book_name:str ,db:Session,  token:str, file):
 
         print(f"[cyan]The book_input ID[cyan] : [blue]{book_input.id}[blue]")
 
-    #Finally run proc
-  # results = sess.execute('myproc ?, ?', [param1, param2])
-    #db.execute('bms_proc_build_cache_inp_usr')
-    # Naive method using usual SQLAlchemy syntax
-    query = """CALL bms_proc_build_cache_inp_usr;"""
-    #stmt = text(query)
-    result = db.execute(text(query))
+    connection = db.raw_connection()
+    try:
+        cursor = connection.cursor()
+        cursor.callproc("bms_proc_build_cache_inp_usr")
+        results = list(cursor.fetchall())
+        cursor.close()
+        connection.commit()
+    finally:
+        connection.close()
+    #query = """CALL bms_proc_build_cache_inp_usr;"""
+    ##stmt = text(query)
+    #result = db.execute(text(query))
 
 
     # db_item = Item(**data.dict())
@@ -299,7 +304,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     #         files_ids.append(str(cmex_api_controls_files_id))
 
     # return {"success": f"Now going to process your files {[file.filename for file in files]}"}
-    return {"success": f"Now going to process your files {filename} whit token : {token}"}
+    return {"success": f"Now going to process your files {filename} whit token : {token} and id : {book.id}"}
 
 
 
