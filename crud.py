@@ -231,7 +231,8 @@ def store_file( book_name:str ,db:Session,  token:str, file):
         db.refresh(book_input)
 
         print(f"[cyan]The book_input ID[cyan] : [blue]{book_input.id}[blue]")
-    db.execute(func.bms_proc_build_cache_inp_usr())
+
+    #db.execute(func.bms_proc_build_cache_inp_usr())
     # connection = db.raw_connection()
     # try:
     #     cursor = connection.cursor()
@@ -241,9 +242,10 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     #     connection.commit()
     # finally:
     #     connection.close()
-    #query = """CALL bms_proc_build_cache_inp_usr;"""
+    query = "call bms_proc_build_cache_inp_usr;"
     ##stmt = text(query)
     #result = db.execute(text(query))
+    db.execute(query)
 
 
     # db_item = Item(**data.dict())
