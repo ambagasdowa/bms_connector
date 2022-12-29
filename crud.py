@@ -1,7 +1,7 @@
 # crud.py
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import text
+from sqlalchemy import text,func
 
 from .models import Item, Page,File,Upload,Position,Input
 from .schemas import ItemCreate, ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate
@@ -231,16 +231,16 @@ def store_file( book_name:str ,db:Session,  token:str, file):
         db.refresh(book_input)
 
         print(f"[cyan]The book_input ID[cyan] : [blue]{book_input.id}[blue]")
-
-    connection = db.raw_connection()
-    try:
-        cursor = connection.cursor()
-        cursor.callproc("bms_proc_build_cache_inp_usr")
-        results = list(cursor.fetchall())
-        cursor.close()
-        connection.commit()
-    finally:
-        connection.close()
+    db.execute(func.bms_proc_build_cache_inp_usr())
+    # connection = db.raw_connection()
+    # try:
+    #     cursor = connection.cursor()
+    #     cursor.callproc("bms_proc_build_cache_inp_usr")
+    #     results = list(cursor.fetchall())
+    #     cursor.close()
+    #     connection.commit()
+    # finally:
+    #     connection.close()
     #query = """CALL bms_proc_build_cache_inp_usr;"""
     ##stmt = text(query)
     #result = db.execute(text(query))
