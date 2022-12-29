@@ -233,7 +233,11 @@ def store_file( book_name:str ,db:Session,  token:str, file):
 
     #Finally run proc
   # results = sess.execute('myproc ?, ?', [param1, param2])
-    db.execute('bms_proc_build_cache_inp_usr')
+    #db.execute('bms_proc_build_cache_inp_usr')
+    # Naive method using usual SQLAlchemy syntax
+    query = """CALL bms_proc_build_cache_inp_usr;"""
+    #stmt = text(query)
+    result = db.execute(text(query))
 
 
     # db_item = Item(**data.dict())
