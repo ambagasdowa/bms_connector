@@ -231,8 +231,9 @@ def store_file( book_name:str ,db:Session,  token:str, file):
 
         print(f"[cyan]The book_input ID[cyan] : [blue]{book_input.id}[blue]")
 
-
-
+    #Finally run proc
+  # results = sess.execute('myproc ?, ?', [param1, param2])
+    db.execute('bms_proc_build_cache_inp_usr')
 
 
     # db_item = Item(**data.dict())

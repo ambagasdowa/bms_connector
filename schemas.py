@@ -192,9 +192,6 @@ class ItemBase(BaseModel):
 
         data['book_inputs'] = book_inputs
 
-        # if len(data['book_inputs']) == 0:
-        #     data['book_inputs'] = book_pages_maps
-
         del data['inputs']
         del data['inpages']
         del data['positions']
@@ -305,18 +302,13 @@ class UploadBase(BaseModel):
 class UploadCreate(BaseModel):
     file_name: str
     pathname: str
-#    class Config:
-    # schema_extra = {
-    #     "example" : {
-    #          "book_id": 10,
-    #          "pages": 219,
-    #          "book_name": "Guia de Estudio de Matematicas",
-    #          "is_url": true,
-    #          "created": "2022-12-26T23:23:02.071Z",
-    #          "modified": "2022-12-26T23:23:02.071Z",
-    #          "status": true,
-    #    }
-    # }
+
+    # class Config:
+    #     schema_extra = {
+    #         "example": {
+    #             "book_name": "Guia de Estudio de Matematicas",
+    #         }
+    #     }
 
 
 class UploadUpdate(BaseModel):
