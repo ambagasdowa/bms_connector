@@ -1,3 +1,5 @@
+
+import pandas as pd
 # crud.py
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
@@ -233,18 +235,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
         print(f"[cyan]The book_input ID[cyan] : [blue]{book_input.id}[blue]")
 
     #db.execute(func.bms_proc_build_cache_inp_usr())
-    # connection = db.raw_connection()
-    # try:
-    #     cursor = connection.cursor()
-    #     cursor.callproc("bms_proc_build_cache_inp_usr")
-    #     results = list(cursor.fetchall())
-    #     cursor.close()
-    #     connection.commit()
-    # finally:
-    #     connection.close()
-    query = "call db_ediq2021.bms_proc_build_cache_inp_usr"
-    ##stmt = text(query)
-    #result = db.execute(text(query))
+    query = '{0} {1}.{2}'.format( configuration['db_connection']['proc_exec'],configuration['db_connection']['database'] ,configuration['db_connection']['proc_0'])
     db.execute(query)
     db.commit()
 

@@ -7,6 +7,8 @@ configuration = {
         "database": "db_ediq2021",
         "user": "ambagasdowa",
         "password": "pekas",
+        "proc_exec":"call", # call[mariadb]|exec[mssql]...
+        "proc_0": "bms_proc_build_cache_inp_usr",
     },
     "download_config": {
         # Optional as global or by user authorization (Recomended)
