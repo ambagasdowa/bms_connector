@@ -22,7 +22,8 @@ styles:
 > base on the project <https://inmagik.com/en/blog/fastapi-basic-crud>
 > and in the manuals for fastapi <https://fastapi.tiangolo.com/tutorial/sql-databases/>
 
-- Instal the dependencies
+
+- Install the dependencies
 
 - build the skelton app
 

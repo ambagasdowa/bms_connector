@@ -168,26 +168,26 @@ def pages_book_list(book_id: str, db: Session = Depends(get_db)):
 #     return {"file_sizes": [len(file) for file in files]}
 
 
-@app.post("/uploadfile/")
-async def create_upload_file(file: Union[UploadFile, None] = None):
-    if not file:
-        return {"message": "No upload file sent"}
-    else:
-        return {"filename": file.filename}
+# @app.post("/uploadfile/")
+# async def create_upload_file(file: Union[UploadFile, None] = None):
+#     if not file:
+#         return {"message": "No upload file sent"}
+#     else:
+#         return {"filename": file.filename}
 
 
-@app.post("/uploadfiles/")
-async def create_upload_files(files: List[UploadFile]):
-    if not files:
-        return {"message": "No upload file sent"}
-    else:
-        # call to a function
-        return {"filenames": [file.filename for file in files]}
+# @app.post("/uploadfiles/")
+# async def create_upload_files(files: List[UploadFile]):
+#     if not files:
+#         return {"message": "No upload file sent"}
+#     else:
+#         # call to a function
+#         return {"filenames": [file.filename for file in files]}
 
 
 @app.post("/upload")
 async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]] = None, token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
-    # ask for token and get the user_id
+    # ask for token and verify
     book_name = book_name[0].split(',')
     proccess = []
     if token == 'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu==':
@@ -205,7 +205,7 @@ async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]
                 index = index+1
                 file.file.close()
         # return {"message": f"Successfuly uploaded {[file.filename for file in files]} and {[booking for booking in book_name]}"}
-        return {"message": f"Successfuly uploaded {[file.filename for file in files]} Proccess return {proccess}"}
+        return {"message": f"Successfuly uploaded {[file.filename for file in files]} ID's : {proccess}"}
     else:
         return {"message": "your token is invalid"}
 
