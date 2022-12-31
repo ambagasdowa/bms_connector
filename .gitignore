@@ -131,3 +131,6 @@ dmypy.json
 
 #local config
 **config.py
+**/config.py
+config/config.py
+./config.py
