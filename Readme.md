@@ -22,8 +22,12 @@ styles:
 > base on the project <https://inmagik.com/en/blog/fastapi-basic-crud>
 > and in the manuals for fastapi <https://fastapi.tiangolo.com/tutorial/sql-databases/>
 
-
 - Install the dependencies
+-
+
+```bash
+  python3 -m pip install uvicorn fastapi sqlalchemy pandas pymysql jinja2 python-multipart
+```
 
 - build the skelton app
 

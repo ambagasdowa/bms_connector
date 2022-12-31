@@ -199,7 +199,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
         book_pages = Page(
         bms_books_id     = book.id
         ,book_pages      = current_page
-        ,basename        = config['basename']+config['pathname']
+        ,basename        = config['ext_basename']+config['pathname']
         ,pathname        = dir_path +'/pages/'+ str(current_page) + extension
         ,created         = date_up
         )

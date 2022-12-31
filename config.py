@@ -7,17 +7,15 @@ configuration = {
         "database": "db_ediq2021",
         "user": "ambagasdowa",
         "password": "pekas",
-        "proc_exec":"call", # call[mariadb]|exec[mssql]...
+        "proc_exec": "call",  # call[mariadb]|exec[mssql]...
         "proc_0": "bms_proc_build_cache_inp_usr",
     },
     "download_config": {
         # Optional as global or by user authorization (Recomended)
         "token": "some_random_char36",
-        #        "http_path": "ws_url:port/?/file",  # if needed <?> is replaced by <token>
         "download_path": "/tmp/",
         "dir_path": "book/",
-        #        "filename": "cfdi_?.zip",  # if needed <?> is replaced by a random number
-        #        "basename": "/src/tmp/files",
+        "ext_basename": "https://baizabal.xyz/assets/Panamericano/files/",
         "basename": "/home/ambagasdowa/files",
         "pathname": "/source",
     },
