@@ -6,6 +6,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
 #from sqlalchemy.dialects.mysql import LONGTEXT
+import decimal
 from .database import Base
 
 
