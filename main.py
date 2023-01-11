@@ -204,7 +204,7 @@ async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]
                 return_id = crud.store_file(book_name[index], db, token, file)
                 proccess.append(return_id)
                 #proccess.append(crud.store_file(book_name[index], db, token, file))
-                response_book[file] = return_id
+                response_book[file.filename] = return_id
             finally:
                 index = index+1
                 file.file.close()
