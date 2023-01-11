@@ -6,7 +6,6 @@ from sqlalchemy.sql import func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
 #from sqlalchemy.dialects.mysql import LONGTEXT
-import decimal
 from .database import Base
 
 
@@ -141,10 +140,10 @@ class SourcePositions(Base):
     source_height = Column(String, index=True)
     inputType = Column(String, index=True)
     page = Column(Integer)
-    x1 = Column(Numeric)
-    y1 = Column(Numeric)
-    x2 = Column(Numeric)
-    y2 = Column(Numeric)
+    x1 = Column(DECIMAL(18,6))
+    y1 = Column(DECIMAL(18,6))
+    x2 = Column(DECIMAL(18,6))
+    y2 = Column(DECIMAL(18,6))
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
