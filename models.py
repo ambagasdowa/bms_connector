@@ -6,6 +6,42 @@ from sqlalchemy.sql import func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
 #from sqlalchemy.dialects.mysql import LONGTEXT
+from sqlalchemy.dialects.mysql import (
+    BIGINT,
+    BINARY,
+    BIT,
+    BLOB,
+    BOOLEAN,
+    CHAR,
+    DATE,
+    DATETIME,
+    DECIMAL,
+    DECIMAL,
+    DOUBLE,
+    ENUM,
+    FLOAT,
+    INTEGER,
+    LONGBLOB,
+    LONGTEXT,
+    MEDIUMBLOB,
+    MEDIUMINT,
+    MEDIUMTEXT,
+    NCHAR,
+    NUMERIC,
+    NVARCHAR,
+    REAL,
+    SET,
+    SMALLINT,
+    TEXT,
+    TIME,
+    TIMESTAMP,
+    TINYBLOB,
+    TINYINT,
+    TINYTEXT,
+    VARBINARY,
+    VARCHAR,
+    YEAR,
+)
 from .database import Base
 
 
