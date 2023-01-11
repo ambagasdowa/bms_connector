@@ -128,6 +128,28 @@ class Position(Base):
 # https://stackoverflow.com/questions/68394091/fastapi-sqlalchemy-pydantic-%E2%86%92-how-to-process-many-to-many-relations
 
 
+class SourcePositions(Base):
+    __tablename__ = "bms_src_positions"
+
+    id = Column(Integer, primary_key=True, index=True)
+    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
+    color = Column(String, index=True)
+    lineWidth = Column(Integer)
+    source_width = Column(String, index=True)
+    source_height = Column(String, index=True)
+    inputType = Column(String, index=True)
+    page = Column(Integer)
+    x1 = Column(Decimal(18,6))
+    y1 = Column(Decimal(18,6))
+    x2 = Column(Decimal(18,6))
+    y2 = Column(Decimal(18,6))
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    status = Column(Boolean, default=True)
+
+
 class Input(Base):
     __tablename__ = "bms_inputs_ctrls"
 

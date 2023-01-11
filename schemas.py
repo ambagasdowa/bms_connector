@@ -335,3 +335,47 @@ class Upload(UploadBase):
 
     class Config:
         orm_mode = True
+
+
+
+class SourcePositionsBase(BaseModel):
+    color: str
+    lineWidth: int
+    source_width: str
+    source_height: str
+    inputType: str
+    page: int
+    x1: decimal
+    y1: decimal
+    x2: decimal
+    y2: decimal
+    created: datetime
+    modified: datetime
+    status = bool
+
+
+class SourcePositionsCreate(BaseModel):
+    color: str
+    lineWidth: int
+    source_width: str
+    source_height: str
+    inputType: str
+    page: int
+    x1: decimal
+    y1: decimal
+    x2: decimal
+    y2: decimal
+
+
+class SourcePositionsUpdate(BaseModel):
+    pass
+
+
+class SourcePositions(SourcePositionsBase):
+    id: int
+    bms_books_id: int
+    bms_bookpages_id: int
+
+    class Config:
+        orm_mode = True
+

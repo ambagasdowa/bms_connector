@@ -317,3 +317,12 @@ def update_file(db: Session, file: Union[int, File], data: FileUpdate):
     db.commit()
     return file
 
+
+
+def create_srcpos(db: Session, data: SourcePositionsCreate):
+    db_srcpos = SourcePositions(**data.dict())
+    db.add(db_srcpos)
+    db.commit()
+    db.refresh(db_srcpos)
+    return db_srcpos
+

@@ -242,5 +242,59 @@ def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session =
     return file
 
 
+#=== === === === === === === === === === === === === === === === === ===
+#                       Source Positions
+#=== === === === === === === === === === === === === === === === === ===
+
+@app.post("/srcpos/add", response_model=schemas.SourcePositionsCreate)
+def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
+    item = crud.create_srcpos(db, data)
+    return item
+
+# UPDATE
+# This endpoint allows to update an existing `SourcePositions`, identified by its primary key passed as a
+# path parameter in the url. The necessary data is read from the request
+# body, which is parsed and validated according to the SourcePositionsUpdate schema defined beforehand
+
+
+@app.put("/srcpos/{srcpos_id}", response_model=schemas.SourcePositions)
+def srcpos_action_retrieve(item_id: int, data: schemas.SourcePositionsUpdate,  db: Session = Depends(get_db)):
+    item = crud.update_item(db, item_id, data)
+    if item is None:
+        raise HTTPException(status_code=404)
+    return item
+
+
+# DELETE
+# This endpoint allows to delete an `SourcePositions`, identified by its primary key passed as a
+# path parameter in the url. It's worth observing that the status code of the response is
+# HTTP 204 No Content, since the response body is empty
+@app.delete("/srcpos/{srcpos_id}", status_code=204)
+def srcpos_action_retrieve(item_id: int,  db: Session = Depends(get_db)):
+    crud.drop_item(db, item_id)
+    return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # if __name__ == "__main__":
 #     uvicorn.run(app, host='0.0.0.0',  ssl-keyfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.key", ssl-certfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.crt", ssl-keyfile-password=None)
