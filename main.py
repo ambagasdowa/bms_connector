@@ -189,7 +189,7 @@ def pages_book_list(book_id: str, db: Session = Depends(get_db)):
 async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]] = None, token: Union[str, None] = Header(default=None, convert_underscores=False), files: List[UploadFile] = File(...)):
     # ask for token and verify
     book_name = book_name[0].split(',')
-#    proccess = []
+    proccess = []
     response_book = {}
     if token == 'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu==':
         index = 0
@@ -201,15 +201,20 @@ async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]
             except Exception:
                 return {"message": f"There was an error uploading the file(s) {file.filename} and token : {token}"}
             else:
-                # proccess.append(crud.store_file(
-                #     book_name[index], db, token, file))
-                response_book[file] = crud.store_file(book_name[index], db, token, file)
+                return_id = crud.store_file(book_name[index], db, token, file)
+                proccess.append(return_id)
+                #proccess.append(crud.store_file(book_name[index], db, token, file))
+                response_book[file] = return_id
             finally:
                 index = index+1
                 file.file.close()
-        # return {"message": f"Successfuly uploaded {[file.filename for file in files]} and {[booking for booking in book_name]}"}
-        response_book['message'] = f"Successfuly uploaded {[file.filename for file in files]}"
-        return response_book
+
+        print("[red] Return JSON : [red]")
+        print(response_book)
+        #response_book['message'] = f"Successfuly uploaded {[file.filename for file in files]}"
+        return { "message" : f"Successfuly uploaded {[file.filename for file in files]} and ID {process}" }
+        #return {"message": f"Successfuly uploaded {[file.filename for file in files]} and {[booking for booking in book_name]}"}
+        #return response_book
     else:
         return {"message": "your token is invalid"}
 
