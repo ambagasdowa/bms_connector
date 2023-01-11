@@ -213,10 +213,8 @@ async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]
         print(response_book)
 
         return response_book
-        #response_book['message'] = f"Successfuly uploaded {[file.filename for file in files]}"
-        #return { "message" : f"Successfuly uploaded {[file.filename for file in files]} and ID {process}" }
+        #return { "message" : f"Successfuly uploaded {[file.filename for file in files]} and ID {proccess}" }
         #return {"message": f"Successfuly uploaded {[file.filename for file in files]} and {[booking for booking in book_name]}"}
-        #return response_book
     else:
         return {"message": "your token is invalid"}
 
