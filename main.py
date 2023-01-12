@@ -248,8 +248,9 @@ def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session =
 
 @app.post("/srcpos/add", response_model=schemas.SourcePositionsCreate)
 def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
-    item = crud.create_srcpos(db, data)
-    return item
+    sourcePositions = crud.create_srcpos(db, data)
+    print(f"[red]SourcePositions : [red][cyan]{sourcePostions}[cyan]")
+    return sourcePositions
 
 # UPDATE
 # This endpoint allows to update an existing `SourcePositions`, identified by its primary key passed as a
