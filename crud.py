@@ -5,8 +5,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text,func
 
-from .models import Item, Page,File,Upload,Position,Input
-from .schemas import ItemCreate, ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate
+from .models import Item, Page,File,Upload,Position,Input,SourcePositions
+from .schemas import ItemCreate, ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate,SourcePositionsCreate
 from typing import Union
 
 import urllib
@@ -317,6 +317,15 @@ def update_file(db: Session, file: Union[int, File], data: FileUpdate):
     db.commit()
     return file
 
+
+#=== === === === === === === === === === === === === === === === === === 
+
+# def list_pages(db: Session, skip: int = 0, limit: int = 100):
+#     return db.query(Page).offset(skip).limit(limit).all()
+
+
+# def get_page(db: Session, id: int):
+#     return db.query(Page).get(id)
 
 
 def create_srcpos(db: Session, data: SourcePositionsCreate):
