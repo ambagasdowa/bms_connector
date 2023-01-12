@@ -341,16 +341,21 @@ def create_srcpos(db: Session,data: SourcePositionsCreate):
     db.refresh(db_srcpos)
     return db_srcpos
 
-def create_srcpositions(db: Session, data: list[SourcePositionsCreate]):
-    #db_srcpos = SourcePositions(**data.dict())
+def create_srcpositions(db: Session, data: SourcePositionsCreate):
+    db_srcpos = SourcePositions(**data.dict())
     # print(f"type : {type(data)}")
-    for src in data:
-        print(f"[blue]{src}[blue]")
+    # for src in data:
+    #     print(f"[blue]{src}[blue]")
 # NOTE
 # Before Save a new input set, first need to remove all remanents in db of 
 # that book and that page with:
 # db_srcpos.bms_books_id and db_srcpos.bms_bookpages_id
-    return data
+    db_srcpos = SourcePositions(**data.dict())
+    db.add(db_srcpos)
+    db.commit()
+    db.refresh(db_srcpos)
+    return db_srcpos
+
 
 
 def drop_srcpos(db: Session, srcpos_id: int):
