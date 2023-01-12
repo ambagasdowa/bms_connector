@@ -264,7 +264,7 @@ def srcpos_action_retrieve(book_id: int,page_id: int, db: Session = Depends(get_
 def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
     sourcePositions = crud.create_srcpos(db, data)
 
-    print(f"[red]SourcePositions in main : [red][cyan]{sourcePositions}[cyan]")
+    print(f"[red]SourcePositions in main : [red][cyan]{sourcePositions.id}[cyan]")
     return sourcePositions
 
 # UPDATE
