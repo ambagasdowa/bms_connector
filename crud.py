@@ -336,7 +336,13 @@ def create_srcpos(db: Session, data: SourcePositionsCreate):
     db_srcpos = SourcePositions(**data.dict())
 # NOTE
 # Before Save a new input set, first need to remove all remanents in db of 
-#that book and that page
+# that book and that page with:
+# db_srcpos.bms_books_id and db_srcpos.bms_bookpages_id
+
+
+    db.query(SourcePositions).filter(db_srcpos.bms_bookpages_id == db_srcpos.bms_bookpages_id,db_srcpos.bms_books_id == db_srcpos.bms_books_id).delete()
+    db.commit()
+
     db.add(db_srcpos)
     db.commit()
     db.refresh(db_srcpos)
