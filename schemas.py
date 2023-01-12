@@ -345,10 +345,10 @@ class SourcePositionsBase(BaseModel):
     source_height: str
     inputType: str
     page: int
-    x1: decimal.Decimal
-    y1: decimal.Decimal
-    x2: decimal.Decimal
-    y2: decimal.Decimal
+    x1: str
+    y1: str
+    x2: str
+    y2: str
     created: datetime
     modified: datetime
     status = bool
