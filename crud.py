@@ -345,7 +345,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     print(f"type ===> {type(data)}")
     print("[green]DATA in crud.py[green]")
-    print(f"ids in data : book_id => {data.bms_books_id} ; page_id => {data.bms_bookpages_id}")
+    print(f"[green]ids in data[green] : [cyan]book_id =>[cyan][red] {data.bms_books_id}[red] ;[cyan] page_id =>[cyan] [red]{data.bms_bookpages_id}[red]")
 
 
     db_srcpos = SourcePositions(**data.dict())
