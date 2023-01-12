@@ -338,5 +338,5 @@ def create_srcpos(db: Session, data: SourcePositionsCreate):
 
     print(db_srcpos.page)
 
-    return {"message" : f"{db_srcpos.id}"}
+    return {"id" : f"{db_srcpos.id}"}
 
