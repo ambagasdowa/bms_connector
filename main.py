@@ -251,7 +251,6 @@ def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session =
 # which is passed as a path parameter in the URL. It can also return some
 # error condition in case the identifier does not correspond to any object
 
-
 @app.get("/srcpos/{book_id}/{page_id}", response_model=List[schemas.SourcePositions])
 def srcpos_action_retrieve(book_id: int, page_id: int, db: Session = Depends(get_db)):
     srcpos = crud.get_srcpos(db, book_id, page_id)
@@ -268,7 +267,7 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
     return JSONResponse(content=json_compatible_item_data)
 
 
-@app.post("/srcpositions/add/{book_id}/{page_id}", response_model=schemas.SourcePositionsCreate)
+@app.post("/srcpositions/{book_id}/{page_id}", response_model=schemas.SourcePositionsCreate)
 def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.SourcePositionsCreate], db: Session = Depends(get_db)):
 
     print(f"type ===> {type(data)}")
@@ -286,26 +285,19 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
         response.append(json_response)
     return JSONResponse(content=response)
 
-
-# UPDATE
-# This endpoint allows to update an existing `SourcePositions`, identified by its primary key passed as a
-# path parameter in the url. The necessary data is read from the request
-# body, which is parsed and validated according to the SourcePositionsUpdate schema defined beforehand
-
-
-@app.put("/srcpos/{srcpos_id}", response_model=schemas.SourcePositions)
-def srcpos_action_retrieve(item_id: int, data: schemas.SourcePositionsUpdate,  db: Session = Depends(get_db)):
-    item = crud.update_item(db, item_id, data)
-    if item is None:
-        raise HTTPException(status_code=404)
-    return item
-
-
 # DELETE
 # This endpoint allows to delete an `SourcePositions`, identified by its primary key passed as a
 # path parameter in the url. It's worth observing that the status code of the response is
 # HTTP 204 No Content, since the response body is empty
-@app.delete("/srcpos/{srcpos_id}", status_code=204)
+
+
+@app.delete("/srcpositions/{book_id}/{page_id}", status_code=204)
+def srcpos_action_retrieve(book_id: int, page_id: int,  db: Session = Depends(get_db)):
+    crud.drop_srcpositions(db, book_id, page_id)
+    return {"success": "delete"}
+
+
+@app.delete("/srcpos/{item_id}", status_code=204)
 def srcpos_action_retrieve(item_id: int,  db: Session = Depends(get_db)):
     crud.drop_item(db, item_id)
     return None

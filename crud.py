@@ -360,8 +360,8 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
 
 
-def drop_srcpos(db: Session, srcpos_id: int):
-    db.query(SourcePositions).filter(SourcePositions.id == srcpos_id).delete()
+def drop_srcpositions(db: Session, book_id: int,page_id:int):
+    db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id,SourcePositions.bms_bookpages_id == page_id).delete()
     db.commit()
     return None
 
