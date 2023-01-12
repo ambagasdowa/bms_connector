@@ -275,7 +275,7 @@ def srcpositions_action_create(data: list[schemas.SourcePositionsCreate], db: Se
     print("[blue]DATA in main.py[blue]")
     print(data)
     print(
-        f"[green]ids in data[green] : [cyan]book_id =>[cyan][red] {data.bms_books_id}[red] ;[cyan] page_id =>[cyan] [red]{data.bms_bookpages_id}[red]")
+        f"[green]ids in data[green] : [cyan]book_id =>[cyan][red] {data['bms_books_id']}[red] ;[cyan] page_id =>[cyan] [red]{data['bms_bookpages_id']}[red]")
 
     response = []
     for srcp in data:

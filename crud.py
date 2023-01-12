@@ -347,7 +347,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     print("[green]DATA in crud.py[green]")
     print(data)
 
-    db_srcpos = SourcePositions(**data.dict())
+#    db_srcpos = SourcePositions(**data.dict())
 # NOTE
 # Before Save a new input set, first need to remove all remanents in db of 
 # that book and that page with:
