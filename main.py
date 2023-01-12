@@ -246,6 +246,20 @@ def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session =
 #                       Source Positions
 #=== === === === === === === === === === === === === === === === === ===
 
+# RETRIEVE
+# This endpoint returns a specific `Item`, given the value of its `id` field,
+# which is passed as a path parameter in the URL. It can also return some
+# error condition in case the identifier does not correspond to any object
+
+
+@app.get("/srcpos/{book_id}/{page_id}", response_model=List[schemas.SourcePositions])
+def srcpos_action_retrieve(book_id: int,page_id: int, db: Session = Depends(get_db)):
+   srcpos = crud.get_srcpos(db, item_id)
+   if srcpos is None:
+       raise HTTPException(status_code=404, detail="SourcePositions not found")
+   return srcpos
+
+
 @app.post("/srcpos/add", response_model=schemas.SourcePositionsCreate)
 def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
     sourcePositions = crud.create_srcpos(db, data)
