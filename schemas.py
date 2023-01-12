@@ -339,6 +339,8 @@ class Upload(UploadBase):
 
 
 class SourcePositionsBase(BaseModel):
+    bms_books_id: int
+    bms_bookpages_id: int
     color: str
     lineWidth: int
     source_width: str
@@ -349,9 +351,9 @@ class SourcePositionsBase(BaseModel):
     y1: str
     x2: str
     y2: str
-    # created: datetime
-    # modified: Union[str, None] = None
-    # status = bool
+    created: datetime
+    modified: Union[datetime, None] = None
+    status = bool
 
 
 class SourcePositionsCreate(BaseModel):
