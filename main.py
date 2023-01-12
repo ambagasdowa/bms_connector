@@ -279,8 +279,9 @@ def srcpositions_action_create(data: list[schemas.SourcePositionsCreate], db: Se
 
     for srcp in data:
         sourcePositions = crud.create_srcpositions(db, srcp)
-        json_compatible_item_data = jsonable_encoder(sourcePositions)
-
+        json_response = jsonable_encoder(sourcePositions)
+        print(f"[green]JSON_RESPONSE :[green]")
+        print(json_response)
     # return JSONResponse(content=json_compatible_item_data)
     return {"data": "data"}
 
