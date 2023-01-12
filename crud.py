@@ -327,6 +327,10 @@ def update_file(db: Session, file: Union[int, File], data: FileUpdate):
 # def get_page(db: Session, id: int):
 #     return db.query(Page).get(id)
 
+def get_srcpos(db: Session, book_id: int, page_id: int):
+    return db.query(SourcePositions).filter(SourcePositions.book_id == bms_books_id, SourcePositions.page_id == bms_bookpages_id).all()
+
+
 
 def create_srcpos(db: Session, data: SourcePositionsCreate):
     db_srcpos = SourcePositions(**data.dict())
