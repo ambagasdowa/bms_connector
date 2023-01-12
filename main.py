@@ -269,6 +269,14 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
 #    return Response(content=sourcePositions, media_type="application/json")
    # return sourcePositions
 
+
+@app.post("/srcpositions/add", response_model=schemas.SourcePositionsCreate)
+def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
+    sourcePositions = crud.create_srcpositions(db, data)
+    json_compatible_item_data = jsonable_encoder(sourcePositions)
+    return JSONResponse(content=json_compatible_item_data)
+
+
 # UPDATE
 # This endpoint allows to update an existing `SourcePositions`, identified by its primary key passed as a
 # path parameter in the url. The necessary data is read from the request
