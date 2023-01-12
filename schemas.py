@@ -401,7 +401,6 @@ class SourcePositionsCreate(BaseModel):
                                 "y2": "40"
                             }
                         ]
-            }
         }
 
 
