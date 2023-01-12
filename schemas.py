@@ -375,8 +375,6 @@ class SourcePositionsUpdate(BaseModel):
 
 class SourcePositions(SourcePositionsBase):
     id: int
-    # bms_books_id: int
-    # bms_bookpages_id: int
     class Config:
         orm_mode = True
 
