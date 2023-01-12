@@ -334,19 +334,18 @@ def get_srcpos(db: Session, book_id: int, page_id: int):
 def get_srcpos_ids(db: Session, book_id: int, page_id: int):
     return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id ==page_id).all()
 
-def create_srcpos(db: Session,data: SourcePositionsCreate):
-    db_srcpos = SourcePositions(**data.dict())
-    db.add(db_srcpos)
-    db.commit()
-    db.refresh(db_srcpos)
-    return db_srcpos
+# def create_srcpos(db: Session,data: SourcePositionsCreate):
+#     db_srcpos = SourcePositions(**data.dict())
+#     db.add(db_srcpos)
+#     db.commit()
+#     db.refresh(db_srcpos)
+#     return db_srcpos
 
 def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     print(f"type ===> {type(data)}")
     print("[green]DATA in crud.py[green]")
-    print(f"[green]ids in data[green] : [cyan]book_id =>[cyan][red] {data.bms_books_id}[red] ;[cyan] page_id =>[cyan] [red]{data.bms_bookpages_id}[red]")
-
+    print(data)
 
     db_srcpos = SourcePositions(**data.dict())
 # NOTE

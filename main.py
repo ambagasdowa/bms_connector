@@ -263,11 +263,9 @@ def srcpos_action_retrieve(book_id: int, page_id: int, db: Session = Depends(get
 
 @app.post("/srcpos/add", response_model=schemas.SourcePositionsCreate)
 def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
-    sourcePositions = crud.create_srcpos(db, data)
+    sourcePositions = crud.create_srcpositions(db, data)
     json_compatible_item_data = jsonable_encoder(sourcePositions)
     return JSONResponse(content=json_compatible_item_data)
-#    return Response(content=sourcePositions, media_type="application/json")
-   # return sourcePositions
 
 
 @app.post("/srcpositions/add", response_model=schemas.SourcePositionsCreate)
@@ -276,6 +274,9 @@ def srcpositions_action_create(data: list[schemas.SourcePositionsCreate], db: Se
     print(f"type ===> {type(data)}")
     print("[blue]DATA in main.py[blue]")
     print(data)
+    print(
+        f"[green]ids in data[green] : [cyan]book_id =>[cyan][red] {data.bms_books_id}[red] ;[cyan] page_id =>[cyan] [red]{data.bms_bookpages_id}[red]")
+
     response = []
     for srcp in data:
         sourcePositions = crud.create_srcpositions(db, srcp)
