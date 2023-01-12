@@ -367,6 +367,8 @@ class SourcePositionsCreate(BaseModel):
     y1: str
     x2: str
     y2: str
+    class Config:
+        orm_mode = True
 
 
 class SourcePositionsUpdate(BaseModel):
