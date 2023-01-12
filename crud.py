@@ -319,15 +319,19 @@ def update_file(db: Session, file: Union[int, File], data: FileUpdate):
 
 
 #=== === === === === === === === === === === === === === === === === === 
+#                      Source Positions
+#=== === === === === === === === === === === === === === === === === === 
 
 # def list_pages(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(Page).offset(skip).limit(limit).all()
 
-
-# def get_page(db: Session, id: int):
-#     return db.query(Page).get(id)
+def get_srcpos(db: Session, id: int):
+    return db.query(SourcePositions).get(id)
 
 def get_srcpos(db: Session, book_id: int, page_id: int):
+    return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id ==page_id).all()
+
+def get_srcpos_ids(db: Session, book_id: int, page_id: int):
     return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id ==page_id).all()
 
 def create_srcpos(db: Session,data: SourcePositionsCreate):
@@ -339,6 +343,7 @@ def create_srcpos(db: Session,data: SourcePositionsCreate):
 
 def create_srcpositions(db: Session, data: list[SourcePositionsCreate]):
     #db_srcpos = SourcePositions(**data.dict())
+    print(f"type : {type(data)}")
     for src in data:
         print(f"[blue]{src}[blue]")
 #        db_srcpos = SourcePositions(**src.dict())
@@ -346,16 +351,11 @@ def create_srcpositions(db: Session, data: list[SourcePositionsCreate]):
 # Before Save a new input set, first need to remove all remanents in db of 
 # that book and that page with:
 # db_srcpos.bms_books_id and db_srcpos.bms_bookpages_id
-
-
-    # db.query(SourcePositions).filter(db_srcpos.bms_bookpages_id == db_srcpos.bms_bookpages_id,db_srcpos.bms_books_id == db_srcpos.bms_books_id).delete()
-    # db.commit()
-
-        # db.add(db_srcpos)
-        # db.commit()
-        # db.refresh(db_srcpos)
-
-#    print(db_srcpos.page)
-#    return {"id" : f"{db_srcpos.id}"}
-   # return db_srcpos
     return {"message":"db_srcpos"}
+
+
+def drop_srcpos(db: Session, srcpos_id: int):
+    db.query(SourcePositions).filter(SourcePositions.id == srcpos_id).delete()
+    db.commit()
+    return None
+
