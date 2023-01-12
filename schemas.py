@@ -350,7 +350,7 @@ class SourcePositionsBase(BaseModel):
     x2: str
     y2: str
     created: datetime
-    modified: Union[datetime, None] = None
+    modified: Union[str, None] = None
     status = bool
 
 
