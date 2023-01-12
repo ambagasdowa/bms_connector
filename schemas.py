@@ -339,7 +339,8 @@ class Upload(UploadBase):
 
 
 class SourcePositionsBase(BaseModel):
-
+    bms_books_id: int
+    bms_bookpages_id: int
     color: str
     lineWidth: int
     source_width: str
