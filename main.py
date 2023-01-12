@@ -268,14 +268,14 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
     return JSONResponse(content=json_compatible_item_data)
 
 
-@app.post("/srcpositions/add", response_model=schemas.SourcePositionsCreate)
-def srcpositions_action_create(data: list[schemas.SourcePositionsCreate], db: Session = Depends(get_db)):
+@app.post("/srcpositions/add/{book_id}/{page_id}", response_model=schemas.SourcePositionsCreate)
+def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.SourcePositionsCreate], db: Session = Depends(get_db)):
 
     print(f"type ===> {type(data)}")
     print("[blue]DATA in main.py[blue]")
     print(data)
     print(
-        f"[green]ids in data[green] : [cyan]book_id =>[cyan][red] {data[0]['bms_books_id']}[red] ;[cyan] page_id =>[cyan] [red]{data[0]['bms_bookpages_id']}[red]")
+        f"[green]ids in data[green] : [cyan]book_id =>[cyan][red] {book_id}[red] ;[cyan] page_id =>[cyan] [red]{page_id}[red]")
 
     response = []
     for srcp in data:
