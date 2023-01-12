@@ -334,7 +334,8 @@ def get_srcpos(db: Session, book_id: int, page_id: int):
 
 def create_srcpos(db: Session, data: list[SourcePositionsCreate]):
     #db_srcpos = SourcePositions(**data.dict())
-    db_srcpos = SourcePositions(data)
+    for src in data:
+        db_srcpos = SourcePositions(**src.dict())
 # NOTE
 # Before Save a new input set, first need to remove all remanents in db of 
 # that book and that page with:
@@ -344,9 +345,9 @@ def create_srcpos(db: Session, data: list[SourcePositionsCreate]):
     # db.query(SourcePositions).filter(db_srcpos.bms_bookpages_id == db_srcpos.bms_bookpages_id,db_srcpos.bms_books_id == db_srcpos.bms_books_id).delete()
     # db.commit()
 
-    db.add(db_srcpos)
-    db.commit()
-    db.refresh(db_srcpos)
+        db.add(db_srcpos)
+        db.commit()
+        db.refresh(db_srcpos)
 #    print(db_srcpos.page)
 #    return {"id" : f"{db_srcpos.id}"}
     return db_srcpos
