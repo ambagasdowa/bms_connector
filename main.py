@@ -249,6 +249,7 @@ def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session =
 @app.post("/srcpos/add", response_model=schemas.SourcePositionsCreate)
 def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
     sourcePositions = crud.create_srcpos(db, data)
+
     print(f"[red]SourcePositions : [red][cyan]{sourcePostions}[cyan]")
     return sourcePositions
 
