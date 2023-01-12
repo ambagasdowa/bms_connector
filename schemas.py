@@ -355,6 +355,8 @@ class SourcePositionsBase(BaseModel):
 
 
 class SourcePositionsCreate(BaseModel):
+    bms_books_id: int
+    bms_bookpages_id: int
     color: str
     lineWidth: int
     source_width: str
