@@ -276,14 +276,21 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
     print(
         f"[green]ids in data[green] : [cyan]book_id =>[cyan][red] {book_id}[red] ;[cyan] page_id =>[cyan] [red]{page_id}[red]")
 
-    response = []
-    for srcp in data:
-        sourcePositions = crud.create_srcpositions(db, srcp)
-        json_response = jsonable_encoder(sourcePositions)
-        print(f"[green]JSON_RESPONSE :[green]")
-        print(json_response)
-        response.append(json_response)
-    return JSONResponse(content=response)
+    print("[red]Cleaning page [red]")
+    try:
+        clean = crud.drop_srcpositions(db, book_id, page_id)
+    except Exception as e:
+        raise HTTPException(
+            status_code=404, detail="Something Happend Try again ")
+    else:
+        response = []
+        for srcp in data:
+            sourcePositions = crud.create_srcpositions(db, srcp)
+            json_response = jsonable_encoder(sourcePositions)
+            print(f"[green]JSON_RESPONSE :[green]")
+            print(json_response)
+            response.append(json_response)
+        return JSONResponse(content=response)
 
 # DELETE
 # This endpoint allows to delete an `SourcePositions`, identified by its primary key passed as a
@@ -292,7 +299,7 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
 
 
 @app.delete("/srcpositions/{book_id}/{page_id}", status_code=204)
-def srcpos_action_retrieve(book_id: int, page_id: int,  db: Session = Depends(get_db)):
+def srcpositions_action_retrieve(book_id: int, page_id: int,  db: Session = Depends(get_db)):
     crud.drop_srcpositions(db, book_id, page_id)
     return {"success": "delete"}
 
