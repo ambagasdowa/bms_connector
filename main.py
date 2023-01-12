@@ -265,6 +265,8 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
     sourcePositions = crud.create_srcpos(db, data)
 
     print(f"[red]SourcePositions in main : [red][cyan]{sourcePositions.id}[cyan]")
+    sourcePositions['id'] = sourcePositions.id
+
     return sourcePositions
 
 # UPDATE
