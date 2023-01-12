@@ -266,7 +266,7 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
 
     print(f"[red]SourcePositions in main : [red][cyan]{sourcePositions.id}[cyan]")
 
-    return {'data':sourcePositions,'id':f"{sourcePositions.id}"}
+    return sourcePositions
 
 # UPDATE
 # This endpoint allows to update an existing `SourcePositions`, identified by its primary key passed as a
