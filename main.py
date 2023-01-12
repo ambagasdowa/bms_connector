@@ -213,8 +213,8 @@ async def upload(db: Session = Depends(get_db), book_name: List[Union[str, None]
         print(response_book)
 
         return response_book
-        #return { "message" : f"Successfuly uploaded {[file.filename for file in files]} and ID {proccess}" }
-        #return {"message": f"Successfuly uploaded {[file.filename for file in files]} and {[booking for booking in book_name]}"}
+        # return { "message" : f"Successfuly uploaded {[file.filename for file in files]} and ID {proccess}" }
+        # return {"message": f"Successfuly uploaded {[file.filename for file in files]} and {[booking for booking in book_name]}"}
     else:
         return {"message": "your token is invalid"}
 
@@ -242,9 +242,9 @@ def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session =
     return file
 
 
-#=== === === === === === === === === === === === === === === === === ===
+# === === === === === === === === === === === === === === === === === ===
 #                       Source Positions
-#=== === === === === === === === === === === === === === === === === ===
+# === === === === === === === === === === === === === === === === === ===
 
 # RETRIEVE
 # This endpoint returns a specific `Item`, given the value of its `id` field,
@@ -253,18 +253,20 @@ def files_action_retrieve(file_id: int, data: schemas.FileUpdate,  db: Session =
 
 
 @app.get("/srcpos/{book_id}/{page_id}", response_model=List[schemas.SourcePositions])
-def srcpos_action_retrieve(book_id: int,page_id: int, db: Session = Depends(get_db)):
-   srcpos = crud.get_srcpos(db, book_id, page_id)
-   if srcpos is None:
-       raise HTTPException(status_code=404, detail="SourcePositions not found")
-   return srcpos
+def srcpos_action_retrieve(book_id: int, page_id: int, db: Session = Depends(get_db)):
+    srcpos = crud.get_srcpos(db, book_id, page_id)
+    if srcpos is None:
+        raise HTTPException(
+            status_code=404, detail="SourcePositions not found")
+    return srcpos
 
 
 @app.post("/srcpos/add", response_model=schemas.SourcePositionsCreate)
 def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
     sourcePositions = crud.create_srcpos(db, data)
-    print(f"[red]SourcePositions in main : [red][cyan]{sourcePositions.id}[cyan]")
-    return sourcePositions
+    # print(f"[red]SourcePositions in main : [red][cyan]{sourcePositions.id}[cyan]")
+    return Response(content=sourcePositions, media_type="application/json")
+   # return sourcePositions
 
 # UPDATE
 # This endpoint allows to update an existing `SourcePositions`, identified by its primary key passed as a
@@ -288,27 +290,6 @@ def srcpos_action_retrieve(item_id: int, data: schemas.SourcePositionsUpdate,  d
 def srcpos_action_retrieve(item_id: int,  db: Session = Depends(get_db)):
     crud.drop_item(db, item_id)
     return None
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # if __name__ == "__main__":
