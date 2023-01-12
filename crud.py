@@ -330,6 +330,8 @@ def update_file(db: Session, file: Union[int, File], data: FileUpdate):
 
 def create_srcpos(db: Session, data: SourcePositionsCreate):
     db_srcpos = SourcePositions(**data.dict())
+    print("[red]SRCPOS:[red]")
+    print(db_srcpos)
     db.add(db_srcpos)
     db.commit()
     db.refresh(db_srcpos)
