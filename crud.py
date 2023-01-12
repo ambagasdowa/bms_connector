@@ -335,6 +335,7 @@ def get_srcpos(db: Session, book_id: int, page_id: int):
 def create_srcpos(db: Session, data: list[SourcePositionsCreate]):
     #db_srcpos = SourcePositions(**data.dict())
     for src in data:
+        print(f"[blue]{src}[blue]")
         db_srcpos = SourcePositions(**src.dict())
 # NOTE
 # Before Save a new input set, first need to remove all remanents in db of 
