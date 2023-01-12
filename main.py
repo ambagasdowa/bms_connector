@@ -271,7 +271,7 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
 
 
 @app.post("/srcpositions/add", response_model=schemas.SourcePositionsCreate)
-def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
+def srcpositions_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
     sourcePositions = crud.create_srcpositions(db, data)
     json_compatible_item_data = jsonable_encoder(sourcePositions)
     return JSONResponse(content=json_compatible_item_data)
