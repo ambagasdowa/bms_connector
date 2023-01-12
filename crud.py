@@ -330,9 +330,14 @@ def update_file(db: Session, file: Union[int, File], data: FileUpdate):
 def get_srcpos(db: Session, book_id: int, page_id: int):
     return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id ==page_id).all()
 
+def create_srcpos(db: Session,data: SourcePositionsCreate):
+    db_srcpos = SourcePositions(**data.dict())
+    db.add(db_srcpos)
+    db.commit()
+    db.refresh(db_srcpos)
+    return db_srcpos
 
-
-def create_srcpos(db: Session, data: list[SourcePositionsCreate]):
+def create_srcpositions(db: Session, data: list[SourcePositionsCreate]):
     #db_srcpos = SourcePositions(**data.dict())
     for src in data:
         print(f"[blue]{src}[blue]")
