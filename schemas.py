@@ -339,6 +339,7 @@ class Upload(UploadBase):
 
 
 class SourcePositionsBase(BaseModel):
+
     color: str
     lineWidth: int
     source_width: str

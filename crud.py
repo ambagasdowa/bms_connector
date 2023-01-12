@@ -340,8 +340,6 @@ def create_srcpos(db: Session, data: SourcePositionsCreate):
     db.add(db_srcpos)
     db.commit()
     db.refresh(db_srcpos)
-
 #    print(db_srcpos.page)
-
 #    return {"id" : f"{db_srcpos.id}"}
     return db_srcpos
