@@ -265,7 +265,11 @@ def srcpos_action_retrieve(book_id: int, page_id: int, db: Session = Depends(get
 def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depends(get_db)):
     sourcePositions = crud.create_srcpos(db, data)
     # print(f"[red]SourcePositions in main : [red][cyan]{sourcePositions.id}[cyan]")
-    return Response(content=sourcePositions, media_type="application/json")
+
+    json_compatible_item_data = jsonable_encoder(sourcePositions)
+    return JSONResponse(content=json_compatible_item_data)
+
+#    return Response(content=sourcePositions, media_type="application/json")
    # return sourcePositions
 
 # UPDATE
