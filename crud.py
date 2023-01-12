@@ -333,7 +333,8 @@ def get_srcpos(db: Session, book_id: int, page_id: int):
 
 
 def create_srcpos(db: Session, data: list[SourcePositionsCreate]):
-    db_srcpos = SourcePositions(**data.dict())
+    #db_srcpos = SourcePositions(**data.dict())
+    db_srcpos = SourcePositions(data)
 # NOTE
 # Before Save a new input set, first need to remove all remanents in db of 
 # that book and that page with:
