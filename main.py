@@ -271,7 +271,7 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
 
 
 @app.post("/srcpositions/add", response_model=schemas.SourcePositionsCreate)
-def srcpositions_action_create(data: list(schemas.SourcePositionsCreate), db: Session = Depends(get_db)):
+def srcpositions_action_create(data: list[schemas.SourcePositionsCreate], db: Session = Depends(get_db)):
 
     print(f"type ===> {type(data)}")
     print("[blue]DATA in main.py[blue]")
