@@ -361,10 +361,10 @@ class SourcePositionsCreate(BaseModel):
     source_height: str
     inputType: str
     page: int
-    x1: decimal
-    y1: decimal
-    x2: decimal
-    y2: decimal
+    x1: str
+    y1: str
+    x2: str
+    y2: str
 
 
 class SourcePositionsUpdate(BaseModel):
