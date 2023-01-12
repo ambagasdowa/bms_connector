@@ -345,13 +345,10 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     print(f"type ===> {type(data)}")
     print("[green]DATA in crud.py[green]")
-    print(data)
+    print(f"ids in data : book_id => {data.bms_books_id} ; page_id => {data.bms_bookpages_id}")
 
 
     db_srcpos = SourcePositions(**data.dict())
-    # print(f"type : {type(data)}")
-    # for src in data:
-    #     print(f"[blue]{src}[blue]")
 # NOTE
 # Before Save a new input set, first need to remove all remanents in db of 
 # that book and that page with:
