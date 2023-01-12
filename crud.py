@@ -342,6 +342,12 @@ def create_srcpos(db: Session,data: SourcePositionsCreate):
     return db_srcpos
 
 def create_srcpositions(db: Session, data: SourcePositionsCreate):
+
+    print(f"type ===> {type(data)}")
+    print("[green]DATA in crud.py[green]")
+    print(data)
+
+
     db_srcpos = SourcePositions(**data.dict())
     # print(f"type : {type(data)}")
     # for src in data:
