@@ -368,9 +368,10 @@ class SourcePositionsCreate(BaseModel):
     y1: str
     x2: str
     y2: str
+
     class Config:
         schema_extra = {
-                        [
+            "example": [
                             {
                                 "bms_bookpages_id": "6",
                                 "bms_books_id": "4",
@@ -400,6 +401,7 @@ class SourcePositionsCreate(BaseModel):
                                 "y2": "40"
                             }
                         ]
+            }
         }
 
 
