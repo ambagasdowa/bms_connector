@@ -342,14 +342,14 @@ class SourcePositionsBase(BaseModel):
     bms_bookpages_id: int
     color: str
     lineWidth: int
-    source_width: str
-    source_height: str
+    source_width: float
+    source_height: float
     inputType: str
     page: int
-    x1: str
-    y1: str
-    x2: str
-    y2: str
+    x1: float
+    y1: float
+    x2: float
+    y2: float
     created: datetime
     modified: Union[datetime, None] = None
     status = bool
