@@ -325,8 +325,8 @@ def update_file(db: Session, file: Union[int, File], data: FileUpdate):
 # def list_pages(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(Page).offset(skip).limit(limit).all()
 
-def get_srcpos(db: Session, id: int):
-    return db.query(SourcePositions).get(id)
+# def get_srcpos(db: Session, id: int):
+#     return db.query(SourcePositions).get(id)
 
 def get_srcpos(db: Session, book_id: int, page_id: int):
     return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id ==page_id).all()
