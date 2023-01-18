@@ -291,7 +291,8 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
             print(json_response)
             response.append(json_response)
         return JSONResponse(content=response)
-
+    finally:
+        print(f"clean : {clean}")
 # DELETE
 # This endpoint allows to delete an `SourcePositions`, identified by its primary key passed as a
 # path parameter in the url. It's worth observing that the status code of the response is
