@@ -279,7 +279,7 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
     print("[red]Cleaning page [red]")
     response = []
     clean = crud.drop_srcpositions(db, book_id, page_id)
-
+    print(f"clean : {clean}")
     try:
         for srcp in data:
             sourcePositions = crud.create_srcpositions(db, srcp)
@@ -302,7 +302,9 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
 
 @app.delete("/srcpositions/{book_id}/{page_id}", status_code=204)
 def srcpositions_action_retrieve(book_id: int, page_id: int,  db: Session = Depends(get_db)):
-    crud.drop_srcpositions(db, book_id, page_id)
+    srcpos = crud.get_srcpos(db, book_id, page_id)
+    if srcpos is not None:
+        crud.drop_srcpositions(db, book_id, page_id)
     return None
 
 
