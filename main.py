@@ -279,7 +279,7 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
     print("[red]Cleaning page [red]")
     response = []
     clean = crud.drop_srcpositions(db, book_id, page_id)
-    print(f"{clean}")
+    print(f"[brown]{clean}[brown]")
     try:
         for srcp in data:
             sourcePositions = crud.create_srcpositions(db, srcp)
@@ -292,8 +292,8 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
             status_code=404, detail="Something Happend Try again ")
     else:
         return JSONResponse(content=response)
-    finally:
-        print(f"clean : {clean}")
+    # finally:
+    #     print(f"clean : {clean}")
 # DELETE
 # This endpoint allows to delete an `SourcePositions`, identified by its primary key passed as a
 # path parameter in the url. It's worth observing that the status code of the response is
