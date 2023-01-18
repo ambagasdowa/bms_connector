@@ -174,6 +174,8 @@ class SourcePositions(Base):
     lineWidth = Column(Integer)
     source_width = Column(String)
     source_height = Column(String)
+    default_width = Column(String)
+    default_height = Column(String)
     inputType = Column(String)
     page = Column(Integer)
     x1 = Column(DECIMAL(18,6))

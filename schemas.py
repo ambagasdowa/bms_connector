@@ -344,6 +344,8 @@ class SourcePositionsBase(BaseModel):
     lineWidth: int
     source_width: float
     source_height: float
+    default_width: float
+    default_height: float
     inputType: str
     page: int
     x1: float
@@ -362,6 +364,8 @@ class SourcePositionsCreate(BaseModel):
     lineWidth: int
     source_width: str
     source_height: str
+    default_width: str
+    default_height: str
     inputType: str
     page: int
     x1: str
