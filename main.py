@@ -277,19 +277,20 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
         f"[green]ids in data[green] : [cyan]book_id =>[cyan][red] {book_id}[red] ;[cyan] page_id =>[cyan] [red]{page_id}[red]")
 
     print("[red]Cleaning page [red]")
+    response = []
+    clean = crud.drop_srcpositions(db, book_id, page_id)
+
     try:
-        clean = crud.drop_srcpositions(db, book_id, page_id)
-    except Exception as e:
-        raise HTTPException(
-            status_code=404, detail="Something Happend Try again ")
-    else:
-        response = []
         for srcp in data:
             sourcePositions = crud.create_srcpositions(db, srcp)
             json_response = jsonable_encoder(sourcePositions)
             print(f"[green]JSON_RESPONSE :[green]")
             print(json_response)
             response.append(json_response)
+    except Exception as e:
+        raise HTTPException(
+            status_code=404, detail="Something Happend Try again ")
+    else:
         return JSONResponse(content=response)
     finally:
         print(f"clean : {clean}")
@@ -302,7 +303,7 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
 @app.delete("/srcpositions/{book_id}/{page_id}", status_code=204)
 def srcpositions_action_retrieve(book_id: int, page_id: int,  db: Session = Depends(get_db)):
     crud.drop_srcpositions(db, book_id, page_id)
-    return {"success": "delete"}
+    return None
 
 
 @app.delete("/srcpos/{item_id}", status_code=204)
