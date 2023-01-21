@@ -237,7 +237,7 @@ class FileBase(BaseModel):
     book_name: str
     is_url: bool
     created: datetime
-    modified: datetime
+    modified: Union[datetime, None] = None
     status: bool
 
 
