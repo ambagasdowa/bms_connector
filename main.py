@@ -315,6 +315,13 @@ def srcpos_action_retrieve(item_id: int,  db: Session = Depends(get_db)):
     crud.drop_item(db, item_id)
     return None
 
+#////////////////////////// DEMO //////////////////////////////////////
+@app.get("/books", response_model=List[schemas.Books])
+def books_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(get_db)):
+    books = crud.list_books(db, offset, limit)
+    return books
+
+
 
 # if __name__ == "__main__":
 #     uvicorn.run(app, host='0.0.0.0',  ssl-keyfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.key", ssl-certfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.crt", ssl-keyfile-password=None)

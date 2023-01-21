@@ -365,3 +365,7 @@ def drop_srcpositions(db: Session, book_id: int,page_id:int):
     db.commit()
     return {"ok":True}
 
+
+def list_books(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(File).offset(skip).limit(limit).all()
+
