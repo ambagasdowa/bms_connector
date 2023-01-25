@@ -93,9 +93,10 @@ def items_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
 @app.get("/items/{item_id}/{user_id}", response_model=List[schemas.Item])
 def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_db)):
     item = crud.get_items(db, item_id, user_id)
+    response_json = jsonable_encoder(item)
     if item is None:
         raise HTTPException(status_code=404, detail="Book not found")
-    return item
+    return JSONResponse(content=json_response)
 
 # CREATE
 # This endpoint creates a new `Item`. The necessary data is read from the request
@@ -305,9 +306,9 @@ def srcpositions_action_retrieve(book_id: int, page_id: int,  db: Session = Depe
     srcpos = crud.get_srcpos(db, book_id, page_id)
     if srcpos is not None:
         crud.drop_srcpositions(db, book_id, page_id)
-        return {"delete":"Success"}
+        return {"delete": "Success"}
     else:
-        return {"delete":"Empty"}
+        return {"delete": "Empty"}
 
 
 @app.delete("/srcpos/{item_id}", status_code=204)
@@ -315,12 +316,13 @@ def srcpos_action_retrieve(item_id: int,  db: Session = Depends(get_db)):
     crud.drop_item(db, item_id)
     return None
 
-#////////////////////////// DEMO //////////////////////////////////////
+# ////////////////////////// DEMO //////////////////////////////////////
+
+
 @app.get("/books", response_model=List[schemas.File])
 def books_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(get_db)):
     books = crud.list_books(db, offset, limit)
     return books
-
 
 
 # if __name__ == "__main__":
