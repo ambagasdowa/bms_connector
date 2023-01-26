@@ -42,7 +42,7 @@ app = FastAPI(
     title='Panamericano API Documentation', docs_url="/api", openapi_url="/api/v1"
 )
 
-origins = ["*", '127.0.0.1', 'localhost']
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
