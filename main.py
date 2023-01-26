@@ -95,8 +95,7 @@ def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_
     item = crud.get_items(db, item_id, user_id)
     if item is None:
         raise HTTPException(status_code=404, detail="Book not found")
-    response_json = jsonable_encoder(item)
-    return JSONResponse(content=json_response)
+    return JSONResponse(content=jsonable_encoder(item))
 
 # CREATE
 # This endpoint creates a new `Item`. The necessary data is read from the request
