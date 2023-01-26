@@ -93,9 +93,9 @@ def items_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
 @app.get("/items/{item_id}/{user_id}", response_model=List[schemas.Item])
 def items_action_retrieve(item_id: str, user_id: int, db: Session = Depends(get_db)):
     item = crud.get_items(db, item_id, user_id)
-    response_json = jsonable_encoder(item)
     if item is None:
         raise HTTPException(status_code=404, detail="Book not found")
+    response_json = jsonable_encoder(item)
     return JSONResponse(content=json_response)
 
 # CREATE
