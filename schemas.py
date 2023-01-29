@@ -361,7 +361,8 @@ class SourcePositionsBase(BaseModel):
         book = {}
 
         for bookId in data:
-            book[bookId['bms_books_id']].append(data)
+            print(bookId)
+            # book[bookId['bms_books_id']].append(data)
         return data
 
 
