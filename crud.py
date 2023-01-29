@@ -341,12 +341,10 @@ def get_srcpos_ids(db: Session, book_id: int, page_id: int):
 #     db.refresh(db_srcpos)
 #     return db_srcpos
 
-# def list_books(db: Session, skip: int = 0, limit: int = 100):
-#     return db.query(File).offset(skip).limit(limit).all()
 
 
-def get_srcpositions(db: Session, book_id: int, skip: int=0,limit:int=100 ):
-    return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id).offset(skip).limit(limit).all()
+def get_srcpositions(db: Session, book_id: int):
+    return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id).all()
 
 
 def create_srcpositions(db: Session, data: SourcePositionsCreate):
