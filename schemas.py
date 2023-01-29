@@ -362,7 +362,7 @@ class SourcePositionsBase(BaseModel):
         print(f" == {data['bms_books_id']} ==  ")
         bookid[data['bms_books_id']] = data
 
-        data.append(bookid)
+        data['book'] = bookid
 
         return data
 
