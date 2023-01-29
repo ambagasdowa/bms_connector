@@ -359,9 +359,9 @@ class SourcePositionsBase(BaseModel):
     def dict(self, **kwargs):
         data = super(SourcePositionsBase, self).dict(**kwargs)
         bookid = {}
-        print(f" == {data['bms_books_id']} ==  ")
-        if (data['bms_books_id']):
-            bookid[data['bms_books_id']].append(data)
+        bid = data['bms_books_id']
+        if (bid):
+            bookid[bid].append(data)
         print(bookid)
         data['book'] = bookid
 
