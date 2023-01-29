@@ -359,8 +359,10 @@ class SourcePositionsBase(BaseModel):
     def dict(self, **kwargs):
         data = super(SourcePositionsBase, self).dict(**kwargs)
         print(f" == {data['bms_books_id']} ==  ")
-        # for bookId in data:
-        # data[data['bms_books_id']].append(data)
+        bookid[data['bms_books_id']] = data
+
+        data.append(bookid)
+
         return data
 
 
