@@ -364,7 +364,7 @@ class SourcePositionsBase(BaseModel):
         print('The id in the book')
         print(bookid)
 
-        return data
+        return bookid
 
 
 class SourcePositionsCreate(BaseModel):
