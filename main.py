@@ -267,6 +267,15 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
     return JSONResponse(content=json_compatible_item_data)
 
 
+@app.get("/srcpositions/{book_id}", response_model=List[schemas.SourcePositions])
+def srcpos_action_retrieve(book_id: int, offset: int = 0, limit: int = 100, Session=Depends(get_db)):
+    srcpositions = crud.get_srcpos(db, book_id, offset, limit)
+    if srcpos is None:
+        raise HTTPException(
+            status_code=404, detail="SourceFullPositions not found")
+    return srcpos
+
+
 @app.post("/srcpositions/{book_id}/{page_id}", response_model=schemas.SourcePositionsCreate)
 def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.SourcePositionsCreate], db: Session = Depends(get_db)):
 
