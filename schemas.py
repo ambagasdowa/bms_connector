@@ -361,7 +361,7 @@ class SourcePositionsBase(BaseModel):
         bookid = {}
         bid = data['bms_books_id']
         pid = data['bms_bookpages_id']
-        bookid[bid][pid] = data
+        bookid[bid] = {pid: data}
         print('The id in the book')
         print(bookid)
 
