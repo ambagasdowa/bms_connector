@@ -268,7 +268,7 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
 
 
 @app.get("/srcpositions/{book_id}", response_model=List[schemas.SourcePositions])
-def srcpositions_action_retrieve(book_id: int, Session=Depends(get_db)):
+def srcpositions_action_retrieve(book_id: int, db: Session = Depends(get_db)):
     srcpositions = crud.get_srcpositions(db, book_id)
     if srcpositions is None:
         raise HTTPException(
