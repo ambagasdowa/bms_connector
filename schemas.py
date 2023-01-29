@@ -356,6 +356,13 @@ class SourcePositionsBase(BaseModel):
     modified: Union[datetime, None] = None
     status = bool
 
+    def dict(self, **kwargs):
+        data = super(SourcePositionsBase, self).dict(**kwargs)
+
+        for book in data:
+            data[book.bms_books_id].append(data)
+        return data
+
 
 class SourcePositionsCreate(BaseModel):
     bms_books_id: int
@@ -417,5 +424,3 @@ class SourcePositions(SourcePositionsBase):
 
     class Config:
         orm_mode = True
-
-
