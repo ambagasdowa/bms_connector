@@ -360,10 +360,13 @@ class SourcePositionsBase(BaseModel):
         data = super(SourcePositionsBase, self).dict(**kwargs)
         bookid = {}
         bid = data['bms_books_id']
+
+        print(data)
+
         if (bid):
             bookid[bid].append(data)
         print(bookid)
-        data['book'] = bookid
+#        data['book'] = bookid
 
         return data
 
