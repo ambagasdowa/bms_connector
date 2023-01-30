@@ -234,6 +234,7 @@ class FileBase(BaseModel):
     pages: int
     book_name: str
     is_url: bool
+    sourcePositions: Union[list[SourcePositions], None] = None
     created: datetime
     modified: Union[datetime, None] = None
     status: bool
@@ -245,7 +246,6 @@ class FileCreate(BaseModel):
     book_name: str
     is_url: bool
     created: datetime
-    sourcePositions: Union[list[SourcePositions], None] = None
 #    status: bool
 #    class Config:
     # schema_extra = {
