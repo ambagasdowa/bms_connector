@@ -160,25 +160,25 @@ class Page(Base):
     bms_books = relationship('File', foreign_keys='Page.bms_books_id')
 
 
-class SourcePage(Base):
-    __tablename__ = "bms_bookpages"
-    __table_args__ = {'extend_existing': True}
+# class SourcePage(Base):
+#     __tablename__ = "bms_bookpages"
+#     __table_args__ = {'extend_existing': True}
 
-    id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer,
-                          ForeignKey("bms_books.book_id"))
-    bid = Column('bms_books_id', ForeignKey("bms_books.book_id"))
-    book_pages = Column(Integer)
-    basename = Column(String, index=True)
-    pathname = Column(String, index=True)
-    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
-    modified = Column(DateTime, server_default=text(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    status = Column(Boolean, default=True)
+#     id = Column(Integer, primary_key=True, index=True)
+#     bms_books_id = Column(Integer,
+#                           ForeignKey("bms_books.book_id"))
+#     bid = Column('bms_books_id', ForeignKey("bms_books.book_id"))
+#     book_pages = Column(Integer)
+#     basename = Column(String, index=True)
+#     pathname = Column(String, index=True)
+#     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+#     modified = Column(DateTime, server_default=text(
+#         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+#     status = Column(Boolean, default=True)
 
-    @hybrid_property
-    def path(self):
-        return self.basename + self.pathname
+#     @hybrid_property
+#     def path(self):
+#         return self.basename + self.pathname
     # bms_cache_books = relationship(
     #     'Item', foreign_keys='SourcePage.bms_books_id')
     # bms_books = relationship('File', foreign_keys='SourcePage.bid')
