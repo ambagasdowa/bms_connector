@@ -90,8 +90,12 @@ class File(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
+    # urlPages = relationship(
+    #     "Page", primaryjoin="and_(File.book_id==Page.bms_books_id)"
+    # )
     urlPages = relationship(
-        "Page", primaryjoin="and_(File.book_id==Page.bms_books_id)"
+        "Page",
+        secondary="outerjoin(File,Page,File.book_id==Page.bms_books_id)"
     )
 
 
@@ -144,9 +148,9 @@ class Page(Base):
     def path(self):
         return self.basename + self.pathname
 
-    @hybrid_property
-    def book_id(self):
-        return self.bms_books_id
+    # @hybrid_property
+    # def book_id(self):
+    #     return self.bms_books_id
 
 
 class Position(Base):
