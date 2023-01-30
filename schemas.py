@@ -363,8 +363,9 @@ class SourcePositionsBase(BaseModel):
         pid = data['bms_bookpages_id']
         # bookid[bid] = {pid: data}
         if bookid.get(pid) is None:
-            bookid[pid] = []
-        bookid[pid].extend(data)
+            bookid[pid] = {}
+
+        bookid[pid].append(data)
 
         print('The id in the book')
         print(bookid)
