@@ -91,7 +91,7 @@ class File(Base):
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
     urlPages = relationship(
-        "SourcePage", primaryjoin='and_(File.book_id==SourcePage.bid)', lazy='joined')
+        "Page", primaryjoin='and_(File.book_id==Page.bid)', lazy='joined')
     # urlPages = relationship(
     #     "Page",
     #     secondary="outerjoin(File,Page,File.book_id==Page.book_id)"
@@ -113,7 +113,9 @@ class Item(Base):
 #   status = Column(Boolean, default=True)
 
 #    pagination = relationship("Page", back_populates="book")
-    pagination = relationship("Page", primaryjoin="and_(Item.book_id==Page.bms_books_id)"
+    pagination = relationship("Page",
+                              primaryjoin="and_(Item.book_id==Page.bms_books_id)",
+                              lazy='joined'
                               )
     positions = relationship("Position"
                              #                             ,primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
@@ -134,6 +136,7 @@ class Page(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bid = Column('bms_books_id', ForeignKey("bms_books.book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
@@ -145,6 +148,9 @@ class Page(Base):
     @hybrid_property
     def path(self):
         return self.basename + self.pathname
+    bms_cache_books = relationship(
+        'Item', foreign_keys='Page.bms_books_id')
+    bms_books = relationship('File', foreign_keys='Page.bid')
 
 
 class SourcePage(Base):
@@ -166,9 +172,9 @@ class SourcePage(Base):
     @hybrid_property
     def path(self):
         return self.basename + self.pathname
-    bms_cache_books = relationship(
-        'Item', foreign_keys='SourcePage.bms_books_id')
-    bms_books = relationship('File', foreign_keys='SourcePage.bid')
+    # bms_cache_books = relationship(
+    #     'Item', foreign_keys='SourcePage.bms_books_id')
+    # bms_books = relationship('File', foreign_keys='SourcePage.bid')
 
 
 class Position(Base):
