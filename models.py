@@ -95,7 +95,7 @@ class File(Base):
     # )
     urlPages = relationship(
         "Page",
-        secondary="outerjoin(File,Page,File.book_id==Page.bms_books_id)"
+        secondary="outerjoin(File,Page,File.book_id==Page.book_id)"
     )
 
 
@@ -136,6 +136,8 @@ class Page(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    book_id = Column('bms_books_id', Integer,
+                     ForeignKey("bms_books.book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
