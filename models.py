@@ -132,7 +132,6 @@ class Page(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
-    book_id = Column(Integer,  ForeignKey("bms_books.book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
@@ -145,6 +144,7 @@ class Page(Base):
     def path(self):
         return self.basename + self.pathname
 
+    @hybrid_property
     def book_id(self):
         return self.bms_books_id
 

@@ -111,7 +111,6 @@ class Position(PositionBase):
 class PageBase(BaseModel):
     book_pages: Optional[int] = []
     path: str
-    book_id: int
 #    basename: Optional[str] = []
 #    pathname: Optional[str] = []
 #    css: Optional[str] = []
@@ -128,6 +127,7 @@ class PageUpdate(BaseModel):
 class Page(PageBase):
     id: int
     bms_books_id: int
+    book_id: int
 
     class Config:
         orm_mode = True
