@@ -93,7 +93,8 @@ class File(Base):
     urlPages = relationship(
         "Page",
         backref='Page.bid',
-        primaryjoin='and_(File.book_id==Page.bid)',
+        # primaryjoin='and_(File.book_id==Page.bid)',
+        secondary="outerjoin(File,Page,File.book_id==Page.bid)",
         lazy='joined',
         viewonly=True
     )
