@@ -402,7 +402,7 @@ class FileBase(BaseModel):
         for positions in data['sourcePositions']:
             pid = positions['bms_bookpages_id']
             if page_id.get(pid) is None:
-                page_id[pid].append(positions)
+                page_id[pid] = data['sourcePositions']
         data['srcPositions'] = page_id
         return data
 
