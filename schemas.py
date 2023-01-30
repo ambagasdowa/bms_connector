@@ -376,18 +376,25 @@ class FileBase(BaseModel):
     book_name: str
     is_url: bool
     sourcePositions: Union[list[SourcePositions], None] = None
+    urlPages: Union[list[Page], None] = None
     created: datetime
     modified: Union[datetime, None] = None
     status: bool
 
     def dict(self, **kwargs):
         data = super(FileBase, self).dict(**kwargs)
+# NOTE Re-order sourcePositions
         page_id = {}
         for positions in data['sourcePositions']:
             pid = positions['bms_bookpages_id']
             if page_id.get(pid) is None:
                 page_id[pid] = data['sourcePositions']
         data['sourcePositions'] = page_id
+
+        # img-url
+        # url={}
+        # for uri in data['Page']
+
         return data
 
 

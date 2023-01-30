@@ -90,6 +90,7 @@ class File(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
+    urlPages = relationship("Page")
 
 
 class Item(Base):
@@ -129,6 +130,7 @@ class Page(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    book_id = Column(Integer,  ForeignKey("bms_books.book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
@@ -140,6 +142,9 @@ class Page(Base):
     @hybrid_property
     def path(self):
         return self.basename + self.pathname
+
+    def book_id(self):
+        return self.bms_books_id
 
 
 class Position(Base):
