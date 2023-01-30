@@ -134,8 +134,6 @@ class Page(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
-    bid = Column('bms_books_id', Integer,
-                 ForeignKey("bms_books.book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
@@ -156,6 +154,7 @@ class SourcePage(Base):
     id = Column(Integer, primary_key=True, index=True)
     bms_books_id = Column(Integer,
                           ForeignKey("bms_books.book_id"))
+    bid = Column('bms_books_id', ForeignKey("bms_books.book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
@@ -167,6 +166,9 @@ class SourcePage(Base):
     @hybrid_property
     def path(self):
         return self.basename + self.pathname
+    bms_cache_books = relationship(
+        'Item', foreign_keys='SourcePage.bms_books_id')
+    bms_books = relationship('File', foreign_keys='SourcePage.bid')
 
 
 class Position(Base):
