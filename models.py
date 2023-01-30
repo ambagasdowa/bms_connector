@@ -90,15 +90,15 @@ class File(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
-    urlPages = relationship(
-        "Page",
-        backref='Page.bms_books_id',
-        # primaryjoin='and_(File.book_id==Page.bid)',
-        secondary="outerjoin(File,Page,File.book_id==Page.bms_books_id)",
-        lazy='joined',
-        remote_side='bms_books_id',
-        viewonly=True
-    )
+    # urlPages = relationship(
+    #     "Page",
+    #     backref='Page.bms_books_id',
+    #     # primaryjoin='and_(File.book_id==Page.bid)',
+    #     secondary="outerjoin(File,Page,File.book_id==Page.bms_books_id)",
+    #     lazy='joined',
+    #     remote_side='bms_books_id',
+    #     viewonly=True
+    # )
     # urlPages = relationship(
     #     "Page",
     #     secondary="outerjoin(File,Page,File.book_id==Page.bid)",
@@ -154,7 +154,7 @@ class Page(Base):
         return self.basename + self.pathname
     bms_cache_books = relationship(
         'Item', foreign_keys='Page.bms_books_id')
-    bms_books = relationship('File', foreign_keys='Page.bms_books_id')
+   # bms_books = relationship('File', foreign_keys='Page.bms_books_id')
 
 
 # class SourcePage(Base):
