@@ -89,6 +89,7 @@ class File(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
+    sourcePositions = relationship("SourcePositions")
 
 
 class Item(Base):
@@ -168,7 +169,7 @@ class SourcePositions(Base):
     __tablename__ = "bms_src_positions"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer)
+    bms_books_id = Column(Integer,  ForeignKey("bms_books.book_id"))
     bms_bookpages_id = Column(Integer)
     color = Column(String)
     lineWidth = Column(Integer)
@@ -178,10 +179,10 @@ class SourcePositions(Base):
     default_height = Column(String)
     inputType = Column(String)
     page = Column(Integer)
-    x1 = Column(DECIMAL(18,6))
-    y1 = Column(DECIMAL(18,6))
-    x2 = Column(DECIMAL(18,6))
-    y2 = Column(DECIMAL(18,6))
+    x1 = Column(DECIMAL(18, 6))
+    y1 = Column(DECIMAL(18, 6))
+    x2 = Column(DECIMAL(18, 6))
+    y2 = Column(DECIMAL(18, 6))
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
