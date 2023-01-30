@@ -91,7 +91,9 @@ class File(Base):
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
     urlPages = relationship(
-        "Page", primaryjoin="and_(File.book_id==Page.bid),remote_side='Page.bid',"
+        "Page",
+        primaryjoin="and_(File.book_id==Page.bid)",
+        remote_side='Page.bid'
     )
     # urlPages = relationship(
     #     "Page",
