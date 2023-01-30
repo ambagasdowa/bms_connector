@@ -135,25 +135,25 @@ class Page(PageBase):
 # /// Schemes for book pages
 
 
-class SourcePageBase(BaseModel):
-    book_pages: Optional[int] = []
-    path: str
+# class SourcePageBase(BaseModel):
+#     book_pages: Optional[int] = []
+#     path: str
 
 
-class SourcePageCreate(BaseModel):
-    pass
+# class SourcePageCreate(BaseModel):
+#     pass
 
 
-class SourcePageUpdate(BaseModel):
-    pass
+# class SourcePageUpdate(BaseModel):
+#     pass
 
 
-class SourcePage(SourcePageBase):
-    id: int
-    book_id: int
+# class SourcePage(SourcePageBase):
+#     id: int
+#     book_id: int
 
-    class Config:
-        orm_mode = True
+#     class Config:
+#         orm_mode = True
 
 
 class ItemBase(BaseModel):
