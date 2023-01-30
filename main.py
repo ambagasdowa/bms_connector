@@ -267,7 +267,7 @@ def srcpos_action_create(data: schemas.SourcePositionsCreate, db: Session = Depe
     return JSONResponse(content=json_compatible_item_data)
 
 
-@app.get("/srcpositions/{book_id}", response_model=List[schemas.SourcePositions])
+@app.get("/srcpositions/{book_id}", response_model=List[schemas.FileBase])
 def srcpositions_action_retrieve(book_id: int, db: Session = Depends(get_db)):
     srcpositions = crud.get_srcpositions(db, book_id)
     if srcpositions is None:

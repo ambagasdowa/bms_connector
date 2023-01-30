@@ -305,22 +305,6 @@ class SourcePositionsBase(BaseModel):
     modified: Union[datetime, None] = None
     status = bool
 
-    # def dict(self, **kwargs):
-    #     data = super(SourcePositionsBase, self).dict(**kwargs)
-    #     bookid = {}
-    #     # bid = data['bms_books_id']
-    #     pid = data['bms_bookpages_id']
-    #     # bookid[bid] = {pid: data}
-    #     if bookid.get(pid) is None:
-    #         bookid[pid] = {}
-
-    #     bookid[pid] = data
-
-    #     print('The id in the book')
-    #     print(bookid)
-
-    #     return bookid
-
 
 class SourcePositionsCreate(BaseModel):
     bms_books_id: int

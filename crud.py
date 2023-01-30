@@ -344,7 +344,7 @@ def get_srcpos_ids(db: Session, book_id: int, page_id: int):
 
 
 def get_srcpositions(db: Session, book_id: int):
-    return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id).all()
+    return db.query(File).filter(File.bms_books_id == book_id).all()
 
 
 def create_srcpositions(db: Session, data: SourcePositionsCreate):
