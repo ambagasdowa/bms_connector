@@ -127,7 +127,30 @@ class PageUpdate(BaseModel):
 class Page(PageBase):
     id: int
     bms_books_id: int
-    bid: int
+
+    class Config:
+        orm_mode = True
+
+
+# /// Schemes for book pages
+
+
+class SourcePageBase(BaseModel):
+    book_pages: Optional[int] = []
+    path: str
+
+
+class SourcePageCreate(BaseModel):
+    pass
+
+
+class SourcePageUpdate(BaseModel):
+    pass
+
+
+class SourcePage(SourcePageBase):
+    id: int
+    book_id: int
 
     class Config:
         orm_mode = True

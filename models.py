@@ -90,11 +90,7 @@ class File(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
-    urlPages = relationship(
-        "Page",
-        primaryjoin="and_(File.book_id==Page.bid)",
-        remote_side='Page.bid'
-    )
+    urlPages = relationship("SourcePage")
     # urlPages = relationship(
     #     "Page",
     #     secondary="outerjoin(File,Page,File.book_id==Page.book_id)"
@@ -140,6 +136,25 @@ class Page(Base):
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
     bid = Column('bms_books_id', Integer,
                  ForeignKey("bms_books.book_id"))
+    book_pages = Column(Integer)
+    basename = Column(String, index=True)
+    pathname = Column(String, index=True)
+    created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    modified = Column(DateTime, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    status = Column(Boolean, default=True)
+
+    @hybrid_property
+    def path(self):
+        return self.basename + self.pathname
+
+
+class SourcePage(Base):
+    __tablename__ = "bms_bookpages"
+
+    id = Column(Integer, primary_key=True, index=True)
+    book_id = Column('bms_books_id', Integer,
+                     ForeignKey("bms_books.book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
