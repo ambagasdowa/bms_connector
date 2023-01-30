@@ -91,10 +91,15 @@ class File(Base):
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
     urlPages = relationship(
-        "Page", backref='Page.bid', primaryjoin='and_(File.book_id==Page.bid)', lazy='joined')
+        "Page",
+        backref='Page.bid',
+        primaryjoin='and_(File.book_id==Page.bid)',
+        lazy='joined',
+        viewonly=True
+    )
     # urlPages = relationship(
     #     "Page",
-    #     secondary="outerjoin(File,Page,File.book_id==Page.bid)"
+    #     secondary="outerjoin(File,Page,File.book_id==Page.bid)",
     # )
 
 
