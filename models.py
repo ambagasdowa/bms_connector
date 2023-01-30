@@ -91,7 +91,7 @@ class File(Base):
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
     urlPages = relationship(
-        "Page", primaryjoin="and_(File.book_id==Page.bid)"
+        "Page", primaryjoin="and_(File.book_id==Page.bid),remote_side='Page.bid',"
     )
     # urlPages = relationship(
     #     "Page",
@@ -149,10 +149,6 @@ class Page(Base):
     @hybrid_property
     def path(self):
         return self.basename + self.pathname
-
-    # @hybrid_property
-    # def book_id(self):
-    #     return self.bms_books_id
 
 
 class Position(Base):
