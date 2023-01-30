@@ -365,7 +365,7 @@ class SourcePositionsBase(BaseModel):
         if bookid.get(pid) is None:
             bookid[pid] = {}
 
-        bookid[pid] = (data,)
+        bookid[pid].extend(data)
 
         print('The id in the book')
         print(bookid)
