@@ -111,6 +111,7 @@ class Position(PositionBase):
 class PageBase(BaseModel):
     book_pages: Optional[int] = []
     path: str
+    book_id: int
 #    basename: Optional[str] = []
 #    pathname: Optional[str] = []
 #    css: Optional[str] = []
