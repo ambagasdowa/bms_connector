@@ -91,7 +91,7 @@ class File(Base):
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
     urlPages = relationship(
-        "Page", primaryjoin="and_(File.book_id==Page.book_id)"
+        "Page", primaryjoin="and_(File.book_id==Page.bid)"
     )
     # urlPages = relationship(
     #     "Page",
@@ -136,8 +136,8 @@ class Page(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
-    book_id = Column('bms_books_id', Integer,
-                     ForeignKey("bms_books.book_id"))
+    bid = Column('bms_books_id', Integer,
+                 ForeignKey("bms_books.book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)

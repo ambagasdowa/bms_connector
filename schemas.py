@@ -127,7 +127,7 @@ class PageUpdate(BaseModel):
 class Page(PageBase):
     id: int
     bms_books_id: int
-    book_id: int
+    bid: int
 
     class Config:
         orm_mode = True
