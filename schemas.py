@@ -400,9 +400,9 @@ class FileBase(BaseModel):
         data = super(FileBase, self).dict(**kwargs)
         page_id = {}
         for positions in data['sourcePositions']:
-            pid = data['sourcePositions']['bms_bookpages_id']
+            pid = positions['bms_bookpages_id']
             if page_id.get(pid) is None:
-                page_id[pid] = data['sourcePositions']
+                page_id[pid].append(positions)
         data['srcPositions'] = page_id
         return data
 
