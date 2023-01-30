@@ -151,6 +151,7 @@ class Page(Base):
 
 class SourcePage(Base):
     __tablename__ = "bms_bookpages"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     book_id = Column('bms_books_id', Integer,
