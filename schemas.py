@@ -227,56 +227,6 @@ class Item(ItemBase):
         orm_mode = True
 
 
-# FILE SECTION
-
-class FileBase(BaseModel):
-    book_id: int
-    pages: int
-    book_name: str
-    is_url: bool
-    sourcePositions: Union[list[SourcePositions], None] = None
-    created: datetime
-    modified: Union[datetime, None] = None
-    status: bool
-
-
-class FileCreate(BaseModel):
-    book_id: int
-    pages: int
-    book_name: str
-    is_url: bool
-    created: datetime
-#    status: bool
-#    class Config:
-    # schema_extra = {
-    #     "example" : {
-    #          "book_id": 10,
-    #          "pages": 219,
-    #          "book_name": "Guia de Estudio de Matematicas",
-    #          "is_url": true,
-    #          "created": "2022-12-26T23:23:02.071Z",
-    #          "modified": "2022-12-26T23:23:02.071Z",
-    #          "status": true,
-    #    }
-    # }
-
-
-class FileUpdate(BaseModel):
-    book_id: int
-    pages: int
-    book_name: str
-    is_url: bool
-    modified: datetime
-    status: bool
-
-
-class File(FileBase):
-    id: int
-
-    class Config:
-        orm_mode = True
-
-
 # UPLOAD SECTION
 
 class UploadBase(BaseModel):
@@ -428,6 +378,56 @@ class SourcePositionsUpdate(BaseModel):
 
 
 class SourcePositions(SourcePositionsBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+# FILE SECTION
+
+class FileBase(BaseModel):
+    book_id: int
+    pages: int
+    book_name: str
+    is_url: bool
+    sourcePositions: Union[list[SourcePositions], None] = None
+    created: datetime
+    modified: Union[datetime, None] = None
+    status: bool
+
+
+class FileCreate(BaseModel):
+    book_id: int
+    pages: int
+    book_name: str
+    is_url: bool
+    created: datetime
+#    status: bool
+#    class Config:
+    # schema_extra = {
+    #     "example" : {
+    #          "book_id": 10,
+    #          "pages": 219,
+    #          "book_name": "Guia de Estudio de Matematicas",
+    #          "is_url": true,
+    #          "created": "2022-12-26T23:23:02.071Z",
+    #          "modified": "2022-12-26T23:23:02.071Z",
+    #          "status": true,
+    #    }
+    # }
+
+
+class FileUpdate(BaseModel):
+    book_id: int
+    pages: int
+    book_name: str
+    is_url: bool
+    modified: datetime
+    status: bool
+
+
+class File(FileBase):
     id: int
 
     class Config:
