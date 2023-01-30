@@ -90,12 +90,12 @@ class File(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
-    urlPages = relationship(
-        "Page", primaryjoin='and_(File.book_id==Page.bid)', lazy='joined')
     # urlPages = relationship(
-    #     "Page",
-    #     secondary="outerjoin(File,Page,File.book_id==Page.book_id)"
-    # )
+    #     "Page", primaryjoin='and_(File.book_id==Page.bid)', lazy='joined')
+    urlPages = relationship(
+        "Page",
+        secondary="outerjoin(File,Page,File.book_id==Page.bid)"
+    )
 
 
 class Item(Base):
