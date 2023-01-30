@@ -96,6 +96,7 @@ class File(Base):
         # primaryjoin='and_(File.book_id==Page.bid)',
         secondary="outerjoin(File,Page,File.book_id==Page.bid)",
         lazy='joined',
+        remote_side='Page.bid',
         viewonly=True
     )
     # urlPages = relationship(
@@ -142,7 +143,7 @@ class Page(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
-    bid = Column('bms_books_id', ForeignKey("bms_books.book_id"))
+    bid = Column('bms_books_id', ForeignKey("book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
