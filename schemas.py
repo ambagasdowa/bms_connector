@@ -218,8 +218,6 @@ class ItemUpdate(BaseModel):
     pages: int
     book_name: str
     is_url: bool
-#    modified: datetime
-#    status: bool
 
 
 class Item(ItemBase):
@@ -247,6 +245,7 @@ class FileCreate(BaseModel):
     book_name: str
     is_url: bool
     created: datetime
+    sourcePositions: Union[list[SourcePositions], None] = None
 #    status: bool
 #    class Config:
     # schema_extra = {
@@ -356,21 +355,21 @@ class SourcePositionsBase(BaseModel):
     modified: Union[datetime, None] = None
     status = bool
 
-    def dict(self, **kwargs):
-        data = super(SourcePositionsBase, self).dict(**kwargs)
-        bookid = {}
-        # bid = data['bms_books_id']
-        pid = data['bms_bookpages_id']
-        # bookid[bid] = {pid: data}
-        if bookid.get(pid) is None:
-            bookid[pid] = {}
+    # def dict(self, **kwargs):
+    #     data = super(SourcePositionsBase, self).dict(**kwargs)
+    #     bookid = {}
+    #     # bid = data['bms_books_id']
+    #     pid = data['bms_bookpages_id']
+    #     # bookid[bid] = {pid: data}
+    #     if bookid.get(pid) is None:
+    #         bookid[pid] = {}
 
-        bookid[pid] = data
+    #     bookid[pid] = data
 
-        print('The id in the book')
-        print(bookid)
+    #     print('The id in the book')
+    #     print(bookid)
 
-        return bookid
+    #     return bookid
 
 
 class SourcePositionsCreate(BaseModel):
