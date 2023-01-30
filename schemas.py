@@ -396,6 +396,16 @@ class FileBase(BaseModel):
     modified: Union[datetime, None] = None
     status: bool
 
+    def dict(self, **kwargs):
+        data = super(FileBase, self).dict(**kwargs)
+        page_id = {}
+        for positions in data['sourcePositions']:
+            pid = data['sourcePositions']['bms_bookpages_id']
+            if page_id.get(pid) is None:
+                page_id[pid] = data['sourcePositions']
+        data['srcPositions'] = page_id
+        return data
+
 
 class FileCreate(BaseModel):
     book_id: int
