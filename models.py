@@ -96,7 +96,7 @@ class File(Base):
         # primaryjoin='and_(File.book_id==Page.bid)',
         secondary="outerjoin(File,Page,File.book_id==Page.bid)",
         lazy='joined',
-        remote_side='Page.bid',
+        remote_side='bid',
         viewonly=True
     )
     # urlPages = relationship(
