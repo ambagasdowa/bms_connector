@@ -404,20 +404,17 @@ class FileBase(BaseModel):
     created: datetime
     modified: Union[datetime, None] = None
     status: bool
+# TODO: check the reorder in the dataset
 
     def dict(self, **kwargs):
         data = super(FileBase, self).dict(**kwargs)
-# NOTE Re-order sourcePositions
+# NOTE Re-order sourcePositions dataset , mesh with book_id re-order
         page_id = {}
         for positions in data['sourcePositions']:
             pid = positions['bms_bookpages_id']
             if page_id.get(pid) is None:
                 page_id[pid] = data['sourcePositions']
         data['srcPositions'] = page_id
-
-        # img-url
-        # url={}
-        # for uri in data['Page']
 
         return data
 
