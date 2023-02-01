@@ -409,12 +409,13 @@ class FileBase(BaseModel):
     def dict(self, **kwargs):
         data = super(FileBase, self).dict(**kwargs)
 # NOTE Re-order sourcePositions dataset , mesh with book_id re-order
+
         page_id = {}
         for positions in data['sourcePositions']:
             pid = positions['bms_bookpages_id']
             if page_id.get(pid) is None:
                 page_id[pid] = data['sourcePositions']
-        data['srcPositions'] = page_id
+        data['sourcePositions'] = page_id
 
         return data
 
