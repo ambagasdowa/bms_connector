@@ -413,8 +413,7 @@ class FileBase(BaseModel):
             pid = positions['bms_bookpages_id']
             if page_id.get(pid) is None:
                 page_id[pid] = data['sourcePositions']
-        del data['sourcePositions']
-        data['sourcePositions'] = page_id
+        data['srcPositions'] = page_id
 
         # img-url
         # url={}
