@@ -400,7 +400,7 @@ class FileBase(BaseModel):
     book_name: str
     is_url: bool
     sourcePositions: Union[list[SourcePositions], None] = None
-    urlPages: Union[list[Page], None] = None
+    # urlPages: Union[list[Page], None] = None
     created: datetime
     modified: Union[datetime, None] = None
     status: bool
@@ -410,12 +410,12 @@ class FileBase(BaseModel):
         data = super(FileBase, self).dict(**kwargs)
 # NOTE Re-order sourcePositions dataset , mesh with book_id re-order
 
-        page_id = {}
-        for positions in data['sourcePositions']:
-            pid = positions['bms_bookpages_id']
-            if page_id.get(pid) is None:
-                page_id[pid] = data['sourcePositions']
-        data['sourcePositions'] = page_id
+        # page_id = {}
+        # for positions in data['sourcePositions']:
+        #     pid = positions['bms_bookpages_id']
+        #     if page_id.get(pid) is None:
+        #         page_id[pid] = data['sourcePositions']
+        # data['sourcePositions'] = page_id
 
         return data
 

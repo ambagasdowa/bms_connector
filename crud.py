@@ -322,11 +322,6 @@ def update_file(db: Session, file: Union[int, File], data: FileUpdate):
 #                      Source Positions
 #=== === === === === === === === === === === === === === === === === === 
 
-# def list_pages(db: Session, skip: int = 0, limit: int = 100):
-#     return db.query(Page).offset(skip).limit(limit).all()
-
-# def get_srcpos(db: Session, id: int):
-#     return db.query(SourcePositions).get(id)
 
 def get_srcpos(db: Session, book_id: int, page_id: int):
     return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id ==page_id).all()
@@ -334,16 +329,11 @@ def get_srcpos(db: Session, book_id: int, page_id: int):
 def get_srcpos_ids(db: Session, book_id: int, page_id: int):
     return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id ==page_id).all()
 
-# def create_srcpos(db: Session,data: SourcePositionsCreate):
-#     db_srcpos = SourcePositions(**data.dict())
-#     db.add(db_srcpos)
-#     db.commit()
-#     db.refresh(db_srcpos)
-#     return db_srcpos
-
-
-
 def get_srcpositions(db: Session, book_id: int):
+    # request = get params book_id,user_id,etc
+    #   if request with urls , inputs , positions . default layout
+    # return request
+
     return db.query(File).filter(File.book_id == book_id).all()
 
 
