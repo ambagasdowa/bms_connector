@@ -49,12 +49,12 @@ def get_item(db: Session, id: int):
     return db.query(Item).get(id)
 
 
-def create_item(db: Session, data: ItemCreate):
-    db_item = Item(**data.dict())
-    db.add(db_item)
-    db.commit()
-    db.refresh(db_item)
-    return db_item
+# def create_item(db: Session, data: ItemCreate):
+#     db_item = Item(**data.dict())
+#     db.add(db_item)
+#     db.commit()
+#     db.refresh(db_item)
+#     return db_item
 
 
 def drop_item(db: Session, item_id: int):
