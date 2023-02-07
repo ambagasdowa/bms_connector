@@ -90,6 +90,10 @@ class File(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
+    pagination = relationship("Page")
+    positions = relationship("Position")
+    inputs = relationship("Input")
+
     # urlPages = relationship(
     #     "Page",
     #     backref='Page.bms_books_id',
@@ -140,7 +144,7 @@ class Page(Base):
     __tablename__ = "bms_bookpages"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bms_books_id = Column(Integer,  ForeignKey("bms_books.book_id"))
 #    bid = Column('bms_books_id', ForeignKey("book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
@@ -186,7 +190,7 @@ class Position(Base):
     __tablename__ = "bms_positions"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bms_books_id = Column(Integer,  ForeignKey("bms_books.book_id"))
     bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
     page = Column(Integer)
     tagpath = Column(String, index=True)
@@ -233,7 +237,7 @@ class Input(Base):
     __tablename__ = "bms_inputs_ctrls"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bms_books_id = Column(Integer,  ForeignKey("bms_books.book_id"))
     bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
     label = Column(String, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
