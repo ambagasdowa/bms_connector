@@ -58,6 +58,7 @@ from .database import Base
 
 class Upload(Base):
     __tablename__ = "bms_controls_files"
+
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, index=True)
     labelname = Column(String, index=True)
@@ -111,7 +112,7 @@ class File(Base):
 
 
 class Item(Base):
-    __tablename__ = "bms_books"
+    __tablename__ = "bms_cache_books"
 
     id = Column(Integer, primary_key=True, index=True)
     book_id = Column(Integer, index=True)
