@@ -124,20 +124,20 @@ class Item(Base):
 #   status = Column(Boolean, default=True)
 
 #    pagination = relationship("Page", back_populates="book")
-    pagination = relationship("Page")
-    positions = relationship("Position"
-                             #                             ,primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
-                             )
-    # srcpositions = relationship("SourcePositions")
-    inputs = relationship("Input"
-                          #                          ,primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
-                          )
-    inpages = relationship("Inpage",
-                           secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
-                           )
-    invalues = relationship("Invalue",
-                            secondary="outerjoin(Input,Invalue,Input.id==Invalue.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
-                            )
+    # pagination = relationship("Page")
+    # positions = relationship("Position"
+    #                          #                             ,primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
+    #                          )
+    # # srcpositions = relationship("SourcePositions")
+    # inputs = relationship("Input"
+    #                       #                          ,primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
+    #                       )
+    # inpages = relationship("Inpage",
+    #                        secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
+    #                        )
+    # invalues = relationship("Invalue",
+    #                         secondary="outerjoin(Input,Invalue,Input.id==Invalue.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
+    #                         )
 
 
 class Page(Base):

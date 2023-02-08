@@ -164,65 +164,65 @@ class ItemBase(BaseModel):
     is_url: bool
 #    modified: datetime
 #    status: bool
-    pagination: Union[List[Page]] = []
-    positions: Union[List[Position]] = []
-    # This goes together
-    inputs: Union[List[Input]] = []
-    inpages: Union[List[Inpage]] = []
-    invalues: Union[List[Invalue]] = []
+    # pagination: Union[List[Page]] = []
+    # positions: Union[List[Position]] = []
+    # # This goes together
+    # inputs: Union[List[Input]] = []
+    # inpages: Union[List[Inpage]] = []
+    # invalues: Union[List[Invalue]] = []
 
-    created: datetime
+    # created: datetime
 
-    def dict(self, **kwargs):
-        data = super(ItemBase, self).dict(**kwargs)
+    # def dict(self, **kwargs):
+    #     data = super(ItemBase, self).dict(**kwargs)
 
-        for paper in data['invalues']:
-            data['inpages'].append(paper)
+    #     for paper in data['invalues']:
+    #         data['inpages'].append(paper)
 
-        # NOTE rewrite again
-        for inpaper in data['inputs']:
-            inpaper['data'] = []
-            for inval in data['inpages']:
-                if (int(inpaper['id']) == int(inval['bms_inputs_ctrls_id'])):
-                    inpaper['data'].append(inval)
+    #     # NOTE rewrite again
+    #     for inpaper in data['inputs']:
+    #         inpaper['data'] = []
+    #         for inval in data['inpages']:
+    #             if (int(inpaper['id']) == int(inval['bms_inputs_ctrls_id'])):
+    #                 inpaper['data'].append(inval)
 
 
-# Reorder book_pages and book_pages_maps
-        book_pages = {}
-        for bookpages in data['pagination']:
-            book_pages[bookpages['book_pages']] = bookpages['path']
+# # Reorder book_pages and book_pages_maps
+    #     book_pages = {}
+    #     for bookpages in data['pagination']:
+    #         book_pages[bookpages['book_pages']] = bookpages['path']
 
-        data['book_pages'] = book_pages
-        # Reorder book_pages and book_pages_maps
-        book_pages_maps = {}
-        for bookpagesmaps in data['positions']:
-            book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
+    #     data['book_pages'] = book_pages
+    #     # Reorder book_pages and book_pages_maps
+    #     book_pages_maps = {}
+    #     for bookpagesmaps in data['positions']:
+    #         book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
 
-        data['book_pages_maps'] = book_pages_maps
+    #     data['book_pages_maps'] = book_pages_maps
 
-        # Rearrange inputs
-        # Change the column name in sql table usr_attr and usr_value
-        book_inputs = {}
-        ins = {}
-        for input_pages in data['inputs']:
-            page = input_pages['bms_bookpages_id']
-            if book_inputs.get(input_pages['bms_bookpages_id']) is None:
-                book_inputs[page] = []
-            ins[page] = {}
+    #     # Rearrange inputs
+    #     # Change the column name in sql table usr_attr and usr_value
+    #     book_inputs = {}
+    #     ins = {}
+    #     for input_pages in data['inputs']:
+    #         page = input_pages['bms_bookpages_id']
+    #         if book_inputs.get(input_pages['bms_bookpages_id']) is None:
+    #             book_inputs[page] = []
+    #         ins[page] = {}
 
-            for attr in input_pages['data']:
-                ins[page][attr['attribute']] = attr['value']
-            book_inputs[page].append(ins[page])
+    #         for attr in input_pages['data']:
+    #             ins[page][attr['attribute']] = attr['value']
+    #         book_inputs[page].append(ins[page])
 
-        data['book_inputs'] = book_inputs
+    #     data['book_inputs'] = book_inputs
 
-        del data['inputs']
-        del data['inpages']
-        del data['positions']
-        del data['invalues']
-        del data['pagination']
+    #     del data['inputs']
+    #     del data['inpages']
+    #     del data['positions']
+    #     del data['invalues']
+    #     del data['pagination']
 
-        return data
+    #     return data
 
 
 class ItemCreate(BaseModel):
