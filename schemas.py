@@ -460,9 +460,9 @@ class FileBase(BaseModel):
 
         # del data['inputs']
         # del data['inpages']
-        del data['positions']
+        # del data['positions']
         # del data['invalues']
-        del data['pagination']
+        # del data['pagination']
 
         return data
 
