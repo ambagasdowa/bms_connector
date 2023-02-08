@@ -156,7 +156,7 @@ class Page(PageBase):
 #         orm_mode = True
 
 
-class ItemBase(FileBase):
+class ItemBase(File):
     book_id: str
     pages: int
     book_name: str
@@ -244,7 +244,7 @@ class ItemUpdate(BaseModel):
     is_url: bool
 
 
-class Item(FileBase):
+class Item(File):
     id: int
 
     class Config:
