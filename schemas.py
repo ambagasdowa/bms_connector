@@ -444,19 +444,19 @@ class FileBase(BaseModel):
 
         # Rearrange inputs
         # Change the column name in sql table usr_attr and usr_value
-        book_inputs = {}
-        ins = {}
-        for input_pages in data['inputs']:
-            page = input_pages['bms_bookpages_id']
-            if book_inputs.get(input_pages['bms_bookpages_id']) is None:
-                book_inputs[page] = []
-            ins[page] = {}
+        # book_inputs = {}
+        # ins = {}
+        # for input_pages in data['inputs']:
+        #     page = input_pages['bms_bookpages_id']
+        #     if book_inputs.get(input_pages['bms_bookpages_id']) is None:
+        #         book_inputs[page] = []
+        #     ins[page] = {}
 
-            for attr in input_pages['data']:
-                ins[page][attr['attribute']] = attr['value']
-            book_inputs[page].append(ins[page])
+        #     for attr in input_pages['data']:
+        #         ins[page][attr['attribute']] = attr['value']
+        #     book_inputs[page].append(ins[page])
 
-        data['book_inputs'] = book_inputs
+        # data['book_inputs'] = book_inputs
 
         del data['inputs']
         # del data['inpages']
