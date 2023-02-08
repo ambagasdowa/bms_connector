@@ -80,6 +80,7 @@ class Upload(Base):
 
 class File(Base):
     __tablename__ = "bms_books"
+
     id = Column(Integer, primary_key=True, index=True)
     book_id = Column(Integer)
     pages = Column(Integer)
@@ -111,7 +112,6 @@ class File(Base):
 
 class Item(Base):
     __tablename__ = "bms_books"
-    # __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     book_id = Column(Integer, index=True)
