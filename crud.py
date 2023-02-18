@@ -342,13 +342,18 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     print(f"type ===> {type(data)}")
     print("[green]DATA in crud.py[green]")
     print(data)
-
-#    db_srcpos = SourcePositions(**data.dict())
 # NOTE
 # Before Save a new input set, first need to remove all remanents in db of 
 # that book and that page with:
 # db_srcpos.bms_books_id and db_srcpos.bms_bookpages_id
     db_srcpos = SourcePositions(**data.dict())
+# NOTE check first the data from db_srcpos and set to bms_positions and bms_inputs_ctrls and bms_inputs_pages from bms_src_positions
+# bms_inputs_ctrls
+# bms_inputs_pages
+# bms_inputs_values
+# bms_positions {keys:{}}
+# bms_src_positions
+    
     db.add(db_srcpos)
     db.commit()
     db.refresh(db_srcpos)

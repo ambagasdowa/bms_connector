@@ -288,6 +288,10 @@ def srcpositions_action_create(book_id: int, page_id: int, data: list[schemas.So
     print("[red]Cleaning page [red]")
     response = []
     clean = crud.drop_srcpositions(db, book_id, page_id)
+
+    # clean_positions
+    # clean_inputs
+
     print(f"[blue]{clean}[blue]")
     try:
         for srcp in data:
