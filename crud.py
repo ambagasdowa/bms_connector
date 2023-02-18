@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text,func
 
 from .models import Item, Page,File,Upload,Position,Input,SourcePositions
-from .schemas import ItemCreate, ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate,SourcePositionsCreate
+from .schemas import ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate,SourcePositionsCreate
 from typing import Union,List
 
 import urllib
@@ -49,12 +49,12 @@ def get_item(db: Session, id: int):
     return db.query(Item).get(id)
 
 
-def create_item(db: Session, data: ItemCreate):
-    db_item = Item(**data.dict())
-    db.add(db_item)
-    db.commit()
-    db.refresh(db_item)
-    return db_item
+# def create_item(db: Session, data: ItemCreate):
+#     db_item = Item(**data.dict())
+#     db.add(db_item)
+#     db.commit()
+#     db.refresh(db_item)
+#     return db_item
 
 
 def drop_item(db: Session, item_id: int):
@@ -239,61 +239,6 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     db.execute(query)
     db.commit()
 
-    # db_item = Item(**data.dict())
-    # db.add(db_item)
-    # db.commit()
-    # db.refresh(db_item)
-
-    # Insert data
-    # with Session(bind=engine) as session:
-
-    #     book1 = File(
-    #         title="Dead People Who'd Be Influencers Today", str_path=xfile)
-    #     book2 = File(title="How To Make Friends In Your 30s")
-
-    #     session.add_all([book1, book2, author1, author2, author3])
-    #     session.commit()
-
-    # # Open,close, read file and calculate MD5 on its contents
-    #     with open(source, 'rb') as file_to_check:
-    #         # read contents of the file
-    #         data = file_to_check.read()
-    #         # pipe contents of the file through
-    #         md5_returned = hashlib.md5(data).hexdigest()
-
-    #     name, ext = os.path.splitext(filename)
-    #     # uuid,doctype:FAC,idfac,Date,SomeCtrlnum
-    #     split_data = str(name).split('_')
-
-    #     save_file = (split_data[1]+'_'+split_data[2], split_data[0],
-    #                  md5_returned, datetime.now().isoformat(timespec='seconds'), '', 1,)
-
-    #     qry_md5 = "select [_md5sum] from sistemas.dbo.cmex_api_controls_files where [_md5sum] = ?"
-    #     md5 = False
-    #     cursor.execute(qry_md5, (md5_returned,))
-    #     for row in cursor.fetchall():
-    #         if(row[0] == md5_returned):
-    #             md5 = True
-
-    #     if(md5 != True):
-    #         print("[blue] save file : "+str(source)+"[blue]")
-    #         insert_file = 'insert into sistemas.dbo.cmex_api_controls_files \
-    #         (labelname,_filename,_md5sum,created,modified,_status) values( \
-    #         ?,?,?,?,?,? \
-    #         )'
-
-    #         count = cursor.execute(insert_file, save_file)
-    #         cursor.commit()
-
-    #         # get last id from comprobante
-    #         cursor.execute(
-    #             "select IDENT_CURRENT('sistemas.dbo.cmex_api_controls_files') as id")
-
-    #         cmex_api_controls_files_id = cursor.fetchone()[0]
-    #         cursor.commit()
-    #         files_ids.append(str(cmex_api_controls_files_id))
-
-    # return {"success": f"Now going to process your files {[file.filename for file in files]}"}
     return book.id
 
 

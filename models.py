@@ -58,6 +58,7 @@ from .database import Base
 
 class Upload(Base):
     __tablename__ = "bms_controls_files"
+
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, index=True)
     labelname = Column(String, index=True)
@@ -80,6 +81,7 @@ class Upload(Base):
 
 class File(Base):
     __tablename__ = "bms_books"
+
     id = Column(Integer, primary_key=True, index=True)
     book_id = Column(Integer)
     pages = Column(Integer)
@@ -90,6 +92,10 @@ class File(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
+    pagination = relationship("Page")
+    positions = relationship("Position")
+    inputs = relationship("Input")
+
     # urlPages = relationship(
     #     "Page",
     #     backref='Page.bms_books_id',
@@ -120,27 +126,27 @@ class Item(Base):
 #   status = Column(Boolean, default=True)
 
 #    pagination = relationship("Page", back_populates="book")
-    pagination = relationship("Page")
-    positions = relationship("Position"
-                             #                             ,primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
-                             )
-    # srcpositions = relationship("SourcePositions")
-    inputs = relationship("Input"
-                          #                          ,primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
-                          )
-    inpages = relationship("Inpage",
-                           secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
-                           )
-    invalues = relationship("Invalue",
-                            secondary="outerjoin(Input,Invalue,Input.id==Invalue.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
-                            )
+    # pagination = relationship("Page")
+    # positions = relationship("Position"
+    #                          #                             ,primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"
+    #                          )
+    # # srcpositions = relationship("SourcePositions")
+    # inputs = relationship("Input"
+    #                       #                          ,primaryjoin="and_(Item.book_id==Input.bms_books_id,Page.id==Position.bms_bookpages_id)"
+    #                       )
+    # inpages = relationship("Inpage",
+    #                        secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
+    #                        )
+    # invalues = relationship("Invalue",
+    #                         secondary="outerjoin(Input,Invalue,Input.id==Invalue.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
+    #                         )
 
 
 class Page(Base):
     __tablename__ = "bms_bookpages"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bms_books_id = Column(Integer,  ForeignKey("bms_books.book_id"))
 #    bid = Column('bms_books_id', ForeignKey("book_id"))
     book_pages = Column(Integer)
     basename = Column(String, index=True)
@@ -186,7 +192,7 @@ class Position(Base):
     __tablename__ = "bms_positions"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bms_books_id = Column(Integer,  ForeignKey("bms_books.book_id"))
     bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
     page = Column(Integer)
     tagpath = Column(String, index=True)
@@ -233,7 +239,7 @@ class Input(Base):
     __tablename__ = "bms_inputs_ctrls"
 
     id = Column(Integer, primary_key=True, index=True)
-    bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
+    bms_books_id = Column(Integer,  ForeignKey("bms_books.book_id"))
     bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
     label = Column(String, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())

@@ -337,5 +337,12 @@ def books_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
     return books
 
 
+@app.get("/books/{book_id}/{user_id}", response_model=List[schemas.File])
+def files_action_retrieve(book_id: str, user_id: int, db: Session = Depends(get_db)):
+    book = crud.get_book(db, book_id, user_id)
+    if book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return book
+
 # if __name__ == "__main__":
 #     uvicorn.run(app, host='0.0.0.0',  ssl-keyfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.key", ssl-certfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.crt", ssl-keyfile-password=None)
