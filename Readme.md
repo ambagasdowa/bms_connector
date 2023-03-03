@@ -77,6 +77,12 @@ https --verify=no baizabal.xyz:8000/srcpos/4/6 | jq | cat -l json
 https --verify=no baizabal.xyz:8000/items/4/1702 | jq | cat -l json
 ```
 
+- test
+
+```bash
+https --verify=no baizabal.xyz:8000/srcpositions/1 | jq | cat -l json
+```
+
 - files
 
 ```bash
@@ -88,3 +94,19 @@ https --verify=no -f POST baizabal.xyz:8000/upload \
       files@~/Development/book_fisica_002_bachillerato.zip \
       token:'ioafsyudfoansdfnjnkajsnd017341782yhodklasdhjnallaisdfu=='
 ```
+
+# TODO
+
+- Api [Server](https://github.com/ambagasdowa/bms_connector.git) Development
+
+  - [~] Reorder Items method for release mysql work
+  - [~] Add singleton to [items module] logic for serve [one] OR [many-to-many] responses
+  - [ ] Add server or local parameter to img-paths[bookpages:{}] responses
+
+> - [x] : done
+> - [~] : Working on
+> - [ ] : TODO
+
+# Database source
+
+> [database](https://gitlab.com/ambagasdowa/sql/-/raw/master/mariadb/panamericano/bms.sql)
