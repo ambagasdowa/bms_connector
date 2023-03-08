@@ -324,9 +324,10 @@ def get_book(db: Session, book_id: str, user_id: int):
 def get_book_usr(db:Session,book_id:int,user_id:int):
     print(f"[red]book_id ->[blue] {book_id}")
     print(f"[red]user_id ->[blue] {user_id}")
-
+    answers = db.query(Invalue).filter(Invalue.user_id == user_id).all()
+    print(answer)
+    #Do the merge
     response = db.query(File).filter(File.book_id == book_id).all()
-    print(len(response))
     if len(response) == 0 :
         print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
         return None
