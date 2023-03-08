@@ -112,7 +112,7 @@ class File(Base):
 
 
 class Filelist(Base):
-    __tablename__ = "bms_books_view"
+    __tablename__ = "bms_view_books"
 
     id = Column(Integer, primary_key=True, index=True)
     book_id = Column(Integer)
