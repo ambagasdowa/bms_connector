@@ -327,7 +327,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 
     response = db.query(File).filter(File.book_id == book_id).all()
     print(len(response))
-    if response is None :
+    if len(response) == 0 :
         print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
         return {"msg":f"book {book_id} not found"}
     else:
