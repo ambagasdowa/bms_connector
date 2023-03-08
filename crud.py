@@ -325,7 +325,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(f"[red]book_id ->[blue] {book_id}")
     print(f"[red]user_id ->[blue] {user_id}")
     answers = db.query(Invalue).filter(Invalue.user_id == user_id).all()
-    print(answer)
+    print(answers)
     #Do the merge
     response = db.query(File).filter(File.book_id == book_id).all()
     if len(response) == 0 :
