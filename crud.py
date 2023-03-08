@@ -316,6 +316,17 @@ def list_books(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Filelist).offset(skip).limit(limit).all()
 
 def get_book(db: Session, book_id: str, user_id: int):
-    print(f"user_id -> {user_id}")
+    print(f"[red]book_id ->[blue] {book_id}")
+    print(f"[red]user_id ->[blue] {user_id}")
+
+    book = get_book_usr(db,book_id,user_id)
+    if book is None:
+        return {"msg":"book not found"}
+    else:
+        return book
+
+
+def get_book_usr(db:Session,book_id:int,user_id:int):
+
     return db.query(File).filter(File.book_id == book_id).all()
 
