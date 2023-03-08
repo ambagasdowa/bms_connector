@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text,func
 
-from .models import Item, Page,File,Upload,Position,Input,SourcePositions
+from .models import Item, Page,File,Filelist,Upload,Position,Input,SourcePositions
 from .schemas import ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate,SourcePositionsCreate
 from typing import Union,List
 
@@ -313,5 +313,8 @@ def drop_srcpositions(db: Session, book_id: int,page_id:int):
 
 
 def list_books(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(File).offset(skip).limit(limit).all()
+    return db.query(Filelist).offset(skip).limit(limit).all()
+
+def get_book(db: Session, book_id: str, user_id: int):
+    return db.query(Item).filter(Item.book_id == book_id, Item.user_id == user_id).all()
 

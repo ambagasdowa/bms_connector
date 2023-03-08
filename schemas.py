@@ -502,3 +502,28 @@ class File(FileBase):
 
     class Config:
         orm_mode = True
+
+
+# FILE SECTION
+
+class FilelistBase(BaseModel):
+    book_id: int
+    pages: int
+    book_name: str
+    is_url: bool
+    created: datetime
+    modified: Union[datetime, None] = None
+    status: bool
+
+
+class FilelistCreate(BaseModel):
+    pass
+
+class FilelistUpdate(BaseModel):
+    pass
+
+class Filelist(FileBase):
+    id: int
+
+    class Config:
+        orm_mode = True
