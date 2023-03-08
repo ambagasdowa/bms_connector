@@ -321,7 +321,7 @@ def get_book(db: Session, book_id: str, user_id: int):
 
     book = get_book_usr(db,book_id,user_id)
     if book is None:
-        return {"msg":"book not found"}
+        return {"msg":f"book {book_id} not found"}
     else:
         return book
 
