@@ -316,17 +316,19 @@ def list_books(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Filelist).offset(skip).limit(limit).all()
 
 def get_book(db: Session, book_id: str, user_id: int):
-    print(f"[red]book_id ->[blue] {book_id}")
-    print(f"[red]user_id ->[blue] {user_id}")
 
-    book = get_book_usr(db,book_id,user_id)
-    if book is None:
-        return {"msg":f"book {book_id} not found"}
-    else:
-        return book
+    return get_book_usr(db,book_id,user_id)
+
 
 
 def get_book_usr(db:Session,book_id:int,user_id:int):
+    print(f"[red]book_id ->[blue] {book_id}")
+    print(f"[red]user_id ->[blue] {user_id}")
 
-    return db.query(File).filter(File.book_id == book_id).all()
+    response = db.query(File).filter(File.book_id == book_id).all()
+
+    if response is None :
+        return {"msg":f"book {book_id} not found"}
+    else:
+        return response
 
