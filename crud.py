@@ -329,8 +329,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(len(response))
     if len(response) == 0 :
         print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
-        resp = f"book {book_id} not found"
-        return {"msg":resp}
+        return None
     else:
         return response
 
