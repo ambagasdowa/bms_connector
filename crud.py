@@ -316,5 +316,6 @@ def list_books(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Filelist).offset(skip).limit(limit).all()
 
 def get_book(db: Session, book_id: str, user_id: int):
-    return db.query(File).filter(File.book_id == book_id, File.user_id == user_id).all()
+    print(f"user_id -> {user_id}")
+    return db.query(File).filter(File.book_id == book_id).all()
 
