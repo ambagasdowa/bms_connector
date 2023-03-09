@@ -387,20 +387,20 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 #    book_inputs=('test','key',) 
 
     # setattr(response, "book_inputs", book_inputs)
-    response.book_inputs.append(f"{book_inputs}")
+#    response.book_inputs.append(f"{book_inputs}")
     # response = {**response,"books_inputs":book_inputs}
 
 
-    # for z in response:
-    #     # print(z)
-    #     print(z.sourcePositions)
-    #     print(z.book_name)
-    #     z.book_name = "this is a name test ...."
-    #     # z.append(book_inputs)
-    #     for pos in z.sourcePositions:
-    #         # for k,v in pos:
-    #         #     print (k,v)
-    #         print(dir(pos))
+    for z in response:
+        print(z)
+        print(z.sourcePositions)
+        print(z.book_name)
+        z.book_name = "this is a name test ...."
+        # z.append(book_inputs)
+        for pos in z.sourcePositions:
+            # for k,v in pos:
+            #     print (k,v)
+            print(dir(pos))
 
     number_list = []
     string_list = []
