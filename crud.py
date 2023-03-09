@@ -381,8 +381,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
     print(type(response))
-    print(response.book_name)
-    print(response.book_id)
+    print(response.json())
 
 
 
