@@ -388,12 +388,13 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     #setattr(response, "book_inputs", book_inputs)
 
     for z in response:
-        print(z)
-        print(z.sourcePositions)
-        print(z.book_pages)
-        print(z.book_pages_maps)
+        # print(z)
+        # print(z.sourcePositions)
+        # print(z.book_pages)
 
         for pos in z.sourcePositions:
+            for k,v in pos:
+                print (k,v)
             print(dir(pos))
 
     number_list = []
