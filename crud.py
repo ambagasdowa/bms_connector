@@ -391,7 +391,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         # print(z)
         print(z.sourcePositions)
         print(z.book_name)
-
+        z.book_name = "edition"
         for pos in z.sourcePositions:
             # for k,v in pos:
             #     print (k,v)
