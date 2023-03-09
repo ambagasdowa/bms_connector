@@ -380,10 +380,10 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Build the object 
     # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
-
-    for key, value in response:
+    print(response.keys())
+    resp_data = response.dict(exclude_unset=True)
+    for key, value in hero_data.items():
         print( key, value)
-
 
 
 
