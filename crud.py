@@ -381,12 +381,31 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
     print(type(response))
-    for idx in response:
-        print(idx)
+
+
+    number_list = []
+    string_list = []
+
+    for item in response:
+        if isinstance(item, list):
+            print("Yes", item, 'is a nested list')
+        if isinstance(item, (int, float, complex)):
+            number_list.append(item)
+        elif isinstance(item, str):
+            string_list.append(item)
+    # String List
+    print(string_list)
+    # Output ['Emma', 'Stevan', 'Eric']
+
+    # Number list
+    print(number_list)
+    # Output [12, 45.6, (1+2j)]
+
     #response["book_inputs"] = book_inputs
     if len(response) == 0 :
         print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
         return None
     else:
+        print(f"length of list -> {len(response)}")
         return response
 
