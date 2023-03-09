@@ -397,9 +397,9 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         print(z.book_name)
         z.book_name = "this is a name test ...."
         print(dir(z.book_inputs))
-        z['book_inputs'] = book_inputs
-        for inp in z.book_inputs:
-            print(dir(inp))
+        # z['book_inputs'] = book_inputs
+        # for inp in z.book_inputs:
+        #     print(dir(inp))
         for pos in z.sourcePositions:
             # for k,v in pos:
             #     print (k,v)
