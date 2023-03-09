@@ -355,7 +355,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # status               tinyint(1)        NO         1
     # ===================  ================  ====  ===  =======  ==============
 
-    inputs_ctrls = db.query(Input).filter(Input.book_id == book_id).all()
+    inputs_ctrls = db.query(Input).filter(Input.bms_books_id == book_id).all()
     for b in inputs_ctrls.items():
         print(b)
 
