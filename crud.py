@@ -379,24 +379,27 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(type(book_inputs))
     # Build the object 
     # Do the merge whit the response
-    response = db.query(File).filter(File.book_id == book_id).all()
+    xresponse = db.query(File).filter(File.book_id == book_id).all()
     print(f"[red]RESPONSE:[/red]")
     print(dir(response))
 
     # ISCOMMIT??
-
+    
     #setattr(response, "book_inputs", book_inputs)
 
-    for z in response:
-        # print(z)
-        print(z.sourcePositions)
-        print(z.book_name)
-        z.book_name = "this is a name test ...."
-        # z.append(book_inputs)
-        for pos in z.sourcePositions:
-            # for k,v in pos:
-            #     print (k,v)
-            print(dir(pos))
+    response = {**xresponse,"books_inputs":book_inputs}
+
+
+    # for z in response:
+    #     # print(z)
+    #     print(z.sourcePositions)
+    #     print(z.book_name)
+    #     z.book_name = "this is a name test ...."
+    #     # z.append(book_inputs)
+    #     for pos in z.sourcePositions:
+    #         # for k,v in pos:
+    #         #     print (k,v)
+    #         print(dir(pos))
 
     number_list = []
     string_list = []
