@@ -457,6 +457,7 @@ class FileBase(BaseModel):
         #     book_inputs[page].append(ins[page])
 
         # data['book_inputs'] = book_inputs
+        data['book_inputs'] = []
 
         del data['inputs']
         del data['positions']
