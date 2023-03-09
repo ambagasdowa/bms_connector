@@ -388,9 +388,10 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     #setattr(response, "book_inputs", book_inputs)
 #    response.append(book_inputs)
 
-    for z in response:
-        for pos in z.sourcePositions:
-            print(dir(pos))
+    for z in response.iter():
+        print(z)
+        # for pos in z.sourcePositions:
+        #     print(dir(pos))
 
     number_list = []
     string_list = []
