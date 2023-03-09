@@ -317,7 +317,7 @@ def list_books(db: Session, skip: int = 0, limit: int = 100):
 
 def get_book(db: Session, book_id: str, user_id: int):
 
-    return get_book_usr(db,book_id,user_id)f"book {book_id} not found"
+    return get_book_usr(db,book_id,user_id)
 
 
 
