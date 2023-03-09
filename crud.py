@@ -380,7 +380,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Build the object 
     # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
-    response["book_inputs"] = book_inputs
+    print(type(response))
+    #response["book_inputs"] = book_inputs
     if len(response) == 0 :
         print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
         return None
