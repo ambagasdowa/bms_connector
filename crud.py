@@ -380,9 +380,9 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Build the object 
     # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
-    resp_data = response.dict(exclude_unset=True)
-    for key, value in hero_data.items():
-        print( key, value)
+    # resp_data = response.dict(exclude_unset=True)
+    # for key, value in hero_data.items():
+    #     print( key, value)
 
 
 
@@ -403,10 +403,10 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Number list
     print(number_list)
     # Output [12, 45.6, (1+2j)]
-    fake_db = {}
-    json_compatible_item_data = jsonable_encoder(response)
-    fake_db[id] = json_compatible_item_data
-    print(fake_db)
+    # fake_db = {}
+    # json_compatible_item_data = jsonable_encoder(response)
+    # fake_db[id] = json_compatible_item_data
+    # print(fake_db)
 
     #response["book_inputs"] = book_inputs
     if len(response) == 0 :
