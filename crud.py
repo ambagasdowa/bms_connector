@@ -382,6 +382,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     response = db.query(File).filter(File.book_id == book_id).all()
     print(type(response))
     print(response.headers)
+    print(response.content)
 
 
 
