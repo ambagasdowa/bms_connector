@@ -376,7 +376,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             book_inputs[b.bms_bookpages_id][x.attribute] = x.value
     print(f"[red]BOOK_INPUTS:[/red]")
     print(book_inputs)
-
+    print(type(book_inputs))
     # Build the object 
     # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
