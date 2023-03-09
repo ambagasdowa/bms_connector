@@ -358,8 +358,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     inputs_ctrls = db.query(Input).filter(Input.bms_books_id == book_id).all()
 
     for b in inputs_ctrls:
-        for attr in b.items():
-            print(attr)
+        for attr,data in b:
+            print(attr,data)
         # print(f"{b.id},{b.bms_books_id},{b.bms_bookpages_id},{b.label}")
 
     # inputs_pages = db.query(Invalue).filter(Invalue.user_id == user_id).all()
