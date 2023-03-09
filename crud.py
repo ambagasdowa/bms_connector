@@ -391,8 +391,6 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     for z in response:
         for pos in z.sourcePositions:
             print(dir(pos))
-        for inp in z.book_inputs:
-            print(dir(inp))
 
     number_list = []
     string_list = []
