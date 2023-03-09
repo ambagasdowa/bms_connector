@@ -381,12 +381,11 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
     print(f"[red]RESPONSE:[/red]")
-    print(response[0])
+    print(dir(response))
+
     for z in response:
         for pos in z.sourcePositions:
-            print(pos.page)
-            for idx in range(len(pos)):
-                print(pos[idx])
+            print(dir(pos))
 
     number_list = []
     string_list = []
