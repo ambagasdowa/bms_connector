@@ -317,14 +317,53 @@ def list_books(db: Session, skip: int = 0, limit: int = 100):
 
 def get_book(db: Session, book_id: str, user_id: int):
 
-    return get_book_usr(db,book_id,user_id)
+    return get_book_usr(db,book_id,user_id)f"book {book_id} not found"
 
 
 
 def get_book_usr(db:Session,book_id:int,user_id:int):
     print(f"[red]book_id ->[blue] {book_id}")
     print(f"[red]user_id ->[blue] {user_id}")
+
+    #have book_id 
+    #MariaDB root@127.0.0.1:db_ediq2021> describe bms_inputs_ctrls
+    # ================  ================  ====  ===  =======  ==============
+    # Field             Type              Null  Key  Default  Extra
+    # ================  ================  ====  ===  =======  ==============
+    # id                int(10) unsigned  NO    PRI  <null>   auto_increment
+    # bms_books_id      int(10) unsigned  NO         <null>
+    # bms_bookpages_id  int(10) unsigned  NO         <null>
+    # label             text              YES        <null>
+    # created           datetime          YES        <null>
+    # modified          datetime          YES        <null>
+    # status            tinyint(1)        NO         1
+    # ================  ================  ====  ===  =======  ==============
+
+    # select * from bms_inputs_ctrls where bms_books_id = book_id
+    # return id,bms_book_id,bms_bookpages_id
+    # MariaDB root@127.0.0.1:db_ediq2021> describe bms_inputs_values
+    # ===================  ================  ====  ===  =======  ==============
+    # Field                Type              Null  Key  Default  Extra
+    # ===================  ================  ====  ===  =======  ==============
+    # id                   int(10) unsigned  NO    PRI  <null>   auto_increment
+    # bms_inputs_ctrls_id  int(10) unsigned  NO         <null>
+    # user_id              int(10) unsigned  NO --> not in bms_inputs_pages
+    # attribute            varchar(255)      YES        <null>
+    # value                text              YES        <null>
+    # created              datetime          YES        <null>
+    # modified             datetime          YES        <null>
+    # status               tinyint(1)        NO         1
+    # ===================  ================  ====  ===  =======  ==============
+
+    inputs_ctrls = db.query(Input).filter(Input.book_id == book_id).all()
+    for b in inputs_ctrls.items():
+        print(b)
+
+    # inputs_pages = db.query(Invalue).filter(Invalue.user_id == user_id).all()
+    # inputs_values= db.query(Invalue).filter(Invalue.user_id == user_id).all()
+
     answers = db.query(Invalue).filter(Invalue.user_id == user_id).all()
+
     print(answers)
     for k in answers:
         print(f"{k.user_id},{k.bms_inputs_ctrls_id},{k.attribute}:{k.value}")
