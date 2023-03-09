@@ -362,21 +362,13 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 
         inputs_pages = db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == b.id).all()
         for k in inputs_pages:
-            print(f"{k.id},{k.bms_inputs_ctrls_id},{k.attribute},{k.value}")
+            print(f"[green]{k.id},{k.bms_inputs_ctrls_id},{k.attribute},{k.value}[/green]")
 
         inputs_values = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == b.id,Invalue.user_id == user_id).all()
         for x in inputs_values:
-            print(f"{x.id},{x.bms_inputs_ctrls_id},{x.attribute},{x.value},{x.user_id}")
-
-    # inputs_pages = db.query(Invalue).filter(Invalue.user_id == user_id).all()
-    # inputs_values= db.query(Invalue).filter(Invalue.user_id == user_id).all()
-
-    answers = db.query(Invalue).filter(Invalue.user_id == user_id).all()
-
-    print(answers)
-    for k in answers:
-        print(f"{k.user_id},{k.bms_inputs_ctrls_id},{k.attribute}:{k.value}")
-    #Do the merge
+            print(f"[cyan]{x.id},{x.bms_inputs_ctrls_id},{x.attribute},{x.value},{x.user_id}[/cyan]")
+    # Build the object 
+    # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
     if len(response) == 0 :
         print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
