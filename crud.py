@@ -390,7 +390,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     for z in response:
         # print(z)
         print(z.sourcePositions)
-        print(z.book_name.str())
+        print(z.book_name)
 
         for pos in z.sourcePositions:
             # for k,v in pos:
