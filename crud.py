@@ -387,8 +387,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 #    book_inputs=('test','key',) 
 
 
-    setattr(response, "book_inputs", book_inputs)
-#    response.append(book_inputs)
+    # setattr(response, "book_inputs", book_inputs)
+    response.append(book_inputs)
     # response = {**response,"books_inputs":book_inputs}
 
 
