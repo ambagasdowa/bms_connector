@@ -402,10 +402,10 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Number list
     print(number_list)
     # Output [12, 45.6, (1+2j)]
-
-    
-    for i in range(len(response)):
-        print(dict([response]))
+    fake_db = {}
+    json_compatible_item_data = jsonable_encoder(response)
+    fake_db[id] = json_compatible_item_data
+    print(fake_db)
 
     #response["book_inputs"] = book_inputs
     if len(response) == 0 :
