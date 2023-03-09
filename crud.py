@@ -357,16 +357,24 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # make the arrange
     inputs_ctrls = db.query(Input).filter(Input.bms_books_id == book_id).all()
 
+    book_inputs = {}
+
     for b in inputs_ctrls:
         print(f"[red]{b.id},{b.bms_books_id},{b.bms_bookpages_id},{b.label}[/red]")
-
         inputs_pages = db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == b.id).all()
+
         for k in inputs_pages:
             print(f"[green]{k.id},{k.bms_inputs_ctrls_id},{k.attribute},{k.value}[/green]")
+
+            book_inputs[b.bms_book_id] += {k.attribute:k.value}
 
         inputs_values = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == b.id,Invalue.user_id == user_id).all()
         for x in inputs_values:
             print(f"[cyan]{x.id},{x.bms_inputs_ctrls_id},{x.attribute},{x.value},{x.user_id}[/cyan]")
+            book_inputs[b.bms_book_id] += {x.attribute:x.value}
+
+    print(book_inputs)
+
     # Build the object 
     # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
