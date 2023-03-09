@@ -397,20 +397,20 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # response = jsonable_encoder(data_up)
 
     response.extend(book_inputs)
-    for z in response:
-        print(z)
-        print(z.sourcePositions)
-        print(z.book_name)
-        z.book_name = "this is a name test ...."
+    # for z in response:
+    #     print(z)
+    #     print(z.sourcePositions)
+    #     print(z.book_name)
+    #     z.book_name = "this is a name test ...."
 
-        print(dir(z.book_inputs))
-        # z['book_inputs'] = book_inputs
-        # for inp in z.book_inputs:
-        #     print(dir(inp))
-        for pos in z.sourcePositions:
-            # for k,v in pos:
-            #     print (k,v)
-            print(dir(pos))
+    #     print(dir(z.book_inputs))
+    #     # z['book_inputs'] = book_inputs
+    #     # for inp in z.book_inputs:
+    #     #     print(dir(inp))
+    #     for pos in z.sourcePositions:
+    #         # for k,v in pos:
+    #         #     print (k,v)
+    #         print(dir(pos))
 
 
 
