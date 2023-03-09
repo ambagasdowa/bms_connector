@@ -394,7 +394,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     str_model = File(**response)
     str_update = File.dict(exclude_unset=True)
     data_up = str_model.copy(update=str_update)
-    print(jsonable_encoder(data_up))
+    response = jsonable_encoder(data_up)
 
 
     for z in response:
