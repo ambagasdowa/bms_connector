@@ -381,7 +381,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Do the merge whit the response
     xresponse = db.query(File).filter(File.book_id == book_id).all()
     print(f"[red]RESPONSE:[/red]")
-    print(dir(response))
+    print(dir(xresponse))
 
     # ISCOMMIT??
     
