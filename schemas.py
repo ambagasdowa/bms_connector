@@ -519,8 +519,10 @@ class FilelistBase(BaseModel):
 class FilelistCreate(BaseModel):
     pass
 
+
 class FilelistUpdate(BaseModel):
     pass
+
 
 class Filelist(FileBase):
     id: int
