@@ -383,7 +383,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(f"[red]RESPONSE:[/red]")
     print(response[0])
     for z in response:
-        for k,v in z.sourcePositions.items():
+        for k,v in z.sourcePositions:
             print(k,v)
 
     number_list = []
