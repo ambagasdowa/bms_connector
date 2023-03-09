@@ -382,7 +382,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     response = db.query(File).filter(File.book_id == book_id).all()
     print(f"[red]RESPONSE:[/red]")
     print(dir(response))
-    
+
+    # ISCOMMIT??
     setattr(response, "book_inputs", book_inputs)
 
     for z in response:
