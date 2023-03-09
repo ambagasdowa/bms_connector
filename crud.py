@@ -354,7 +354,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # modified             datetime          YES        <null>
     # status               tinyint(1)        NO         1
     # ===================  ================  ====  ===  =======  ==============
-
+    # make the arrange
     inputs_ctrls = db.query(Input).filter(Input.bms_books_id == book_id).all()
 
     for b in inputs_ctrls:
