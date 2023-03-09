@@ -404,7 +404,9 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Output [12, 45.6, (1+2j)]
 
     print(dict([response]))
-
+    
+    for i in range(len(response)):
+        print(dict(response))
     #response["book_inputs"] = book_inputs
     if len(response) == 0 :
         print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
