@@ -396,7 +396,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         print(z.sourcePositions)
         print(z.book_name)
         z.book_name = "this is a name test ...."
-        # z.append(book_inputs)
+        z.append(book_inputs)
         for inp in z.book_inputs:
             print(dir(inp))
         for pos in z.sourcePositions:
@@ -404,29 +404,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             #     print (k,v)
             print(dir(pos))
 
-    number_list = []
-    string_list = []
 
-    for item in response:
-        if isinstance(item, list):
-            print("Yes", item, 'is a nested list')
-        if isinstance(item, (int, float, complex)):
-            number_list.append(item)
-        elif isinstance(item, str):
-            string_list.append(item)
-    # String List
-    print(string_list)
-    # Output ['Emma', 'Stevan', 'Eric']
 
-    # Number list
-    print(number_list)
-    # Output [12, 45.6, (1+2j)]
-    # fake_db = {}
-    # json_compatible_item_data = jsonable_encoder(response)
-    # fake_db[id] = json_compatible_item_data
-    # print(fake_db)
-
-    #response["book_inputs"] = book_inputs
     if len(response) == 0 :
         print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
         return None
