@@ -405,7 +405,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 
     
     for i in range(len(response)):
-        print(dict(response))
+        print(dict([response]))
 
     #response["book_inputs"] = book_inputs
     if len(response) == 0 :
