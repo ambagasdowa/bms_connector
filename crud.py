@@ -382,6 +382,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     response = db.query(File).filter(File.book_id == book_id).all()
     print(type(response))
     print(response)
+    for ind,val in response:
+        print (ind,val)
     #response["book_inputs"] = book_inputs
     if len(response) == 0 :
         print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
