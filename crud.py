@@ -383,6 +383,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(type(response))
 
 
+
+
     number_list = []
     string_list = []
 
@@ -400,6 +402,9 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Number list
     print(number_list)
     # Output [12, 45.6, (1+2j)]
+
+    for i in range(len(response)):
+        print(i,response[i])
 
     #response["book_inputs"] = book_inputs
     if len(response) == 0 :
