@@ -391,12 +391,12 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # items[item_id] = jsonable_encoder(updated_item)
 
 
-    str_model = File(**response)
-    str_update = File.dict(exclude_unset=True)
-    data_up = str_model.copy(update=str_update)
-    response = jsonable_encoder(data_up)
+    # str_model = File(**response)
+    # str_update = File.dict(exclude_unset=True)
+    # data_up = str_model.copy(update=str_update)
+    # response = jsonable_encoder(data_up)
 
-
+    response.extend(book_inputs)
     for z in response:
         print(z)
         print(z.sourcePositions)
