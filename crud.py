@@ -386,7 +386,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # ISCOMMIT??
 
     for z in response:
-        setattr(z, "book_inputs", book_inputs)
+        setattr(response.z, "book_inputs", book_inputs)
         for pos in z.sourcePositions:
             print(dir(pos))
 
