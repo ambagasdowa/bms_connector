@@ -380,8 +380,12 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # Build the object 
     # Do the merge whit the response
     response = db.query(File).filter(File.book_id == book_id).all()
-    print(type(response))
-    print(**response.dict())
+
+    for key, value in data:
+        print( key, value)
+
+    print(type(data))
+    print(**data.dict())
 
 
 
