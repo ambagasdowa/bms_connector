@@ -384,11 +384,17 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(dir(response))
 
     # ISCOMMIT??
-#    book_inputs=('test','key',) 
+    # stored_item_data = items[item_id]
+    # stored_item_model = Item(**stored_item_data)
+    # update_data = item.dict(exclude_unset=True)
+    # updated_item = stored_item_model.copy(update=update_data)
+    # items[item_id] = jsonable_encoder(updated_item)
 
-    # setattr(response, "book_inputs", book_inputs)
-#    response.book_inputs.append(f"{book_inputs}")
-    # response = {**response,"books_inputs":book_inputs}
+
+    str_model = File(**response)
+    str_update = File.dict(exclude_unset=True)
+    data_up = str_model.copy(update=str_update)
+    print(jsonable_encoder(data_up))
 
 
     for z in response:
@@ -396,6 +402,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         print(z.sourcePositions)
         print(z.book_name)
         z.book_name = "this is a name test ...."
+
         print(dir(z.book_inputs))
         # z['book_inputs'] = book_inputs
         # for inp in z.book_inputs:
