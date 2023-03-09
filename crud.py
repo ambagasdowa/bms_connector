@@ -374,7 +374,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         for x in inputs_values:
             print(f"[cyan]{x.id},{x.bms_inputs_ctrls_id},{x.attribute},{x.value},{x.user_id}[/cyan]")
             book_inputs[b.bms_bookpages_id][x.attribute] = x.value
-
+    print(f"[red]BOOK_INPUTS:[/red]")
     print(book_inputs)
 
     # Build the object 
