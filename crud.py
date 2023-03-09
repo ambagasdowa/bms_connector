@@ -386,9 +386,9 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # ISCOMMIT??
 #    book_inputs=('test','key',) 
 
-
+    print(content)
     # setattr(response, "book_inputs", book_inputs)
-    response.append(book_inputs)
+    response.append(f"{book_inputs}")
     # response = {**response,"books_inputs":book_inputs}
 
 
