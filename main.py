@@ -331,7 +331,7 @@ def srcpos_action_retrieve(item_id: int,  db: Session = Depends(get_db)):
 # ////////////////////////// DEMO //////////////////////////////////////
 
 
-@app.get("/books", response_model=List[schemas.File])
+@app.get("/books", response_model=List[schemas.Filelist])
 def books_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(get_db)):
     books = crud.list_books(db, offset, limit)
     return books
