@@ -382,7 +382,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     response = db.query(File).filter(File.book_id == book_id).all()
     print(f"[red]RESPONSE:[/red]")
     print(dir(response))
-    print(jsonable_encoder(response))
+    # print(jsonable_encoder(response))
     # ISCOMMIT??
     # stored_item_data = items[item_id]
     # stored_item_model = Item(**stored_item_data)
@@ -396,7 +396,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # data_up = str_model.copy(update=str_update)
     # response = jsonable_encoder(data_up)
 
-    response.extend(book_inputs)
+    # response.extend(book_inputs)
     # for z in response:
     #     print(z)
     #     print(z.sourcePositions)
@@ -412,12 +412,12 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     #         #     print (k,v)
     #         print(dir(pos))
 
+    return Response(content=book_inputs, media_type="application/json")
 
-
-    if len(response) == 0 :
-        print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
-        return None
-    else:
-        print(f"length of list -> {len(response)}")
-        return response
+    # if len(response) == 0 :
+    #     print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
+    #     return None
+    # else:
+    #     print(f"length of list -> {len(response)}")
+    #     return response
 
