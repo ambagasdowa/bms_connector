@@ -391,9 +391,10 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # print(type(book_inputs))
     # print(jsonable_encoder(book_inputs))
     
-    setattr(response[0], 'book_inputs', jsonable_encoder(book_inputs))
+    # setattr(response[0], 'book_inputs', jsonable_encoder(book_inputs))
+    new_response = {**response[0], "book_inputs": jsonable_encoder(book_inputs)}
 
-    print(jsonable_encoder(response))
+    print(jsonable_encoder(new_response))
 
     for data in response:
         print(type(data))
