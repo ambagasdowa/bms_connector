@@ -442,5 +442,5 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         return None
     else:
         print(f"length of list -> {len(response)}")
-        return response
+        return JSONResponse(content=jsonable_encoder(response))
 
