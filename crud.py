@@ -362,28 +362,30 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # make the arrange
     inputs_ctrls = db.query(Input).filter(Input.bms_books_id == book_id).all()
 
-    book_inputs = {}
+    book_input = {}
+    book_inputs = []
     books = {}
 
     for b in inputs_ctrls:
         print(f"[red]{b.id},{b.bms_books_id},{b.bms_bookpages_id},{b.label}[/red]")
-        book_inputs[b.bms_bookpages_id] = {}
+        book_input[b.bms_bookpages_id] = {}
         inputs_pages = db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == b.id).all()
 
         for k in inputs_pages:
             print(f"[green]{k.id},{k.bms_inputs_ctrls_id},{k.attribute},{k.value}[/green]")
 
-            book_inputs[b.bms_bookpages_id][k.attribute] = k.value
+            book_input[b.bms_bookpages_id][k.attribute] = k.value
 
         inputs_values = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == b.id,Invalue.user_id == user_id).all()
         for x in inputs_values:
             print(f"[cyan]{x.id},{x.bms_inputs_ctrls_id},{x.attribute},{x.value},{x.user_id}[/cyan]")
-            book_inputs[b.bms_bookpages_id][x.attribute] = x.value
+            book_input[b.bms_bookpages_id][x.attribute] = x.value
     print(f"[red]BOOK_INPUTS:[/red]")
-    print(book_inputs)
-    print(type(book_inputs))
+    print(book_input)
+    print(type(book_input))
     # Build the object 
     # Do the merge whit the response
+    book_inputs.append(book_input)
     response = db.query(File).filter(File.book_id == book_id).all()
     print(f"[red]RESPONSE:[/red]")
     # print(dir(response))
@@ -393,7 +395,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         print(type(data))
         response_json = jsonable_encoder(data)
         response_json['book_inputs'] = book_inputs
-        setattr(data,'book_inputs',[book_inputs])
+        setattr(data,'book_inputs',book_inputs)
 
 
         # print(JSONResponse(content=jsonable_encoder(data)))
