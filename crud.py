@@ -387,7 +387,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(dir(response))
     print(response)
     for data in response:
-        print(data)
+        print(type(data))
     # print(jsonable_encoder(response))
     # ISCOMMIT??
     # stored_item_data = items[item_id]
