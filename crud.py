@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text,func
 
 from fastapi import Response
+from fastapi.responses import JSONResponse
 
 from .models import Item, Page,File,Filelist,Upload,Position,Input,Inpage,Invalue,SourcePositions,Invalue
 from .schemas import ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate,SourcePositionsCreate
@@ -414,7 +415,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     #         #     print (k,v)
     #         print(dir(pos))
 
-    return Response(content=book_inputs)
+    return book_inputs
 
     # if len(response) == 0 :
     #     print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
