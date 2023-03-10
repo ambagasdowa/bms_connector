@@ -365,6 +365,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     book_input = {}
     book_inputs = []
     books = {}
+    input_pages = []
 
     for b in inputs_ctrls:
         print(f"[red]{b.id},{b.bms_books_id},{b.bms_bookpages_id},{b.label}[/red]")
@@ -376,13 +377,14 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             print(f"[green]{k.id},{k.bms_inputs_ctrls_id},{k.attribute},{k.value}[/green]")
 
             book_input[b.bms_bookpages_id][k.attribute] = k.value
+            input_pages[b.bms_book_pages_id].append(k.attribute,k.value)
 
         inputs_values = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == b.id,Invalue.user_id == user_id).all()
         for x in inputs_values:
             print(f"[cyan]{x.id},{x.bms_inputs_ctrls_id},{x.attribute},{x.value},{x.user_id}[/cyan]")
             book_input[b.bms_bookpages_id][x.attribute] = x.value
 
-
+    print(input_pages)
     book_inputs.append(book_input)
     print(jsonable_encoder(book_inputs))
     response = db.query(File).filter(File.book_id == book_id).all()
