@@ -389,7 +389,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(dir(response))
     print(jsonable_encoder(response))
     response_json = jsonable_encoder(response)
-    response_json['book_inputs'] = book_inputs
+    response_json[0]['book_inputs'] = book_inputs
 
     for data in response:
         print(type(data))
