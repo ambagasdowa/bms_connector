@@ -380,21 +380,12 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         for x in inputs_values:
             print(f"[cyan]{x.id},{x.bms_inputs_ctrls_id},{x.attribute},{x.value},{x.user_id}[/cyan]")
             book_input[b.bms_bookpages_id][x.attribute] = x.value
-    # print(f"[red]BOOK_INPUTS:[/red]")
-    # print(book_input)
-    # print(type(book_input))
-    # Build the object 
-    # Do the merge whit the response
-    book_inputs.append(book_input)
-    response = db.query(File).filter(File.book_id == book_id).all()
-    print(f"[red]RESPONSE:[/red]")
-    # print(type(book_inputs))
-    # print(jsonable_encoder(book_inputs))
-    
-    setattr(response[0], 'book_inputs', jsonable_encoder(book_inputs))
-    # resp = response[0]
-    # new_response = {**resp, "book_inputs": jsonable_encoder(book_inputs)}
 
+
+    book_inputs.append(book_input)
+    print(jsonable_encoder(book_inputs))
+    response = db.query(File).filter(File.book_id == book_id).all()
+    setattr(response[0], 'book_inputs', jsonable_encoder(book_inputs))
     print(jsonable_encoder(response))
 
     for data in response:
@@ -404,38 +395,6 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         # setattr(data,'book_inputs',book_inputs)
         # print(JSONResponse(content=jsonable_encoder(data)))
         print(jsonable_encoder(data))
-
-    # ISCOMMIT??
-    # stored_item_data = items[item_id]
-    # stored_item_model = Item(**stored_item_data)
-    # update_data = item.dict(exclude_unset=True)
-    # updated_item = stored_item_model.copy(update=update_data)
-    # items[item_id] = jsonable_encoder(updated_item)
-    # for data_response in response :
-    #     # setattr(data_response, 'book_inputs', book_inputs)
-    #     # data_response.append(book_inputs)
-    #     print(list(**data_response))
-
-    # str_model = File(**response)
-    # str_update = File.dict(exclude_unset=True)
-    # data_up = str_model.copy(update=str_update)
-    # response = jsonable_encoder(data_up)
-
-    # response.extend(book_inputs)
-    # for z in response:
-    #     print(z)
-    #     print(z.sourcePositions)
-    #     print(z.book_name)
-    #     z.book_name = "this is a name test ...."
-
-    #     print(dir(z.book_inputs))
-    #     # z['book_inputs'] = book_inputs
-    #     # for inp in z.book_inputs:
-    #     #     print(dir(inp))
-    #     for pos in z.sourcePositions:
-    #         # for k,v in pos:
-    #         #     print (k,v)
-    #         print(dir(pos))
 
     # return book_inputs
 
