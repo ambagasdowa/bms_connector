@@ -415,12 +415,12 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     #         #     print (k,v)
     #         print(dir(pos))
 
-    return book_inputs
+    # return book_inputs
 
-    # if len(response) == 0 :
-    #     print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
-    #     return None
-    # else:
-    #     print(f"length of list -> {len(response)}")
-    #     return response
+    if len(response) == 0 :
+        print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
+        return None
+    else:
+        print(f"length of list -> {len(response)}")
+        return response
 
