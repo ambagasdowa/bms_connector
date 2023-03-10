@@ -387,7 +387,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     response = db.query(File).filter(File.book_id == book_id).all()
     print(f"[red]RESPONSE:[/red]")
     print(dir(response))
-    print(jsonable_encoder(response))
+    print(jsonable_encoder(book_inputs))
 
     for data in response:
         print(type(data))
