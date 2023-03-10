@@ -385,6 +385,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     response = db.query(File).filter(File.book_id == book_id).all()
     print(f"[red]RESPONSE:[/red]")
     print(dir(response))
+    print(response)
     # print(jsonable_encoder(response))
     # ISCOMMIT??
     # stored_item_data = items[item_id]
