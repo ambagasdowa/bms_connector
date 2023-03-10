@@ -7,6 +7,8 @@ from sqlalchemy import text,func
 
 from fastapi import Response
 from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
+
 
 from .models import Item, Page,File,Filelist,Upload,Position,Input,Inpage,Invalue,SourcePositions,Invalue
 from .schemas import ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate,SourcePositionsCreate
