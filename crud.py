@@ -380,19 +380,20 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         for x in inputs_values:
             print(f"[cyan]{x.id},{x.bms_inputs_ctrls_id},{x.attribute},{x.value},{x.user_id}[/cyan]")
             book_input[b.bms_bookpages_id][x.attribute] = x.value
-    print(f"[red]BOOK_INPUTS:[/red]")
-    print(book_input)
-    print(type(book_input))
+    # print(f"[red]BOOK_INPUTS:[/red]")
+    # print(book_input)
+    # print(type(book_input))
     # Build the object 
     # Do the merge whit the response
     book_inputs.append(book_input)
     response = db.query(File).filter(File.book_id == book_id).all()
     print(f"[red]RESPONSE:[/red]")
-    # print(dir(response))
-    print(jsonable_encoder(book_inputs))
+    # print(type(book_inputs))
+    # print(jsonable_encoder(book_inputs))
     
     setattr(response[0], 'book_inputs', jsonable_encoder(book_inputs))
 
+    print(jsonable_encoder(response))
 
     for data in response:
         print(type(data))
