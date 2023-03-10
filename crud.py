@@ -414,7 +414,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     #         #     print (k,v)
     #         print(dir(pos))
 
-    return Response(content=book_inputs, media_type="application/json")
+    return Response(content=book_inputs)
 
     # if len(response) == 0 :
     #     print(f"[red]book id[/red] [cyan] {book_id}[/cyan][red] not found")
