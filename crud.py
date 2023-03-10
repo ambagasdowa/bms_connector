@@ -391,7 +391,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # print(dir(response))
     # print(jsonable_encoder(book_inputs))
     
-    setattr(response[0], 'book_inputs', book_inputs)
+    setattr(response[0], 'book_inputs', jsonable_encoder(book_inputs))
 
 
     for data in response:
