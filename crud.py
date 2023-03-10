@@ -390,16 +390,17 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(f"[red]RESPONSE:[/red]")
     # print(dir(response))
     # print(jsonable_encoder(book_inputs))
-
-    for data in response:
-        print(type(data))
-        response_json = jsonable_encoder(data)
-        response_json['book_inputs'] = book_inputs
-        setattr(data,'book_inputs',book_inputs)
+    
+    setattr(response[0], 'book_inputs', book_inputs)
 
 
-        # print(JSONResponse(content=jsonable_encoder(data)))
-        print(jsonable_encoder(data))
+#     for data in response:
+#         print(type(data))
+#         response_json = jsonable_encoder(data)
+#         response_json['book_inputs'] = book_inputs
+#         setattr(data,'book_inputs',book_inputs)
+#         # print(JSONResponse(content=jsonable_encoder(data)))
+#         print(jsonable_encoder(data))
 
     # ISCOMMIT??
     # stored_item_data = items[item_id]
