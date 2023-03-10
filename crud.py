@@ -393,7 +393,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # updated_item = stored_item_model.copy(update=update_data)
     # items[item_id] = jsonable_encoder(updated_item)
     for data_response in response :
-        setattr(data_response, 'book_inputs', book_inputs)
+        # setattr(data_response, 'book_inputs', book_inputs)
+        data_response.append(book_inputs)
 
     # str_model = File(**response)
     # str_update = File.dict(exclude_unset=True)
