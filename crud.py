@@ -381,7 +381,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             print(f"[green]{k.id},{k.bms_inputs_ctrls_id},{k.attribute},{k.value}[/green]")
             book_input[b.bms_bookpages_id][k.attribute] = k.value
 
-            books.append((b.bms_bookpages_id,k.id,(f"{k.attribute}:{k.value}"),))
+            books.append((b.bms_bookpages_id,k.id,(f"'{k.attribute}':'{k.value}''"),))
 
         inputs_values = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == b.id,Invalue.user_id == user_id).all()
         for x in inputs_values:
