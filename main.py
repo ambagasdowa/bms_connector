@@ -342,6 +342,8 @@ def books_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
 @app.get("/books/{book_id}/{user_id}", response_model=List[Union[schemas.File]])
 def books_action_retrieve(book_id: str, user_id: int, db: Session = Depends(get_db)):
     book = crud.get_book(db, book_id, user_id)
+    print(f"BOOKS::")
+    print(book)
     if book is None:
         raise HTTPException(status_code=404, detail="Book not found")
     return book
