@@ -360,11 +360,15 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # status               tinyint(1)        NO         1
     # ===================  ================  ====  ===  =======  ==============
     # make the arrange
+
+
+
+
     inputs_ctrls = db.query(Input).filter(Input.bms_books_id == book_id).all()
 
     book_input = {}
     book_inputs = []
-    books = {}
+#    books = {}
     input_pages = []
 
     for b in inputs_ctrls:
@@ -375,8 +379,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         for k in inputs_pages:
             print(k)
             print(f"[green]{k.id},{k.bms_inputs_ctrls_id},{k.attribute},{k.value}[/green]")
-
-            book_input[b.bms_bookpages_id][k.attribute] = k.value
+            book_input[b.bms_bookpages_id][k.id][k.attribute] = k.value
 
         inputs_values = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == b.id,Invalue.user_id == user_id).all()
         for x in inputs_values:
@@ -384,19 +387,21 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             book_input[b.bms_bookpages_id][x.attribute] = x.value
 
     print(input_pages)
+
     book_inputs.append(book_input)
     print(jsonable_encoder(book_inputs))
+
     response = db.query(File).filter(File.book_id == book_id).all()
     setattr(response[0], 'book_inputs', jsonable_encoder(book_inputs))
     print(jsonable_encoder(response))
 
-    for data in response:
-        print(type(data))
-        # response_json = jsonable_encoder(data)
-        # response_json['book_inputs'] = book_inputs
-        # setattr(data,'book_inputs',book_inputs)
-        # print(JSONResponse(content=jsonable_encoder(data)))
-        print(jsonable_encoder(data))
+    # for data in response:
+    #     print(type(data))
+    #     # response_json = jsonable_encoder(data)
+    #     # response_json['book_inputs'] = book_inputs
+    #     # setattr(data,'book_inputs',book_inputs)
+    #     # print(JSONResponse(content=jsonable_encoder(data)))
+    #     print(jsonable_encoder(data))
 
     # return book_inputs
 
