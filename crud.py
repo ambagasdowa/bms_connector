@@ -400,6 +400,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print("[red]JASONABLE:")
     for inresp in response :
         print(inresp)
+        setattr(inresp, 'book_inputs', jsonable_encoder(book_inputs))
     # for data in response:
     #     print(type(data))
     #     # response_json = jsonable_encoder(data)
