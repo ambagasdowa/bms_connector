@@ -396,7 +396,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(jsonable_encoder(book_inputs))
 
     response = db.query(File).filter(File.book_id == book_id).all()
-#    setattr(response[0], 'book_inputs', jsonable_encoder(books))
+    setattr(response[0], 'book_inputs', jsonable_encoder(books))
     print(jsonable_encoder(response))
 
     # for data in response:
@@ -414,5 +414,6 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         return None
     else:
         print(f"length of list -> {len(response)}")
-        return JSONResponse(content=jsonable_encoder(response))
+        #return JSONResponse(content=jsonable_encoder(response))
+        return response
 
