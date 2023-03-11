@@ -369,12 +369,11 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     book_input = {}
     book_inputs = []
     books = []
-    ip = []
-    iv = []
+    input_pages = []
 
     for b in inputs_ctrls:
         print(f"[red]{b.id},{b.bms_books_id},{b.bms_bookpages_id},{b.label}[/red]")
-        book_inputs[b.bms_bookpages_id] = {}
+        book_input[b.bms_bookpages_id] = {}
         inputs_pages = db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == b.id).all()
 
         for k in inputs_pages:
