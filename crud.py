@@ -398,6 +398,10 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     response = db.query(File).filter(File.book_id == book_id).all()
 #    setattr(response[0], 'book_inputs', jsonable_encoder(books))
     print("[red]JASONABLE:")
+    for inresp in response :
+        print(inresp)
+        print(jsonable_encoder(inresp))
+
     print(jsonable_encoder(response))
 
     # for data in response:
