@@ -394,7 +394,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         for x in inputs_values:
             print(f"[cyan]{x.id},{x.bms_inputs_ctrls_id},{x.attribute},{x.value},{x.user_id}[/cyan]")
 
-            book_input[b.bms_bookpages_id][x.attribute] = x.value
+#            book_input[b.bms_bookpages_id][x.attribute] = x.value
+            book_input[b.bms_bookpages_id] = (jsonable_encoder(x),)
             books.append((b.bms_bookpages_id,x.id,x.attribute,x.value,))
 
 
