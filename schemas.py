@@ -354,7 +354,7 @@ class UploadBase(BaseModel):
     ip_remote: str
     created: datetime
     modified: datetime
-    status = bool
+    status: bool
 
 
 class UploadCreate(BaseModel):
