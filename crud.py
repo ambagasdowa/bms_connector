@@ -373,6 +373,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     book_inputs = []
     books = []
     input_pages = []
+    new_response = {}
 
     for b in inputs_ctrls:
         print(f"[red]{b.id},{b.bms_books_id},{b.bms_bookpages_id},{b.label}[/red]")
@@ -407,7 +408,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     new_response = jsonable_encoder(response)
     print("[red]JASONABLE:")
     print(new_response)
-    new_response['book_inputs'] = book_inputs
+    new_response['book_inputs'] = jsonable_encoder(book_inputs)
 
     # for data in response:
     #     print(type(data))
