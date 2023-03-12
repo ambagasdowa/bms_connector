@@ -400,10 +400,9 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 
     response = db.query(File).filter(File.book_id == book_id).all()
 #    setattr(response[0], 'book_inputs', jsonable_encoder(books))
+    new_response = jsonable_encoder(resonse)
     print("[red]JASONABLE:")
-    
-    response_dict = response.list()
-    response_dict.update({"price_with_tax": 10})
+    print(new_response)
 
 
     # for data in response:
