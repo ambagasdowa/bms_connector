@@ -404,6 +404,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 
     for resp in response:
         print(resp.sourcePositions)
+        print(resp.positions)
 
     new_response = jsonable_encoder(response)
     print("[red]JASONABLE:")
