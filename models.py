@@ -92,9 +92,9 @@ class File(Base):
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
     # sourcePositions = relationship("SourcePositions")
-    pagination = relationship("Page")
-    positions = relationship("Position")
-    inputs = relationship("Input")
+    # pagination = relationship("Page")
+    # positions = relationship("Position")
+    # inputs = relationship("Input")
 
     # urlPages = relationship(
     #     "Page",
