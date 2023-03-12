@@ -411,8 +411,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     #     print(resp.positions)
     #     print(resp.pagination)
 
-    new_response = jsonable_encoder(response)
-    print("[red]JASONABLE:")
+    # new_response = jsonable_encoder(response)
+    # print("[red]JASONABLE:")
     # print(type(new_response))
     # print(new_response)
     # new_response['book_inputs'] = jsonable_encoder(book_inputs)
@@ -433,5 +433,5 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     else:
         print(f"length of list -> {len(response)}")
         #return JSONResponse(content=jsonable_encoder(response))
-        return new_response
+        return response
 
