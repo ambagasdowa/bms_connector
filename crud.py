@@ -388,7 +388,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 
             kid = b.bms_books_id
             inblock = jsonable_encoder(k)
-            inner_input.append(inblock,)
+            inner_input.append(inblock)
 
             inner_block= inner_block, f"{kid}:{inblock}"
 
