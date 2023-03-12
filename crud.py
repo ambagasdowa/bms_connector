@@ -370,7 +370,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 
     book_input = {}
     book_inputs = []
-    inner_input = {}
+    inner_input = []
     books = []
     input_pages = []
     new_response = {}
