@@ -149,7 +149,7 @@ class SourcePositionsBase(BaseModel):
     y2: float
     created: datetime
     modified: Union[datetime, None] = None
-    status = bool
+    status: bool
 
 
 class SourcePositionsCreate(BaseModel):
@@ -385,7 +385,7 @@ class UploadUpdate(BaseModel):
     ip_remote: str
     created: datetime
     modified: datetime
-    status = bool
+    status: bool
 
 
 class Upload(UploadBase):
