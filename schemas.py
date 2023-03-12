@@ -149,7 +149,7 @@ class SourcePositionsBase(BaseModel):
     y2: float
     created: datetime
     modified: Union[datetime, None] = None
-    status: bool
+    # status: bool
 
 
 class SourcePositionsCreate(BaseModel):
@@ -354,7 +354,7 @@ class UploadBase(BaseModel):
     ip_remote: str
     created: datetime
     modified: datetime
-    status: bool
+    # status: bool
 
 
 class UploadCreate(BaseModel):
@@ -385,7 +385,7 @@ class UploadUpdate(BaseModel):
     ip_remote: str
     created: datetime
     modified: datetime
-    status: bool
+    # status: bool
 
 
 class Upload(UploadBase):
@@ -406,13 +406,13 @@ class FileBase(BaseModel):
     # urlPages: Union[list[Page], None] = None
     created: datetime
     modified: Union[datetime, None] = None
-    status: bool
+    # status: bool
 # TODO: check the reorder in the dataset
 
-    pagination: Union[List[Page], None] = None
-    positions: Union[List[Position], None] = None
-    # This goes together
-    inputs: Union[List[Input], None] = None
+    # pagination: Union[List[Page], None] = None
+    # positions: Union[List[Position], None] = None
+    # # This goes together
+    # inputs: Union[List[Input], None] = None
     # book_inputs: list[str] = []
 #    book_inputs=('test','key',)
     # book_inputs: Union[List[Input]] = []
