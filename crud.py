@@ -385,7 +385,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             if book_input[b.bms_bookpages_id] is None:
                 book_input[b.bms_bookpages_id] = {}
 
-            for bko in k.items():
+            for bko in k:
                 print(bko)
 
             #book_input[b.bms_bookpages_id][k.attribute] = k.value
