@@ -229,7 +229,7 @@ class SourcePositions(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
-    bms_bookpages_id = Column(Integer)
+    bms_bookpages_id = Column(Integer,  ForeignKey("bms_bookpages.id"))
     color = Column(String)
     lineWidth = Column(Integer)
     source_width = Column(String)
