@@ -138,7 +138,7 @@ class Item(Base):
     # modified = Column(DateTime, server_default=text(
     # "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     # status = Column(Boolean, default=True)
-    sourcePositions = relationship("SourcePositions")
+    # sourcePositions = relationship("SourcePositions")
     pagination = relationship("Page")
     positions = relationship("Position"
                              #                             ,primaryjoin="and_(Item.book_id==Position.bms_books_id,Page.id==Position.bms_bookpages_id)"

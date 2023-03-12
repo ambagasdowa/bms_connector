@@ -248,7 +248,7 @@ class ItemBase(BaseModel):
 #    status: bool
     pagination: Union[List[Page]] = []
     positions: Union[List[Position]] = []
-    sourcePositions: Union[list[SourcePositions], None] = None
+    # sourcePositions: Union[list[SourcePositions], None] = None
     # This goes together
     inputs: Union[List[Input]] = []
     inpages: Union[List[Inpage]] = []
@@ -309,22 +309,24 @@ class ItemBase(BaseModel):
 
 
 class ItemCreate(BaseModel):
-    book_id: str
-    pages: int
-    book_name: str
-    is_url: bool
-    # created: datetime
-    created: str
+    pass
+    # book_id: str
+    # pages: int
+    # book_name: str
+    # is_url: bool
+    # # created: datetime
+    # created: str
 #    status: bool
     # def htmlspecialchars(content):
     #     return content.replace("&", "&amp;").replace('"', "&quot;").replace("'", "&#039;").replace("<", "&lt;").replace(">", "&gt;")
 
 
 class ItemUpdate(BaseModel):
-    book_id: str
-    pages: int
-    book_name: str
-    is_url: bool
+    pass
+    # book_id: str
+    # pages: int
+    # book_name: str
+    # is_url: bool
 
 
 class Item(ItemBase):
