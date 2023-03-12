@@ -136,8 +136,8 @@ class Item(Base):
     user_id = Column(Integer, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     # modified = Column(DateTime, server_default=text(
-        # "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    status = Column(Boolean, default=True)
+    # "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    # status = Column(Boolean, default=True)
     sourcePositions = relationship("SourcePositions")
     pagination = relationship("Page")
     positions = relationship("Position"
