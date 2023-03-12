@@ -365,7 +365,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # make the arrange
     pages = Pages(bms_books_id = book_id)
     print(f"PAGES:")
-    print(pages)_
+    print(pages)
 
 
 
