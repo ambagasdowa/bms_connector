@@ -398,7 +398,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     print(len(books))
     for book in books:
         print(book)
-        inb[book.bms_bookpages_id] = [(book.attrubute,book.value,)]
+        inb[book.bms_bookpages_id] = [(book.attribute,book.value,)]
     print(inb)
 
 
