@@ -382,9 +382,13 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         for k in inputs_pages:
             print(k)
             print(f"[green]{k.id},{k.bms_inputs_ctrls_id},{k.attribute},{k.value}[/green]")
-            book_input[b.bms_bookpages_id][k.attribute] = k.value
+            if book_input[b.bms_bookpages_id] is None:
+                book_input[b.bms_bookpages_id] = {}
 
-            books.append((b.bms_bookpages_id,k.id,k.attribute,k.value),)
+            #book_input[b.bms_bookpages_id][k.attribute] = k.value
+            book_input[b.bms_bookpages_id][k.id] = (k.attribute,k.value,)
+
+            # books.append((b.bms_bookpages_id,k.id,k.attribute,k.value),)
 
         inputs_values = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == b.id,Invalue.user_id == user_id).all()
         for x in inputs_values:
@@ -393,16 +397,8 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             books.append((b.bms_bookpages_id,x.id,x.attribute,x.value,))
 
 
-    inb = {}
-    print(jsonable_encoder(books))
-    print(len(books))
-    for book in books:
-        print(book)
-        # inb[book.bms_bookpages_id] = [(book.attribute,book.value)]
-    # print(inb)
 
-
-    book_inputs.append(book_input)
+    # book_inputs.append(book_input)
     print(jsonable_encoder(book_inputs))
 
     response = db.query(File).filter(File.book_id == book_id).all()
