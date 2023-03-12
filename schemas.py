@@ -132,6 +132,88 @@ class Page(PageBase):
         orm_mode = True
 
 
+class SourcePositionsBase(BaseModel):
+    bms_books_id: int
+    bms_bookpages_id: int
+    color: str
+    lineWidth: int
+    source_width: float
+    source_height: float
+    default_width: float
+    default_height: float
+    inputType: str
+    page: int
+    x1: float
+    y1: float
+    x2: float
+    y2: float
+    created: datetime
+    modified: Union[datetime, None] = None
+    status = bool
+
+
+class SourcePositionsCreate(BaseModel):
+    bms_books_id: int
+    bms_bookpages_id: int
+    color: str
+    lineWidth: int
+    source_width: str
+    source_height: str
+    default_width: str
+    default_height: str
+    inputType: str
+    page: int
+    x1: str
+    y1: str
+    x2: str
+    y2: str
+
+    # class Config:
+    #     schema_extra = {
+    #         "example": [
+    #                         {
+    #                             "bms_bookpages_id": "6",
+    #                             "bms_books_id": "4",
+    #                             "color": "cyan",
+    #                             "inputType": "radio",
+    #                             "lineWidth": "2",
+    #                             "page": "3",
+    #                             "source_height": "890",
+    #                             "source_width": "1440",
+    #                             "x1": "120",
+    #                             "x2": "230",
+    #                             "y1": "80",
+    #                             "y2": "40"
+    #                         },
+    #                         {
+    #                             "bms_bookpages_id": "6",
+    #                             "bms_books_id": "4",
+    #                             "color": "cyan",
+    #                             "inputType": "text",
+    #                             "lineWidth": "2",
+    #                             "page": "3",
+    #                             "source_height": "890",
+    #                             "source_width": "1440",
+    #                             "x1": "120",
+    #                             "x2": "230",
+    #                             "y1": "80",
+    #                             "y2": "40"
+    #                         }
+    #                     ]
+    #     }
+
+
+class SourcePositionsUpdate(BaseModel):
+    pass
+
+
+class SourcePositions(SourcePositionsBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
 # /// Schemes for book pages
 
 
@@ -305,88 +387,6 @@ class UploadUpdate(BaseModel):
 
 
 class Upload(UploadBase):
-    id: int
-
-    class Config:
-        orm_mode = True
-
-
-class SourcePositionsBase(BaseModel):
-    bms_books_id: int
-    bms_bookpages_id: int
-    color: str
-    lineWidth: int
-    source_width: float
-    source_height: float
-    default_width: float
-    default_height: float
-    inputType: str
-    page: int
-    x1: float
-    y1: float
-    x2: float
-    y2: float
-    created: datetime
-    modified: Union[datetime, None] = None
-    status = bool
-
-
-class SourcePositionsCreate(BaseModel):
-    bms_books_id: int
-    bms_bookpages_id: int
-    color: str
-    lineWidth: int
-    source_width: str
-    source_height: str
-    default_width: str
-    default_height: str
-    inputType: str
-    page: int
-    x1: str
-    y1: str
-    x2: str
-    y2: str
-
-    # class Config:
-    #     schema_extra = {
-    #         "example": [
-    #                         {
-    #                             "bms_bookpages_id": "6",
-    #                             "bms_books_id": "4",
-    #                             "color": "cyan",
-    #                             "inputType": "radio",
-    #                             "lineWidth": "2",
-    #                             "page": "3",
-    #                             "source_height": "890",
-    #                             "source_width": "1440",
-    #                             "x1": "120",
-    #                             "x2": "230",
-    #                             "y1": "80",
-    #                             "y2": "40"
-    #                         },
-    #                         {
-    #                             "bms_bookpages_id": "6",
-    #                             "bms_books_id": "4",
-    #                             "color": "cyan",
-    #                             "inputType": "text",
-    #                             "lineWidth": "2",
-    #                             "page": "3",
-    #                             "source_height": "890",
-    #                             "source_width": "1440",
-    #                             "x1": "120",
-    #                             "x2": "230",
-    #                             "y1": "80",
-    #                             "y2": "40"
-    #                         }
-    #                     ]
-    #     }
-
-
-class SourcePositionsUpdate(BaseModel):
-    pass
-
-
-class SourcePositions(SourcePositionsBase):
     id: int
 
     class Config:
