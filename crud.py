@@ -397,7 +397,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
                 book_input[b.bms_bookpages_id] = []
 
             #book_input[b.bms_bookpages_id][k.attribute] = k.value
-            book_input[b.bms_bookpages_id].append(inblock,)
+            # book_input[b.bms_bookpages_id].append(inblock,)
 
             # books.append((b.bms_bookpages_id,k.id,k.attribute,k.value),)
 
