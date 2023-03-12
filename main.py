@@ -341,12 +341,13 @@ def books_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
 #response_model=List[Union[Specific, Simple]]
 @app.get("/books/{book_id}/{user_id}", response_model=List[Union[schemas.File]])
 def books_action_retrieve(book_id: str, user_id: int, db: Session = Depends(get_db)):
-    book = crud.get_book(db, book_id, user_id)
+    books = crud.get_book(db, book_id, user_id)
     print(f"BOOKS::")
-    print(book)
-    if book is None:
+    for book in books:
+        print(book)
+    if books is None:
         raise HTTPException(status_code=404, detail="Book not found")
-    return book
+    return books
 
 # if __name__ == "__main__":
 #     uvicorn.run(app, host='0.0.0.0',  ssl-keyfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.key", ssl-certfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.crt", ssl-keyfile-password=None)
