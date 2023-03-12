@@ -149,7 +149,7 @@ class SourcePositionsBase(BaseModel):
     y2: float
     created: datetime
     modified: Union[datetime, None] = None
-    # status: bool
+    status: bool
 
 
 class SourcePositionsCreate(BaseModel):
