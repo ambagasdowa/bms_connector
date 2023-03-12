@@ -393,13 +393,13 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             books.append((b.bms_bookpages_id,x.id,x.attribute,x.value,))
 
 
-    inb = []
+    inb = {}
     print(jsonable_encoder(books))
     print(len(books))
     for book in books:
         print(book)
-        inb.append((book.attribute,book.value),)
-
+        inb[book.bms_bookpages_id] = [(book.attrubute,book.value,)]
+    print(inb)
 
 
     book_inputs.append(book_input)
