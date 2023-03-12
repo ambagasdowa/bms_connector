@@ -344,7 +344,7 @@ def books_action_retrieve(book_id: str, user_id: int, db: Session = Depends(get_
     books = crud.get_book(db, book_id, user_id)
     print(f"BOOKS::")
     for book in books:
-        print(book.book_name)
+        print(jsonable_encoder(book))
     if books is None:
         raise HTTPException(status_code=404, detail="Book not found")
     return books
