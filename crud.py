@@ -385,7 +385,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             if book_input[b.bms_bookpages_id] is None:
                 book_input[b.bms_bookpages_id] = {}
             print("K:")
-            print(k.keys())
+            print(type(k))
             for bk in k:
                 print(bk)
 
