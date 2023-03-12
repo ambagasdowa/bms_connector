@@ -410,7 +410,7 @@ class FileBase(BaseModel):
     positions: Union[List[Position], None] = None
     # This goes together
     inputs: Union[List[Input], None] = None
-    book_inputs: Union[list[Input], None] = None
+    book_inputs:  None = None
 #    book_inputs=('test','key',)
     # book_inputs: Union[List[Input]] = []
     # inpages: Union[List[Inpage]] = []
