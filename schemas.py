@@ -402,7 +402,7 @@ class FileBase(BaseModel):
     pages: int
     book_name: str
     is_url: bool
-    sourcePositions: Union[list[SourcePositions], None] = None
+    #sourcePositions: Union[list[SourcePositions], None] = None
     # urlPages: Union[list[Page], None] = None
     created: datetime
     modified: Union[datetime, None] = None
