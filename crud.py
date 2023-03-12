@@ -399,7 +399,7 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 
 
     # book_inputs.append(book_input)
-    print(jsonable_encoder(book_inputs))
+    print(jsonable_encoder(book_input))
 
     response = db.query(File).filter(File.book_id == book_id).all()
     # setattr(response[0], 'book_inputs', jsonable_encoder(book_inputs))
