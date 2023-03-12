@@ -138,7 +138,6 @@ class Item(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
-
     sourcePositions = relationship("SourcePositions")
     pagination = relationship("Page")
     positions = relationship("Position"
