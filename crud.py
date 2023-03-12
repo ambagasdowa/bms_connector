@@ -395,7 +395,6 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
 
     inb = []
     print(jsonable_encoder(books))
-    print(count(books))
     print(len(books))
     for book in books:
         print(book)
