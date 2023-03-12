@@ -406,10 +406,10 @@ class FileBase(BaseModel):
     status: bool
 # TODO: check the reorder in the dataset
 
-    pagination: Union[List[Page]] = []
-    positions: Union[List[Position]] = []
+    pagination: Union[List[Page], None] = None
+    positions: Union[List[Position], None] = None
     # This goes together
-    inputs: Union[List[Input]] = []
+    inputs: Union[List[Input], None] = None
     # book_inputs: list[str] = []
 #    book_inputs=('test','key',)
     # book_inputs: Union[List[Input]] = []
@@ -418,57 +418,28 @@ class FileBase(BaseModel):
 
     created: datetime
 
-    def dict(self, **kwargs):
-        data = super(FileBase, self).dict(**kwargs)
+    # def dict(self, **kwargs):
+    #     data = super(FileBase, self).dict(**kwargs)
 
-        # for paper in data['invalues']:
-        #     data['inpages'].append(paper)
+    #     book_pages = {}
+    #     for bookpages in data['pagination']:
+    #         book_pages[bookpages['book_pages']] = bookpages['path']
 
-        # # NOTE rewrite again
-        # for inpaper in data['inputs']:
-        #     inpaper['data'] = []
-        #     for inval in data['inpages']:
-        #         if (int(inpaper['id']) == int(inval['bms_inputs_ctrls_id'])):
-        #             inpaper['data'].append(inval)
+    #     data['book_pages'] = book_pages
+    #     # Reorder book_pages and book_pages_maps
+    #     book_pages_maps = {}
+    #     for bookpagesmaps in data['positions']:
+    #         book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
 
+    #     data['book_pages_maps'] = book_pages_maps
 
-# Reorder book_pages and book_pages_maps
-        book_pages = {}
-        for bookpages in data['pagination']:
-            book_pages[bookpages['book_pages']] = bookpages['path']
+    #     del data['inputs']
+    #     del data['positions']
+    #     del data['pagination']
+    #     # del data['inpages']
+    #     # del data['invalues']
 
-        data['book_pages'] = book_pages
-        # Reorder book_pages and book_pages_maps
-        book_pages_maps = {}
-        for bookpagesmaps in data['positions']:
-            book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
-
-        data['book_pages_maps'] = book_pages_maps
-
-        # Rearrange inputs
-        # Change the column name in sql table usr_attr and usr_value
-        # book_inputs = {}
-        # ins = {}
-        # for input_pages in data['inputs']:
-        #     page = input_pages['bms_bookpages_id']
-        #     if book_inputs.get(input_pages['bms_bookpages_id']) is None:
-        #         book_inputs[page] = []
-        #     ins[page] = {}
-
-        #     for attr in input_pages['data']:
-        #         ins[page][attr['attribute']] = attr['value']
-        #     book_inputs[page].append(ins[page])
-
-        # data['book_inputs'] = book_inputs
-        # data['book_inputs'] = []
-
-        del data['inputs']
-        del data['positions']
-        del data['pagination']
-        # del data['inpages']
-        # del data['invalues']
-
-        return data
+    #     return data
 
 
 class FileCreate(BaseModel):
