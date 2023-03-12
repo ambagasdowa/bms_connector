@@ -363,9 +363,6 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # status               tinyint(1)        NO         1
     # ===================  ================  ====  ===  =======  ==============
     # make the arrange
-    pages = Pages(bms_books_id = book_id)
-    print(f"PAGES:")
-    print(pages)
 
 
 
@@ -395,8 +392,16 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
             book_input[b.bms_bookpages_id][x.attribute] = x.value
             books.append((b.bms_bookpages_id,x.id,x.attribute,x.value,))
 
-    # print(jsonable_encoder(books))
-    # print(input_pages)
+
+    inb = []
+    print(jsonable_encoder(books))
+    print(count(books))
+    print(len(books))
+    for book in books:
+        print(book)
+        inb.append((book.attribute,book.value),)
+
+
 
     book_inputs.append(book_input)
     print(jsonable_encoder(book_inputs))
