@@ -363,7 +363,9 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
     # status               tinyint(1)        NO         1
     # ===================  ================  ====  ===  =======  ==============
     # make the arrange
-
+    pages = Pages(bms_books_id = book_id)
+    print(f"PAGES:")
+    print(pages)_
 
 
 
