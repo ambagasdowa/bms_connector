@@ -339,7 +339,7 @@ def books_action_list(limit: int = 100, offset: int = 0, db: Session = Depends(g
 
 # @app.get("/books/{book_id}/{user_id}", response_model=List[schemas.File])
 #response_model=List[Union[Specific, Simple]]
-@app.get("/books/{book_id}/{user_id}", response_model=List[Union[schemas.File]])
+@app.get("/books/{book_id}/{user_id}", response_model=List[Union[schemas.Item]])
 def books_action_retrieve(book_id: str, user_id: int, db: Session = Depends(get_db)):
     books = crud.get_book(db, book_id, user_id)
     if books is None:
