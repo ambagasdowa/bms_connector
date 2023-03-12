@@ -380,13 +380,13 @@ def get_book_usr(db:Session,book_id:int,user_id:int):
         inputs_pages = db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == b.id).all()
 
         for k in inputs_pages:
-            print(k)
+            print(jsonable_encoder(k))
             print(f"[green]{k.id},{k.bms_inputs_ctrls_id},{k.attribute},{k.value}[/green]")
             if book_input[b.bms_bookpages_id] is None:
                 book_input[b.bms_bookpages_id] = {}
 
             #book_input[b.bms_bookpages_id][k.attribute] = k.value
-            book_input[b.bms_bookpages_id][k.id] += (k.attribute,k.value),
+            book_input[b.bms_bookpages_id][k.id] = (k.attribute,k.value),
 
             # books.append((b.bms_bookpages_id,k.id,k.attribute,k.value),)
 
