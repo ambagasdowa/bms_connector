@@ -248,7 +248,7 @@ class ItemBase(BaseModel):
 #    status: bool
     pagination: Union[List[Page]] = []
     positions: Union[List[Position]] = []
-    sourcePositions: Union[List[SourcePositions]] = []
+    # sourcePositions: Union[List[SourcePositions]] = []
     sourcePositions: Union[list[SourcePositions], None] = None
     # This goes together
     inputs: Union[List[Input]] = []
@@ -260,9 +260,9 @@ class ItemBase(BaseModel):
     def dict(self, **kwargs):
         data = super(ItemBase, self).dict(**kwargs)
 
-        
-
-
+        for inputs in data['sourcePositions']:
+            print(f"[red]POSITIOMS:")
+            print(inputs)
 
         for paper in data['invalues']:
             data['inpages'].append(paper)
