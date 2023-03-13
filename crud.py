@@ -316,6 +316,8 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
 def drop_srcpositions(db: Session, book_id: int,page_id:int):
     db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id,SourcePositions.bms_bookpages_id == page_id).delete()
+    #drop attributes values too ? or update ids
+    # search each id in db and update id relations 
     db.commit()
     return {"ok":True}
 

@@ -260,6 +260,10 @@ class ItemBase(BaseModel):
     def dict(self, **kwargs):
         data = super(ItemBase, self).dict(**kwargs)
 
+        
+
+
+
         for paper in data['invalues']:
             data['inpages'].append(paper)
 
