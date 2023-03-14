@@ -260,9 +260,13 @@ class ItemBase(BaseModel):
     def dict(self, **kwargs):
         data = super(ItemBase, self).dict(**kwargs)
 
-        for inputs in data['sourcePositions']:
-            print(f"[red]POSITIOMS:")
-            print(inputs)
+
+        # xinputs = {}
+        # xbook_pages = {}
+        # for inputs in data['sourcePositions']:
+        #     print(f"[red]POSITIOMS:[/red]")
+        #     xpage = inputs['page']
+        #     print(inputs)
 
         for paper in data['invalues']:
             data['inpages'].append(paper)

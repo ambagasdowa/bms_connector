@@ -306,7 +306,10 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 # bms_inputs_values
 # bms_positions {keys:{}}
 # bms_src_positions
-    
+    print(db_srcpos)
+
+
+
     db.add(db_srcpos)
     db.commit()
     db.refresh(db_srcpos)
