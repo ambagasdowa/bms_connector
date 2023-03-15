@@ -358,11 +358,11 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
    
     print(styles)
     bk_styles = Position(
-        bms_books_id = bid
-        bms_bookpages_id = bp
-        page = bp
-        css = styles
-        created = createdTime
+         bms_books_id = bid
+        ,bms_bookpages_id = bp
+        ,page = bp
+        ,css = styles
+        ,created = createdTime
     )
     db.add(bk_styles)
     db.commit()
