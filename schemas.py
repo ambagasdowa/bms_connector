@@ -287,16 +287,11 @@ class ItemBase(BaseModel):
         data['book_pages'] = book_pages
         # Reorder book_pages and book_pages_maps
         book_pages_maps = {}
-        pageString = []
         pagesin = {}
         for bookpagesmaps in data['positions']:
             # for bkm in  bookpagesmaps:
-            print("[red]BKMSPA")
-            print(bookpagesmaps)
             if pagesin.get(bookpagesmaps['page']) is None:
                 pagesin[bookpagesmaps['page']] = []
-            # if pagesin[bookpagesmaps['page']].get(bookpagesmaps['id']) is None:
-            #     pagesin[bookpagesmaps['page']][bookpagesmaps['id']]= []
  
             if book_pages_maps.get(bookpagesmaps['page']) is None:
                 book_pages_maps[bookpagesmaps['page']] = []
@@ -305,8 +300,8 @@ class ItemBase(BaseModel):
             book_pages_maps[bookpagesmaps['page']].append(bookpagesmaps['css'])
 
         print(pagesin)
-        # data['book_pages_maps'] = book_pages_maps
-        data['book_pages_maps'] = pagesin
+        data['book_pages_maps'] = book_pages_maps
+        # data['book_pages_maps'] = pagesin
 
         # Rearrange inputs
         # Change the column name in sql table usr_attr and usr_value
