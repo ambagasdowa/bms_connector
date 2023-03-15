@@ -329,12 +329,34 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     print(f"[cyan]The bk_input linked with POSITIONS ID[/cyan] : [blue]{bk_input.id}[/blue]")
 
+    
+
 
     bk_inpages = Inpage(
+        (
          bms_inputs_ctrls_id = bk_input.id
         ,attribute = 'type'
         ,value = itype
         ,created = createdTime
+        ),
+        (
+         bms_inputs_ctrls_id = bk_input.id
+        ,attribute = 'name'
+        ,value = f"inp_{bk_input.id}"
+        ,created = createdTime
+        ),
+        (
+         bms_inputs_ctrls_id = bk_input.id
+        ,attribute = 'id'
+        ,value = f"inp_{bk_input.id}"
+        ,created = createdTime
+        ),
+        (
+         bms_inputs_ctrls_id = bk_input.id
+        ,attribute = 'autofocus'
+        ,value = f"on"
+        ,created = createdTime
+        ),
     )
     db.add(bk_inpages)
     db.commit()
