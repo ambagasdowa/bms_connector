@@ -317,7 +317,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     bk_input = Input(
          bms_books_id = bid
         ,bms_bookpages_id = bp
-        ,label = f"Input entry for book {book.id} in pages {current_page}"
+        ,label = f"Input entry for book {bid} in page => {bp}"
         ,created = datetime.now()
     )
     db.add(bk_input)
