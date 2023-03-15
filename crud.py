@@ -331,8 +331,6 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     # top = (db_srcpos.x1*100)/db_srcpos.source_height
     # left = (db_srcpos.y1*100)/db_srcpos.source_width
-    top = 120
-    left =60
     width = db_srcpos.x2
     print(top,left,width)
     styles = ''
@@ -354,7 +352,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
         db.add(bk_inpages)
         db.commit()
         db.refresh(bk_inpages)
-        styles += style  
+    styles += style  
    
     print(styles)
     bk_styles = Position(
