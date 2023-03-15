@@ -332,8 +332,9 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     top = (db_srcpos.x1*100)/db_srcpos.source_height
     left = (db_srcpos.y1*100)/db_srcpos.source_width
     width = db_srcpos.x2
-   
-    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{top}%;left:{left}%;width:{width}%}}"
+    print(top,left,width)
+    style = ""   
+    # style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{top}%;left:{left}%;width:{width}%}}"
     print("[green]STYLE:[/green]")
     print(style)
 
