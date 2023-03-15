@@ -331,11 +331,11 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     # top = (db_srcpos.x1*100)/db_srcpos.source_height
     # left = (db_srcpos.y1*100)/db_srcpos.source_width
-    top = 50
-    left =50
+    top = 120
+    left =60
     width = db_srcpos.x2
     print(top,left,width)
-    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{top}%;left:{left}%;width:{width}%;border:2px solid red !important; outline: 2px solid khaki;}}"
+    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{top}%;left:{left}%;width:{width}px;border:2px solid red !important; outline: 2px solid khaki;}}"
     print("[green]STYLE:[/green]")
     print(style)
 
