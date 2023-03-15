@@ -333,7 +333,6 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     # left = (db_srcpos.y1*100)/db_srcpos.source_width
     width = db_srcpos.x2
     print(top,left,width)
-    styles = ''
     style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{(db_srcpos.x1)}px;left:{int(db_srcpos.y1)}px;width:{int(width)}px;border:2px solid red !important; outline: 2px solid khaki;}}"
     print("[green]STYLE:[/green]")
     print(style)
@@ -352,14 +351,13 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
         db.add(bk_inpages)
         db.commit()
         db.refresh(bk_inpages)
-    styles += style  
-   
-    print(styles)
+
+
     bk_styles = Position(
          bms_books_id = bid
         ,bms_bookpages_id = bp
         ,page = bp
-        ,css = styles
+        ,css = style
         ,created = createdTime
     )
     db.add(bk_styles)
