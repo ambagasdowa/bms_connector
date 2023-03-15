@@ -335,7 +335,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     left =50
     width = db_srcpos.x2
     print(top,left,width)
-    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{top}%;left:{left}%;width:{width}%}}"
+    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{top}%;left:{left}%;width:{width}%;border:2px red solid;}}"
     print("[green]STYLE:[/green]")
     print(style)
 
