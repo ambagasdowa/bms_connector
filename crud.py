@@ -335,11 +335,12 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     left =60
     width = db_srcpos.x2
     print(top,left,width)
+    styles = ''
     style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{(db_srcpos.x1)}px;left:{int(db_srcpos.y1)}px;width:{int(width)}px;border:2px solid red !important; outline: 2px solid khaki;}}"
     print("[green]STYLE:[/green]")
     print(style)
 
-    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"input{bk_input.id}","autofocus":"on","style":f"{style}"}
+    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"input{bk_input.id}","autofocus":'on'}
 
     print(datav)
     for attr,data in datav.items():
@@ -353,6 +354,19 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
         db.add(bk_inpages)
         db.commit()
         db.refresh(bk_inpages)
+        styles += style  
+   
+    print(styles)
+    bk_styles = Position(
+        bms_books_id = bid
+        bms_bookpages_id = bp
+        page = bp
+        css = styles
+        created = createdTime
+    )
+    db.add(bk_styles)
+    db.commit()
+    db.refresh(bk_styles)
 
 #WORKING FROM HIR
 # Set entries in bms_inputs_pages
