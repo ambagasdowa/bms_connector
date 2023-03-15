@@ -312,7 +312,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     bp = db_srcpos.page
     # Set an entry in bms_inputs_pages
     itype = db_srcpos.inputType
-
+    print(bid,bp,itype)
 # Set entries in inputs container
     # book_input = Input(
     #      bms_books_id = bid
