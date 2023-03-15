@@ -288,8 +288,10 @@ class ItemBase(BaseModel):
         # Reorder book_pages and book_pages_maps
         book_pages_maps = {}
         for bookpagesmaps in data['positions']:
-            for bkm in  bookpagesmaps:
-                book_pages_maps[bookpagesmaps['page']] = bkm['css']
+            # for bkm in  bookpagesmaps:
+            print(f"[red]BKMSPA[/red]")
+            print(bookpagesmaps)
+            book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
 
         data['book_pages_maps'] = book_pages_maps
 
