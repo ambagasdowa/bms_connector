@@ -287,21 +287,10 @@ class ItemBase(BaseModel):
         data['book_pages'] = book_pages
         # Reorder book_pages and book_pages_maps
         book_pages_maps = {}
-        pagesin = {}
         for bookpagesmaps in data['positions']:
-            # for bkm in  bookpagesmaps:
-            if pagesin.get(bookpagesmaps['page']) is None:
-                pagesin[bookpagesmaps['page']] = []
- 
-            if book_pages_maps.get(bookpagesmaps['page']) is None:
-                book_pages_maps[bookpagesmaps['page']] = []
+            book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
 
-            pagesin[bookpagesmaps['page']].append(bookpagesmaps['css'])
-            book_pages_maps[bookpagesmaps['page']].append(bookpagesmaps['css'])
-
-        print(pagesin)
         data['book_pages_maps'] = book_pages_maps
-        # data['book_pages_maps'] = pagesin
 
         # Rearrange inputs
         # Change the column name in sql table usr_attr and usr_value
@@ -321,7 +310,7 @@ class ItemBase(BaseModel):
 
         del data['inputs']
         del data['inpages']
-        # del data['positions']
+        del data['positions']
         del data['invalues']
         del data['pagination']
 
