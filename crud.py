@@ -331,7 +331,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     # top = (db_srcpos.x1*100)/db_srcpos.source_height
     # left = (db_srcpos.y1*100)/db_srcpos.source_width
-    top = 25
+    top = 50
     left =50
     width = db_srcpos.x2
     print(top,left,width)
