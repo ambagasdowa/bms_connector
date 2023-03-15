@@ -297,7 +297,7 @@ class ItemBase(BaseModel):
                 pagesin[bookpagesmaps['page']] = []
             # if pagesin[bookpagesmaps['page']].get(bookpagesmaps['id']) is None:
             #     pagesin[bookpagesmaps['page']][bookpagesmaps['id']]= []
-            pagesin[bookpagesmaps['page']].join(bookpagesmaps['css'])
+            pagesin[bookpagesmaps['page']].append(bookpagesmaps['css'])
             book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
 
         print(pagesin)
