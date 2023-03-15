@@ -327,23 +327,25 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     db.commit()
     db.refresh(bk_input)
 
-    print(f"[cyan]The bk_input linked with POSITIONS ID[/cyan] : [blue]{bk_input.id}[/blue]")
+
+    input_id = bk_input.id
+    print(f"[cyan]The bk_input linked with POSITIONS ID[/cyan] : [blue]{input_id}[/blue]")
 
     # top = (db_srcpos.x1*100)/db_srcpos.source_height
     # left = (db_srcpos.y1*100)/db_srcpos.source_width
     width = db_srcpos.x2
     print(top,left,width)
-    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{(db_srcpos.x1)}px;left:{int(db_srcpos.y1)}px;width:{int(width)}px;border:2px solid red !important; outline: 2px solid khaki;}}"
+    style = f" .pages_{bp} > form > #input{input_id}{{top:{(db_srcpos.x1)}px;left:{int(db_srcpos.y1)}px;width:{int(width)}px;border:2px solid red !important; outline: 2px solid khaki;}}"
     print("[green]STYLE:[/green]")
     print(style)
 
-    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"input{bk_input.id}","autofocus":'on'}
+    datav = {"type":itype,"name":f"inp{input_id}","id":f"input{input_id}"}
 
-    print(datav)
+
     for attr,data in datav.items():
         # create the style:
         bk_inpages = Inpage(
-             bms_inputs_ctrls_id=bk_input.id
+             bms_inputs_ctrls_id = input_id
             ,attribute = attr
             ,value = data
             ,created = createdTime
