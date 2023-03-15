@@ -289,7 +289,7 @@ class ItemBase(BaseModel):
         book_pages_maps = {}
         for bookpagesmaps in data['positions']:
             for bkm in  bookpagesmaps:
-                book_pages_maps[bookpagesmaps['page']] += bkm['css']
+                book_pages_maps[bookpagesmaps['page']] = bkm['css']
 
         data['book_pages_maps'] = book_pages_maps
 
