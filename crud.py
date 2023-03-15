@@ -335,11 +335,11 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     left =60
     width = db_srcpos.x2
     print(top,left,width)
-    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{int(db_srcpos.x1)}px;left:{int(db_srcpos.y1)}px;width:{int(width)}px;border:2px solid red !important; outline: 2px solid khaki;}}"
+    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{(db_srcpos.x1)}px;left:{int(db_srcpos.y1)}px;width:{int(width)}px;border:2px solid red !important; outline: 2px solid khaki;}}"
     print("[green]STYLE:[/green]")
     print(style)
 
-    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"input{bk_input.id}","autofocus":"on","style":style}
+    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"input{bk_input.id}","autofocus":"on","style":f"{style}"}
 
     print(datav)
     for attr,data in datav.items():
