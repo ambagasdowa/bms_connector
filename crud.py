@@ -312,19 +312,36 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     bp = db_srcpos.page
     # Set an entry in bms_inputs_pages
     itype = db_srcpos.inputType
+    createdTime = datetime.now()
     print(bid,bp,itype)
+
+
 # Set entries in inputs container
     bk_input = Input(
          bms_books_id = bid
         ,bms_bookpages_id = bp
         ,label = f"Input entry for book {bid} in page => {bp}"
-        ,created = datetime.now()
+        ,created = createdTime
     )
     db.add(bk_input)
     db.commit()
     db.refresh(bk_input)
 
     print(f"[cyan]The bk_input linked with POSITIONS ID[cyan] : [blue]{bk_input.id}[blue]")
+        
+
+    
+
+#    inpages = {"type":db_srcpos.inputType}
+    bk_inpages = Inpages(
+         bms_inputs_ctrls_id = bk_input.id
+        ,attribute = 'type'
+        ,value = itype
+        ,created = createdTime
+    )
+    db.add(bk_inpages)
+    db.commit()
+    db.refresh(bk_inpages)
 
 #WORKING FROM HIR
 # Set entries in bms_inputs_pages
