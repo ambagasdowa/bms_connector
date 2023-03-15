@@ -339,7 +339,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     print("[green]STYLE:[/green]")
     print(style)
 
-    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"input{bk_input.id}","autofocus":"on";"style":style}
+    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"input{bk_input.id}","autofocus":"on","style":style}
 
     print(datav)
     for attr,data in datav.items():
