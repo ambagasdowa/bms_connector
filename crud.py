@@ -331,10 +331,10 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     
     datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"inp{bk_input.id}","autofocus":"on"}
-
+    print(datav)
     for attr,data in datav.items():
         bk_inpages = Inpage(
-             bms_inputs_ctrls_id=bk_inputs.id
+             bms_inputs_ctrls_id=bk_input.id
             ,attribute = attr
             ,value = data
             ,created = createdTime
