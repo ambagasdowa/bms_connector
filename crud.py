@@ -329,10 +329,17 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     print(f"[cyan]The bk_input linked with POSITIONS ID[/cyan] : [blue]{bk_input.id}[/blue]")
 
-    
-    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"inp{bk_input.id}","autofocus":"on"}
+    top = (db_srcpos.x1*100)/db_srcpos.source_height
+    left = (db_srcpos.y1*100)/db_srcpos.source_width
+    width = db_srcpos.x2
+   
+    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{top};left:{left};width:{width}}}"
+
+    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"input{bk_input.id}","autofocus":"on"}
+
     print(datav)
     for attr,data in datav.items():
+        # create the style:
         bk_inpages = Inpage(
              bms_inputs_ctrls_id=bk_input.id
             ,attribute = attr
