@@ -327,13 +327,10 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     db.commit()
     db.refresh(bk_input)
 
-    print(f"[cyan]The bk_input linked with POSITIONS ID[cyan] : [blue]{bk_input.id}[blue]")
-        
+    print(f"[cyan]The bk_input linked with POSITIONS ID[/cyan] : [blue]{bk_input.id}[/blue]")
 
-    
 
-#    inpages = {"type":db_srcpos.inputType}
-    bk_inpages = Inpages(
+    bk_inpages = Inpage(
          bms_inputs_ctrls_id = bk_input.id
         ,attribute = 'type'
         ,value = itype
