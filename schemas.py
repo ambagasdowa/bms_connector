@@ -293,8 +293,9 @@ class ItemBase(BaseModel):
             # for bkm in  bookpagesmaps:
             print("[red]BKMSPA")
             print(bookpagesmaps)
-            pagesin[bookpagesmaps['page']] = pageString.append(bookpagesmaps['css'])
+            pagesin[bookpagesmaps['page']][bookpagemaps['id']] = pageString.append(bookpagesmaps['css'])
             book_pages_maps[bookpagesmaps['page']] = bookpagesmaps['css']
+
         print(pagesin)
         data['book_pages_maps'] = book_pages_maps
 
@@ -318,7 +319,7 @@ class ItemBase(BaseModel):
         del data['inpages']
         # del data['positions']
         del data['invalues']
-        # del data['pagination']
+        del data['pagination']
 
         return data
 
