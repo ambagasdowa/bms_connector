@@ -301,14 +301,44 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 # db_srcpos.bms_books_id and db_srcpos.bms_bookpages_id
     db_srcpos = SourcePositions(**data.dict())
 # NOTE check first the data from db_srcpos and set to bms_positions and bms_inputs_ctrls and bms_inputs_pages from bms_src_positions
-# bms_inputs_ctrls
-# bms_inputs_pages
-# bms_inputs_values
-# bms_positions {keys:{}}
-# bms_src_positions
+    # bms_inputs_ctrls
+    # bms_inputs_pages
+    # bms_inputs_values
+    # bms_positions {keys:{}}
+    # bms_src_positions
     print(db_srcpos)
+    #first set an entry in bms_inputs_ctrls
+    bid = db_srcpos.bms_books_id
+    bp = db_srcpos.page
+    # Set an entry in bms_inputs_pages
+    itype = db_srcpos.inputType
 
+# Set entries in inputs container
+    book_input = Input(
+         bms_books_id = bid
+        ,bms_bookpages_id = bp
+        ,label = f"Input entry for book {book.id} in pages {current_page}"
+        ,created = datetime.now()
+    )
+    db.add(book_input)
+    db.commit()
+    db.refresh(book_input)
 
+    print(f"[cyan]The book_input ID[cyan] : [blue]{book_input.id}[blue]")
+
+#WORKING FROM HIR
+# Set entries in bms_inputs_pages
+    # input_pages = Invalue(
+    #      bms_books_id = bid
+    #     ,bms_bookpages_id = bp
+    #     ,label = f"Input entry for book {book.id} in pages {current_page}"
+    #     ,created = datetime.now()
+    # )
+    # db.add(input_pages)
+    # db.commit()
+    # db.refresh(input_pages)
+
+    # print(f"[cyan]The book_input ID[cyan] : [blue]{book_input.id}[blue]")
 
     db.add(db_srcpos)
     db.commit()
