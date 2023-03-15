@@ -330,37 +330,18 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     print(f"[cyan]The bk_input linked with POSITIONS ID[/cyan] : [blue]{bk_input.id}[/blue]")
 
     
+    datav = {"type":itype,"name":f"inp{bk_input.id}","id":f"inp{bk_input.id}","autofocus":"on"}
 
-
-    bk_inpages = Inpage(
-        (
-         bms_inputs_ctrls_id = bk_input.id
-        ,attribute = 'type'
-        ,value = itype
-        ,created = createdTime
-        ),
-        (
-         bms_inputs_ctrls_id = bk_input.id
-        ,attribute = 'name'
-        ,value = f"inp_{bk_input.id}"
-        ,created = createdTime
-        ),
-        (
-         bms_inputs_ctrls_id = bk_input.id
-        ,attribute = 'id'
-        ,value = f"inp_{bk_input.id}"
-        ,created = createdTime
-        ),
-        (
-         bms_inputs_ctrls_id = bk_input.id
-        ,attribute = 'autofocus'
-        ,value = f"on"
-        ,created = createdTime
-        ),
-    )
-    db.add(bk_inpages)
-    db.commit()
-    db.refresh(bk_inpages)
+    for attr,data in datav.items():
+        bk_inpages = Inpage(
+             bms_inputs_ctrls_id=bk_inputs.id
+            ,attribute = attr
+            ,value = data
+            ,created = createdTime
+        )
+        db.add(bk_inpages)
+        db.commit()
+        db.refresh(bk_inpages)
 
 #WORKING FROM HIR
 # Set entries in bms_inputs_pages
