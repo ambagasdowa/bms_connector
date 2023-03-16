@@ -330,7 +330,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
 
     print(f"[cyan]The bk_input linked with POSITIONS ID[/cyan] : [blue]{bk_input.id}[/blue]")
 
-    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{(db_srcpos.x1)}px;left:{int(db_srcpos.y1)}px;width:{int(db_srcpos.x2)}px;}}"
+    style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{(db_srcpos.x1)}px;left:{int(db_srcpos.y1)}px;width:{int(db_srcpos.x2)}px;border:2px solid blue !important;}}"
    
     datav = {
                 "type":itype
