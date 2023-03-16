@@ -377,6 +377,7 @@ def drop_link_positions(db:Session, book_id: int, page_id: int):
     inp_ids = []
 
     for ind in inputs_id:
+        print(jsonable_encoder(ind))
         inp_ids.append(ind.id)
         db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == ind.id).delete()
         db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ind.id).delete()
