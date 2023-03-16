@@ -416,7 +416,7 @@ class FileBase(BaseModel):
     # urlPages: Union[list[Page], None] = None
     created: datetime
     modified: Union[datetime, None] = None
-    # status: bool
+    status: bool
 # TODO: check the reorder in the dataset
 
     # pagination: Union[List[Page], None] = None
@@ -429,7 +429,7 @@ class FileBase(BaseModel):
     # inpages: Union[List[Inpage]] = []
     # invalues: Union[List[Invalue]] = []
 
-    created: datetime
+    # created: datetime
 
     # def dict(self, **kwargs):
     #     data = super(FileBase, self).dict(**kwargs)
