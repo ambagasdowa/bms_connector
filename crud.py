@@ -369,13 +369,32 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     db.refresh(db_srcpos)
     return db_srcpos
 
+def drop_link_positions(db:Session, book_id: int, page_id: int):
+    #first delete the related <fucking shitty Mysql>
+    inputs_id = db.query(Input).filter(Input.bms_books_id == book_id,Input.bms_bookpages_id == page_id)
+    #search for input_pages and input_values
+    inp_ids = []
+    for ind in inputs_id:
+        inp_ids.append(inputs_id.id)
+        db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == inputs_id.id).delete()
+        db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == inputs_id.id).delete()
+
+    positions_id = db.query(Positions).filter(Positions.bms_books_id == book_id,Positions.bms_bookpages_id == page_id)
+    # And finally:
+    inputs_id.delete()
+    db.commit()
+    return {"deleted":f"{inp_ids}"}
 
 
 def drop_srcpositions(db: Session, book_id: int,page_id:int):
+
     db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id,SourcePositions.bms_bookpages_id == page_id).delete()
+    response_del = drop_link_positions(db,book_id,page_id)
     #drop attributes values too ? or update ids
     # search each id in db and update id relations 
     db.commit()
+    print(f"[green]{response_del}")
+
     return {"ok":True}
 
 
