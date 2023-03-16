@@ -289,7 +289,7 @@ class ItemBase(BaseModel):
         for bookpagesmaps in data['positions']:
             if book_pages_maps.get(bookpagesmaps['page']) is None:
                 book_pages_maps[bookpagesmaps['page']] = []
-            book_pages_maps[bookpagesmaps['page']] += str(bookpagesmaps['css'])
+            book_pages_maps[bookpagesmaps['page']] += bookpagesmaps['css']
 
         data['book_pages_maps'] = book_pages_maps
 
