@@ -288,7 +288,7 @@ class ItemBase(BaseModel):
         book_pages_maps = {}
         for bookpagesmaps in data['positions']:
             if book_pages_maps.get(bookpagesmaps['page']) is None:
-                book_pages_maps[bookpagesmaps['page']] = ''
+                book_pages_maps[bookpagesmaps['page']] = ' '
             book_pages_maps[bookpagesmaps['page']
                             ] += f"{bookpagesmaps['css']}"
 
