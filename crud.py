@@ -383,7 +383,10 @@ def drop_link_positions(db:Session, book_id: int, page_id: int):
         db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ind.id).delete()
 
     positions_id = db.query(Position).filter(Position.bms_books_id == book_id,Position.bms_bookpages_id == page_id)
+    print(jsonable_encoder(positions_id))
+
     # And finally:
+    positions_id.delete()
     inputs_id.delete()
     db.commit()
     return {"deleted":f"{inp_ids}"}
