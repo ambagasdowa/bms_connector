@@ -373,11 +373,13 @@ def drop_link_positions(db:Session, book_id: int, page_id: int):
     #first delete the related <fucking shitty Mysql>
     inputs_id = db.query(Input).filter(Input.bms_books_id == book_id,Input.bms_bookpages_id == page_id)
     #search for input_pages and input_values
+    print(inputs_id)
     inp_ids = []
+
     for ind in inputs_id:
-        inp_ids.append(inputs_id.id)
-        db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == inputs_id.id).delete()
-        db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == inputs_id.id).delete()
+        inp_ids.append(ind.id)
+        db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == ind.id).delete()
+        db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ind.id).delete()
 
     positions_id = db.query(Positions).filter(Positions.bms_books_id == book_id,Positions.bms_bookpages_id == page_id)
     # And finally:
