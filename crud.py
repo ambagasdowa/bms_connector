@@ -374,23 +374,22 @@ def drop_link_positions(db:Session, book_id: int, page_id: int):
     inputs_id = db.query(Input).filter(Input.bms_books_id == book_id,Input.bms_bookpages_id == page_id)
     #search for input_pages and input_values
     # print(inputs_id)
-    inp_ids = []
+    if inputs_id :
+        inp_ids = []
 
-    for ind in inputs_id:
-        inp_ids.append(ind.id)
-        # db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == ind.id).delete()
-        # db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ind.id).delete()
+        for ind in inputs_id:
+            inp_ids.append(ind.id)
+            # db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == ind.id).delete()
+            # db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ind.id).delete()
 
-    db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id.in_(inp_ids)).delete()
-    db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id.in_(inp_ids)).delete()
-# session.query(MyUserClass).filter(MyUserClass.id.in_((123,456))).all()
+        db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id.in_(inp_ids)).delete()
+        db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id.in_(inp_ids)).delete()
     positions_id = db.query(Position).filter(Position.bms_books_id == book_id,Position.bms_bookpages_id == page_id)
-    # for pos in positions_id:
-    #     print(jsonable_encoder(pos))
-
     # And finally:
-    positions_id.delete()
-    inputs_id.delete()
+    if positions_id:
+        positions_id.delete()
+    if inputs_id:
+        inputs_id.delete()
     db.commit()
     return {"deleted":f"{inp_ids}"}
 
