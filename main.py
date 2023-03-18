@@ -347,7 +347,7 @@ def books_action_retrieve(book_id: str, user_id: int, db: Session = Depends(get_
     return books
 
 
-@app.post("/invalues/{input_id}/{user_id}", response_model=schemas.InvalueCreate)
+@app.post("/invalues/{user_id}", response_model=schemas.InvalueCreate)
 def invalue_action_create(user_id: int, data: list[schemas.InvalueCreate], db: Session = Depends(get_db)):
 
     print(data)
