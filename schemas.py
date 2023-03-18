@@ -317,7 +317,7 @@ class ItemBase(BaseModel):
         del data['inputs']
         del data['inpages']
         del data['positions']
-        del data['invalues']
+        # del data['invalues']
         del data['pagination']
 
         return data
