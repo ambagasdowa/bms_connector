@@ -357,8 +357,8 @@ def invalue_action_create(user_id: int, data: list[schemas.InvalueCreate], db: S
 
     print("[red]Cleaning page [red]")
     response = []
-
-    # clean = crud.drop_invalues(db, user_id)
+    for ctrls_id in data:
+        crud.drop_invalues( db, ctrls_id.bms_inputs_ctrls_id , user_id )
 
     # print(f"[blue]{clean}[blue]")
     try:

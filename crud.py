@@ -379,9 +379,6 @@ def drop_link_positions(db:Session, book_id: int, page_id: int):
 
         for ind in inputs_id:
             inp_ids.append(ind.id)
-            # db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id == ind.id).delete()
-            # db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ind.id).delete()
-
         db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id.in_(inp_ids)).delete()
         db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id.in_(inp_ids)).delete()
     positions_id = db.query(Position).filter(Position.bms_books_id == book_id,Position.bms_bookpages_id == page_id)
@@ -537,8 +534,18 @@ def create_invalue(db: Session, data: InvalueCreate):
 
     db_invalue = Invalue(**data.dict())
     print(jsonable_encoder(db_invalue))
-    # db.add(db_invalue)
-    # db.commit()
-    # db.refresh(db_invalue)
+    db.add(db_invalue)
+    db.commit()
+    db.refresh(db_invalue)
     return db_invalue
+
+
+def drop_invalues(db:Session, ctrls_id: int, user_id: int):
+    #first delete the related <fucking shitty Mysql>
+    values_id = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ctrls_id)
+    #search for input_pages and input_values
+    if values_id :
+        values_id.delete()
+        db.commit()
+    return {"deleted":f"{ctrls_id}"}
 
