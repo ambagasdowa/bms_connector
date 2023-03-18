@@ -13,10 +13,10 @@ class InvalueBase(BaseModel):
 
 
 class InvalueCreate(BaseModel):
+    bms_inputs_ctrls_id: int
+    user_id: int
     attribute: str
     value: str
-
-    # pass
 
 
 class InvalueUpdate(BaseModel):

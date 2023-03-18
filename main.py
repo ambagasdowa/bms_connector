@@ -351,6 +351,7 @@ def books_action_retrieve(book_id: str, user_id: int, db: Session = Depends(get_
 def invalue_action_create(user_id: int, data: list[schemas.InvalueCreate], db: Session = Depends(get_db)):
 
     print(data)
+
     print(
         f"[green]ids in data[green] :[cyan] user_id =>[cyan] [red]{user_id}[red]")
 
