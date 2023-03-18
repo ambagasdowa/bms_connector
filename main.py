@@ -360,7 +360,7 @@ def invalue_action_create(user_id: int, data: list[schemas.InvalueCreate], db: S
 
     # clean = crud.drop_invalues(db, user_id)
 
-    print(f"[blue]{clean}[blue]")
+    # print(f"[blue]{clean}[blue]")
     try:
         for srcp in data:
             Invalues = crud.create_invalue(db, srcp)
