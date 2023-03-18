@@ -542,7 +542,7 @@ def create_invalue(db: Session, data: InvalueCreate):
 
 def drop_invalues(db:Session, ctrls_id: int, user_id: int):
     #first delete the related <fucking shitty Mysql>
-    values_id = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ctrls_id)
+    values_id = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ctrls_id,Invalue.user_id == user_id)
     #search for input_pages and input_values
     if values_id :
         values_id.delete()
