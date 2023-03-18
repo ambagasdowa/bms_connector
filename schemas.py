@@ -13,7 +13,10 @@ class InvalueBase(BaseModel):
 
 
 class InvalueCreate(BaseModel):
-    pass
+    attribute: str
+    value: str
+
+    # pass
 
 
 class InvalueUpdate(BaseModel):
