@@ -13,8 +13,8 @@ class InvalueBase(BaseModel):
 
 
 class InvalueCreate(BaseModel):
-    bms_inputs_ctrls_id: int
-    user_id: int
+    bms_inputs_ctrls_id: str
+    user_id: str
     attribute: str
     value: str
 
