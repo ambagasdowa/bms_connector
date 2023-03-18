@@ -346,5 +346,34 @@ def books_action_retrieve(book_id: str, user_id: int, db: Session = Depends(get_
         raise HTTPException(status_code=404, detail="Book not found")
     return books
 
+
+@app.post("/invalues/{input_id}/{user_id}", response_model=schemas.InvalueCreate)
+def invalue_action_create(user_id: int, data: list[schemas.InvalueCreate], db: Session = Depends(get_db)):
+
+    print(data)
+    print(
+        f"[green]ids in data[green] :[cyan] user_id =>[cyan] [red]{user_id}[red]")
+
+    print("[red]Cleaning page [red]")
+    response = []
+
+    # clean = crud.drop_invalues(db, user_id)
+
+    print(f"[blue]{clean}[blue]")
+    try:
+        for srcp in data:
+            Invalues = crud.create_invalue(db, srcp)
+
+            json_response = jsonable_encoder(Invalues)
+            print(f"[green]JSON_RESPONSE :[green]")
+            print(json_response)
+            response.append(json_response)
+    except Exception as e:
+        raise HTTPException(
+            status_code=404, detail="Something Happend Try again ")
+    else:
+        return JSONResponse(content=response)
+
+
 # if __name__ == "__main__":
 #     uvicorn.run(app, host='0.0.0.0',  ssl-keyfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.key", ssl-certfile="/var/www/mapache/public_html/src/bms/src/crt_test/server.crt", ssl-keyfile-password=None)

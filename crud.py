@@ -533,4 +533,12 @@ def get_book(db: Session, book_id: str, user_id: int):
 #        print(f"length of list -> {len(response)}")
 #        #return JSONResponse(content=jsonable_encoder(response))
 #        return response
+def create_invalue(db: Session, data: InvalueCreate):
+
+    db_invalue = Invalue(**data.dict())
+    print(jsonable_encoder(db_invalue))
+    # db.add(db_invalue)
+    # db.commit()
+    # db.refresh(db_invalue)
+    return db_invalue
 
