@@ -273,6 +273,7 @@ class ItemBase(BaseModel):
         #     print(inputs)
 
         for paper in data['invalues']:
+            print(paper)
             data['inpages'].append(paper)
 
         # NOTE rewrite again
