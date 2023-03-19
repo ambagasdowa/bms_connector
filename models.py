@@ -151,7 +151,7 @@ class Item(Base):
                            secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
                            )
     invalues = relationship("Invalue",
-                            secondary="outerjoin(Inpage,Invalue,Inpage.bms_inputs_ctrls_id==Invalue.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
+                            secondary="outerjoin(Input,Invalue,Input.id==Invalue.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
                             )
 
 
