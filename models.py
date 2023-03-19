@@ -279,7 +279,7 @@ class Invalue(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
-    user_id = Column(Integer, index=True)
+    user_id = Column(Integer, ForeignKey("bms_cache_books.user_id"))
     attribute = Column(String, index=True)
     value = Column(String, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
