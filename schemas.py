@@ -265,18 +265,11 @@ class ItemBase(BaseModel):
     def dict(self, **kwargs):
         data = super(ItemBase, self).dict(**kwargs)
 
-        # xinputs = {}
-        # xbook_pages = {}
-        # for inputs in data['sourcePositions']:
-        #     print(f"[red]POSITIOMS:[/red]")
-        #     xpage = inputs['page']
-        #     print(inputs)
-
         for paper in data['invalues']:
             print(paper)
             print(data['user_id'])
-            if paper.user_id == data['user_id']:
-                data['inpages'].append(paper)
+            # if paper.user_id == data['user_id']:
+            data['inpages'].append(paper)
 
         # NOTE rewrite again
         for inpaper in data['inputs']:
