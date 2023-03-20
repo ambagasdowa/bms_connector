@@ -266,13 +266,9 @@ class ItemBase(BaseModel):
         data = super(ItemBase, self).dict(**kwargs)
 
         for paper in data['invalues']:
-            print(paper)
-            print(data['user_id'])
-            if paper['user_id'] == data['user_id']:
-                print(
-                    f"Append paper user {paper['user_id']} to inpages for data-user {data['user_id']}")
+            if int(paper['user_id']) == int(data['user_id']):
+                print(f"INPAGES EQUAL TO DATA")
                 data['inpages'].append(paper)
-        print(data['inpages'])
 
         # NOTE rewrite again
         for inpaper in data['inputs']:
