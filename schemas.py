@@ -269,7 +269,10 @@ class ItemBase(BaseModel):
             print(paper)
             print(data['user_id'])
             if paper['user_id'] == data['user_id']:
+                print(
+                    f"Append paper user {paper['user_id']} to inpages for data-user {data['user_id']}")
                 data['inpages'].append(paper)
+        print(data['inpages'])
 
         # NOTE rewrite again
         for inpaper in data['inputs']:
