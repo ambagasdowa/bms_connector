@@ -172,6 +172,10 @@ class Page(Base):
     @hybrid_property
     def path(self):
         return self.basename + self.pathname
+
+    def extpath(self):
+        return self.ext_basename + self.pathname
+
     # bms_cache_books = relationship(
     #     'Item', foreign_keys='Page.bms_books_id')
    # bms_books = relationship('File', foreign_keys='Page.bms_books_id')

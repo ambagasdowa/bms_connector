@@ -116,6 +116,7 @@ class Position(PositionBase):
 class PageBase(BaseModel):
     book_pages: Optional[int] = []
     path: str
+    extpath: str
 #    basename: Optional[str] = []
 #    pathname: Optional[str] = []
 #    css: Optional[str] = []
@@ -266,8 +267,8 @@ class ItemBase(BaseModel):
         data = super(ItemBase, self).dict(**kwargs)
 
         for paper in data['invalues']:
+            # models don't relation properly -> alchemy ??
             if int(paper['user_id']) == int(data['user_id']):
-                print(f"INPAGES EQUAL TO DATA")
                 data['inpages'].append(paper)
 
         # NOTE rewrite again
@@ -280,10 +281,13 @@ class ItemBase(BaseModel):
 
 # Reorder book_pages and book_pages_maps
         book_pages = {}
+        book_pages_ext = {}
         for bookpages in data['pagination']:
             book_pages[bookpages['book_pages']] = bookpages['path']
+            book_pages_ext[bookpages['book_pages_ext']] = bookpages['extpath']
 
         data['book_pages'] = book_pages
+        data['book_pages_ext'] = book_pages_ext
         # Reorder book_pages and book_pages_maps
         book_pages_maps = {}
         for bookpagesmaps in data['positions']:
@@ -312,7 +316,7 @@ class ItemBase(BaseModel):
         del data['inputs']
         del data['inpages']
         del data['positions']
-        # del data['invalues']
+        del data['invalues']
         del data['pagination']
 
         return data
