@@ -117,8 +117,8 @@ class PageBase(BaseModel):
     book_pages: Optional[int] = []
     path: str
     extpath: str
-    page_width: str
-    page_height: str
+    page_width: Optional[str] = []
+    page_height: Optional[str] = []
 #    basename: Optional[str] = []
 #    pathname: Optional[str] = []
 #    css: Optional[str] = []
