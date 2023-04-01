@@ -289,7 +289,7 @@ class ItemBase(BaseModel):
             book_pages[bookpages['book_pages']] = bookpages['path']
             book_pages_ext[bookpages['book_pages']] = bookpages['extpath']
             book_pages_sizes[bookpages['book_pages']] = {
-                "w": bookpages['page_width'], "h": book_pages['page_height']}
+                "w": bookpages['page_width'], "h": bookpages['page_height']}
 
         data['book_pages'] = book_pages
         data['book_pages_ext'] = book_pages_ext
