@@ -162,6 +162,7 @@ class Page(Base):
     bms_books_id = Column(Integer,  ForeignKey("bms_cache_books.book_id"))
 #    bid = Column('bms_books_id', ForeignKey("book_id"))
     book_pages = Column(Integer)
+    ext_basename = Column(String, index=True)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
@@ -173,7 +174,7 @@ class Page(Base):
     def path(self):
         return self.basename + self.pathname
 
-    @hybrid_property
+    # @hybrid_property
     def extpath(self):
         return self.ext_basename + self.pathname
 
