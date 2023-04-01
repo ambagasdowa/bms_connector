@@ -174,7 +174,7 @@ class Page(Base):
     def path(self):
         return self.basename + self.pathname
 
-    # @hybrid_property
+    @hybrid_property
     def extpath(self):
         return self.ext_basename + self.pathname
 
