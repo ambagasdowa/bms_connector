@@ -284,7 +284,7 @@ class ItemBase(BaseModel):
         book_pages_ext = {}
         for bookpages in data['pagination']:
             book_pages[bookpages['book_pages']] = bookpages['path']
-            book_pages_ext[bookpages['book_pages_ext']] = bookpages['extpath']
+            book_pages_ext[bookpages['book_pages']] = bookpages['extpath']
 
         data['book_pages'] = book_pages
         data['book_pages_ext'] = book_pages_ext
