@@ -117,6 +117,8 @@ class PageBase(BaseModel):
     book_pages: Optional[int] = []
     path: str
     extpath: str
+    page_width: str
+    page_height: str
 #    basename: Optional[str] = []
 #    pathname: Optional[str] = []
 #    css: Optional[str] = []
@@ -282,12 +284,16 @@ class ItemBase(BaseModel):
 # Reorder book_pages and book_pages_maps
         book_pages = {}
         book_pages_ext = {}
+        book_pages_sizes = {}
         for bookpages in data['pagination']:
             book_pages[bookpages['book_pages']] = bookpages['path']
             book_pages_ext[bookpages['book_pages']] = bookpages['extpath']
+            book_pages_sizes[bookpages['book_pages']] = {
+                "w": bookpages['page_width'], "h": book_pages['page_height']}
 
         data['book_pages'] = book_pages
         data['book_pages_ext'] = book_pages_ext
+        data['book_pages_sizes'] = book_pages_sizes
         # Reorder book_pages and book_pages_maps
         book_pages_maps = {}
         for bookpagesmaps in data['positions']:

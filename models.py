@@ -165,6 +165,8 @@ class Page(Base):
     ext_basename = Column(String, index=True)
     basename = Column(String, index=True)
     pathname = Column(String, index=True)
+    page_width = Column(String, index=True)
+    page_height = Column(String, index=True)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))

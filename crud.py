@@ -36,7 +36,9 @@ from collections import Counter
 from rich import print
 from rich.progress import track
 from rich.progress import Progress
-
+#Image maniputlation
+from PIL import Image
+from PIL.ExifTags import TAGS
 
 from .config import configuration
 
@@ -204,11 +206,19 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     #    Add pages
     #    save each page with a counter
         current_page = i + 1
+        #properties size 
+        # path to the image or video
+        imagename = f"{store_path}/pages/{current_page}{extension}"
+        # read the image data using PIL
+        image = Image.open(imagename)
+
         book_pages = Page(
         bms_books_id     = book.id
         ,book_pages      = current_page
         ,basename        = config['ext_basename']+config['pathname']
         ,pathname        = dir_path +'/pages/'+ str(current_page) + extension
+        ,page_width      = image.width
+        ,page_height     = image.height
         ,created         = date_up
         )
         db.add(book_pages)
