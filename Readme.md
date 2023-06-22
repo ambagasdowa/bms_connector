@@ -28,9 +28,13 @@ styles:
 - Download the Api
 
 ```bash
-  python3 -m pip install git+https://github.com/ambagasdowa/bms_connector.git@release
+  git clone -b release https://github.com/ambagasdowa/bms_connector.git
 
 ```
+
+Descargas
+
+<https://github.com/ambagasdowa/bms_connector/archive/refs/heads/release.zip>
 
 - Install the dependencies
 
