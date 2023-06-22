@@ -3,7 +3,7 @@ import pandas as pd
 # crud.py
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import text,func
+from sqlalchemy import text, func
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -13,9 +13,9 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 
 
-from .models import Item, Page,File,Filelist,Upload,Position,Input,Inpage,Invalue,SourcePositions,Invalue
-from .schemas import ItemUpdate,FileCreate,FileUpdate,UploadCreate,PositionCreate,InputCreate,InvalueCreate,SourcePositionsCreate
-from typing import Union,List
+from .models import Item, Page, File, Filelist, Upload, Position, Input, Inpage, Invalue, SourcePositions, Invalue
+from .schemas import ItemUpdate, FileCreate, FileUpdate, UploadCreate, PositionCreate, InputCreate, InvalueCreate, SourcePositionsCreate
+from typing import Union, List
 
 import urllib
 import os
@@ -36,7 +36,7 @@ from collections import Counter
 from rich import print
 from rich.progress import track
 from rich.progress import Progress
-#Image maniputlation
+# Image maniputlation
 from PIL import Image
 from PIL.ExifTags import TAGS
 
@@ -44,7 +44,8 @@ from .config import configuration
 
 config = configuration['download_config']
 
-# NOTE search for books with data 
+# NOTE search for books with data
+
 
 def list_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Item).offset(skip).limit(limit).all()
@@ -106,8 +107,24 @@ def get_files(path):
         if os.path.isfile(os.path.join(path, file)):
             yield file
 
+def lower_dir(path):
+    for file in os.listdir(path):
+        if os.path.isdir(os.path.join(path, file)):
+            try:
+                os.rename( os.path.join(path, file), os.path.join(path, file.lower()))
+            except OSError:
+                pass # can't rename it, so what
 
-def store_file( book_name:str ,db:Session,  token:str, file):
+
+def limpiar_acentos(text):
+    acentos = {'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'Á': 'A',
+        'E': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U', 'ñ': 'n', 'Ñ': 'N'}
+    for acen in acentos:
+     if acen in text:
+         text = text.replace(acen, acentos[acen])
+    return text
+
+def store_file( book_name: str ,db:Session,  token:str, file):
     """TODO: Docstring for store_file.
 
     :arg1: TODO
@@ -117,6 +134,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     print(f"[red]token : {token}[red]")
     print(f"[cyan]FILE {type(file)}[cyan]")
 
+    # filename = limpiar_acentos(file.filename)
     filename = file.filename
     tmp_path = config['download_path'] + config['dir_path']
     date_up = datetime.now()
@@ -125,14 +143,14 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     spl = str(filename.replace('.zip', ''))
 #    if not set the book_name take it from zip-filename
 
-    # if book_name : 
+    # if book_name :
     #     print(f"TYPE of Book : {type(book_name)}")
     #     print(f"{book_name}")
 
-    if not book_name :
-        book_name = spl.replace('_',' ').capitalize()
+    if not book_name:
+        book_name = spl.replace('_', ' ').capitalize()
 
-    spl_path = str(spl.replace('_','/'))
+    spl_path = str(spl.replace('_', '/').replace(' ','/').replace('-', '/'))
 
     dir_path = '/' + spl_path
     print("NEW PATH : " + dir_path)
@@ -153,7 +171,11 @@ def store_file( book_name:str ,db:Session,  token:str, file):
 
     try:
         with zipfile.ZipFile(filename, 'r') as zip_ref:
+            print(f"path {store_path}")
+            print(f"file {filename}")
             zip_ref.extractall(store_path)
+
+
     except zipfile.BadZipfile:
         print("[red] zip file : " + filename +
               " from provider with errors , try again ...[red]")
@@ -161,8 +183,7 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     # Create Book
 #    with Session(bind=engine) as session:
     book = Upload(
-        file_name = filename
-        ,pathname = store_path
+        file_name = filename        , pathname = store_path
     )
     db.add(book)
     db.commit()
@@ -170,9 +191,9 @@ def store_file( book_name:str ,db:Session,  token:str, file):
 
     print(f"[blue]The book ID : {book.id}[blue]")
 
-
-
+    lower_dir(store_path)
     full_path = store_path+'/'+'pages'
+
     cnt_ext = Counter()
     ext_dict = {}
     x = []
@@ -185,16 +206,15 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     print(f"[red]count :{cnt_ext}[red]")
     extension = max(cnt_ext)
     print(f"EXTENSION : [red] {extension} [red]")
-    pages_count = len(glob.glob1(full_path,f"*{extension}"))
+    pages_count = len(glob.glob1(full_path, f"*{extension}"))
     print(f"[gray]pages : [green]{pages_count}[green]")
 
 #    Create the book
     book_file = File(
-        book_id = book.id
-        ,pages = pages_count
-        ,book_name = book_name
-        ,is_url = True
-        ,created = date_up
+        book_id = book.id        , pages = pages_count
+        , book_name = book_name
+        , is_url = True
+        , created = date_up
     )
     db.add(book_file)
     db.commit()
@@ -203,24 +223,24 @@ def store_file( book_name:str ,db:Session,  token:str, file):
     print(f"[cyan]The book_file ID[cyan] : [blue]{book_file.id}[blue]")
 
     for i in range(int(pages_count)):
-    #    Add pages
-    #    save each page with a counter
+        #    Add pages
+        #    save each page with a counter
         current_page = i + 1
-        #properties size 
+        # properties size
         # path to the image or video
         imagename = f"{store_path}/pages/{current_page}{extension}"
         # read the image data using PIL
         image = Image.open(imagename)
 
         book_pages = Page(
-        bms_books_id     = book.id
-        ,book_pages      = current_page
-        ,ext_basename    = config['basename']+config['pathname']
-        ,basename        = config['ext_basename']+config['pathname']
-        ,pathname        = dir_path +'/pages/'+ str(current_page) + extension
-        ,page_width      = image.width
-        ,page_height     = image.height
-        ,created         = date_up
+            bms_books_id     = book.id
+        , book_pages      = current_page
+        , ext_basename    = config['basename']+config['pathname']
+        , basename        = config['ext_basename']+config['pathname']
+        ,pathname        = dir_path + '/pages/'+ str(current_page) + extension
+        , page_width      = image.width
+        , page_height     = image.height
+        , created         = date_up
         )
         db.add(book_pages)
         db.commit()
@@ -228,11 +248,10 @@ def store_file( book_name:str ,db:Session,  token:str, file):
         print(f"[cyan]The book_file ID[cyan] : [blue]{book_pages.id}[blue]")
 # Set entries in positions
         book_positions = Position(
-            bms_books_id = book.id
-            ,bms_bookpages_id = book_pages.id
-            ,page = current_page
-            ,css = ''
-            ,created = date_up
+            bms_books_id = book.id            , bms_bookpages_id = book_pages.id
+            , page = current_page
+            , css = ''
+            , created = date_up
         )
         db.add(book_positions)
         db.commit()
@@ -242,10 +261,9 @@ def store_file( book_name:str ,db:Session,  token:str, file):
 
 # Set entries in inputs container
         book_input = Input(
-            bms_books_id = book.id
-            ,bms_bookpages_id = current_page
-            ,label = f"Input entry for book {book.id} in pages {current_page}"
-            ,created = date_up
+            bms_books_id = book.id            , bms_bookpages_id = current_page
+            , label = f"Input entry for book {book.id} in pages {current_page}"
+            , created = date_up
         )
         db.add(book_input)
         db.commit()
@@ -253,13 +271,12 @@ def store_file( book_name:str ,db:Session,  token:str, file):
 
         print(f"[cyan]The book_input ID[cyan] : [blue]{book_input.id}[blue]")
 
-    #db.execute(func.bms_proc_build_cache_inp_usr())
-    query = '{0} {1}.{2}'.format( configuration['db_connection']['proc_exec'],configuration['db_connection']['database'] ,configuration['db_connection']['proc_0'])
+    # db.execute(func.bms_proc_build_cache_inp_usr())
+    query = '{0} {1}.{2}'.format( configuration['db_connection']['proc_exec'], configuration['db_connection']['database'] ,configuration['db_connection']['proc_0'])
     db.execute(query)
     db.commit()
 
     return book.id
-
 
 
 def create_file(db: Session, data: FileCreate):
@@ -269,6 +286,7 @@ def create_file(db: Session, data: FileCreate):
     db.commit()
     db.refresh(db_file)
     return db_file
+
 
 def update_file(db: Session, file: Union[int, File], data: FileUpdate):
 
@@ -282,16 +300,18 @@ def update_file(db: Session, file: Union[int, File], data: FileUpdate):
     return file
 
 
-#=== === === === === === === === === === === === === === === === === === 
+# === === === === === === === === === === === === === === === === === ===
 #                      Source Positions
-#=== === === === === === === === === === === === === === === === === === 
+# === === === === === === === === === === === === === === === === === ===
 
 
 def get_srcpos(db: Session, book_id: int, page_id: int):
-    return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id ==page_id).all()
+    return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id == page_id).all()
+
 
 def get_srcpos_ids(db: Session, book_id: int, page_id: int):
-    return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id ==page_id).all()
+    return db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id == page_id).all()
+
 
 def get_srcpositions(db: Session, book_id: int):
     # request = get params book_id,user_id,etc
@@ -307,7 +327,7 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     print("[green]DATA in crud.py[green]")
     print(data)
 # NOTE
-# Before Save a new input set, first need to remove all remanents in db of 
+# Before Save a new input set, first need to remove all remanents in db of
 # that book and that page with:
 # db_srcpos.bms_books_id and db_srcpos.bms_bookpages_id
     db_srcpos = SourcePositions(**data.dict())
@@ -318,104 +338,103 @@ def create_srcpositions(db: Session, data: SourcePositionsCreate):
     # bms_positions {keys:{}}
     # bms_src_positions
     print(db_srcpos)
-    #first set an entry in bms_inputs_ctrls
+    # first set an entry in bms_inputs_ctrls
     bid = db_srcpos.bms_books_id
     bp = db_srcpos.page
     # Set an entry in bms_inputs_pages
     itype = db_srcpos.inputType
     createdTime = datetime.now()
-    print(bid,bp,itype)
+    print(bid, bp,itype)
 
 
 # Set entries in inputs container
     bk_input = Input(
-         bms_books_id = bid
-        ,bms_bookpages_id = bp
-        ,label = f"Input entry for book {bid} in page => {bp}"
-        ,created = createdTime
+        bms_books_id = bid
+        , bms_bookpages_id = bp
+        , label = f"Input entry for book {bid} in page => {bp}"
+        , created = createdTime
     )
     db.add(bk_input)
     db.commit()
     db.refresh(bk_input)
 
-
     print(f"[cyan]The bk_input linked with POSITIONS ID[/cyan] : [blue]{bk_input.id}[/blue]")
 
     style = f" .pages_{bp} > form > #input{bk_input.id}{{top:{(db_srcpos.x1)}px;left:{int(db_srcpos.y1)}px;width:{int(db_srcpos.x2)}px;border:2px solid blue !important;}}"
-   
+
     datav = {
-                "type":itype
-                ,"name":f"inp{bk_input.id}"
-                ,"id":f"input{bk_input.id}"
+                "type": itype
+                , "name":f"inp{bk_input.id}"
+                , "id":f"input{bk_input.id}"
     }
 
 
-    for attr,data in datav.items():
+    for attr, data in datav.items():
         bk_inpages = Inpage(
-             bms_inputs_ctrls_id = bk_input.id
-            ,attribute = attr
-            ,value = data
-            ,created = createdTime
+            bms_inputs_ctrls_id = bk_input.id
+            , attribute = attr
+            , value = data
+            , created = createdTime
         )
         db.add(bk_inpages)
         db.commit()
         db.refresh(bk_inpages)
 
-
     bk_styles = Position(
-         bms_books_id = bid
-        ,bms_bookpages_id = bp
-        ,page = bp
-        ,css = style
-        ,created = createdTime
+        bms_books_id = bid
+        , bms_bookpages_id = bp
+        , page = bp
+        , css = style
+        , created = createdTime
     )
     db.add(bk_styles)
     db.commit()
     db.refresh(bk_styles)
 
-#WORKING FROM HIR
+# WORKING FROM HIR
 
     db.add(db_srcpos)
     db.commit()
     db.refresh(db_srcpos)
     return db_srcpos
 
-def drop_link_positions(db:Session, book_id: int, page_id: int):
-    #first delete the related <fucking shitty Mysql>
-    inputs_id = db.query(Input).filter(Input.bms_books_id == book_id,Input.bms_bookpages_id == page_id)
-    #search for input_pages and input_values
+def drop_link_positions(db: Session, book_id: int, page_id: int):
+    # first delete the related <fucking shitty Mysql>
+    inputs_id = db.query(Input).filter(Input.bms_books_id == book_id, Input.bms_bookpages_id == page_id)
+    # search for input_pages and input_values
     # print(inputs_id)
-    if inputs_id :
+    if inputs_id:
         inp_ids = []
 
         for ind in inputs_id:
             inp_ids.append(ind.id)
         db.query(Inpage).filter(Inpage.bms_inputs_ctrls_id.in_(inp_ids)).delete()
         db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id.in_(inp_ids)).delete()
-    positions_id = db.query(Position).filter(Position.bms_books_id == book_id,Position.bms_bookpages_id == page_id)
+    positions_id = db.query(Position).filter(Position.bms_books_id == book_id, Position.bms_bookpages_id == page_id)
     # And finally:
     if positions_id:
         positions_id.delete()
     if inputs_id:
         inputs_id.delete()
     db.commit()
-    return {"deleted":f"{inp_ids}"}
+    return {"deleted": f"{inp_ids}"}
 
 
-def drop_srcpositions(db: Session, book_id: int,page_id:int):
+def drop_srcpositions(db: Session, book_id: int, page_id:int):
 
-    db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id,SourcePositions.bms_bookpages_id == page_id).delete()
-    response_del = drop_link_positions(db,book_id,page_id)
-    #drop attributes values too ? or update ids
-    # search each id in db and update id relations 
+    db.query(SourcePositions).filter(SourcePositions.bms_books_id == book_id, SourcePositions.bms_bookpages_id == page_id).delete()
+    response_del = drop_link_positions(db, book_id,page_id)
+    # drop attributes values too ? or update ids
+    # search each id in db and update id relations
     db.commit()
     print(f"[green]{response_del}")
 
-    return {"ok":True}
+    return {"ok": True}
 
 
 def list_books(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Filelist).offset(skip).limit(limit).all()
+
 
 def get_book(db: Session, book_id: str, user_id: int):
     # return get_book_usr(db,book_id,user_id)
@@ -432,13 +451,12 @@ def create_invalue(db: Session, data: InvalueCreate):
     return db_invalue
 
 
-def drop_invalues(db:Session, ctrls_id: int, user_id: int):
-    #first delete the related <fucking shitty Mysql>
-    values_id = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ctrls_id,Invalue.user_id == user_id)
-    #search for input_pages and input_values
+def drop_invalues(db: Session, ctrls_id: int, user_id: int):
+    # first delete the related <fucking shitty Mysql>
+    values_id = db.query(Invalue).filter(Invalue.bms_inputs_ctrls_id == ctrls_id, Invalue.user_id == user_id)
+    # search for input_pages and input_values
     # print(jsonable_encoder(values_id))
-    if values_id :
+    if values_id:
         values_id.delete()
         db.commit()
-    return {"deleted":f"{ctrls_id}"}
-
+    return {"deleted": f"{ctrls_id}"}

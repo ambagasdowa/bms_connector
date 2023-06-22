@@ -150,9 +150,12 @@ class Item(Base):
     inpages = relationship("Inpage",
                            secondary="outerjoin(Input,Inpage,Input.id==Inpage.bms_inputs_ctrls_id)"
                            )
-    invalues = relationship("Invalue",
-                            secondary="outerjoin(Input,Invalue,Input.id==Invalue.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
+    invalues = relationship("Usrvalue",
+                            secondary="outerjoin(Input,Usrvalue,Input.id==Usrvalue.bms_inputs_ctrls_id,Item.user_id==Usrvalue.user_id)"
                             )
+    invals = relationship("Invalue",
+                          secondary="outerjoin(Input,Invalue,Input.id==Invalue.bms_inputs_ctrls_id,Item.user_id==Invalue.user_id)"
+                          )
 
 
 class Page(Base):
@@ -250,6 +253,8 @@ class SourcePositions(Base):
     y1 = Column(DECIMAL(18, 6))
     x2 = Column(DECIMAL(18, 6))
     y2 = Column(DECIMAL(18, 6))
+    response = Column(String)
+    notes = Column(String)
     created = Column(TIMESTAMP, nullable=False, server_default=func.now())
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
@@ -294,6 +299,22 @@ class Invalue(Base):
     modified = Column(DateTime, server_default=text(
         "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     status = Column(Boolean, default=True)
+
+
+class Usrvalue(Base):
+    __tablename__ = "bms_view_inputs_values"
+
+    id = Column(Integer, primary_key=True, index=True)
+    bms_inputs_ctrls_id = Column(Integer,  ForeignKey("bms_inputs_ctrls.id"))
+    user_id = Column(Integer)
+    attribute = Column(String, index=True)
+    value = Column(String, index=True)
+    answer = Column(String, index=True)
+    evaluation = Column(String, index=True)
+    # created = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    # modified = Column(DateTime, server_default=text(
+    #     "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    # status = Column(Boolean, default=True)
 
 
 # class User(Base):

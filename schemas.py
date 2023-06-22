@@ -19,6 +19,8 @@ class InvalueCreate(BaseModel):
     user_id: str
     attribute: str
     value: str
+    # answer: Optional[str] = []
+    # evaluation: Optional[str] = []
 
 
 class InvalueUpdate(BaseModel):
@@ -26,6 +28,32 @@ class InvalueUpdate(BaseModel):
 
 
 class Invalue(InvalueBase):
+    id: int
+    # bms_inputs_ctrls_id: int
+    # user_id: int
+
+    class Config:
+        orm_mode = True
+
+
+class UsrvalueBase(BaseModel):
+    bms_inputs_ctrls_id: str
+    user_id: str
+    attribute: str
+    value: str
+    answer: Optional[str] = []
+    evaluation: Optional[bool] = []
+
+
+class UsrvalueCreate(BaseModel):
+    pass
+
+
+class UsrvalueUpdate(BaseModel):
+    pass
+
+
+class Usrvalue(UsrvalueBase):
     id: int
     # bms_inputs_ctrls_id: int
     # user_id: int
@@ -155,6 +183,8 @@ class SourcePositionsBase(BaseModel):
     y1: float
     x2: float
     y2: float
+    response:str
+    notes: str
     created: datetime
     modified: Union[datetime, None] = None
     status: bool
@@ -175,6 +205,8 @@ class SourcePositionsCreate(BaseModel):
     y1: str
     x2: str
     y2: str
+    response: str
+    notes: str
 
     # class Config:
     #     schema_extra = {
@@ -261,12 +293,16 @@ class ItemBase(BaseModel):
     # This goes together
     inputs: Union[List[Input]] = []
     inpages: Union[List[Inpage]] = []
-    invalues: Union[List[Invalue]] = []
+    invals: Union[List[Invalue]] = []
+    invalues: Union[List[Usrvalue]] = []
 
     created: datetime
 
     def dict(self, **kwargs):
         data = super(ItemBase, self).dict(**kwargs)
+
+        if (int(data['user_id']) == 1702):
+            data['invalues'] = data['invals']
 
         for paper in data['invalues']:
             # models don't relation properly -> alchemy ??
@@ -313,13 +349,18 @@ class ItemBase(BaseModel):
                 book_inputs[page] = []
             ins[page] = {}
 
+            # Invalues check
             for attr in input_pages['data']:
                 ins[page][attr['attribute']] = attr['value']
+                if attr.get('answer') is not None:
+                    ins[page]['data-answer'] = attr['answer']
+                    ins[page]['data-evaluation'] = attr['evaluation']
+
             book_inputs[page].append(ins[page])
 
         data['book_inputs'] = book_inputs
 
-        # del data['inputs']
+        data['inputs']
         del data['inpages']
         del data['positions']
         del data['invalues']
