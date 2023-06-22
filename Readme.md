@@ -21,14 +21,14 @@ styles:
 
 - Instalar el schema de base de datos
 
-  ```bash
-  INSTALL: mysql --user=user --password=pass database < db/bms.sql
-  ```
+```bash
+  mysql --user=user --password=pass database < db/bms.sql
+```
 
 - Download the Api
 
 ```bash
-python3 -m pip install git+https://github.com/ambagasdowa/bms_connector.git@release
+  python3 -m pip install git+https://github.com/ambagasdowa/bms_connector.git@release
 
 ```
 
